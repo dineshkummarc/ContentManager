@@ -11,14 +11,28 @@ namespace Content.Web.Tests.Services
 {
     [TestClass]
     public class ContentServiceTest
-    { 
+    {
 
         [TestMethod]
         public void ContentService_Get_IsNotNull()
         {
             ContentService cs = new ContentService(new FakeContentRepository());
-            IQueryable<HtmlContent> contents =  cs.GetContent();
+            IQueryable<HtmlContent> contents = cs.GetContent();
             Assert.IsNotNull(contents);
+        }
+        [TestMethod]
+        public void ContentService_Get_ReturnsMoreThanZero()
+        {
+            ContentService cs = new ContentService(new FakeContentRepository());
+            IQueryable<HtmlContent> contents = cs.GetContent();
+            Assert.IsTrue(contents.Count() > 0);
+        }
+        [TestMethod]
+        public void ContentService_GetById_HasCorrectData()
+        {
+            ContentService cs = new ContentService(new FakeContentRepository());
+            HtmlContent content = cs.GetContent(1);
+            Assert.AreEqual(content.ContentData, "<h1>Hello 1</h1>");
         }
     }
 }
