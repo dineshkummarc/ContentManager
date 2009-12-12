@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Content.Web.Code.Entities; 
+using Content.Web.Code.Entities;
+using Content.Web.Code.DataAccess.Interfaces; 
 
 namespace Content.Web.Code.Service.Base
 {
     public class ContentService
     {
+        private IContentRepository _repository;
+        public ContentService(IContentRepository _rep)
+        {
+            _repository = _rep;
+        }
+
         public IQueryable<HtmlContent> GetContent(DateTime dt)
         {
             return null;
@@ -15,8 +22,10 @@ namespace Content.Web.Code.Service.Base
 
         public IQueryable<HtmlContent> GetContent()
         {
-            return null;
+            IQueryable<HtmlContent> x = this._repository.GetContentList();
+            return x;
         }
+        
 
         public HtmlContent GetContent(int id)
         {

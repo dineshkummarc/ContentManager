@@ -12,9 +12,9 @@ namespace Content.Web.Code.Entities
         public DateTime ModifiedDate { get; set; }
         public DateTime ExpireDate { get; set; }
         public DateTime ActiveDate { get; set; }
-        public string ModifiedBy { get; set; } 
+        public string ModifiedBy { get; set; }
 
-        public Content()
+        public HtmlContent()
         {
             Id = -2;
         }

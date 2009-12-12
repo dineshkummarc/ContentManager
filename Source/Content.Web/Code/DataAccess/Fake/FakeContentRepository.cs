@@ -68,7 +68,7 @@ namespace Content.Web.Code.DataAccess.Fake
 
         IQueryable<HtmlContent> IContentRepository.GetContentList()
         {
-            throw new NotImplementedException();
+            return this.list.AsQueryable<HtmlContent>(); 
         }
 
         HtmlContent IContentRepository.Save(HtmlContent item)
