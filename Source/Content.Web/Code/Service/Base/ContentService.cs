@@ -29,12 +29,12 @@ namespace Content.Web.Code.Service.Base
 
         public HtmlContent GetContent(int id)
         {
-            return null;
+            return this._repository.GetContentList().Where(x => x.Id == id).Single<HtmlContent>();
         }
 
         public HtmlContent Save(HtmlContent item)
         {
-            return null;
+            return this._repository.Save(item);
         }
 
         public bool Delete(HtmlContent item)

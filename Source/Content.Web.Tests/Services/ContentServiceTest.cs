@@ -32,7 +32,18 @@ namespace Content.Web.Tests.Services
         {
             ContentService cs = new ContentService(new FakeContentRepository());
             HtmlContent content = cs.GetContent(1);
-            Assert.AreEqual(content.ContentData, "<h1>Hello 1</h1>");
+            Assert.AreEqual( "<h1>Hello 1 </h1>" ,content.ContentData);
         }
+
+        [TestMethod]
+        public void ContentService_SaveNewContent_ReturnsContent()
+        {
+            ContentService cs = new ContentService(new FakeContentRepository());
+            HtmlContent content = new HtmlContent();
+            content.ContentData = "a";
+            HtmlContent content2 = cs.Save(content);
+            Assert.AreEqual("a", content2.ContentData);
+        }
+
     }
 }

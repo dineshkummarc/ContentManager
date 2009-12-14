@@ -70,11 +70,8 @@ namespace Content.Web.Code.DataAccess.Fake
         {
             return this.list.AsQueryable<HtmlContent>(); 
         }
+         
 
-        HtmlContent IContentRepository.Save(HtmlContent item)
-        {
-            throw new NotImplementedException();
-        }
 
         bool IContentRepository.Delete(HtmlContent item)
         {
