@@ -39,3 +39,6 @@
     </div>
 </body>
 </html>
+            
+<asp:ContentPlaceHolder ID="Javascript" runat="server" />
+

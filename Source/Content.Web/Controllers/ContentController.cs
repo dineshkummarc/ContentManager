@@ -4,11 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using Content.Web.Code.Service.Interfaces;
 
 namespace Content.Web.Controllers
 {
     public class ContentController : Controller
     {
+        IContentService _service ;
+
+        public ContentController(IContentService serv)
+        {
+            this._service = serv;
+        }
+
+
         //
         // GET: /Content/
 

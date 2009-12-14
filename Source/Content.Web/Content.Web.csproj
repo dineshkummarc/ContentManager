@@ -83,7 +83,7 @@
     <Compile Include="Code\Entities\HtmlContent.cs" />
     <Compile Include="Code\Entities\Enum.cs" />
     <Compile Include="Code\Service\Base\ContentService.cs" />
-    <Compile Include="Code\Service\Interfaces\IContent.cs" />
+    <Compile Include="Code\Service\Interfaces\IContentService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Views\Content\Details.aspx" />
     <Content Include="Views\Content\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
