@@ -4,6 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Ninject.Core;
+using Ninject.Framework.Mvc;
+using Content.Web.Code.Entities;
+using Content.Web.Code.Service.Interfaces;
+using Content.Web.Code.Service.Base;
+using Content.Web.Code.DataAccess.Interfaces;
+using Content.Web.Code.DataAccess.Fake;
 
 namespace Content.Web
 {

@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" 
-Inherits="System.Web.Mvc.ViewPage<IQueryable<Content.Web.Code.Entities.HtmlContent>>"  %>
+Inherits="System.Web.Mvc.ViewPage"  %>
+<%--Inherits="System.Web.Mvc.ViewPage<IQueryable<Content.Web.Code.Entities.HtmlContent>>"--%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -8,6 +9,7 @@ Inherits="System.Web.Mvc.ViewPage<IQueryable<Content.Web.Code.Entities.HtmlConte
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Index</h2>
+    <h2><%= Html.Encode(ViewData["Message"]) %></h2>
 
     <table>
         <tr>
@@ -22,7 +24,7 @@ Inherits="System.Web.Mvc.ViewPage<IQueryable<Content.Web.Code.Entities.HtmlConte
                 ModifiedDate
             </th>
         </tr>
-
+<%--
     <% foreach (var item in Model) { %>
     
         <tr>
@@ -41,7 +43,7 @@ Inherits="System.Web.Mvc.ViewPage<IQueryable<Content.Web.Code.Entities.HtmlConte
             </td>
         </tr>
     
-    <% } %>
+    <% } %>--%>
 
     </table>
 

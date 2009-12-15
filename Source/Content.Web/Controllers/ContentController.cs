@@ -17,37 +17,43 @@ namespace Content.Web.Controllers
         {
             this._service = serv;
         }
+        public ContentController()
+        {
+         //   this._service = serv;
+        }
 
 
         //
         // GET: /Content/
 
         public ActionResult Index()
-        { 
-            int pageNumber = 1;
-            string sPage = Request.Form["pg"];
-            string sortBy = Request.QueryString["s"];
-            string sortDir = Request.QueryString["dir"] ?? "";
-            string query = Request.Form["q"];
+        {
+            ViewData["Message"] = "Welcome to ASP.NET MVC!";
+            return View();
 
+            //int pageNumber = 1;
+            //string sPage = Request.Form["pg"];
+            //string sortBy = Request.QueryString["s"];
+            //string sortDir = Request.QueryString["dir"] ?? "";
+            //string query = Request.Form["q"]; 
 
-            //handle the search
-            if (!string.IsNullOrEmpty(query))
-            {
-                var item = this._service.GetContent().First();  
-                return RedirectToAction("Edit", new { id = item.Id });
-            }
-            else
-            { 
-                if (sortDir.Equals("desc") && !String.IsNullOrEmpty(sortBy))
-                    sortBy += " desc";
+            ////handle the search
+            //if (!string.IsNullOrEmpty(query))
+            //{
+            //    var item = this._service.GetContent().First();  
+            //    return RedirectToAction("Edit", new { id = item.Id });
+            //}
+            //else
+            //{ 
+            //    if (sortDir.Equals("desc") && !String.IsNullOrEmpty(sortBy))
+            //        sortBy += " desc";
 
-                if (!String.IsNullOrEmpty(sPage))
-                    int.TryParse(sPage, out pageNumber);
+            //    if (!String.IsNullOrEmpty(sPage))
+            //        int.TryParse(sPage, out pageNumber);
 
-                IQueryable<HtmlContent> items = this._service.GetContent().Skip(0).Take(10);
-                return View(items);
-            }
+            //    IQueryable<HtmlContent> items = this._service.GetContent().Skip(0).Take(10);
+            //    return View(items);
+            //}
         }
 
         //
