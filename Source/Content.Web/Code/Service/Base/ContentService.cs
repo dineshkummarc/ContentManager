@@ -22,14 +22,14 @@ namespace Content.Web.Code.Service.Base
 
         public IQueryable<HtmlContent> GetContent()
         {
-            IQueryable<HtmlContent> x = this._repository.GetContentList();
+            IQueryable<HtmlContent> x = this._repository.Get();
             return x;
         }
         
 
         public HtmlContent GetContent(int id)
         {
-            return this._repository.GetContentList().Where(x => x.Id == id).Single<HtmlContent>();
+            return this._repository.Get().Where(x => x.Id == id).Single<HtmlContent>();
         }
 
         public HtmlContent Save(HtmlContent item)

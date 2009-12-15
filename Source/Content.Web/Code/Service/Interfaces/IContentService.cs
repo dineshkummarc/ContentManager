@@ -10,9 +10,9 @@ namespace Content.Web.Code.Service.Interfaces
 
     public interface IContentService
     {
-        IQueryable<HtmlContent> GetContent(DateTime dt);
-        IQueryable<HtmlContent> GetContent();
-        HtmlContent GetContent(int id);
+        IQueryable<HtmlContent> Get(DateTime dt);
+        IQueryable<HtmlContent> Get();
+        HtmlContent Get(int id);
         HtmlContent Save(HtmlContent item);
         bool Delete(HtmlContent item);
     }

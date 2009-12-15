@@ -66,7 +66,7 @@ namespace Content.Web.Code.DataAccess.Fake
 
         #region IContentRepository Members
 
-        IQueryable<HtmlContent> IContentRepository.GetContentList()
+        IQueryable<HtmlContent> IContentRepository.Get()
         {
             return this.list.AsQueryable<HtmlContent>(); 
         }

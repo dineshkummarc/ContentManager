@@ -8,6 +8,10 @@ using System.Web.Routing;
 using Ninject.Core;
 using Ninject.Framework.Mvc;
 using NinjectIntegration.Models;
+using Content.Web.Code.Service.Interfaces;
+using Content.Web.Code.DataAccess.Interfaces;
+using Content.Web.Code.Service.Base;
+using Content.Web.Code.DataAccess.Fake;
 
 namespace Content.Web
 {
@@ -43,6 +47,8 @@ namespace Content.Web
         public override void Load()
         {
             Bind<IGreetingService>().To<GreetingServiceImpl>();
+            Bind<IContentRepository>().To<FakeContentRepository>();
+            Bind<IContentService>().To<ContentService>();
         }
     }
 }

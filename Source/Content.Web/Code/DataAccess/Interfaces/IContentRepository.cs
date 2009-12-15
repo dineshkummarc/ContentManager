@@ -8,7 +8,7 @@ namespace Content.Web.Code.DataAccess.Interfaces
 {
     public interface IContentRepository
     {
-        IQueryable<HtmlContent> GetContentList();
+        IQueryable<HtmlContent> Get();
 
         HtmlContent Save(HtmlContent item);
 
