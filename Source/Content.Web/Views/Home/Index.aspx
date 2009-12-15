@@ -12,4 +12,7 @@
     <p>
         <%= Html.ActionLink("Content/Index", "Index", "Content")%>
     </p>
+    <p>
+        <a href="Content/Index" >Link</a>
+    </p>
 </asp:Content>
