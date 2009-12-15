@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Content.Web.Code.Service.Interfaces;
+using Content.Web.Code.Entities;
 
 namespace Content.Web.Controllers
 {
@@ -22,8 +23,31 @@ namespace Content.Web.Controllers
         // GET: /Content/
 
         public ActionResult Index()
-        {
-            return View();
+        { 
+            int pageNumber = 1;
+            string sPage = Request.Form["pg"];
+            string sortBy = Request.QueryString["s"];
+            string sortDir = Request.QueryString["dir"] ?? "";
+            string query = Request.Form["q"];
+
+
+            //handle the search
+            if (!string.IsNullOrEmpty(query))
+            {
+                var item = this._service.GetContent().First();  
+                return RedirectToAction("Edit", new { id = item.Id });
+            }
+            else
+            { 
+                if (sortDir.Equals("desc") && !String.IsNullOrEmpty(sortBy))
+                    sortBy += " desc";
+
+                if (!String.IsNullOrEmpty(sPage))
+                    int.TryParse(sPage, out pageNumber);
+
+                IQueryable<HtmlContent> items = this._service.GetContent().Skip(0).Take(10);
+                return View(items);
+            }
         }
 
         //

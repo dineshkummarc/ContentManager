@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Content.Web.Code.Entities.Content>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" 
+Inherits="System.Web.Mvc.ViewPage<IQueryable<Content.Web.Code.Entities.HtmlContent>>"  %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -20,15 +21,6 @@
             <th>
                 ModifiedDate
             </th>
-            <th>
-                ExpireDate
-            </th>
-            <th>
-                ActiveDate
-            </th>
-            <th>
-                ModifiedBy
-            </th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -46,15 +38,6 @@
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.ModifiedDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:g}", item.ExpireDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:g}", item.ActiveDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.ModifiedBy) %>
             </td>
         </tr>
     
