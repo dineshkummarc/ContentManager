@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Ninject.Core;
+using Ninject.Framework.Mvc;
+using NinjectIntegration.Models;
 
 namespace Content.Web
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : NinjectHttpApplication
     {
-        public static void RegisterRoutes(RouteCollection routes)
+        protected override void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
@@ -21,12 +25,24 @@ namespace Content.Web
                 "{controller}/{action}/{id}",                           // URL with parameters
                 new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
             );
-
         }
 
-        protected void Application_Start()
+        protected override IKernel CreateKernel()
         {
-            RegisterRoutes(RouteTable.Routes);
+            IModule[] modules = new IModule[]
+                                    {
+                                        new AutoControllerModule(Assembly.GetExecutingAssembly()),
+                                        new ServiceModule()
+                                    };
+            return new StandardKernel(modules);
+        }
+    }
+
+    internal class ServiceModule : StandardModule
+    {
+        public override void Load()
+        {
+            Bind<IGreetingService>().To<GreetingServiceImpl>();
         }
     }
 }

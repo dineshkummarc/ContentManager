@@ -5,6 +5,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content.Web", "Content.Web\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content.Web.Tests", "Content.Web.Tests\Content.Web.Tests.csproj", "{3D2436E0-AD5E-4F9E-9FCB-B643D1E3E439}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceBin", "ReferenceBin", "{76809521-ABDF-40A3-8D51-6459E5FB6342}"
+	ProjectSection(SolutionItems) = preProject
+		ReferenceBin\Ninject.Conditions.dll = ReferenceBin\Ninject.Conditions.dll
+		ReferenceBin\Ninject.Conditions.xml = ReferenceBin\Ninject.Conditions.xml
+		ReferenceBin\Ninject.Core.dll = ReferenceBin\Ninject.Core.dll
+		ReferenceBin\Ninject.Core.xml = ReferenceBin\Ninject.Core.xml
+		ReferenceBin\Ninject.Framework.Mvc.dll = ReferenceBin\Ninject.Framework.Mvc.dll
+		ReferenceBin\Ninject.Framework.Mvc.xml = ReferenceBin\Ninject.Framework.Mvc.xml
+		ReferenceBin\PlaceHolder.txt = ReferenceBin\PlaceHolder.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
