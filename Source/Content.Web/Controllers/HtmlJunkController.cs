@@ -4,23 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
-using Content.Web.Code.Service.Interfaces;
 using NinjectIntegration.Models;
+using Content.Web.Code.Service.Interfaces;
 
 namespace Content.Web.Controllers
 {
-    public class NinjectController : Controller
-    { 
-        private readonly IGreetingService _service;
+    public class HtmlJunkController : Controller
+    {
+        private readonly IContentService _service;
 
-        public NinjectController(IGreetingService _service)
+        public HtmlJunkController(IContentService _service)
         {
             this._service = _service;
         }
 
         public ActionResult Index()
         {
-            ViewData["Message"] = _service.GetGreeting();
+            ViewData["Message"] = "asdfasfasadfafsdaasd";
             return View();
         }
 

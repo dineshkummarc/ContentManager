@@ -15,4 +15,7 @@
     <p>
         <a href="Ninject/Index">Ninject/Index</a>
     </p>
+    <p>
+        <a href="HtmlJunk/Index">HtmlJunk/Index</a>
+    </p>
 </asp:Content>
