@@ -13,7 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceBin", "ReferenceBi
 		ReferenceBin\Ninject.Core.xml = ReferenceBin\Ninject.Core.xml
 		ReferenceBin\Ninject.Framework.Mvc.dll = ReferenceBin\Ninject.Framework.Mvc.dll
 		ReferenceBin\Ninject.Framework.Mvc.xml = ReferenceBin\Ninject.Framework.Mvc.xml
-		ReferenceBin\PlaceHolder.txt = ReferenceBin\PlaceHolder.txt
 	EndProjectSection
 EndProject
 Global

@@ -48,7 +48,8 @@ namespace Content.Web
         {
             Bind<IGreetingService>().To<GreetingServiceImpl>();
             Bind<IContentRepository>().To<FakeContentRepository>();
-            Bind<IContentService>().To<ContentServiceImpl>();
+            //Bind<IContentService>().To<ContentServiceImpl>();
+            Bind<IContentService>().To<ContentService>();
         }
     }
 }
