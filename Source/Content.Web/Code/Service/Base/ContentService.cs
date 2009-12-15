@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Content.Web.Code.Entities;
-using Content.Web.Code.DataAccess.Interfaces; 
+using Content.Web.Code.DataAccess.Interfaces;
+using Content.Web.Code.Service.Interfaces; 
 
 namespace Content.Web.Code.Service.Base
 {
-    public class ContentService
+    public class ContentService : IContentService
     {
         private IContentRepository _repository;
         public ContentService(IContentRepository _rep)
@@ -15,19 +16,19 @@ namespace Content.Web.Code.Service.Base
             _repository = _rep;
         }
 
-        public IQueryable<HtmlContent> GetContent(DateTime dt)
+        public IQueryable<HtmlContent> Get(DateTime dt)
         {
             return null;
         }
 
-        public IQueryable<HtmlContent> GetContent()
+        public IQueryable<HtmlContent> Get()
         {
             IQueryable<HtmlContent> x = this._repository.Get();
             return x;
         }
-        
 
-        public HtmlContent GetContent(int id)
+
+        public HtmlContent Get(int id)
         {
             return this._repository.Get().Where(x => x.Id == id).Single<HtmlContent>();
         }
