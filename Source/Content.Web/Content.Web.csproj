@@ -90,14 +90,12 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Views\HtmlContent\Index.aspx" />
-    <Content Include="Views\HtmlContent\List.aspx" />
     <Content Include="Views\Page\Index.aspx" />
     <Content Include="Views\Page\Page.aspx" />
-    <Content Include="Views\Test\Create.aspx" />
-    <Content Include="Views\Test\Details.aspx" />
-    <Content Include="Views\Test\Edit.aspx" />
-    <Content Include="Views\Test\Index.aspx" />
+    <Content Include="Views\HtmlContent\Create.aspx" />
+    <Content Include="Views\HtmlContent\Details.aspx" />
+    <Content Include="Views\HtmlContent\Edit.aspx" />
+    <Content Include="Views\HtmlContent\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />

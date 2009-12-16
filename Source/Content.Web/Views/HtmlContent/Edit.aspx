@@ -21,8 +21,7 @@
             </p>
             <p>
                 <label for="ContentData">ContentData:</label>
-                <%= Html.TextBox("ContentData", Model.ContentData) %>
-                <%= Html.ValidationMessage("ContentData", "*") %>
+                <%= Html.TextArea("ContentData", Model.ContentData) %> 
             </p>
             <p>
                 <label for="ModifiedDate">ModifiedDate:</label>
