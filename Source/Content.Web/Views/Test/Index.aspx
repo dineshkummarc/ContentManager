@@ -35,7 +35,7 @@
     
         <tr>
             <td>
-                <a href="/Page/Page/3" >View</a>  |
+                <a href="/Page/Page/<%= Html.Encode(item.Id) %> " >View </a>  |
                 <%= Html.ActionLink("Edit", "Edit", new {   id=item.Id }) %> |
                 <%= Html.ActionLink("Details", "Details", new { id = item.Id })%>
             </td>
