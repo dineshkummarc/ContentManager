@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
-using Content.Web.Code.Service.Interfaces;
-using Content.Web.Code.Entities;
+using ContentNamespace.Web.Code.Service.Interfaces;
+using ContentNamespace.Web.Code.Entities;
 using NinjectIntegration.Models;
 
-namespace Content.Web.Controllers
+namespace ContentNamespace.Web.Controllers
 {
     public class HtmlContentController : Controller
     {

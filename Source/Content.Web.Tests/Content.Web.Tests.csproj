@@ -7,7 +7,7 @@
     <ProjectGuid>{3D2436E0-AD5E-4F9E-9FCB-B643D1E3E439}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Content.Web.Tests</RootNamespace>
+    <RootNamespace>ContentNamespace.Web.Tests</RootNamespace>
     <AssemblyName>Content.Web.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

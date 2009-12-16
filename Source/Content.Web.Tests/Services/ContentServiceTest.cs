@@ -3,11 +3,11 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Content.Web.Code.Service.Base;
-using Content.Web.Code.Entities;
-using Content.Web.Code.DataAccess.Fake;
+using ContentNamespace.Web.Code.Service.Base;
+using ContentNamespace.Web.Code.Entities;
+using ContentNamespace.Web.Code.DataAccess.Fake;
 
-namespace Content.Web.Tests.Services
+namespace ContentNamespace.Web.Tests.Services
 {
     [TestClass]
     public class ContentServiceTest

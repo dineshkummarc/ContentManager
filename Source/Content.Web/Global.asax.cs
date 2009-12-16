@@ -8,12 +8,12 @@ using System.Web.Routing;
 using Ninject.Core;
 using Ninject.Framework.Mvc;
 using NinjectIntegration.Models;
-using Content.Web.Code.Service.Interfaces;
-using Content.Web.Code.DataAccess.Interfaces;
-using Content.Web.Code.Service.Base;
-using Content.Web.Code.DataAccess.Fake;
+using ContentNamespace.Web.Code.Service.Interfaces;
+using ContentNamespace.Web.Code.DataAccess.Interfaces;
+using ContentNamespace.Web.Code.Service.Base;
+using ContentNamespace.Web.Code.DataAccess.Fake;
 
-namespace Content.Web
+namespace ContentNamespace.Web
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -49,16 +49,8 @@ namespace Content.Web
             Bind<IGreetingService>().To<GreetingServiceImpl>();
             Bind<IContentRepository>().To<FakeContentRepository>();
             Bind<IContentService>().To<ContentServiceImpl>();
-            return new StandardKernel(modules);
+            //return new StandardKernel(modules);
         }
     }
-
-    internal class ServiceModule : StandardModule
-    {
-        public override void Load()
-        { 
-            Bind<IContentRepository>().To<FakeContentRepository>();
-            Bind<IContentService>().To<ContentService>();
-        }
-    }
+     
 }

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Content.Web.Code.Entities;
-using Content.Web.Code.DataAccess.Interfaces;
-using Content.Web.Code.Service.Interfaces; 
+using ContentNamespace.Web.Code.Entities;
+using ContentNamespace.Web.Code.DataAccess.Interfaces;
+using ContentNamespace.Web.Code.Service.Interfaces; 
 
-namespace Content.Web.Code.Service.Base
+namespace ContentNamespace.Web.Code.Service.Base
 {
     public class ContentService : IContentService
     {

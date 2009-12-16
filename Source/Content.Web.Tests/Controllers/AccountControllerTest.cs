@@ -5,10 +5,10 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Content.Web;
-using Content.Web.Controllers;
+using ContentNamespace.Web;
+using ContentNamespace.Web.Controllers;
 
-namespace Content.Web.Tests.Controllers
+namespace ContentNamespace.Web.Tests.Controllers
 {
 
     [TestClass]

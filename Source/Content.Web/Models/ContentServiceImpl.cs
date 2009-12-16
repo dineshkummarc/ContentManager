@@ -1,6 +1,6 @@
 ﻿
-using Content.Web.Code.Service.Interfaces;
-using Content.Web.Code.Entities;
+using ContentNamespace.Web.Code.Service.Interfaces;
+using ContentNamespace.Web.Code.Entities;
 using System.Linq;
 using System.Collections.Generic;
 using System;

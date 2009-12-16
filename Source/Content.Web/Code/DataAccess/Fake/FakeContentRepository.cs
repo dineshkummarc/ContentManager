@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Content.Web.Code.DataAccess.Interfaces;
+using ContentNamespace.Web.Code.DataAccess.Interfaces;
 //using Ent = Content.Web.Code.Entities;
-using Content.Web.Code.Entities; 
+using ContentNamespace.Web.Code.Entities; 
 
 
-namespace Content.Web.Code.DataAccess.Fake
+namespace ContentNamespace.Web.Code.DataAccess.Fake
 {
 
     public class FakeContentRepository : IContentRepository

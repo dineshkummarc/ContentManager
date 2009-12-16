@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.UI;
 
-namespace Content.Web
+namespace ContentNamespace.Web
 {
     public partial class _Default : Page
     {

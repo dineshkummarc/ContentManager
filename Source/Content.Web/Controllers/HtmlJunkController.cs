@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using NinjectIntegration.Models;
-using Content.Web.Code.Service.Interfaces;
+using ContentNamespace.Web.Code.Service.Interfaces;
 
-namespace Content.Web.Controllers
+namespace ContentNamespace.Web.Controllers
 {
     public class HtmlJunkController : Controller
     {
