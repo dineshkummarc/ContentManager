@@ -76,7 +76,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HtmlContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\HtmlJunkController.cs" />
     <Compile Include="Controllers\NinjectController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -94,7 +93,6 @@
     <Content Include="Global.asax" />
     <Content Include="Views\HtmlContent\Index.aspx" />
     <Content Include="Views\HtmlContent\List.aspx" />
-    <Content Include="Views\HtmlJunk\Index.aspx" />
     <Content Include="Views\Ninject\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />

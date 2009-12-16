@@ -20,14 +20,6 @@ namespace ContentNamespace.Web.Controllers
         }
          
         public ActionResult Index()
-        { 
-            ViewData["Message"] = "NICK YOU ARE COOL";
-            return View();
-            //return View(this._service.Get()); 
-        }
-
-
-        public ActionResult List()
         {
             return View(this._service.Get()); 
         }
