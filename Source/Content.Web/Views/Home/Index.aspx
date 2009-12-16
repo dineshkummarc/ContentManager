@@ -10,7 +10,7 @@
         To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
     </p>
     <p>
-        <a href="Content/Index">Content/Index</a>
+        <a href="HtmlContent/Index">HtmlContent/Index</a>
     </p>
     <p>
         <a href="Ninject/Index">Ninject/Index</a>

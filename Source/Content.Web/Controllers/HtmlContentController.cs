@@ -12,18 +12,18 @@ namespace ContentNamespace.Web.Controllers
 {
     public class HtmlContentController : Controller
     {
-        private readonly IGreetingService _service;
+        private readonly IContentService _service;
 
-        public HtmlContentController(IGreetingService serv)
+        public HtmlContentController(IContentService serv)
         {
             this._service = serv;
         }
          
         public ActionResult Index()
         { 
-            ViewData["Message"] = "NICK YOU ARE COOL";
-            return View();
-            //return View(this._service.Get()); 
+            //ViewData["Message"] = "NICK YOU ARE COOL";
+            //return View();
+            return View(this._service.Get()); 
   
         }
  

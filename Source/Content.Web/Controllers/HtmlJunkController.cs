@@ -20,6 +20,8 @@ namespace ContentNamespace.Web.Controllers
 
         public ActionResult Index()
         {
+            var a = this._service.Get();
+
             ViewData["Message"] = "asdfasfasadfafsdaasd";
             return View();
         }
