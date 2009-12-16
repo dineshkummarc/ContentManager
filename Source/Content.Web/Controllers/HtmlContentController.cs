@@ -55,10 +55,10 @@ namespace ContentNamespace.Web.Controllers
                 {
                     sb.Append(", " + collection.Keys[i] + "=" + collection[collection.Keys[i]]);
                 }
-                c.ActiveDate = DateTime.Now;
-                c.ContentData = "<b>dsafafsd</b>";
+                c.ContentData = collection["ContentData"];
+                c.ModifiedBy = collection["ModifiedBy"];
+                c.ActiveDate = DateTime.Now ; //collection["ActiveDate"];
                 c.ExpireDate = DateTime.MaxValue;
-                c.ModifiedBy = "me";
                 c.ModifiedDate = DateTime.Now;
                 this._service.Save(c);
 
@@ -87,10 +87,9 @@ namespace ContentNamespace.Web.Controllers
             try
             {
                 HtmlContent c = this._service.Get(id);
-                c.ModifiedDate = DateTime.Now;
-                c.ModifiedBy = "new updater";
-                this._service.Save(c);
-
+                c.ContentData = collection["ContentData"];
+                c.ModifiedBy = collection["ModifiedBy"];
+                this._service.Save(c); 
                 return RedirectToAction("Index");
             }
             catch
