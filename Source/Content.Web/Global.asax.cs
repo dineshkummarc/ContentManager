@@ -12,6 +12,10 @@ using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Service.Base;
 using ContentNamespace.Web.Code.DataAccess.Fake;
 using Ninject.Core.Behavior;
+using ContentNamespace.Web.Controllers;
+using ContentNamespace.Web.Code.Service.Fake;
+using System.Security.Principal;
+using System.Web.Security;
 
 namespace ContentNamespace.Web
 {
@@ -34,10 +38,10 @@ namespace ContentNamespace.Web
         protected override IKernel CreateKernel()
         {
             IModule[] modules = new IModule[]
-                                    {
-                                        new AutoControllerModule(Assembly.GetExecutingAssembly()),
-                                        new ServiceModule()
-                                    };
+            {
+                new AutoControllerModule(Assembly.GetExecutingAssembly()),
+                new ServiceModule()
+            };
             return new StandardKernel(modules);
         }
     }
@@ -48,7 +52,16 @@ namespace ContentNamespace.Web
         {
             Bind<IContentRepository>().To<FakeContentRepository>().Using<SingletonBehavior>();
             Bind<IContentService>().To<ContentService>();
-            //return new StandardKernel(modules);
+            //return new StandardKernel(modules);         
+
+
+            Bind<IMembershipService>().To<AccountMembershipService>();
+            Bind<IFormsAuthentication>().To<MockFormsAuthentication>();
+            Bind<IIdentity>().To<MockIdentity>();
+            Bind<IPrincipal>().To<MockPrincipal>();
+            Bind<MembershipUser>().To<MockMembershipUser>();
+            Bind<HttpContextBase>().To<MockHttpContext>();
+            Bind<MembershipProvider>().To<MockMembershipProvider>(); 
         }
     }
      

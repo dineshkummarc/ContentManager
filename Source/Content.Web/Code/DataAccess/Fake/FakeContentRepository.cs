@@ -17,7 +17,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
 
         public FakeContentRepository()
         { 
-            for (int i = 0; i < 5; i++ )
+            for (int i = 0; i < 25; i++ )
             {   
                 HtmlContent x = new HtmlContent();
                 x.ContentData = "<h1>Hello "+i+" </h1>";

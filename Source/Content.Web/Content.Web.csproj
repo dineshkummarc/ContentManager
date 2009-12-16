@@ -72,6 +72,7 @@
     <Compile Include="Code\Entities\Enum.cs" />
     <Compile Include="Code\Entities\HtmlContent.cs" />
     <Compile Include="Code\Service\Base\ContentService.cs" />
+    <Compile Include="Code\Service\Fake\AccountService.cs" />
     <Compile Include="Code\Service\Interfaces\IContentService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HtmlContentController.cs" />

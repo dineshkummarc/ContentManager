@@ -26,8 +26,7 @@ namespace ContentNamespace.Web.Code.Service.Base
             IQueryable<HtmlContent> x = this._repository.Get();
             return x;
         }
-
-
+         
         public HtmlContent Get(int id)
         {
             return this._repository.Get().Where(x => x.Id == id).Single<HtmlContent>();
