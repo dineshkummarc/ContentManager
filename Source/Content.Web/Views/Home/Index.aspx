@@ -11,9 +11,9 @@
     </p>
     <p>
         <a href="HtmlContent/Index">HtmlContent/Index</a>
-    </p>
+    </p> 
     <p>
-        <a href="Ninject/Index">Ninject/Index</a>
+        <a href="Test/Index">Test/Index</a>
     </p>
     <p>
         <a href="HtmlJunk/Index">HtmlJunk/Index</a>

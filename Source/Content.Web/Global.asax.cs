@@ -6,8 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ninject.Core;
-using Ninject.Framework.Mvc;
-using NinjectIntegration.Models;
+using Ninject.Framework.Mvc; 
 using ContentNamespace.Web.Code.Service.Interfaces;
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Service.Base;
@@ -45,10 +44,8 @@ namespace ContentNamespace.Web
     internal class ServiceModule : StandardModule
     {
         public override void Load()
-        {
-            Bind<IGreetingService>().To<GreetingServiceImpl>(); 
-            Bind<IContentRepository>().To<FakeContentRepository>();
-            //Bind<IContentService>().To<ContentServiceImpl>();
+        { 
+            Bind<IContentRepository>().To<FakeContentRepository>(); 
             Bind<IContentService>().To<ContentService>();
             //return new StandardKernel(modules);
         }

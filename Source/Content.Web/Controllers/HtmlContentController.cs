@@ -5,8 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using ContentNamespace.Web.Code.Service.Interfaces;
-using ContentNamespace.Web.Code.Entities;
-using NinjectIntegration.Models;
+using ContentNamespace.Web.Code.Entities; 
 
 namespace ContentNamespace.Web.Controllers
 {
