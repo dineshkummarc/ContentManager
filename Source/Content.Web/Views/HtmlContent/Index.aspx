@@ -7,8 +7,11 @@ Inherits="System.Web.Mvc.ViewPage<IQueryable<ContentNamespace.Web.Code.Entities.
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
- <h3>adsfdadfsdsafasfdfdassdadsdsf</h3>
+    <h3>adsfdadfsdsafasfdfdassdadsdsf</h3>
     
+    <p>
+        <a href="List" >List</a>
+    </p>
  
 </asp:Content>
 

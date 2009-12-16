@@ -93,6 +93,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\HtmlContent\Index.aspx" />
+    <Content Include="Views\HtmlContent\List.aspx" />
     <Content Include="Views\HtmlJunk\Index.aspx" />
     <Content Include="Views\Ninject\Index.aspx" />
     <Content Include="Web.config" />
