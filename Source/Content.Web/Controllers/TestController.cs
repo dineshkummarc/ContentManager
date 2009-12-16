@@ -75,7 +75,7 @@ namespace ContentNamespace.Web.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(this._service.Get(id));
         }
 
         //
@@ -86,7 +86,10 @@ namespace ContentNamespace.Web.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                HtmlContent c = this._service.Get(id);
+                c.ModifiedDate = DateTime.Now;
+                c.ModifiedBy = "new updater";
+                this._service.Save(c);
  
                 return RedirectToAction("Index");
             }
