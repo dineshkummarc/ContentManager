@@ -5,7 +5,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>Page</h2>
-    <span><%= Html.Encode(Model.ContentData) %></span>
+ 
+    <span><%= (Model.ContentData) %></span>
 </asp:Content>
