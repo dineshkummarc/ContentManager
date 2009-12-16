@@ -11,6 +11,7 @@ using ContentNamespace.Web.Code.Service.Interfaces;
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Service.Base;
 using ContentNamespace.Web.Code.DataAccess.Fake;
+using Ninject.Core.Behavior;
 
 namespace ContentNamespace.Web
 {
@@ -44,8 +45,8 @@ namespace ContentNamespace.Web
     internal class ServiceModule : StandardModule
     {
         public override void Load()
-        { 
-            Bind<IContentRepository>().To<FakeContentRepository>(); 
+        {
+            Bind<IContentRepository>().To<FakeContentRepository>().Using<SingletonBehavior>();
             Bind<IContentService>().To<ContentService>();
             //return new StandardKernel(modules);
         }
