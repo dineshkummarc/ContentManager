@@ -76,6 +76,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HtmlContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -91,6 +92,8 @@
     <Content Include="Global.asax" />
     <Content Include="Views\HtmlContent\Index.aspx" />
     <Content Include="Views\HtmlContent\List.aspx" />
+    <Content Include="Views\Page\Index.aspx" />
+    <Content Include="Views\Page\Page.aspx" />
     <Content Include="Views\Test\Create.aspx" />
     <Content Include="Views\Test\Details.aspx" />
     <Content Include="Views\Test\Edit.aspx" />
