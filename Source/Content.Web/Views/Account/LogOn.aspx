@@ -4,8 +4,42 @@
     Log On
 </asp:Content>
 
+
+<asp:Content ID="Content2"  ContentPlaceHolderID="Header" runat="server">
+
+	<link rel="stylesheet" href="/content/openid.css" />
+	
+</asp:Content>
+
+
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Log On</h2>
+    
+    
+    <!-- Simple OpenID Selector -->
+    <form action="<%=Url.Action("OpenIdLogin","Account") %>" method="get" id="openid_form">
+	    <input type="hidden" name="action" value="verify" />
+
+	    <fieldset style="width:500px">
+    		    <legend>Sign-in or Create New Account</legend>
+        		
+    		    <div id="openid_choice">
+	    		    <p>Please click your account provider:</p>
+	    		    <div id="openid_btns"></div>
+			    </div>
+    			
+			    <div id="openid_input_area">
+				    <input id="openid_identifier" name="openid_identifier" type="text" value="http://" />
+				    <input id="openid_submit" type="submit" value="Sign-In"/>
+			    </div>
+			    <noscript>
+			    <p>OpenID is service that allows you to log-on to many different websites using a single indentity.
+			    Find out <a href="http://openid.net/what/">more about OpenID</a> and <a href="http://openid.net/get/">how to get an OpenID enabled account</a>.</p>
+			    </noscript>
+	    </fieldset>
+    </form>
+    
+    
     <p>
         Please enter your username and password. <%= Html.ActionLink("Register", "Register") %> if you don't have an account.
     </p>
@@ -35,3 +69,21 @@
         </div>
     <% } %>
 </asp:Content>
+
+
+
+
+
+<asp:Content ID="Content1"  ContentPlaceHolderID="Javascript" runat="server">
+
+	<script type="text/javascript" src="/scripts/openid-jquery.js"></script>
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	        openid.init('openid_identifier');
+	    });
+	</script>
+	
+</asp:Content>
+
+	
+	

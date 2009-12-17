@@ -6,14 +6,18 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Ninject.Core;
-using Ninject.Framework.Mvc;
-using NinjectIntegration.Models;
-using Content.Web.Code.Service.Interfaces;
-using Content.Web.Code.DataAccess.Interfaces;
-using Content.Web.Code.Service.Base;
-using Content.Web.Code.DataAccess.Fake;
+using Ninject.Framework.Mvc; 
+using ContentNamespace.Web.Code.Service.Interfaces;
+using ContentNamespace.Web.Code.DataAccess.Interfaces;
+using ContentNamespace.Web.Code.Service.Base;
+using ContentNamespace.Web.Code.DataAccess.Fake;
+using Ninject.Core.Behavior;
+using ContentNamespace.Web.Controllers;
+using ContentNamespace.Web.Code.Service.Fake;
+using System.Security.Principal;
+using System.Web.Security;
 
-namespace Content.Web
+namespace ContentNamespace.Web
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -34,10 +38,10 @@ namespace Content.Web
         protected override IKernel CreateKernel()
         {
             IModule[] modules = new IModule[]
-                                    {
-                                        new AutoControllerModule(Assembly.GetExecutingAssembly()),
-                                        new ServiceModule()
-                                    };
+            {
+                new AutoControllerModule(Assembly.GetExecutingAssembly()),
+                new ServiceModule()
+            };
             return new StandardKernel(modules);
         }
     }
@@ -46,10 +50,19 @@ namespace Content.Web
     {
         public override void Load()
         {
-            Bind<IGreetingService>().To<GreetingServiceImpl>();
-            Bind<IContentRepository>().To<FakeContentRepository>();
-            //Bind<IContentService>().To<ContentServiceImpl>();
+            Bind<IContentRepository>().To<FakeContentRepository>().Using<SingletonBehavior>();
             Bind<IContentService>().To<ContentService>();
+            //return new StandardKernel(modules);         
+
+
+            //Bind<IMembershipService>().To<AccountMembershipService>();
+            //Bind<IFormsAuthentication>().To<MockFormsAuthentication>();
+            //Bind<IIdentity>().To<MockIdentity>();
+            //Bind<IPrincipal>().To<MockPrincipal>();
+            //Bind<MembershipUser>().To<MockMembershipUser>();
+            //Bind<HttpContextBase>().To<MockHttpContext>();
+            //Bind<MembershipProvider>().To<MockMembershipProvider>(); 
         }
     }
+     
 }

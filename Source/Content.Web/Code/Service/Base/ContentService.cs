@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Content.Web.Code.Entities;
-using Content.Web.Code.DataAccess.Interfaces;
-using Content.Web.Code.Service.Interfaces; 
+using ContentNamespace.Web.Code.Entities;
+using ContentNamespace.Web.Code.DataAccess.Interfaces;
+using ContentNamespace.Web.Code.Service.Interfaces; 
 
-namespace Content.Web.Code.Service.Base
+namespace ContentNamespace.Web.Code.Service.Base
 {
     public class ContentService : IContentService
     {
@@ -26,8 +26,7 @@ namespace Content.Web.Code.Service.Base
             IQueryable<HtmlContent> x = this._repository.Get();
             return x;
         }
-
-
+         
         public HtmlContent Get(int id)
         {
             return this._repository.Get().Where(x => x.Id == id).Single<HtmlContent>();
