@@ -70,6 +70,8 @@
     <Compile Include="Code\DataAccess\Fake\FakeContentRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IContentRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IRepository.cs" />
+    <Compile Include="Code\DataAccess\Sql\SqlBaseRepository.cs" />
+    <Compile Include="Code\DataAccess\Sql\SqlContentRepository.cs" />
     <Compile Include="Code\Entities\Enum.cs" />
     <Compile Include="Code\Entities\HtmlContent.cs" />
     <Compile Include="Code\Service\Base\ContentService.cs" />
@@ -143,7 +145,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Code\DataAccess\Sql\" />
     <Folder Include="Code\Util\" />
     <Folder Include="Models\" />
   </ItemGroup>
