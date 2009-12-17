@@ -88,8 +88,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\openid.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\images\aol.gif" />
+    <Content Include="Scripts\images\blogger.ico" />
+    <Content Include="Scripts\images\claimid.ico" />
+    <Content Include="Scripts\images\facebook.gif" />
+    <Content Include="Scripts\images\flickr.ico" />
+    <Content Include="Scripts\images\google.gif" />
+    <Content Include="Scripts\images\livejournal.ico" />
+    <Content Include="Scripts\images\myopenid.ico" />
+    <Content Include="Scripts\images\openid-inputicon.gif" />
+    <Content Include="Scripts\images\openid.gif" />
+    <Content Include="Scripts\images\technorati.ico" />
+    <Content Include="Scripts\images\verisign.ico" />
+    <Content Include="Scripts\images\vidoop.ico" />
+    <Content Include="Scripts\images\wordpress.ico" />
+    <Content Include="Scripts\images\yahoo.gif" />
+    <Content Include="Scripts\openid-jquery.js" />
     <Content Include="Views\Page\Index.aspx" />
     <Content Include="Views\Page\Page.aspx" />
     <Content Include="Views\HtmlContent\Create.aspx" />

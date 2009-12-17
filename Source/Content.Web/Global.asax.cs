@@ -55,13 +55,13 @@ namespace ContentNamespace.Web
             //return new StandardKernel(modules);         
 
 
-            Bind<IMembershipService>().To<AccountMembershipService>();
-            Bind<IFormsAuthentication>().To<MockFormsAuthentication>();
-            Bind<IIdentity>().To<MockIdentity>();
-            Bind<IPrincipal>().To<MockPrincipal>();
-            Bind<MembershipUser>().To<MockMembershipUser>();
-            Bind<HttpContextBase>().To<MockHttpContext>();
-            Bind<MembershipProvider>().To<MockMembershipProvider>(); 
+            //Bind<IMembershipService>().To<AccountMembershipService>();
+            //Bind<IFormsAuthentication>().To<MockFormsAuthentication>();
+            //Bind<IIdentity>().To<MockIdentity>();
+            //Bind<IPrincipal>().To<MockPrincipal>();
+            //Bind<MembershipUser>().To<MockMembershipUser>();
+            //Bind<HttpContextBase>().To<MockHttpContext>();
+            //Bind<MembershipProvider>().To<MockMembershipProvider>(); 
         }
     }
      
