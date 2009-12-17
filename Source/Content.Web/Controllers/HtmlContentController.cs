@@ -78,10 +78,10 @@ namespace ContentNamespace.Web.Controllers
             return View(this._service.Get(id));
         }
 
-        //
-        // POST: /HtmlContent/Edit/5
-
+        //ref: http://tinyurl.com/d6xolp      
+        // POST: /HtmlContent/Edit/5 
         [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateInput(false)]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try

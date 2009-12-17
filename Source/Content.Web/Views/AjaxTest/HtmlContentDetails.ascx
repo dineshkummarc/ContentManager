@@ -2,8 +2,10 @@
 
 <fieldset> 
     <legend>Fields</legend>
-    <p><%= Html.Encode(Model.Id) %></p>
-    <p><%= Html.Encode(Model.ContentData) %></p>
-    <p><%= Html.Encode(Model.ActiveDate) %></p>
-    <p><%= Html.Encode(Model.ContentData) %></p> 
+    <p>Id: <%= Html.Encode(Model.Id) %></p>
+    <p>Name: <%= Html.Encode(Model.Name)%></p>
+    <p>ContentData: <%= Html.Encode(Model.ContentData) %></p>
+    <p>ActiveDate: <%= Html.Encode(Model.ActiveDate) %></p>
+    <p>ModifiedBy: <%= Html.Encode(Model.ModifiedBy) %></p> 
+    <p>ModifiedDate: <%= Html.Encode(Model.ModifiedDate) %></p> 
 </fieldset>

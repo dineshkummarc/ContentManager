@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Code\DataAccess\Fake\FakeContentRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IContentRepository.cs" />
+    <Compile Include="Code\DataAccess\Interfaces\IRepository.cs" />
     <Compile Include="Code\Entities\Enum.cs" />
     <Compile Include="Code\Entities\HtmlContent.cs" />
     <Compile Include="Code\Service\Base\ContentService.cs" />
