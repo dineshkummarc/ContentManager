@@ -75,6 +75,7 @@
     <Compile Include="Code\Service\Fake\AccountService.cs" />
     <Compile Include="Code\Service\Interfaces\IContentService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AjaxTestController.cs" />
     <Compile Include="Controllers\HtmlContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PageController.cs" />
@@ -107,6 +108,8 @@
     <Content Include="Scripts\images\wordpress.ico" />
     <Content Include="Scripts\images\yahoo.gif" />
     <Content Include="Scripts\openid-jquery.js" />
+    <Content Include="Views\AjaxTest\HtmlContentDetails.ascx" />
+    <Content Include="Views\AjaxTest\Index.aspx" />
     <Content Include="Views\Page\Index.aspx" />
     <Content Include="Views\Page\Page.aspx" />
     <Content Include="Views\HtmlContent\Create.aspx" />
