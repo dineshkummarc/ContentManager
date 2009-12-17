@@ -20,6 +20,11 @@
                 <%= Html.ValidationMessage("Id", "*") %>
             </p>
             <p>
+                <label for="Name">Name:</label>
+                <%= Html.TextBox("Name")%>
+                <%= Html.ValidationMessage("Name", "*")%>
+            </p>
+            <p>
                 <label for="ContentData">ContentData:</label>
                 <%= Html.TextBox("ContentData") %>
                 <%= Html.ValidationMessage("ContentData", "*") %>

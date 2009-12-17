@@ -6,7 +6,8 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using ContentNamespace.Web.Code.Service.Interfaces;
 using ContentNamespace.Web.Code.Entities;
-using System.Text; 
+using System.Text;
+using System.Web.Routing; 
 
 namespace ContentNamespace.Web.Controllers
 {
@@ -89,8 +90,11 @@ namespace ContentNamespace.Web.Controllers
                 HtmlContent c = this._service.Get(id);
                 c.ContentData = collection["ContentData"];
                 c.ModifiedBy = collection["ModifiedBy"];
-                this._service.Save(c); 
-                return RedirectToAction("Index");
+                this._service.Save(c);
+
+                //return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = id });
+                // return RedirectToAction("Details", new RouteValueDictionary(new { id = id }));
             }
             catch
             {

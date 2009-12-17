@@ -15,6 +15,9 @@
                 Id
             </th>
             <th>
+                Name
+            </th>
+            <th>
                 ContentData
             </th>
             <th>
@@ -40,6 +43,9 @@
             </td>
             <td>
                 <%= Html.Encode(item.Id) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.Name) %>
             </td>
             <td>
                 <%= Html.Encode(item.ContentData) %>

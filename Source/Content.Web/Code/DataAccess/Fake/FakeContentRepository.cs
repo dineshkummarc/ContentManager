@@ -23,7 +23,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
                 x.Name = "Name " + i  ;
                 x.ContentData = "<h1>Hello " + i + " </h1>";
                 x.ActiveDate = DateTime.MinValue;
-                x.ModifiedBy = "bob@aol.com";
+                x.ModifiedBy = (i % 4 == 0) ? "joeshmo@yahoo.com" : (i % 3 == 0) ? "jimmyjones@gmail.com" : "bobbat@aol.com";
                 x.ModifiedDate = new DateTime(2009, 1, 1);
                 x.Id = i;
                 list.Add(x);
