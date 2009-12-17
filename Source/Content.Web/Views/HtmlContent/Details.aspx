@@ -57,7 +57,8 @@
         $(document).ready(function() {
             $('.detailToEdit').addClass('hand').click(function() {
                 var l = "/HtmlContent/Edit/<%= Model.Id %>";
-                alert('should link to:  ' + l);
+                window.location = l;
+                //alert('should link to:  ' + l);
             });
         });
     </script>
