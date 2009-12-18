@@ -20,6 +20,10 @@
         <p>
             Id:
             <%= Html.Encode(Model.Id) %>
+        </p>        
+        <p>
+            Name:
+            <%= Html.Encode(Model.Name)%>
         </p>
         <p>
             ContentData:
@@ -42,7 +46,8 @@
             <%= Html.Encode(Model.ModifiedBy) %>
         </p>
     </fieldset>
-    <p>
+    <p> 
+        <%=Html.ActionLink("View", "Page", "Page", new { id = Model.Id }, null )%> |
         <%=Html.ActionLink("Edit", "Edit", new {  id=Model.Id }) %> |
         <%=Html.ActionLink("Back to List", "Index") %>
     </p>
@@ -57,7 +62,8 @@
         $(document).ready(function() {
             $('.detailToEdit').addClass('hand').click(function() {
                 var l = "/HtmlContent/Edit/<%= Model.Id %>";
-                alert('should link to:  ' + l);
+                window.location = l;
+                //alert('should link to:  ' + l);
             });
         });
     </script>

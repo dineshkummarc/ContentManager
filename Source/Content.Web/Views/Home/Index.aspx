@@ -15,4 +15,7 @@
     <p>
         <a href="HtmlJunk/Index">HtmlJunk/Index</a>
     </p>
+    <p>
+        <a href="AjaxTest/Index">AjaxTest/Index</a>
+    </p>
 </asp:Content>

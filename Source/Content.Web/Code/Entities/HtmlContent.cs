@@ -8,6 +8,7 @@ namespace ContentNamespace.Web.Code.Entities
     public class HtmlContent
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public string ContentData { get; set; }
         public DateTime ModifiedDate { get; set; }
         public DateTime ExpireDate { get; set; }

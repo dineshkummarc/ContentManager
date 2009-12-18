@@ -17,12 +17,13 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
 
         public FakeContentRepository()
         { 
-            for (int i = 0; i < 25; i++ )
-            {   
+            for (int i = 0; i < 5; i++ )
+            {
                 HtmlContent x = new HtmlContent();
-                x.ContentData = "<h1>Hello "+i+" </h1>";
+                x.Name = "Name " + i  ;
+                x.ContentData = "<h1>Hello " + i + " </h1>";
                 x.ActiveDate = DateTime.MinValue;
-                x.ModifiedBy = "bob@aol.com";
+                x.ModifiedBy = (i % 4 == 0) ? "joeshmo@yahoo.com" : (i % 3 == 0) ? "jimmyjones@gmail.com" : "bobbat@aol.com";
                 x.ModifiedDate = new DateTime(2009, 1, 1);
                 x.Id = i;
                 list.Add(x);
@@ -30,9 +31,8 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
         }
 
 
-        #region IContentRepository Members
 
-        public IQueryable<HtmlContent> GetContentList()
+        public IQueryable<HtmlContent> Get()
         {
             return list.AsQueryable<HtmlContent>();
         }
@@ -60,24 +60,11 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
             return item;
         }
 
-        #endregion
 
-
-
-        #region IContentRepository Members
-
-        IQueryable<HtmlContent> IContentRepository.Get()
-        {
-            return this.list.AsQueryable<HtmlContent>(); 
-        }
-         
-
-
-        bool IContentRepository.Delete(HtmlContent item)
+        public bool Delete(HtmlContent entity)
         {
             throw new NotImplementedException();
         }
 
-        #endregion
     }
 }

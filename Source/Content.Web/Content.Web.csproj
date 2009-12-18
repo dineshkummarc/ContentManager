@@ -73,12 +73,16 @@
   <ItemGroup>
     <Compile Include="Code\DataAccess\Fake\FakeContentRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IContentRepository.cs" />
+    <Compile Include="Code\DataAccess\Interfaces\IRepository.cs" />
+    <Compile Include="Code\DataAccess\Sql\SqlBaseRepository.cs" />
+    <Compile Include="Code\DataAccess\Sql\SqlContentRepository.cs" />
     <Compile Include="Code\Entities\Enum.cs" />
     <Compile Include="Code\Entities\HtmlContent.cs" />
     <Compile Include="Code\Service\Base\ContentService.cs" />
     <Compile Include="Code\Service\Fake\AccountService.cs" />
     <Compile Include="Code\Service\Interfaces\IContentService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AjaxTestController.cs" />
     <Compile Include="Controllers\HtmlContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PageController.cs" />
@@ -111,6 +115,8 @@
     <Content Include="Scripts\images\wordpress.ico" />
     <Content Include="Scripts\images\yahoo.gif" />
     <Content Include="Scripts\openid-jquery.js" />
+    <Content Include="Views\AjaxTest\HtmlContentDetails.ascx" />
+    <Content Include="Views\AjaxTest\Index.aspx" />
     <Content Include="Views\Page\Index.aspx" />
     <Content Include="Views\Page\Page.aspx" />
     <Content Include="Views\HtmlContent\Create.aspx" />
@@ -143,7 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Code\DataAccess\Sql\" />
     <Folder Include="Code\Util\" />
     <Folder Include="Models\" />
   </ItemGroup>

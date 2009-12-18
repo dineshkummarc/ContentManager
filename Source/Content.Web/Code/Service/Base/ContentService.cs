@@ -21,10 +21,23 @@ namespace ContentNamespace.Web.Code.Service.Base
             return null;
         }
 
+        /// <summary>
+        /// when you get all then just get a substring for the content data
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<HtmlContent> Get()
-        {
-            IQueryable<HtmlContent> x = this._repository.Get();
-            return x;
+        { 
+            var contents = this._repository.Get().Select(x => new HtmlContent
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ContentData = (x.ContentData.Length > 10 ) ? x.ContentData.Substring(0, 10)+"...": x.ContentData,
+                ActiveDate = x.ActiveDate,
+                ExpireDate = x.ExpireDate,
+                ModifiedBy = x.ModifiedBy,
+                ModifiedDate = x.ModifiedDate 
+            });
+            return contents;  
         }
          
         public HtmlContent Get(int id)

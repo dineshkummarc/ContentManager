@@ -45,6 +45,7 @@ namespace ContentNamespace.Web
             return new StandardKernel(modules);
         }
     }
+      
 
     internal class ServiceModule : StandardModule
     {
