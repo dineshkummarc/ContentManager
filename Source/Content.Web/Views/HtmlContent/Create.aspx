@@ -14,9 +14,9 @@
 
         <fieldset>
             <legend>Fields</legend>
-            <p>
+            <p class="hidden"  >
                 <label for="Id">Id:</label>
-                <%= Html.TextBox("Id") %>
+                <%= Html.TextBox("Id", "-2") %>
                 <%= Html.ValidationMessage("Id", "*") %>
             </p>
             <p>

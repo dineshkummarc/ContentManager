@@ -58,6 +58,7 @@ namespace ContentNamespace.Web.Controllers
                 }
                 c.ContentData = collection["ContentData"];
                 c.ModifiedBy = collection["ModifiedBy"];
+                c.Name = collection["Name"];
                 c.ActiveDate = DateTime.Now ; //collection["ActiveDate"];
                 c.ExpireDate = DateTime.MaxValue;
                 c.ModifiedDate = DateTime.Now;

@@ -315,3 +315,6 @@ div#title
     font-weight: bold;
     color: #ff0000;
 }
+.hidden { display:none;}
+.right { float:right;}
+.left { float:left;}

@@ -16,8 +16,12 @@
             <legend>Fields</legend>
             <p>
                 <label for="Id">Id:</label>
-                <%= Html.TextBox("Id", Model.Id) %>
-                <%= Html.ValidationMessage("Id", "*") %>
+                <%= Html.Encode(Model.Id) %> 
+            </p>
+            <p>
+                <label for="Name">Name:</label>
+                <%= Html.TextBox("Name", Model.Name)%>
+                <%= Html.ValidationMessage("Name", "*")%>
             </p>
             <p>
                 <label for="ContentData">ContentData:</label>
