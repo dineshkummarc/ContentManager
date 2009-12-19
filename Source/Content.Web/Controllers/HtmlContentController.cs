@@ -46,6 +46,7 @@ namespace ContentNamespace.Web.Controllers
         // POST: /HtmlContent/Create
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateInput(false)]
         public ActionResult Create(FormCollection collection)
         {
             try
