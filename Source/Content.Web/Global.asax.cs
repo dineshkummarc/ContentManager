@@ -12,10 +12,10 @@ using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Service.Base;
 using ContentNamespace.Web.Code.DataAccess.Fake;
 using Ninject.Core.Behavior;
-using ContentNamespace.Web.Controllers;
-using ContentNamespace.Web.Code.Service.Fake;
+using ContentNamespace.Web.Controllers; 
 using System.Security.Principal;
 using System.Web.Security;
+using ContentNamespace.Web.Code.Service.AuthenticationServices;
 
 namespace ContentNamespace.Web
 {
@@ -53,7 +53,7 @@ namespace ContentNamespace.Web
         {
             Bind<IContentRepository>().To<FakeContentRepository>().Using<SingletonBehavior>();
             Bind<IContentService>().To<ContentService>();
-            //return new StandardKernel(modules);         
+            Bind<IAuthenticationService>().To<TestAuthenticationService>(); 
 
 
             //Bind<IMembershipService>().To<AccountMembershipService>();

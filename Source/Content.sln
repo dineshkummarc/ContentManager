@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content.Web.Tests", "Conten
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceBin", "ReferenceBin", "{76809521-ABDF-40A3-8D51-6459E5FB6342}"
 	ProjectSection(SolutionItems) = preProject
-		ReferenceBin\DotNetOpenAuth.dll = ReferenceBin\DotNetOpenAuth.dll
+		ReferenceBin\DotNetOpenId.dll = ReferenceBin\DotNetOpenId.dll
 		ReferenceBin\Ninject.Conditions.dll = ReferenceBin\Ninject.Conditions.dll
 		ReferenceBin\Ninject.Conditions.xml = ReferenceBin\Ninject.Conditions.xml
 		ReferenceBin\Ninject.Core.dll = ReferenceBin\Ninject.Core.dll
