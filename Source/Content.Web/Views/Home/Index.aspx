@@ -18,4 +18,7 @@
     <p>
         <a href="AjaxTest/Index">AjaxTest/Index</a>
     </p>
+    <p>
+        <a href="OpenId/Index">OpenId/Index</a>
+    </p>
 </asp:Content>

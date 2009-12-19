@@ -105,6 +105,7 @@
     <Compile Include="Controllers\ControllerExtensions.cs" />
     <Compile Include="Controllers\HtmlContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\PersonalizationController.cs" />
     <Compile Include="Default.aspx.cs">
@@ -143,6 +144,7 @@
     <Content Include="Views\AjaxTest\HtmlContentDetails.ascx" />
     <Content Include="Views\AjaxTest\Index.aspx" />
     <Content Include="Views\Authentication\Login.aspx" />
+    <Content Include="Views\OpenId\Index.aspx" />
     <Content Include="Views\Page\Index.aspx" />
     <Content Include="Views\Page\Page.aspx" />
     <Content Include="Views\HtmlContent\Create.aspx" />
