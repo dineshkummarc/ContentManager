@@ -84,6 +84,7 @@
     <Compile Include="Code\DataAccess\Sql\SqlBaseRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlContentRepository.cs" />
     <Compile Include="Code\Entities\Address.cs" />
+    <Compile Include="Code\Entities\Base\ContentManagerBaseItem.cs" />
     <Compile Include="Code\Entities\Enum.cs" />
     <Compile Include="Code\Entities\HtmlContent.cs" />
     <Compile Include="Code\Entities\UserProfile.cs" />

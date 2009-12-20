@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+//
+using ContentNamespace.Web.Code.Entities.Base;
 
 namespace ContentNamespace.Web.Code.Entities
 {
-    public class HtmlContent
+    public class HtmlContent : ContentManagerBaseItem
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string ContentData { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public Enum.ContentStatus ContentStatus { get; set; }
         public DateTime ExpireDate { get; set; }
         public DateTime ActiveDate { get; set; }
-        public string ModifiedBy { get; set; }
 
         public HtmlContent()
         {

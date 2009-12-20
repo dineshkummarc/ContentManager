@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Text; 
+using System.Text;
+//
+using ContentNamespace.Web.Code.Entities.Base;
 
 namespace ContentNamespace.Web.Code.Entities
 {
-    public class Address
+    public class Address : ContentManagerBaseItem
     {
-
-        public int ID { get; set; }
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -23,6 +23,7 @@ namespace ContentNamespace.Web.Code.Entities
         public string Longitude { get; set; }
         public string Latitude { get; set; }
         public bool IsDefault { get; set; }
+        
         public string FullName
         {
             get
@@ -54,7 +55,7 @@ namespace ContentNamespace.Web.Code.Entities
 
         public Address()
         {
-            ID = 0;
+            Id = 0;
         }
 
         public Address(string userName, string first, string last, string email, string street1, string street2, string city, string state, string zip, string country)
@@ -69,7 +70,7 @@ namespace ContentNamespace.Web.Code.Entities
             this.StateOrProvince = state;
             this.Zip = zip;
             this.Country = country;
-            ID = 0;
+            Id = 0;
         }
 
         /// <summary>

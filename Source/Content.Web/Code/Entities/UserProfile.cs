@@ -10,7 +10,8 @@ namespace ContentNamespace.Web.Code.Entities
     public class UserProfile
     {
         public string UserName { get; set; }
-        public LazyList<Address> AddressBook { get; set; } 
+        public LazyList<Address> AddressBook { get; set; }
+        public LazyList<Enum.UserRoles> UserRoles { get; set; }
 
         public Address DefaultAddress
         {
