@@ -16,6 +16,7 @@ using ContentNamespace.Web.Controllers;
 using System.Security.Principal;
 using System.Web.Security;
 using ContentNamespace.Web.Code.Service.AuthenticationServices;
+using ContentNamespace.Web.Code.Service.UserProfileServices;
 
 namespace ContentNamespace.Web
 {
@@ -53,6 +54,10 @@ namespace ContentNamespace.Web
         {
             Bind<IContentRepository>().To<FakeContentRepository>().Using<SingletonBehavior>();
             Bind<IContentService>().To<ContentService>();
+
+            Bind<IUserProfileRepository>().To<FakeUserProfileRepository>().Using<SingletonBehavior>();
+            Bind<IUserProfileService>().To<UserProfileService>();
+
             Bind<IAuthenticationService>().To<TestAuthenticationService>(); 
 
 

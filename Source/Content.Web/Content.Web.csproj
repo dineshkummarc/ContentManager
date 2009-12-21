@@ -79,13 +79,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\DataAccess\Fake\FakeContentRepository.cs" />
+    <Compile Include="Code\DataAccess\Fake\FakeUserProfileRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IContentRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IRepository.cs" />
+    <Compile Include="Code\DataAccess\Interfaces\IUserProfileRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlBaseRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlContentRepository.cs" />
     <Compile Include="Code\Entities\Base\ContentManagerBaseItem.cs" />
     <Compile Include="Code\Entities\Enum.cs" />
     <Compile Include="Code\Entities\HtmlContent.cs" />
+    <Compile Include="Code\Entities\UserProfile.cs" />
     <Compile Include="Code\Service\AuthenticationServices\AspNetAuthenticationService.cs" />
     <Compile Include="Code\Service\AuthenticationServices\IAuthenticationService.cs" />
     <Compile Include="Code\Service\AuthenticationServices\OpenIdAuthenticationService.cs" />
@@ -95,13 +98,15 @@
     <Compile Include="Code\Service\ContentServices\ContentService.cs" />
     <Compile Include="Code\Service\AuthorizationServices\IAuthorizationService.cs" />
     <Compile Include="Code\Service\ContentServices\IContentService.cs" />
+    <Compile Include="Code\Service\UserProfileServices\IUserProfileService.cs" />
+    <Compile Include="Code\Service\UserProfileServices\UserProfileService.cs" />
     <Compile Include="Code\Util\LazyList.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxTestController.cs" />
     <Compile Include="Controllers\HtmlContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -138,7 +143,6 @@
     <Content Include="Views\AjaxTest\HtmlContentDetails.ascx" />
     <Content Include="Views\AjaxTest\Index.aspx" />
     <Content Include="Views\Authentication\Login.aspx" />
-    <Content Include="Views\OpenId\Index.aspx" />
     <Content Include="Views\Page\Index.aspx" />
     <Content Include="Views\Page\Page.aspx" />
     <Content Include="Views\HtmlContent\Create.aspx" />
@@ -147,6 +151,7 @@
     <Content Include="Views\HtmlContent\Index.aspx" />
     <Content Include="Views\Shared\OpenIdLogin.ascx" />
     <Content Include="Views\Shared\UserNamePasswordLogin.ascx" />
+    <Content Include="Views\UserProfile\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
