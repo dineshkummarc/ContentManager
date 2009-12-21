@@ -83,11 +83,9 @@
     <Compile Include="Code\DataAccess\Interfaces\IRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlBaseRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlContentRepository.cs" />
-    <Compile Include="Code\Entities\Address.cs" />
     <Compile Include="Code\Entities\Base\ContentManagerBaseItem.cs" />
     <Compile Include="Code\Entities\Enum.cs" />
     <Compile Include="Code\Entities\HtmlContent.cs" />
-    <Compile Include="Code\Entities\UserProfile.cs" />
     <Compile Include="Code\Service\AuthenticationServices\AspNetAuthenticationService.cs" />
     <Compile Include="Code\Service\AuthenticationServices\IAuthenticationService.cs" />
     <Compile Include="Code\Service\AuthenticationServices\OpenIdAuthenticationService.cs" />
@@ -97,18 +95,13 @@
     <Compile Include="Code\Service\ContentServices\ContentService.cs" />
     <Compile Include="Code\Service\AuthorizationServices\IAuthorizationService.cs" />
     <Compile Include="Code\Service\ContentServices\IContentService.cs" />
-    <Compile Include="Code\Service\PersonalizationServices\IPersonalizationService.cs" />
-    <Compile Include="Code\Service\PersonalizationServices\PersonalizationService.cs" />
     <Compile Include="Code\Util\LazyList.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxTestController.cs" />
-    <Compile Include="Controllers\AuthenticationController.cs" />
-    <Compile Include="Controllers\ControllerExtensions.cs" />
     <Compile Include="Controllers\HtmlContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OpenIdController.cs" />
     <Compile Include="Controllers\PageController.cs" />
-    <Compile Include="Controllers\PersonalizationController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

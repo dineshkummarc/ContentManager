@@ -101,8 +101,7 @@ namespace ContentNamespace.Web.Controllers
                         }
                         else
                         {
-
-                            //name = name.Substring(0, name.IndexOf('.'));
+                            name = name.Substring(0, name.IndexOf('.'));
                         }
 
                         FormsAuthentication.SetAuthCookie(name, false);
