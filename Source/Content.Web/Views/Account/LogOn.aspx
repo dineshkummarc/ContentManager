@@ -13,9 +13,28 @@
 
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
+ 	<!-- Simple OpenID Selector -->
+	<link rel="stylesheet" href="/content/openid.css" />
+	<script type="text/javascript" src="/scripts/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="/scripts/openid-jquery.js"></script>
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	        openid.init('openid_identifier');
+	    });
+	</script>
+	<!-- /Simple OpenID Selector -->
+	
+	<style type="text/css">
+		/* Basic page formatting. */
+		body {
+			font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
+	</style>
+ 
+ 
+ 
     <h2>Log On</h2>
-    
-    
+    <p>
     <!-- Simple OpenID Selector -->
     <form action="<%=Url.Action("OpenIdLogin","Account") %>" method="get" id="openid_form">
 	    <input type="hidden" name="action" value="verify" />
@@ -40,6 +59,7 @@
     </form>
     
     
+    </p>
     <p>
         Please enter your username and password. <%= Html.ActionLink("Register", "Register") %> if you don't have an account.
     </p>
@@ -78,9 +98,9 @@
 
 	<script type="text/javascript" src="/scripts/openid-jquery.js"></script>
 	<script type="text/javascript">
-	    $(document).ready(function() {
-	        openid.init('openid_identifier');
-	    });
+//	    $(document).ready(function() {
+//	        openid.init('openid_identifier');
+//	    });
 	</script>
 	
 </asp:Content>

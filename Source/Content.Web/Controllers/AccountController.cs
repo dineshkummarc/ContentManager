@@ -18,7 +18,6 @@ namespace ContentNamespace.Web.Controllers
     [HandleError]
     public class AccountController : Controller
     {
-
         // This constructor is used by the MVC framework to instantiate the controller using
         // the default forms authentication and membership providers.
 
@@ -47,35 +46,6 @@ namespace ContentNamespace.Web.Controllers
             get;
             private set;
         }
-
-        public ActionResult LogOn()
-        {
-
-            return View();
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
-            Justification = "Needs to take same parameter type as Controller.Redirect()")]
-        public ActionResult LogOn(string userName, string password, bool rememberMe, string returnUrl)
-        {
-
-            if (!ValidateLogOn(userName, password))
-            {
-                return View();
-            }
-
-            FormsAuth.SignIn(userName, rememberMe);
-            if (!String.IsNullOrEmpty(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-        }
-
 
         public ActionResult OpenIdLogin()
         {
@@ -132,7 +102,7 @@ namespace ContentNamespace.Web.Controllers
                         else
                         {
 
-                            name = name.Substring(0, name.IndexOf('.'));
+                            //name = name.Substring(0, name.IndexOf('.'));
                         }
 
                         FormsAuthentication.SetAuthCookie(name, false);
@@ -157,6 +127,33 @@ namespace ContentNamespace.Web.Controllers
 
         }
 
+        public ActionResult LogOn()
+        {
+
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings",
+            Justification = "Needs to take same parameter type as Controller.Redirect()")]
+        public ActionResult LogOn(string userName, string password, bool rememberMe, string returnUrl)
+        {
+
+            if (!ValidateLogOn(userName, password))
+            {
+                return View();
+            }
+
+            FormsAuth.SignIn(userName, rememberMe);
+            if (!String.IsNullOrEmpty(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
 
         public ActionResult LogOff()
         {
