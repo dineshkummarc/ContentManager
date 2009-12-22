@@ -151,6 +151,9 @@
     <Content Include="Views\HtmlContent\Index.aspx" />
     <Content Include="Views\Shared\OpenIdLogin.ascx" />
     <Content Include="Views\Shared\UserNamePasswordLogin.ascx" />
+    <Content Include="Views\UserProfile\Create.aspx" />
+    <Content Include="Views\UserProfile\Details.aspx" />
+    <Content Include="Views\UserProfile\Edit.aspx" />
     <Content Include="Views\UserProfile\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
