@@ -12,6 +12,9 @@
         <tr>
             <th></th>
             <th>
+                Id
+            </th>
+            <th>
                 Name
             </th>
             <th>
@@ -22,33 +25,18 @@
             </th>
             <th>
                 LastSignInDate
-            </th>
-            <th>
-                RegisterDate
-            </th>
-            <th>
-                Id
-            </th>
-            <th>
-                CreatedDate
-            </th>
-            <th>
-                CreatedBy
-            </th>
-            <th>
-                ModifiedDate
-            </th>
-            <th>
-                ModifiedBy
-            </th>
+            </th> 
         </tr>
 
     <% foreach (var item in Model) { %>
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
-                <%= Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%>
+                <%= Html.ActionLink("Edit", "Edit", new { id = item.Id })%> |
+                <%= Html.ActionLink("Details", "Details", new {  id=item.Id })%>
+            </td>
+            <td>
+                <%= Html.Encode(item.Id) %>
             </td>
             <td>
                 <%= Html.Encode(item.Name) %>
@@ -61,25 +49,7 @@
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.LastSignInDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:g}", item.RegisterDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:g}", item.CreatedDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.CreatedBy) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:g}", item.ModifiedDate)) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.ModifiedBy) %>
-            </td>
+            </td>   
         </tr>
     
     <% } %>

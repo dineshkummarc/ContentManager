@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using ContentNamespace.Web.Code.Entities.Base;
 using ContentNamespace.Web.Code.Entities;
+using ContentNamespace.Web.Code.Util;
 
 namespace ContentNamespace.Web.Code.Entities
 {
@@ -11,22 +12,54 @@ namespace ContentNamespace.Web.Code.Entities
     {
         public string Name { get; set; }
         public string UserName { get; set; }
-        public string Email { get; set; }
+        public string Email { get; set; } 
+        public LazyList<Enum.UserRoles> UserRoles { get; set; } 
         //public List<UserRoles> Roles { get; set; } 
         public DateTime LastSignInDate { get; set; }
         public DateTime RegisterDate { get; set; }
 
-        /*
-           result.Email = GetFetchValue(fetch, "contact/email");
-           result.FirstName = GetFetchValue(fetch, "namePerson/first");
-           result.LastName = GetFetchValue(fetch, "namePerson/last");
-           result.Street1 = GetFetchValue(fetch, "contact/streetaddressLine1/home");
-           result.Street2 = GetFetchValue(fetch, "contact/streetaddressLine2/home");
-           result.City = GetFetchValue(fetch, "contact/city/home");
-           result.StateOrProvince = GetFetchValue(fetch, "contact/city/stateorprovince");
-           result.Country = GetFetchValue(fetch, "contact/country/home");
-           result.Zip = GetFetchValue(fetch, "contact/postalCode/home");
-           result.UserName = openid.Response.ClaimedIdentifier;
+        /* 
+public Address GetOpenIDAddress(Uri claimUri)
+{
+    var openid = new OpenIdRelyingParty();
+    Address result = new Address();
+    if (openid.Response != null)
+    {
+        // Stage 2: user submitting Identifier
+        var fetch = openid.Response.GetExtension<FetchResponse>();
+        if (fetch != null)
+        {
+            result.Email = GetFetchValue(fetch, "contact/email");
+            result.FirstName = GetFetchValue(fetch, "namePerson/first");
+            result.LastName = GetFetchValue(fetch, "namePerson/last");
+            result.Street1 = GetFetchValue(fetch, "contact/streetaddressLine1/home");
+            result.Street2 = GetFetchValue(fetch, "contact/streetaddressLine2/home");
+            result.City = GetFetchValue(fetch, "contact/city/home");
+            result.StateOrProvince = GetFetchValue(fetch, "contact/city/stateorprovince");
+            result.Country = GetFetchValue(fetch, "contact/country/home");
+            result.Zip = GetFetchValue(fetch, "contact/postalCode/home");
+            result.UserName = openid.Response.ClaimedIdentifier;
+        }
+    }
+    else
+    {
+        var request = openid.CreateRequest(claimUri.AbsoluteUri);
+        var fetch = new FetchRequest();
+        fetch.AddAttribute(new AttributeRequest("contact/email"));
+        fetch.AddAttribute(new AttributeRequest("namePerson/first"));
+        fetch.AddAttribute(new AttributeRequest("namePerson/last"));
+        fetch.AddAttribute(new AttributeRequest("contact/streetaddressLine1/home"));
+        fetch.AddAttribute(new AttributeRequest("contact/streetaddressLine2/home"));
+        fetch.AddAttribute(new AttributeRequest("contact/city/home"));
+        fetch.AddAttribute(new AttributeRequest("contact/city/stateorprovince"));
+        fetch.AddAttribute(new AttributeRequest("contact/country/home"));
+        fetch.AddAttribute(new AttributeRequest("contact/postalCode/home"));
+        request.AddExtension(fetch);
+        request.RedirectToProvider();
+    }
+    return result;
+}
+ 
          */
         public UserProfile()
         {

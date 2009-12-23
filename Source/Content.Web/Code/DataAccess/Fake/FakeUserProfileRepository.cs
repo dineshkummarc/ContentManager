@@ -16,9 +16,13 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
             for (int i = 0; i < 5; i++ )
             {
                 UserProfile x = new UserProfile();
-                x.Name = "Name " + i  ; 
-                x.Email = (i % 4 == 0) ? "joeshmo@yahoo.com" : (i % 3 == 0) ? "jimmyjones@gmail.com" : "bobbat@aol.com";
-                x.ModifiedDate = new DateTime(2009, 1, 1);
+                x.Name = "Name" + i  ;
+                string email = (i % 4 == 0) ? "joeshmo" + i + "@yahoo.com" :
+                    (i % 3 == 0) ? "jimmyjones" + i + "@gmail.com" : "bobbat" + i + "@aol.com";
+                x.Email = email;
+                x.UserName = email.Substring(0, email.IndexOf('@'));
+                x.ModifiedDate = new DateTime(2009, 1, 1).AddDays(i);
+                x.LastSignInDate = new DateTime(2009, 1, 1).AddDays(i);
                 x.Id = i;
                 list.Add(x);
             } 
