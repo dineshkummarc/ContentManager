@@ -5,6 +5,7 @@ using System.Web;
 using ContentNamespace.Web.Code.Entities.Base;
 using ContentNamespace.Web.Code.Entities;
 using ContentNamespace.Web.Code.Util;
+using Stateless;
 
 namespace ContentNamespace.Web.Code.Entities
 {
@@ -65,6 +66,5 @@ public Address GetOpenIDAddress(Uri claimUri)
         {
             Id = -2;
         }
-
     }
 }

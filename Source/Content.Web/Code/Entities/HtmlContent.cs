@@ -7,7 +7,7 @@ using Stateless;
 
 namespace ContentNamespace.Web.Code.Entities
 {
-    public class HtmlContent : ContentManagerBaseItem
+    public class HtmlContent : WorkflowParticipantBaseItem
     {
         #region Fields...
 
@@ -78,7 +78,7 @@ namespace ContentNamespace.Web.Code.Entities
             _contentStateMachine.Fire(Enum.ContentTransition.Save);
         }
 
-        private static void ConfigureWorkflow(StateMachine<Enum.ContentState, Enum.ContentTransition> contentWorkflow)
+        protected override sealed void ConfigureWorkflow(StateMachine<Enum.ContentState, Enum.ContentTransition> contentWorkflow)
         {
             // State: Created; only allow the transition to InProgress if the user has edit rights (either the owner of the content
             // or an admin)
