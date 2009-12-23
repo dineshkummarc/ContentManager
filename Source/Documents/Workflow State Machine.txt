@@ -7,14 +7,15 @@ ContentManager | Content StateMachine (Workflow)
 <=>	 : two-way arrow 
 
 
-|User actions|...............................................|Admin actions|..................................|User actions|...|Admin (or system) actions|
-|													         |									 			  |				   |
-[Created] +=> {Delete} +=====> <STOP>				         |									 			  |				   |
-		  +=> {Edit}   +=====> [InProgress] <=> {Save}	     |									 			  |				   |
-									        +=> {Delete} +=> <STOP>	  										  |				   |
-									        +=> {Submit} +=> [Submitted] +=====> {RequireEdit} +============> [*InProgress]	   |
-														 +=> {Accept} +========> [Published] +===============================> {Expired} +=> <STOP>
-														 +=> {Reject} +========> [Rejected], <STOP>
+|User:..............................................................|Admin:................................|User:...........|Admin (or system):
+|																	|									   |				|
+[Created] +=> {Delete} +=====> <STOP>								|									   |				|
+		  +=> {Edit}   +=====> [InProgress] <=> {Edit}				|									   |				|
+											<=> {Save}				|									   |				|
+									        +=> {Delete} +=> <STOP>	|  									   |				|
+									        +=> {Submit} +========> [Submitted] +=> {RequireEdit} +======> [*InProgress]	|
+														 +========> {Accept} +====> [Published] +=========================> {Expired} +=> <STOP>
+														 +========> {Reject} +====> [Rejected], <STOP>
 
 *Same InProgress state as earlier
 															  
