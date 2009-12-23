@@ -1,6 +1,7 @@
 ﻿using System;
 //
 using ContentNamespace.Web.Code.Entities.Base;
+using ContentNamespace.Web.Code.Util;
 //
 using Stateless;
 
@@ -19,16 +20,15 @@ namespace ContentNamespace.Web.Code.Entities
 
         public string Name { get; set; }
         public string ContentData { get; set; }
+        
         public Enum.ContentState ContentState
         {
-            get
-            {
-                return _contentStateMachine.State;
-            } 
+            get { return _contentStateMachine.State; } 
         }
+        
         public DateTime ExpireDate { get; set; }
         public DateTime ActiveDate { get; set; }
-
+        
         public int OwnerUserId { get; set; }
 
         public static bool HasEditRights
@@ -99,17 +99,12 @@ namespace ContentNamespace.Web.Code.Entities
 
             // State: Published
             contentWorkflow.Configure(Enum.ContentState.Published)
-                .OnEntry(() => SendNotificationEmail(Enum.EmailType.ContentPublished))
+                .OnEntry(() => Email.Send(Enum.EmailType.ContentPublished))
                 .PermitIf(Enum.ContentTransition.Expire, Enum.ContentState.Expired, () => IsAdminUser);
 
             // State: Rejected
             contentWorkflow.Configure(Enum.ContentState.Rejected)
-                .OnEntry(() => SendNotificationEmail(Enum.EmailType.ContentRejected));
-        }
-
-        private static void SendNotificationEmail(Enum.EmailType emailType)
-        {
-            // TODO: Assemble and deliver the appropriate email notification
+                .OnEntry(() => Email.Send(Enum.EmailType.ContentRejected));
         }
 
         #endregion
