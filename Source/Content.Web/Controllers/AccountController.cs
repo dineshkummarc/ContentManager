@@ -67,6 +67,7 @@ namespace ContentNamespace.Web.Controllers
                         var item = new AttributeRequest(WellKnownAttributes.Contact.Email);
                         item.IsRequired = true;
                         fetch.Attributes.Add(item);
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.FullName));
                         req.AddExtension(fetch);
 
                         return req.RedirectingResponse.AsActionResult();
@@ -92,12 +93,19 @@ namespace ContentNamespace.Web.Controllers
 
                         var fetch = response.GetExtension<FetchResponse>();
                         string name = response.FriendlyIdentifierForDisplay;
+                        string OpenIdId = response.FriendlyIdentifierForDisplay;
                         if (fetch != null)
                         {
                             IList<string> emailAddresses = fetch.Attributes[WellKnownAttributes.Contact.Email].Values;
                             string email = emailAddresses.Count > 0 ? emailAddresses[0] : null;
                             //don't show the email - it's creepy. Just use the name of the email
                             name = email.Substring(0, email.IndexOf('@'));
+
+
+
+                            IList<string> fullName = fetch.Attributes[WellKnownAttributes.Name.FullName].Values;
+                            string s = fullName[0];
+
                         }
                         else
                         {
@@ -125,6 +133,9 @@ namespace ContentNamespace.Web.Controllers
             return new EmptyResult();
 
         }
+
+
+
 
         public ActionResult LogOn()
         {

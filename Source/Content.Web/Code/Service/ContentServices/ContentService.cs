@@ -26,17 +26,19 @@ namespace ContentNamespace.Web.Code.Service.Base
         /// </summary>
         /// <returns></returns>
         public IQueryable<HtmlContent> Get()
-        { 
+        {
             var contents = this._repository.Get().Select(x => new HtmlContent
             {
                 Id = x.Id,
                 Name = x.Name,
-                ContentData = (x.ContentData.Length > 10 ) ? x.ContentData.Substring(0, 10)+"...": x.ContentData,
+                ContentData = (x.ContentData.Length > 10) ? x.ContentData.Substring(0, 10) + "..." : x.ContentData,
                 ActiveDate = x.ActiveDate,
                 ExpireDate = x.ExpireDate,
                 ModifiedBy = x.ModifiedBy,
-                ModifiedDate = x.ModifiedDate 
+                ModifiedDate = x.ModifiedDate
             });
+            //var contents = this._repository.Get();
+
             return contents;  
         }
          

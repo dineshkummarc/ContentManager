@@ -23,7 +23,7 @@ namespace ContentNamespace.Web.Controllers
         // GET: /UserProfile/
         public ActionResult Index()
         {
-            return View(this._service.Get());
+            return View(this._service.Get().OrderByDescending(x => x.LastSignInDate));
         }
 
 

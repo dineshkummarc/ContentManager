@@ -13,7 +13,8 @@ namespace ContentNamespace.Web.Code.Entities
     {
         public string Name { get; set; }
         public string UserName { get; set; }
-        public string Email { get; set; } 
+        public string Email { get; set; }
+        public string OpenIdId { get; set; }  
         public LazyList<Enum.UserRoles> UserRoles { get; set; }  
         public DateTime LastSignInDate { get; set; }
         public DateTime RegisterDate { get; set; }
@@ -58,9 +59,22 @@ public Address GetOpenIDAddress(Uri claimUri)
         request.RedirectToProvider();
     }
     return result;
-}
- 
+} 
          */
+
+
+        public UserProfile(int id , string name, string userName, 
+            string email,  string openIdId )//: this() 
+        {
+            Id = id;
+            Name = name;
+            UserName = userName;
+            Email = email;
+            OpenIdId = openIdId;
+            LastSignInDate = new DateTime(2009,1,1);
+            RegisterDate = new DateTime(2009, 1, 1);
+        }
+
         public UserProfile()
         {
             Id = -2;

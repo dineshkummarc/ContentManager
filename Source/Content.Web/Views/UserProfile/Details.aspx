@@ -4,11 +4,17 @@
 	Details
 </asp:Content>
 
+<asp:Content ID="Content5" ContentPlaceHolderID="Header" runat="server">
+    <style type="text/css" >
+        .hand{ cursor:pointer; }
+    </style>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Details</h2>
 
-    <fieldset>
+    <fieldset class="detailToEdit">
         <legend>Fields</legend>
         <p>
             Id:
@@ -57,10 +63,19 @@
     </p>
 
 </asp:Content>
+ 
 
-<asp:Content ID="Content3" ContentPlaceHolderID="Header" runat="server">
+
+<asp:Content ID="Content4" ContentPlaceHolderID="Javascript" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.detailToEdit').addClass('hand').click(function() {
+                var l = "/UserProfile/Edit/<%= Model.Id %>";
+                window.location = l;
+                //alert('should link to:  ' + l);
+            });
+        });
+    </script>
 </asp:Content>
 
-<asp:Content ID="Content4" ContentPlaceHolderID="JavaScript" runat="server">
-</asp:Content>
 

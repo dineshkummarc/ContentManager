@@ -21,6 +21,9 @@
                 UserName
             </th>
             <th>
+                OpenIdId
+            </th>
+            <th>
                 Email
             </th>
             <th>
@@ -32,7 +35,6 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id = item.Id })%> |
                 <%= Html.ActionLink("Details", "Details", new {  id=item.Id })%>
             </td>
             <td>
@@ -43,6 +45,9 @@
             </td>
             <td>
                 <%= Html.Encode(item.UserName) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.OpenIdId) %>
             </td>
             <td>
                 <%= Html.Encode(item.Email) %>
