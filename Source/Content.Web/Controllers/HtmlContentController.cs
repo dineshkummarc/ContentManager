@@ -78,7 +78,11 @@ namespace ContentNamespace.Web.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View(this._service.Get(id));
+            var editContent = this._service.Get(id);
+
+            editContent.Edit();
+
+            return View(editContent);
         }
 
         //ref: http://tinyurl.com/d6xolp      

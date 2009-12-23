@@ -32,6 +32,9 @@
             <th>
                 ModifiedBy
             </th>
+            <th>
+                Status
+            </th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -61,6 +64,9 @@
             </td>
             <td>
                 <%= Html.Encode(item.ModifiedBy) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.ContentState) %>
             </td>
         </tr>
     

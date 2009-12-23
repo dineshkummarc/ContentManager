@@ -14,6 +14,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceBin", "ReferenceBi
 		ReferenceBin\Ninject.Core.xml = ReferenceBin\Ninject.Core.xml
 		ReferenceBin\Ninject.Framework.Mvc.dll = ReferenceBin\Ninject.Framework.Mvc.dll
 		ReferenceBin\Ninject.Framework.Mvc.xml = ReferenceBin\Ninject.Framework.Mvc.xml
+		ReferenceBin\Stateless.dll = ReferenceBin\Stateless.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{EAB10A52-3E5E-454D-A4E4-D5CDF8BC2709}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\Workflow State Machine.txt = Documents\Workflow State Machine.txt
 	EndProjectSection
 EndProject
 Global

@@ -45,6 +45,10 @@
             ModifiedBy:
             <%= Html.Encode(Model.ModifiedBy) %>
         </p>
+        <p>
+            ContentState:
+            <%= Html.Encode(Model.ContentState) %>
+        </p>
     </fieldset>
     <p> 
         <%=Html.ActionLink("View", "Page", "Page", new { id = Model.Id }, null )%> |

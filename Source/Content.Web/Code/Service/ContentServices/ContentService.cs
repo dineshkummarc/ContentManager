@@ -47,6 +47,8 @@ namespace ContentNamespace.Web.Code.Service.Base
 
         public HtmlContent Save(HtmlContent item)
         {
+            item.Save();
+
             return this._repository.Save(item);
         }
 
