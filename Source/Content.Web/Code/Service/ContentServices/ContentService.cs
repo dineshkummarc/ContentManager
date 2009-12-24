@@ -35,9 +35,9 @@ namespace ContentNamespace.Web.Code.Service.Base
                 ActiveDate = x.ActiveDate,
                 ExpireDate = x.ExpireDate,
                 ModifiedBy = x.ModifiedBy,
-                ModifiedDate = x.ModifiedDate
+                ModifiedDate = x.ModifiedDate,
+                ItemState = x.HtmlContentState
             });
-            //var contents = this._repository.Get();
 
             return contents;  
         }
