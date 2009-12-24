@@ -93,6 +93,7 @@
     <Compile Include="Code\Entities\Base\WorkflowParticipantBaseItem.cs" />
     <Compile Include="Code\Entities\Enum.cs" />
     <Compile Include="Code\Entities\HtmlContent.cs" />
+    <Compile Include="Code\Entities\Settings.cs" />
     <Compile Include="Code\Entities\UserProfile.cs" />
     <Compile Include="Code\Service\AuthenticationServices\AspNetAuthenticationService.cs" />
     <Compile Include="Code\Service\AuthenticationServices\IAuthenticationService.cs" />
@@ -187,6 +188,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Code\Service\CacheService\" />
+    <Folder Include="Code\Service\ConfigurationServices\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
