@@ -63,11 +63,13 @@ namespace ContentNamespace.Web.Controllers
                         IAuthenticationRequest req = openid.CreateRequest(Request["openid_identifier"]);
 
                         var fetch = new FetchRequest();
-                        //ask for more info - the email address
-                        var item = new AttributeRequest(WellKnownAttributes.Contact.Email);
-                        item.IsRequired = true;
-                        fetch.Attributes.Add(item);
-                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.FullName));
+                        //ask for more info - the email address 
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Contact.Email, true));
+                        //fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.FullName,true));
+                        //fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.First,true));
+                        //fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.Last, true));
+                        //fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.BirthDate.WholeBirthDate, true));
+                        //fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Contact.HomeAddress.City, true));
                         req.AddExtension(fetch);
 
                         return req.RedirectingResponse.AsActionResult();
@@ -100,11 +102,9 @@ namespace ContentNamespace.Web.Controllers
                             string email = emailAddresses.Count > 0 ? emailAddresses[0] : null;
                             //don't show the email - it's creepy. Just use the name of the email
                             name = email.Substring(0, email.IndexOf('@'));
-
-
-
-                            IList<string> fullName = fetch.Attributes[WellKnownAttributes.Name.FullName].Values;
-                            string s = fullName[0];
+                             
+                            //IList<string> fullName = fetch.Attributes[WellKnownAttributes.Name.FullName].Values;
+                            //string s = fullName[0];
 
                         }
                         else
