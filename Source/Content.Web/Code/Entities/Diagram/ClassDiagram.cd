@@ -1,10 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Content.Web.Code.Entities.HtmlContent">
-    <Position X="1" Y="1.75" Width="1.5" />
+  <Class Name="ContentNamespace.Web.Code.Entities.Enum">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="ContentNamespace.Web.Code.Entities.Enum.EmailType">
+        <TypeIdentifier>
+          <NewMemberFileName>Code\Entities\Enum.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="ContentNamespace.Web.Code.Entities.Enum.UserRoles">
+        <TypeIdentifier>
+          <NewMemberFileName>Code\Entities\Enum.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="ContentNamespace.Web.Code.Entities.Enum.ContentState">
+        <TypeIdentifier>
+          <NewMemberFileName>Code\Entities\Enum.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="ContentNamespace.Web.Code.Entities.Enum.ContentTransition">
+        <TypeIdentifier>
+          <NewMemberFileName>Code\Entities\Enum.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAGCAAAAAAAAAAAAAAAAAAAAgACAAAQAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Code\Entities\Enum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContentNamespace.Web.Code.Entities.HtmlContent">
+    <Position X="3" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAEAAAAAAAAAAAAAAAAAAQABgACAAAUAAQCAAAAAAA=</HashCode>
       <FileName>Code\Entities\HtmlContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContentNamespace.Web.Code.Entities.Settings">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAgIAAAAAAAAAAAAAAAAAAAAAEABAA=</HashCode>
+      <FileName>Code\Entities\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContentNamespace.Web.Code.Entities.UserProfile">
+    <Position X="7.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACgAAAAAAAAAAAQAAAAAAAgAAQAAAAAAAAE=</HashCode>
+      <FileName>Code\Entities\UserProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContentNamespace.Web.Code.Entities.Base.WorkflowParticipantBaseItem">
+    <Position X="5.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAIAAACAAAAAAAAAQAAAABAQAAAACAAAAAQAAAIA=</HashCode>
+      <FileName>Code\Entities\Base\WorkflowParticipantBaseItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContentNamespace.Web.Code.Entities.Base.ContentManagerBaseItem">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACCAAAAAAAAAAAAAAAAAAAAgAAAAAAAgAAAAAAAAE=</HashCode>
+      <FileName>Code\Entities\Base\ContentManagerBaseItem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Tahoma" Size="8.25" />
