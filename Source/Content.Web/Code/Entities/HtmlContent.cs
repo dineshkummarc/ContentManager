@@ -11,19 +11,25 @@ namespace ContentNamespace.Web.Code.Entities
     {
         #region Properties...
 
+        // Intrinsic
         public string Name { get; set; }
         public string ContentData { get; set; }
+        public DateTime ExpireDate { get; set; }
+        public DateTime ActiveDate { get; set; }
         
+        // State machine related
+        public Enum.ContentState ItemState
+        {
+            get { return _itemState; }
+            set { _itemState = value; }
+        }
         public Enum.ContentState HtmlContentState
         {
             get { return _itemStateMachine.State; } 
         }
         
-        public DateTime ExpireDate { get; set; }
-        public DateTime ActiveDate { get; set; }
-        
+        // Security related
         public int OwnerUserId { get; set; }
-
         public static bool HasEditRights
         {
             get
@@ -31,7 +37,6 @@ namespace ContentNamespace.Web.Code.Entities
                 return true; // TODO: Evaluate if user is owner
             }
         }
-
         public static bool IsAdminUser
         {
             get
@@ -55,16 +60,6 @@ namespace ContentNamespace.Web.Code.Entities
         #endregion
 
         #region Methods...
-
-        public void Edit()
-        {
-            _itemStateMachine.Fire(Enum.ContentTransition.Edit);
-        }
-
-        public void Save()
-        {
-            _itemStateMachine.Fire(Enum.ContentTransition.Save);
-        }
 
         protected override sealed void ConfigureWorkflow(StateMachine<Enum.ContentState, Enum.ContentTransition> htmlContentWorkflow)
         {

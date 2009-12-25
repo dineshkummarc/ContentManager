@@ -17,8 +17,6 @@ namespace ContentNamespace.Web.Code.Entities.Base
         {
             _itemStateMachine = new StateMachine<Enum.ContentState, Enum.ContentTransition>(() => _itemState,
                 r => _itemState = r);
-
-            _itemStateMachine = new StateMachine<Enum.ContentState, Enum.ContentTransition>(Enum.ContentState.Created);
         }
 
         #endregion
@@ -26,6 +24,17 @@ namespace ContentNamespace.Web.Code.Entities.Base
         #region Methods...
 
         protected abstract void ConfigureWorkflow(StateMachine<Enum.ContentState, Enum.ContentTransition> itemWorkflow);
+
+        // User actions
+        public void Edit() { _itemStateMachine.Fire(Enum.ContentTransition.Edit); }
+        public void Save() { _itemStateMachine.Fire(Enum.ContentTransition.Save); }
+        public void Submit() { _itemStateMachine.Fire(Enum.ContentTransition.Submit); }
+        // Admin actions
+        public void RequireEdit() { _itemStateMachine.Fire(Enum.ContentTransition.RequireEdit); }
+        public void Accept() { _itemStateMachine.Fire(Enum.ContentTransition.Accept); }
+        public void Reject() { _itemStateMachine.Fire(Enum.ContentTransition.Reject); }
+        // System or admin actions
+        public void Expire() { _itemStateMachine.Fire(Enum.ContentTransition.Expire); }
 
         #endregion
     }
