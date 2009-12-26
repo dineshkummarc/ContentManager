@@ -109,6 +109,8 @@
     <Compile Include="Code\Service\AuthorizationServices\IAuthorizationService.cs" />
     <Compile Include="Code\Service\ContentServices\IContentService.cs" />
     <Compile Include="Code\Service\Base\IContentManagerBaseService.cs" />
+    <Compile Include="Code\Service\FormsAuthenticationServices\IFormsAuthenticationService.cs" />
+    <Compile Include="Code\Service\MembershipServices\IMembershipService.cs" />
     <Compile Include="Code\Service\UserProfileServices\IUserProfileService.cs" />
     <Compile Include="Code\Service\UserProfileServices\UserProfileService.cs" />
     <Compile Include="Code\Util\Email.cs" />
