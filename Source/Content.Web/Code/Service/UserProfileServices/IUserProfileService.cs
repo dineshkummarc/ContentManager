@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
+//
 using ContentNamespace.Web.Code.Entities;
 
 namespace ContentNamespace.Web.Code.Service.UserProfileServices
 {
-    public interface IUserProfileService
+    public interface IUserProfileService : IContentManagerBaseService
     { 
         IQueryable<UserProfile> Get();
         UserProfile Get(int id);

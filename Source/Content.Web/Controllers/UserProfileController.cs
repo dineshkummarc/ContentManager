@@ -10,19 +10,15 @@ using System.Text;
 
 namespace ContentNamespace.Web.Controllers
 {
-    public class UserProfileController : Controller
+    public class UserProfileController : ContentManagerBaseController<IUserProfileService>
     {
-
-        private readonly IUserProfileService _service;
-
-        public UserProfileController(IUserProfileService serv)
-        {
-            this._service = serv;
-        }
-
         // GET: /UserProfile/
+        public UserProfileController(IUserProfileService service) : base(service) { }
+
         public ActionResult Index()
         {
+            GetContentManagerSettings();
+
             return View(this._service.Get().OrderByDescending(x => x.LastSignInDate));
         }
 

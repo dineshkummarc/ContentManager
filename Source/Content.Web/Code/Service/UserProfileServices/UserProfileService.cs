@@ -35,7 +35,7 @@ namespace ContentNamespace.Web.Code.Service.UserProfileServices
             //    ModifiedDate = x.ModifiedDate
             //});
             //return contents;
-            return this._repository.Get();
+            return ((IContentManagerBaseService)this).GetData() as IQueryable<UserProfile>;
         }
 
         public UserProfile Get(int id)
@@ -53,6 +53,14 @@ namespace ContentNamespace.Web.Code.Service.UserProfileServices
             return false;
         }
 
+        #region IContentManagerBaseService Members...
+
+        object IContentManagerBaseService.GetData()
+        {
+            return this._repository.Get();
+        }
+
+        #endregion
     }
 
 }

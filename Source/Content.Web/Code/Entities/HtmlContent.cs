@@ -7,7 +7,7 @@ using Stateless;
 
 namespace ContentNamespace.Web.Code.Entities
 {
-    public class HtmlContent : WorkflowParticipantBaseItem
+    public class HtmlContent : WorkflowEnabledBaseItem
     {
         #region Properties...
 
@@ -60,6 +60,17 @@ namespace ContentNamespace.Web.Code.Entities
         #endregion
 
         #region Methods...
+
+        // User actions
+        public void Edit() { _itemStateMachine.Fire(Enum.ContentTransition.Edit); }
+        public void Save() { _itemStateMachine.Fire(Enum.ContentTransition.Save); }
+        public void Submit() { _itemStateMachine.Fire(Enum.ContentTransition.Submit); }
+        // Admin actions
+        public void RequireEdit() { _itemStateMachine.Fire(Enum.ContentTransition.RequireEdit); }
+        public void Accept() { _itemStateMachine.Fire(Enum.ContentTransition.Accept); }
+        public void Reject() { _itemStateMachine.Fire(Enum.ContentTransition.Reject); }
+        // System or admin actions
+        public void Expire() { _itemStateMachine.Fire(Enum.ContentTransition.Expire); }
 
         protected override sealed void ConfigureWorkflow(StateMachine<Enum.ContentState, Enum.ContentTransition> htmlContentWorkflow)
         {

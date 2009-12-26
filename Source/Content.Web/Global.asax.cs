@@ -1,22 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Ninject.Core;
-using Ninject.Framework.Mvc; 
-using ContentNamespace.Web.Code.Service.Interfaces;
-using ContentNamespace.Web.Code.DataAccess.Interfaces;
-using ContentNamespace.Web.Code.Service.Base;
+//
 using ContentNamespace.Web.Code.DataAccess.Fake;
-using Ninject.Core.Behavior;
-using ContentNamespace.Web.Controllers; 
-using System.Security.Principal;
-using System.Web.Security;
+using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Service.AuthenticationServices;
+using ContentNamespace.Web.Code.Service.Base;
+using ContentNamespace.Web.Code.Service.ConfigurationServices;
+using ContentNamespace.Web.Code.Service.Interfaces;
 using ContentNamespace.Web.Code.Service.UserProfileServices;
+//
+using Ninject.Core;
+using Ninject.Core.Behavior;
+using Ninject.Framework.Mvc;
 
 namespace ContentNamespace.Web
 {
@@ -38,7 +36,7 @@ namespace ContentNamespace.Web
 
         protected override IKernel CreateKernel()
         {
-            IModule[] modules = new IModule[]
+            var modules = new IModule[]
             {
                 new AutoControllerModule(Assembly.GetExecutingAssembly()),
                 new ServiceModule()
@@ -58,8 +56,10 @@ namespace ContentNamespace.Web
             Bind<IUserProfileRepository>().To<FakeUserProfileRepository>().Using<SingletonBehavior>();
             Bind<IUserProfileService>().To<UserProfileService>();
 
-            Bind<IAuthenticationService>().To<TestAuthenticationService>(); 
+            Bind<IAuthenticationService>().To<TestAuthenticationService>();
 
+            Bind<IConfigurationRepository>().To<FakeConfigurationRepository>().Using<SingletonBehavior>();
+            Bind<IConfigurationService>().To<ConfigurationService>();
 
             //Bind<IMembershipService>().To<AccountMembershipService>();
             //Bind<IFormsAuthentication>().To<MockFormsAuthentication>();
@@ -67,7 +67,7 @@ namespace ContentNamespace.Web
             //Bind<IPrincipal>().To<MockPrincipal>();
             //Bind<MembershipUser>().To<MockMembershipUser>();
             //Bind<HttpContextBase>().To<MockHttpContext>();
-            //Bind<MembershipProvider>().To<MockMembershipProvider>(); 
+            //Bind<MembershipProvider>().To<MockMembershipProvider>();
         }
     }
      

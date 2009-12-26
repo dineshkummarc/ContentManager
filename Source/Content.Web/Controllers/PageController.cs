@@ -8,19 +8,16 @@ using ContentNamespace.Web.Code.Service.Interfaces;
 
 namespace ContentNamespace.Web.Controllers
 {
-    public class PageController : Controller
+    public class PageController : ContentManagerBaseController<IContentService>
     {
-        private readonly IContentService _service;
-
-        public PageController(IContentService serv)
-        {
-            this._service = serv;
-        }
-
         //
         // GET: /Page/ 
+        public PageController(IContentService service) : base(service) { }
+
         public ActionResult Index()
         {
+            GetContentManagerSettings();
+
             return View();
         }
 

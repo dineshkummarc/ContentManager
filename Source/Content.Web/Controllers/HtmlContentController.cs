@@ -11,19 +11,15 @@ using System.Web.Routing;
 
 namespace ContentNamespace.Web.Controllers
 {
-    public class HtmlContentController : Controller
+    public class HtmlContentController : ContentManagerBaseController<IContentService>
     {
-
-        private readonly IContentService _service;
-
-        public HtmlContentController(IContentService serv)
-        {
-            this._service = serv;
-        }
-
         // GET: /HtmlContent/
+        public HtmlContentController(IContentService service) : base(service) { }
+
         public ActionResult Index()
         {
+            GetContentManagerSettings();
+
             return View(this._service.Get());
         }
 

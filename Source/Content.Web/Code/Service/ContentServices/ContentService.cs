@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using ContentNamespace.Web.Code.Entities;
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
-using ContentNamespace.Web.Code.Service.Interfaces; 
+using ContentNamespace.Web.Code.Service.Interfaces;
+using ContentNamespace.Web.Code.Util;
 
 namespace ContentNamespace.Web.Code.Service.Base
 {
@@ -27,19 +28,7 @@ namespace ContentNamespace.Web.Code.Service.Base
         /// <returns></returns>
         public IQueryable<HtmlContent> Get()
         {
-            var contents = this._repository.Get().Select(x => new HtmlContent
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ContentData = (x.ContentData.Length > 10) ? x.ContentData.Substring(0, 10) + "..." : x.ContentData,
-                ActiveDate = x.ActiveDate,
-                ExpireDate = x.ExpireDate,
-                ModifiedBy = x.ModifiedBy,
-                ModifiedDate = x.ModifiedDate,
-                ItemState = x.HtmlContentState
-            });
-
-            return contents;  
+            return ((IContentManagerBaseService)this).GetData() as IQueryable<HtmlContent>;
         }
          
         public HtmlContent Get(int id)
@@ -59,5 +48,25 @@ namespace ContentNamespace.Web.Code.Service.Base
             return false;
         }
 
+        #region IContentManagerBaseService Members...
+
+        object IContentManagerBaseService.GetData()
+        {
+            var contents = _repository.Get().Select(x => new HtmlContent
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ContentData = (x.ContentData.Length > SessionHelper.ContentManagerSettings.ContentExtractLength) ? x.ContentData.Substring(0, SessionHelper.ContentManagerSettings.ContentExtractLength) + "..." : x.ContentData,
+                ActiveDate = x.ActiveDate,
+                ExpireDate = x.ExpireDate,
+                ModifiedBy = x.ModifiedBy,
+                ModifiedDate = x.ModifiedDate,
+                ItemState = x.HtmlContentState
+            });
+
+            return contents;
+        }
+
+        #endregion
     }
 }
