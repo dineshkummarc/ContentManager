@@ -17,6 +17,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
         {
             const string settingsData = @"<?xml version='1.0'?>
                 <Settings xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+                  <SettingsCacheTimeInMinutes>5</SettingsCacheTimeInMinutes>
                   <GridPageSize>10</GridPageSize>
                   <ShowContentEllipsis>true</ShowContentEllipsis>
                   <ContentExtractLength>15</ContentExtractLength>
