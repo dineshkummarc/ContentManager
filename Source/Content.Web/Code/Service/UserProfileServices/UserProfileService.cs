@@ -7,15 +7,9 @@ using ContentNamespace.Web.Code.Entities;
 
 namespace ContentNamespace.Web.Code.Service.UserProfileServices
 {
-    public class UserProfileService : ContentManagerBaseService, IUserProfileService
+    public class UserProfileService : ContentManagerBaseService<IUserProfileRepository, UserProfile>, IUserProfileService
     {
-        private IUserProfileRepository _repository;
-
-        public UserProfileService(IUserProfileRepository _rep)
-        {
-            _repository = _rep;
-            _settings = _service.GetFromCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey) as Settings;
-        }
+        public UserProfileService(IUserProfileRepository repository) : base(repository) { }
 
         public IQueryable<UserProfile> Get(DateTime dt)
         {

@@ -10,15 +10,9 @@ using ContentNamespace.Web.Code.Util;
 
 namespace ContentNamespace.Web.Code.Service.Base
 {
-    public class ContentService : ContentManagerBaseService, IContentService
+    public class ContentService : ContentManagerBaseService<IContentRepository, HtmlContent>, IContentService
     {
-        private IContentRepository _repository;
-
-        public ContentService(IContentRepository _rep)
-        {
-            _repository = _rep;
-            _settings = _service.GetFromCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey) as Settings;
-        }
+        public ContentService(IContentRepository repository) : base(repository) { }
 
         public IQueryable<HtmlContent> Get(DateTime dt)
         {

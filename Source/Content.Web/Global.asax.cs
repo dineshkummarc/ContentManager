@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using System.Web;
+﻿using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
 //
@@ -10,6 +8,7 @@ using ContentNamespace.Web.Code.Service.AuthenticationServices;
 using ContentNamespace.Web.Code.Service.Base;
 using ContentNamespace.Web.Code.Service.ConfigurationServices;
 using ContentNamespace.Web.Code.Service.Interfaces;
+using ContentNamespace.Web.Code.Service.SystemServices;
 using ContentNamespace.Web.Code.Service.UserProfileServices;
 //
 using Ninject.Core;
@@ -60,6 +59,8 @@ namespace ContentNamespace.Web
 
             Bind<IConfigurationRepository>().To<FakeConfigurationRepository>().Using<SingletonBehavior>();
             Bind<IConfigurationService>().To<ConfigurationService>();
+
+            Bind<ICacheService>().To<CacheService>();
 
             //Bind<IMembershipService>().To<AccountMembershipService>();
             //Bind<IFormsAuthentication>().To<MockFormsAuthentication>();
