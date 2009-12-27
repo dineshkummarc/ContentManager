@@ -5,16 +5,19 @@ using System.Web;
 using ContentNamespace.Web.Code.Entities;
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Service.Interfaces;
+using ContentNamespace.Web.Code.Service.SystemServices;
 using ContentNamespace.Web.Code.Util;
 
 namespace ContentNamespace.Web.Code.Service.Base
 {
-    public class ContentService : IContentService
+    public class ContentService : ContentManagerBaseService, IContentService
     {
         private IContentRepository _repository;
+
         public ContentService(IContentRepository _rep)
         {
             _repository = _rep;
+            _settings = _service.GetFromCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey) as Settings;
         }
 
         public IQueryable<HtmlContent> Get(DateTime dt)
@@ -56,7 +59,9 @@ namespace ContentNamespace.Web.Code.Service.Base
             {
                 Id = x.Id,
                 Name = x.Name,
-                ContentData = (x.ContentData.Length > SessionHelper.ContentManagerSettings.ContentExtractLength) ? x.ContentData.Substring(0, SessionHelper.ContentManagerSettings.ContentExtractLength) + "..." : x.ContentData,
+                ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
+                               x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." : 
+                               x.ContentData,
                 ActiveDate = x.ActiveDate,
                 ExpireDate = x.ExpireDate,
                 ModifiedBy = x.ModifiedBy,

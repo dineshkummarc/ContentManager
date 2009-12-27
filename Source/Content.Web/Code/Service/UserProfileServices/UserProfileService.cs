@@ -1,19 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using ContentNamespace.Web.Code.Service.Interfaces;
+//
+using ContentNamespace.Web.Code.Service.Base;
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Entities;
 
 namespace ContentNamespace.Web.Code.Service.UserProfileServices
 {
-    public class UserProfileService : IUserProfileService
+    public class UserProfileService : ContentManagerBaseService, IUserProfileService
     {
         private IUserProfileRepository _repository;
+
         public UserProfileService(IUserProfileRepository _rep)
         {
             _repository = _rep;
+            _settings = _service.GetFromCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey) as Settings;
         }
 
         public IQueryable<UserProfile> Get(DateTime dt)

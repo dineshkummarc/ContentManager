@@ -103,6 +103,7 @@
     <Compile Include="Code\Service\AuthenticationServices\TestAuthenticationService.cs" />
     <Compile Include="Code\Service\AuthorizationServices\AspNetAuthorizationService.cs" />
     <Compile Include="Code\Service\AuthorizationServices\TestAuthenticationService.cs" />
+    <Compile Include="Code\Service\Base\ContentManagerBaseService.cs" />
     <Compile Include="Code\Service\SystemServices\CacheService.cs" />
     <Compile Include="Code\Service\SystemServices\ConfigurationService.cs" />
     <Compile Include="Code\Service\SystemServices\ICacheService.cs" />
