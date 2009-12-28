@@ -1,6 +1,6 @@
 ﻿namespace ContentNamespace.Web.Code.Entities
 {
-    public class Enum
+    public class Enums
     {
         #region Infrastructure...
 

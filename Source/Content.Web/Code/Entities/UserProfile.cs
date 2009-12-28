@@ -11,7 +11,7 @@ namespace ContentNamespace.Web.Code.Entities
         public string UserName { get; set; }
         public string Email { get; set; }
         public string OpenIdId { get; set; }  
-        public LazyList<Enum.UserRoles> UserRoles { get; set; }  
+        public LazyList<Enums.UserRoles> UserRoles { get; set; }  
         public DateTime LastSignInDate { get; set; }
         public DateTime RegisterDate { get; set; }
 

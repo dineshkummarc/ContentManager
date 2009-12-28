@@ -6,8 +6,8 @@ namespace ContentNamespace.Web.Code.Entities.Base
     {
         #region Fields...
 
-        protected StateMachine<Enum.ContentState, Enum.ContentTransition> _itemStateMachine;
-        protected Enum.ContentState _itemState = Enum.ContentState.Created;
+        protected StateMachine<Enums.ContentState, Enums.ContentTransition> _itemStateMachine;
+        protected Enums.ContentState _itemState = Enums.ContentState.Created;
 
         #endregion
 
@@ -15,7 +15,7 @@ namespace ContentNamespace.Web.Code.Entities.Base
 
         protected WorkflowEnabledBaseItem()
         {
-            _itemStateMachine = new StateMachine<Enum.ContentState, Enum.ContentTransition>(() => _itemState,
+            _itemStateMachine = new StateMachine<Enums.ContentState, Enums.ContentTransition>(() => _itemState,
                 r => _itemState = r);
         }
 
@@ -23,7 +23,7 @@ namespace ContentNamespace.Web.Code.Entities.Base
 
         #region Methods...
 
-        protected abstract void ConfigureWorkflow(StateMachine<Enum.ContentState, Enum.ContentTransition> itemWorkflow);
+        protected abstract void ConfigureWorkflow(StateMachine<Enums.ContentState, Enums.ContentTransition> itemWorkflow);
 
         #endregion
     }

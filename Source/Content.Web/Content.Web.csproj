@@ -85,10 +85,12 @@
     <Compile Include="Code\DataAccess\Fake\FakeContentRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeConfigurationRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeUserProfileRepository.cs" />
+    <Compile Include="Code\DataAccess\Fake\FakeUserRoleRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IContentRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IConfigurationRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IUserProfileRepository.cs" />
+    <Compile Include="Code\DataAccess\Interfaces\IUserRoleRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlBaseRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlContentRepository.cs" />
     <Compile Include="Code\Entities\Base\ContentManagerBaseItem.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Code\Service\UserProfileServices\IUserProfileService.cs" />
     <Compile Include="Code\Service\UserProfileServices\UserProfileService.cs" />
     <Compile Include="Code\Util\Email.cs" />
+    <Compile Include="Code\Util\EnumHelper.cs" />
     <Compile Include="Code\Util\LazyList.cs" />
     <Compile Include="Code\Util\Serialization.cs" />
     <Compile Include="Code\Util\SessionHelper.cs" />

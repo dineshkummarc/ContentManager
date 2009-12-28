@@ -18,12 +18,12 @@ namespace ContentNamespace.Web.Code.Entities
         public DateTime ActiveDate { get; set; }
         
         // State machine related
-        public Enum.ContentState ItemState
+        public Enums.ContentState ItemState
         {
             get { return _itemState; }
             set { _itemState = value; }
         }
-        public Enum.ContentState HtmlContentState
+        public Enums.ContentState HtmlContentState
         {
             get { return _itemStateMachine.State; } 
         }
@@ -62,44 +62,44 @@ namespace ContentNamespace.Web.Code.Entities
         #region Methods...
 
         // User actions
-        public void Edit() { _itemStateMachine.Fire(Enum.ContentTransition.Edit); }
-        public void Save() { _itemStateMachine.Fire(Enum.ContentTransition.Save); }
-        public void Submit() { _itemStateMachine.Fire(Enum.ContentTransition.Submit); }
+        public void Edit() { _itemStateMachine.Fire(Enums.ContentTransition.Edit); }
+        public void Save() { _itemStateMachine.Fire(Enums.ContentTransition.Save); }
+        public void Submit() { _itemStateMachine.Fire(Enums.ContentTransition.Submit); }
         // Admin actions
-        public void RequireEdit() { _itemStateMachine.Fire(Enum.ContentTransition.RequireEdit); }
-        public void Accept() { _itemStateMachine.Fire(Enum.ContentTransition.Accept); }
-        public void Reject() { _itemStateMachine.Fire(Enum.ContentTransition.Reject); }
+        public void RequireEdit() { _itemStateMachine.Fire(Enums.ContentTransition.RequireEdit); }
+        public void Accept() { _itemStateMachine.Fire(Enums.ContentTransition.Accept); }
+        public void Reject() { _itemStateMachine.Fire(Enums.ContentTransition.Reject); }
         // System or admin actions
-        public void Expire() { _itemStateMachine.Fire(Enum.ContentTransition.Expire); }
+        public void Expire() { _itemStateMachine.Fire(Enums.ContentTransition.Expire); }
 
-        protected override sealed void ConfigureWorkflow(StateMachine<Enum.ContentState, Enum.ContentTransition> htmlContentWorkflow)
+        protected override sealed void ConfigureWorkflow(StateMachine<Enums.ContentState, Enums.ContentTransition> htmlContentWorkflow)
         {
             // State: Created; only allow the transition to InProgress if the user has edit rights (either the owner of the content
             // or an admin)
-            htmlContentWorkflow.Configure(Enum.ContentState.Created)
-                .PermitIf(Enum.ContentTransition.Edit, Enum.ContentState.InProgress, () => HasEditRights)
-                .PermitIf(Enum.ContentTransition.Save, Enum.ContentState.InProgress, () => HasEditRights);
+            htmlContentWorkflow.Configure(Enums.ContentState.Created)
+                .PermitIf(Enums.ContentTransition.Edit, Enums.ContentState.InProgress, () => HasEditRights)
+                .PermitIf(Enums.ContentTransition.Save, Enums.ContentState.InProgress, () => HasEditRights);
 
             // State: InProgress
-            htmlContentWorkflow.Configure(Enum.ContentState.InProgress)
-                .PermitReentryIf(Enum.ContentTransition.Edit, () => HasEditRights) // Re-entrant to InProgress state
-                .PermitReentryIf(Enum.ContentTransition.Save, () => HasEditRights) // Re-entrant to InProgress state
-                .PermitIf(Enum.ContentTransition.Submit, Enum.ContentState.Submitted, () => HasEditRights);
+            htmlContentWorkflow.Configure(Enums.ContentState.InProgress)
+                .PermitReentryIf(Enums.ContentTransition.Edit, () => HasEditRights) // Re-entrant to InProgress state
+                .PermitReentryIf(Enums.ContentTransition.Save, () => HasEditRights) // Re-entrant to InProgress state
+                .PermitIf(Enums.ContentTransition.Submit, Enums.ContentState.Submitted, () => HasEditRights);
 
             // State: Submitted
-            htmlContentWorkflow.Configure(Enum.ContentState.Submitted)
-                .PermitIf(Enum.ContentTransition.RequireEdit, Enum.ContentState.InProgress, () => IsAdminUser) // Returns to InProgress state
-                .PermitIf(Enum.ContentTransition.Accept, Enum.ContentState.Published, () => IsAdminUser)
-                .PermitIf(Enum.ContentTransition.Reject, Enum.ContentState.Rejected, () => IsAdminUser);
+            htmlContentWorkflow.Configure(Enums.ContentState.Submitted)
+                .PermitIf(Enums.ContentTransition.RequireEdit, Enums.ContentState.InProgress, () => IsAdminUser) // Returns to InProgress state
+                .PermitIf(Enums.ContentTransition.Accept, Enums.ContentState.Published, () => IsAdminUser)
+                .PermitIf(Enums.ContentTransition.Reject, Enums.ContentState.Rejected, () => IsAdminUser);
 
             // State: Published
-            htmlContentWorkflow.Configure(Enum.ContentState.Published)
-                .OnEntry(() => Email.Send(Enum.EmailType.ContentPublished))
-                .PermitIf(Enum.ContentTransition.Expire, Enum.ContentState.Expired, () => IsAdminUser);
+            htmlContentWorkflow.Configure(Enums.ContentState.Published)
+                .OnEntry(() => Email.Send(Enums.EmailType.ContentPublished))
+                .PermitIf(Enums.ContentTransition.Expire, Enums.ContentState.Expired, () => IsAdminUser);
 
             // State: Rejected
-            htmlContentWorkflow.Configure(Enum.ContentState.Rejected)
-                .OnEntry(() => Email.Send(Enum.EmailType.ContentRejected));
+            htmlContentWorkflow.Configure(Enums.ContentState.Rejected)
+                .OnEntry(() => Email.Send(Enums.EmailType.ContentRejected));
         }
 
         #endregion
