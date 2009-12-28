@@ -102,11 +102,14 @@ namespace ContentNamespace.Web.Controllers
                 switch (response.Status)
                 {
                     case AuthenticationStatus.Authenticated:
+                        var fetch = response.GetExtension<FetchResponse>(); 
+                        string openIdId = response.ClaimedIdentifier;
 
-                        var fetch = response.GetExtension<FetchResponse>();
-                        string name = response.FriendlyIdentifierForDisplay;
-                        string openIdId = response.FriendlyIdentifierForDisplay;
-                        name = UserLoggedIn(this._userService, openIdId, fetch);
+                        //string email = (fetch != null 
+                        //        && fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Contact.Email))
+                        //    ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";
+
+                        string name = UserLoggedIn(this._userService, openIdId , fetch);
                         
                         FormsAuthentication.SetAuthCookie(name, false);
 
@@ -131,25 +134,22 @@ namespace ContentNamespace.Web.Controllers
         }
 
         //TODO: this should be moved to some other type of business logic
-        public string UserLoggedIn(IUserProfileService _userService1, string openIdId, FetchResponse fetch)
+        public string UserLoggedIn(IUserProfileService _userService1, string openIdId , FetchResponse fetch)
         { 
-            UserProfile user = _userService1.Get().Where(x => x.OpenIdId == openIdId).SingleOrDefault();
+            UserProfile user = _userService1.Get().Where(x => x.OpenIdId == openIdId ).SingleOrDefault();
             if (user == null)
             {
                 user = new UserProfile();
                 if (fetch != null)
                 {
-                    user.Email = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Contact.Email))
-                        ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";
                     user.Name = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.FullName))
                         ? fetch.Attributes[WellKnownAttributes.Name.FullName].Values[0] :
                         ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.First))
                         ? fetch.Attributes[WellKnownAttributes.Name.First].Values[0] : ""
                         + " " + ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.Last))
                         ? fetch.Attributes[WellKnownAttributes.Name.Last].Values[0] : ""));
-
                     user.Email = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Contact.Email))
-                        ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";
+                        ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";               
                     //username should not include the email - it's creepy. Just use the name of the email
                     user.UserName = user.Email.Substring(0, user.Email.IndexOf('@'));
                 }
