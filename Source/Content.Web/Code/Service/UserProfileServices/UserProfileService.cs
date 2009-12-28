@@ -38,6 +38,11 @@ namespace ContentNamespace.Web.Code.Service.UserProfileServices
             return this._repository.Get().Where(x => x.Id == id).Single<UserProfile>();
         }
 
+        public UserProfile Get(string email)
+        {
+            return this._repository.Get().Where(x => x.Email == email).SingleOrDefault<UserProfile>();
+        }
+
         public UserProfile Save(UserProfile item)
         {
             return this._repository.Save(item);

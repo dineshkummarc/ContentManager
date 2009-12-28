@@ -5,9 +5,10 @@ using ContentNamespace.Web.Code.Entities;
 namespace ContentNamespace.Web.Code.Service.UserProfileServices
 {
     public interface IUserProfileService : IContentManagerBaseService
-    { 
+    {
         IQueryable<UserProfile> Get();
         UserProfile Get(int id);
+        UserProfile Get(string email);
         UserProfile Save(UserProfile item);
         bool Delete(UserProfile item);
     }

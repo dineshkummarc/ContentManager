@@ -12,30 +12,37 @@ using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 using ContentNamespace.Web.Code.Service.FormsAuthenticationServices;
-using ContentNamespace.Web.Code.Service.MembershipServices; 
+using ContentNamespace.Web.Code.Service.MembershipServices;
+using ContentNamespace.Web.Code.Service.UserProfileServices;
+using ContentNamespace.Web.Code.Entities; 
 
 namespace ContentNamespace.Web.Controllers
 {
 
     [HandleError]
     public class AccountController : Controller
-    {
+    { 
+        private readonly IUserProfileService _userService;
+          
+
         // This constructor is used by the MVC framework to instantiate the controller using
         // the default forms authentication and membership providers.
 
-        public AccountController()
-            : this(null, null)
+        public AccountController(IUserProfileService userService) 
         {
+            this._userService = userService;
+            FormsAuth =   new FormsAuthenticationService();
+            MembershipService = new AccountMembershipService();
         }
 
         // This constructor is not used by the MVC framework but is instead provided for ease
         // of unit testing this type. See the comments at the end of this file for more
         // information.
-        public AccountController(IFormsAuthenticationService formsAuth, IMembershipService service)
-        {
-            FormsAuth = formsAuth ?? new FormsAuthenticationService();
-            MembershipService = service ?? new AccountMembershipService();
-        }
+        //public AccountController(IFormsAuthenticationService formsAuth, IMembershipService service)
+        //{
+        //    FormsAuth = formsAuth ?? new FormsAuthenticationService();
+        //    MembershipService = service ?? new AccountMembershipService();
+        //}
 
         public IFormsAuthenticationService FormsAuth
         {
@@ -67,11 +74,11 @@ namespace ContentNamespace.Web.Controllers
                         var fetch = new FetchRequest();
                         //ask for more info - the email address 
                         fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Contact.Email, true));
-                        //fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.FullName,true));
-                        //fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.First,true));
-                        //fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.Last, true));
-                        //fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.BirthDate.WholeBirthDate, true));
-                        //fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Contact.HomeAddress.City, true));
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.FullName,true));
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.First,true));
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.Last, true));
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.BirthDate.WholeBirthDate, true));
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Contact.HomeAddress.City, true));
                         req.AddExtension(fetch);
 
                         return req.RedirectingResponse.AsActionResult();
@@ -97,20 +104,14 @@ namespace ContentNamespace.Web.Controllers
 
                         var fetch = response.GetExtension<FetchResponse>();
                         string name = response.FriendlyIdentifierForDisplay;
-                        string OpenIdId = response.FriendlyIdentifierForDisplay;
+                        string openIdId = response.FriendlyIdentifierForDisplay;
                         if (fetch != null)
                         {
-                            IList<string> emailAddresses = fetch.Attributes[WellKnownAttributes.Contact.Email].Values;
-                            string email = emailAddresses.Count > 0 ? emailAddresses[0] : null;
-                            //don't show the email - it's creepy. Just use the name of the email
-                            name = email.Substring(0, email.IndexOf('@'));
-                             
-                            //IList<string> fullName = fetch.Attributes[WellKnownAttributes.Name.FullName].Values;
-                            //string s = fullName[0];
-
+                            name = UserLoggedIn(openIdId, fetch);
                         }
                         else
                         {
+                            throw new Exception("fetch was Null ?  what are you logging in with?");
                             name = name.Substring(0, name.IndexOf('.'));
                         }
 
@@ -137,7 +138,26 @@ namespace ContentNamespace.Web.Controllers
         }
 
 
+        public string UserLoggedIn(string openIdId, FetchResponse fetch )
+        { 
+            IList<string> emailAddresses = fetch.Attributes[WellKnownAttributes.Contact.Email].Values;
+            string email = emailAddresses.Count > 0 ? emailAddresses[0] : null;
 
+            UserProfile user = this._userService.Get(email);
+            if (user == null)
+            {
+                user = new UserProfile();  
+                IList<string> first = fetch.Attributes[WellKnownAttributes.Name.First].Values; 
+                IList<string> last = fetch.Attributes[WellKnownAttributes.Name.Last].Values; 
+                user.Name =  first[0] +" "+ last[0];
+                //username should not include the email - it's creepy. Just use the name of the email
+                user.UserName = email.Substring(0, email.IndexOf('@')); 
+            } 
+            user.LastSignInDate = DateTime.Now;
+            this._userService.Save(user);
+
+            return user.UserName;
+        }
 
         public ActionResult LogOn()
         {
