@@ -79,6 +79,7 @@ namespace ContentNamespace.Web.Controllers
                         fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.Last, true));
                         fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.BirthDate.WholeBirthDate, true));
                         fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Contact.HomeAddress.City, true));
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Contact.HomeAddress.State, true));
                         req.AddExtension(fetch);
 
                         return req.RedirectingResponse.AsActionResult();
@@ -105,16 +106,8 @@ namespace ContentNamespace.Web.Controllers
                         var fetch = response.GetExtension<FetchResponse>();
                         string name = response.FriendlyIdentifierForDisplay;
                         string openIdId = response.FriendlyIdentifierForDisplay;
-                        if (fetch != null)
-                        {
-                            name = UserLoggedIn(this._userService, openIdId, fetch);
-                        }
-                        else
-                        {
-                            throw new Exception("fetch was Null ?  what are you logging in with?");
-                            name = name.Substring(0, name.IndexOf('.'));
-                        }
-
+                        name = UserLoggedIn(this._userService, openIdId, fetch);
+                        
                         FormsAuthentication.SetAuthCookie(name, false);
 
                         if (!string.IsNullOrEmpty(returnUrl))
@@ -139,27 +132,33 @@ namespace ContentNamespace.Web.Controllers
 
         //TODO: this should be moved to some other type of business logic
         public string UserLoggedIn(IUserProfileService _userService1, string openIdId, FetchResponse fetch)
-        {
-            IList<string> emailAddresses = fetch.Attributes[WellKnownAttributes.Contact.Email].Values;
-            string email = emailAddresses.Count > 0 ? emailAddresses[0] : null;
-
+        { 
             UserProfile user = _userService1.Get().Where(x => x.OpenIdId == openIdId).SingleOrDefault();
             if (user == null)
             {
                 user = new UserProfile();
-                user.Name = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.FullName))
-                    ? fetch.Attributes[WellKnownAttributes.Name.FullName].Values[0] :  
-                    ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.First))
-                    ? fetch.Attributes[WellKnownAttributes.Name.First].Values[0] : "" 
-                    + " " + ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.Last))
-                    ? fetch.Attributes[WellKnownAttributes.Name.Last].Values[0] : "")); 
+                if (fetch != null)
+                {
+                    user.Email = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Contact.Email))
+                        ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";
+                    user.Name = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.FullName))
+                        ? fetch.Attributes[WellKnownAttributes.Name.FullName].Values[0] :
+                        ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.First))
+                        ? fetch.Attributes[WellKnownAttributes.Name.First].Values[0] : ""
+                        + " " + ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.Last))
+                        ? fetch.Attributes[WellKnownAttributes.Name.Last].Values[0] : ""));
 
-                user.Email = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Contact.Email))
-                    ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";
-
+                    user.Email = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Contact.Email))
+                        ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";
+                    //username should not include the email - it's creepy. Just use the name of the email
+                    user.UserName = user.Email.Substring(0, user.Email.IndexOf('@'));
+                }
+                else
+                {
+                    user.Name = openIdId.Substring(0, openIdId.IndexOf('.'));
+                    user.UserName = openIdId.Substring(0, openIdId.IndexOf('.'));
+                }
                 user.OpenIdId = openIdId;
-                //username should not include the email - it's creepy. Just use the name of the email
-                user.UserName = email.Substring(0, email.IndexOf('@'));
             }
             user.LastSignInDate = DateTime.Now;  // Important
             _userService1.Save(user);
@@ -168,8 +167,7 @@ namespace ContentNamespace.Web.Controllers
         }
 
         public ActionResult LogOn()
-        {
-
+        { 
             return View();
         }
 
@@ -196,25 +194,20 @@ namespace ContentNamespace.Web.Controllers
         }
 
         public ActionResult LogOff()
-        {
-
-            FormsAuth.SignOut();
-
+        { 
+            FormsAuth.SignOut(); 
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Register()
-        {
-
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-
+        { 
+            ViewData["PasswordLength"] = MembershipService.MinPasswordLength; 
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Register(string userName, string email, string password, string confirmPassword)
-        {
-
+        { 
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
 
             if (ValidateRegistration(userName, email, password, confirmPassword))
@@ -231,18 +224,15 @@ namespace ContentNamespace.Web.Controllers
                 {
                     ModelState.AddModelError("_FORM", ErrorCodeToString(createStatus));
                 }
-            }
-
+            } 
             // If we got this far, something failed, redisplay form
             return View();
         }
 
         [Authorize]
         public ActionResult ChangePassword()
-        {
-
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-
+        { 
+            ViewData["PasswordLength"] = MembershipService.MinPasswordLength; 
             return View();
         }
 
@@ -251,15 +241,12 @@ namespace ContentNamespace.Web.Controllers
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
             Justification = "Exceptions result in password not being changed.")]
         public ActionResult ChangePassword(string currentPassword, string newPassword, string confirmPassword)
-        {
-
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-
+        { 
+            ViewData["PasswordLength"] = MembershipService.MinPasswordLength; 
             if (!ValidateChangePassword(currentPassword, newPassword, confirmPassword))
             {
                 return View();
-            }
-
+            } 
             try
             {
                 if (MembershipService.ChangePassword(User.Identity.Name, currentPassword, newPassword))
@@ -280,8 +267,7 @@ namespace ContentNamespace.Web.Controllers
         }
 
         public ActionResult ChangePasswordSuccess()
-        {
-
+        { 
             return View();
         }
 

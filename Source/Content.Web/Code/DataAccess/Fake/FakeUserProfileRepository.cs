@@ -14,7 +14,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
         public FakeUserProfileRepository()
         { 
             int i = 0;
-            while ( i < 5)
+            while ( i < 4)
             {
                 UserProfile x = new UserProfile();
                 x.Name = "Name" + i  ;
@@ -29,8 +29,6 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
                 list.Add(x);
                 i++;
             }
-            //list.Add(new UserProfile(i++, "nick", "eiu", "eiu", "eiu.myopenid.com"));
-
         }
 
 
