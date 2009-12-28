@@ -29,7 +29,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
                 list.Add(x);
                 i++;
             }
-            list.Add(new UserProfile(i++, "nick", "eiu", "eiu", "eiu.myopenid.com"));
+            //list.Add(new UserProfile(i++, "nick", "eiu", "eiu", "eiu.myopenid.com"));
 
         }
 

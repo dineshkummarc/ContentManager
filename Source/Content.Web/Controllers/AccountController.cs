@@ -146,10 +146,13 @@ namespace ContentNamespace.Web.Controllers
             UserProfile user = this._userService.Get(email);
             if (user == null)
             {
-                user = new UserProfile();  
-                IList<string> first = fetch.Attributes[WellKnownAttributes.Name.First].Values; 
-                IList<string> last = fetch.Attributes[WellKnownAttributes.Name.Last].Values; 
-                user.Name =  first[0] +" "+ last[0];
+                user = new UserProfile();
+                string first = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.First))
+                    ? fetch.Attributes[WellKnownAttributes.Name.First].Values[0] : "";
+                string last = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.Last))
+                    ? fetch.Attributes[WellKnownAttributes.Name.Last].Values[0] : ""; 
+                user.Name =  first +" "+ last;
+                user.OpenIdId = openIdId;
                 //username should not include the email - it's creepy. Just use the name of the email
                 user.UserName = email.Substring(0, email.IndexOf('@')); 
             } 
