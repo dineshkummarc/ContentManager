@@ -32,7 +32,7 @@ namespace ContentNamespace.Web.Tests.Services
         {
             ContentService cs = new ContentService(new FakeContentRepository());
             HtmlContent content = cs.Get(1);
-            Assert.AreEqual( "<h1>Hello 1 </h1>" ,content.ContentData);
+            Assert.IsTrue( content.ContentData.StartsWith( "<h1>Hello 1 </h1>"));
         }
 
         [TestMethod]

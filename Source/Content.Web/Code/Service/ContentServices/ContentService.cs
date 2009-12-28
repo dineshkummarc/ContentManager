@@ -53,9 +53,13 @@ namespace ContentNamespace.Web.Code.Service.Base
             {
                 Id = x.Id,
                 Name = x.Name,
-                ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
-                               x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." : 
+                ContentData = (x.ContentData.Length > 5) ?
+                               x.ContentData.Substring(0, 5) + "..." :
                                x.ContentData,
+                //ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
+                //               x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." :
+                //               x.ContentData,
+                //ContentData = x.ContentData,
                 ActiveDate = x.ActiveDate,
                 ExpireDate = x.ExpireDate,
                 ModifiedBy = x.ModifiedBy,
