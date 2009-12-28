@@ -107,7 +107,7 @@ namespace ContentNamespace.Web.Controllers
                         string openIdId = response.FriendlyIdentifierForDisplay;
                         if (fetch != null)
                         {
-                            name = UserLoggedIn(openIdId, fetch);
+                            name = UserLoggedIn(this._userService, openIdId, fetch);
                         }
                         else
                         {
@@ -137,27 +137,27 @@ namespace ContentNamespace.Web.Controllers
 
         }
 
-
-        public string UserLoggedIn(string openIdId, FetchResponse fetch )
-        { 
+        //TODO: this should be moved to some other type of business logic
+        public string UserLoggedIn(IUserProfileService _userService1, string openIdId, FetchResponse fetch)
+        {
             IList<string> emailAddresses = fetch.Attributes[WellKnownAttributes.Contact.Email].Values;
             string email = emailAddresses.Count > 0 ? emailAddresses[0] : null;
-
-            UserProfile user = this._userService.Get(email);
+ 
+            UserProfile user = _userService1.Get(email);
             if (user == null)
             {
                 user = new UserProfile();
                 string first = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.First))
                     ? fetch.Attributes[WellKnownAttributes.Name.First].Values[0] : "";
                 string last = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.Last))
-                    ? fetch.Attributes[WellKnownAttributes.Name.Last].Values[0] : ""; 
-                user.Name =  first +" "+ last;
+                    ? fetch.Attributes[WellKnownAttributes.Name.Last].Values[0] : "";
+                user.Name = first + " " + last;
                 user.OpenIdId = openIdId;
                 //username should not include the email - it's creepy. Just use the name of the email
-                user.UserName = email.Substring(0, email.IndexOf('@')); 
-            } 
-            user.LastSignInDate = DateTime.Now;
-            this._userService.Save(user);
+                user.UserName = email.Substring(0, email.IndexOf('@'));
+            }
+            user.LastSignInDate = DateTime.Now;  // Important
+            _userService1.Save(user);
 
             return user.UserName;
         }
