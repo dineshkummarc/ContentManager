@@ -32,11 +32,27 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
                 list.Add(x);
                 i++;
             }
-            list.Add(new UserProfile(i++, "nick", "eiu165", "eiu165", 
-                "https://www.google.com/accounts/o8/id?id=AItOawmH6AK8ncGX-hJTjiAABt7MMw72e2stcD4"));
+            list.Add(CreateUser(i++, "nick", "eiu165", "eiu165",
+                "https://www.google.com/accounts/o8/id?id=AItOawmH6AK8ncGX-hJTjiAABt7MMw72e2stcD4",
+                new List<Enums.UserRoles> { Enums.UserRoles.Admin, Enums.UserRoles.Contributor}));
 
         }
 
+        private UserProfile CreateUser(int id, string name, string username, 
+            string email, string openIdId, 
+            List<Enums.UserRoles>roles)
+        {
+            UserProfile u = new UserProfile();
+            u.Id = id;
+            u.Name = name;
+            u.Email = email;
+            u.OpenIdId = openIdId;
+            foreach (Enums.UserRoles ur in roles)
+            {
+                u.UserRoles.Add(ur);
+            }
+            return u;
+        }
 
 
         public IQueryable<UserProfile> Get()

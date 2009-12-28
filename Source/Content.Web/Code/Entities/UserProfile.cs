@@ -72,18 +72,6 @@ public Address GetOpenIDAddress(Uri claimUri)
          */
 
 
-        public UserProfile(int id , string name, string userName, 
-            string email,  string openIdId ) : this() 
-        {
-            Id = id;
-            Name = name;
-            UserName = userName;
-            Email = email;
-            OpenIdId = openIdId;
-            LastSignInDate = new DateTime(2009,1,1);
-            RegisterDate = new DateTime(2009, 1, 1); 
-        }
-
         public UserProfile()
         {
             Id = -2;

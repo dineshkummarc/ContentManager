@@ -140,26 +140,27 @@ namespace ContentNamespace.Web.Controllers
             if (user == null)
             {
                 user = new UserProfile();
-                if (fetch != null)
-                {
-                    user.Name = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.FullName))
-                        ? fetch.Attributes[WellKnownAttributes.Name.FullName].Values[0] :
-                        ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.First))
-                        ? fetch.Attributes[WellKnownAttributes.Name.First].Values[0] : ""
-                        + " " + ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.Last))
-                        ? fetch.Attributes[WellKnownAttributes.Name.Last].Values[0] : ""));
-                    user.Email = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Contact.Email))
-                        ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";               
-                    //username should not include the email - it's creepy. Just use the name of the email
-                    user.UserName = user.Email.Substring(0, user.Email.IndexOf('@'));
-                }
-                else
-                {
-                    user.Name = openIdId.Substring(0, openIdId.IndexOf('.'));
-                    user.UserName = openIdId.Substring(0, openIdId.IndexOf('.'));
-                }
                 user.OpenIdId = openIdId;
             }
+            if (fetch != null)
+            {
+                user.Name = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.FullName))
+                    ? fetch.Attributes[WellKnownAttributes.Name.FullName].Values[0] :
+                    ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.First))
+                    ? fetch.Attributes[WellKnownAttributes.Name.First].Values[0] : ""
+                    + " " + ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.Last))
+                    ? fetch.Attributes[WellKnownAttributes.Name.Last].Values[0] : ""));
+                user.Email = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Contact.Email))
+                    ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";
+                //username should not include the email - it's creepy. Just use the name of the email
+                user.UserName = user.Email.Substring(0, user.Email.IndexOf('@'));
+            }
+            else
+            {
+                user.Name = openIdId.Substring(0, openIdId.IndexOf('.'));
+                user.UserName = openIdId.Substring(0, openIdId.IndexOf('.'));
+            }
+
             user.LastSignInDate = DateTime.Now;  // Important
             _userService1.Save(user);
 
