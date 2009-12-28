@@ -142,16 +142,21 @@ namespace ContentNamespace.Web.Controllers
         {
             IList<string> emailAddresses = fetch.Attributes[WellKnownAttributes.Contact.Email].Values;
             string email = emailAddresses.Count > 0 ? emailAddresses[0] : null;
- 
-            UserProfile user = _userService1.Get(email);
+
+            UserProfile user = _userService1.Get().Where(x => x.OpenIdId == openIdId).SingleOrDefault();
             if (user == null)
             {
                 user = new UserProfile();
-                string first = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.First))
-                    ? fetch.Attributes[WellKnownAttributes.Name.First].Values[0] : "";
-                string last = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.Last))
-                    ? fetch.Attributes[WellKnownAttributes.Name.Last].Values[0] : "";
-                user.Name = first + " " + last;
+                user.Name = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.FullName))
+                    ? fetch.Attributes[WellKnownAttributes.Name.FullName].Values[0] :  
+                    ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.First))
+                    ? fetch.Attributes[WellKnownAttributes.Name.First].Values[0] : "" 
+                    + " " + ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.Last))
+                    ? fetch.Attributes[WellKnownAttributes.Name.Last].Values[0] : "")); 
+
+                user.Email = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Contact.Email))
+                    ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";
+
                 user.OpenIdId = openIdId;
                 //username should not include the email - it's creepy. Just use the name of the email
                 user.UserName = email.Substring(0, email.IndexOf('@'));

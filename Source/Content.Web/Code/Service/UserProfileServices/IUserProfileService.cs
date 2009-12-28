@@ -7,8 +7,7 @@ namespace ContentNamespace.Web.Code.Service.UserProfileServices
     public interface IUserProfileService : IContentManagerBaseService
     {
         IQueryable<UserProfile> Get();
-        UserProfile Get(int id);
-        UserProfile Get(string email);
+        UserProfile Get(int id); 
         UserProfile Save(UserProfile item);
         bool Delete(UserProfile item);
     }
