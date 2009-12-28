@@ -157,8 +157,21 @@ namespace ContentNamespace.Web.Controllers
             }
             else
             {
-                user.Name = openIdId.Substring(0, openIdId.IndexOf('.'));
-                user.UserName = openIdId.Substring(0, openIdId.IndexOf('.'));
+                /*
+                http://username.myopenid.com/  	  	  	 
+                http://openid.aol.com/username 
+                */
+                string http = "http://";
+                if (openIdId.Contains("myopenid"))
+                {
+                    user.Name = openIdId.Substring(openIdId.IndexOf(http) + http.Length,
+                        openIdId.IndexOf('.') - http.Length);
+                }
+                else if (openIdId.Contains("http://openid.aol.com/"))
+                {
+                    user.Name = openIdId.Substring(openIdId.LastIndexOf("/"));
+                }
+                user.UserName = user.Name;
             }
 
             user.LastSignInDate = DateTime.Now;  // Important
