@@ -27,6 +27,9 @@
                 Email
             </th>
             <th>
+                Roles
+            </th>
+            <th>
                 LastSignInDate
             </th> 
         </tr>
@@ -51,6 +54,9 @@
             </td>
             <td>
                 <%= Html.Encode(item.Email) %>
+            </td>
+            <td>
+                <%= Html.Encode( item.UserRolesString ) %>
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.LastSignInDate)) %>

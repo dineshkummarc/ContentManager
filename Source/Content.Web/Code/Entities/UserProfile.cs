@@ -2,6 +2,7 @@
 //
 using ContentNamespace.Web.Code.Entities.Base;
 using ContentNamespace.Web.Code.Util;
+using System.Text;
 
 namespace ContentNamespace.Web.Code.Entities
 {
@@ -10,11 +11,23 @@ namespace ContentNamespace.Web.Code.Entities
         public string Name { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
-        public string OpenIdId { get; set; }  
-        public LazyList<Enums.UserRoles> UserRoles { get; set; }  
+        public string OpenIdId { get; set; }
+        public LazyList<Enums.UserRoles> UserRoles { get; set; }
         public DateTime LastSignInDate { get; set; }
         public DateTime RegisterDate { get; set; }
 
+        public String UserRolesString 
+        { 
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (Enums.UserRoles ur in this.UserRoles)
+                {
+                    sb.Append(ur.ToString()+ ", ");
+                } 
+                return sb.ToString();
+            }
+        }  
         /* 
 public Address GetOpenIDAddress(Uri claimUri)
 {
@@ -60,7 +73,7 @@ public Address GetOpenIDAddress(Uri claimUri)
 
 
         public UserProfile(int id , string name, string userName, 
-            string email,  string openIdId )//: this() 
+            string email,  string openIdId ) : this() 
         {
             Id = id;
             Name = name;
@@ -68,12 +81,13 @@ public Address GetOpenIDAddress(Uri claimUri)
             Email = email;
             OpenIdId = openIdId;
             LastSignInDate = new DateTime(2009,1,1);
-            RegisterDate = new DateTime(2009, 1, 1);
+            RegisterDate = new DateTime(2009, 1, 1); 
         }
 
         public UserProfile()
         {
             Id = -2;
+            UserRoles = new LazyList<Enums.UserRoles>();
         }
     }
 }
