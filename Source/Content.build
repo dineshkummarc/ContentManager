@@ -9,7 +9,12 @@
 	  <DatabasePath>C:\development\databases</DatabasePath>
 	  <FileName>Content.build</FileName>
   </PropertyGroup>
-
+   
+   
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration> 
+  </PropertyGroup>
+  
   <ItemGroup> 
     <DefaultExclude Include="**\bin\**" />
     <DefaultExclude Include="**\obj\**" />
@@ -24,11 +29,12 @@
   </ItemGroup>
 
   <Import Condition="Exists('local.properties.xml')" Project="local.properties.xml"  />
-  
+
   <ItemGroup>
     <Items Include="**\*.*" Exclude="@(DefaultExclude)" >
     </Items>
   </ItemGroup>
+  
 
   <Target Name="Zip"  >
     <Message Text="Message from zip Target"/>
@@ -40,5 +46,17 @@
 	  <Message Text="local.properties.xml" Condition="Exists('local.properties.xml')" />  
     <Message Text="FileName='$(FileName)' "/>
   </Target>
+
+  <Target Name="RunTests" DependsOnTargets="Build">
+    <Message Text="Message from RunTests'"/>
+    <!--<MSBuild Projects="Content.Web.Tests\\Content.Web.Tests.csproj" Targets="Build"></MSBuild>
+    <CreateItem Include="Content.Web.Tests\\bin\\$(Configuration)\\Content.Web.Tests.dll">
+       <Output TaskParameter="Include" ItemName="TestAssembly" /> 
+    </CreateItem>
+    <NUnit  Assemblies="@(TestAssembly)" ContinueOnError="false" />
+    <Message Text="Tests ran successfully!"></Message>-->
+  </Target>
+  
+  
 
 </Project>
