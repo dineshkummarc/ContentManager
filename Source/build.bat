@@ -21,5 +21,6 @@ GOTO end
 	echo inside runDefault target ='%1'
 	echo -----------------------------
 	%msBuildCommand% 
+GOTO end
 
 :end 

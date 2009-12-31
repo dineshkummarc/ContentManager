@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Documents\Workflow State Machine.txt = Documents\Workflow State Machine.txt
 	EndProjectSection
 EndProject
+Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Content.Web.csproj_deploy", "Content.Web.csproj_deploy\Content.Web.csproj_deploy.wdproj", "{C5BA88F4-4641-4049-A6A3-6412CB10230A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{3D2436E0-AD5E-4F9E-9FCB-B643D1E3E439}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D2436E0-AD5E-4F9E-9FCB-B643D1E3E439}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D2436E0-AD5E-4F9E-9FCB-B643D1E3E439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5BA88F4-4641-4049-A6A3-6412CB10230A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5BA88F4-4641-4049-A6A3-6412CB10230A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5BA88F4-4641-4049-A6A3-6412CB10230A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5BA88F4-4641-4049-A6A3-6412CB10230A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
