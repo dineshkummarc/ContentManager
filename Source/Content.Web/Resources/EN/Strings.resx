@@ -121,4 +121,7 @@
     <value>__ContentManagerSettingsCacheKey</value>
     <comment>System setting prefixed with double underscore (__) to distinguish.</comment>
   </data>
+  <data name="System_ObjectDatabaseConnectionString" xml:space="preserve">
+    <value>|DataDirectory|ContentManagerObjectStore.db4o</value>
+  </data>
 </root>

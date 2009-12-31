@@ -68,5 +68,14 @@ namespace ContentNamespace.Web.Resources.EN {
                 return ResourceManager.GetString("System_ContentManagerSettingsCacheKey", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to |DataDirectory|ContentManagerObjectStore.db4o.
+        /// </summary>
+        internal static string System_ObjectDatabaseConnectionString {
+            get {
+                return ResourceManager.GetString("System_ObjectDatabaseConnectionString", resourceCulture);
+            }
+        }
     }
 }
