@@ -42,7 +42,17 @@ namespace ContentNamespace.Web.Code.Service.SystemServices
             return GetData();
         }
 
-        private static void CacheThisObject(string cacheKey, 
+        public void RemoveFromCache(string cacheKey)
+        {
+            _cacheKey = cacheKey;
+
+            if (!Equals(GetData(), null))
+            {
+                if (HttpContext.Current != null) { HttpContext.Current.Cache.Remove(cacheKey); }
+            }
+        }
+
+        private void CacheThisObject(string cacheKey, 
             object cacheObject,
             int cacheTimeInMinutes)
         {
@@ -50,7 +60,8 @@ namespace ContentNamespace.Web.Code.Service.SystemServices
             {
                 if (HttpContext.Current != null)
                 {
-                    HttpContext.Current.Cache.Remove(cacheKey);
+                    RemoveFromCache(cacheKey);
+
                     HttpContext.Current.Cache.Add(cacheKey,
                                                   cacheObject,
                                                   null,
