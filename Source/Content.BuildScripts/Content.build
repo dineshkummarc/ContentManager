@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <PropertyGroup>
+    <Major>1</Major>
+    <Minor>0</Minor>
+    <Build>0</Build>
+    <Revision>0</Revision>
+	  <DatabasePath>C:\development\databases</DatabasePath>
+	  <FileName>Content.build</FileName>
+    <SqlPath>..\Content.Sql\</SqlPath>
+    <Timeout>30</Timeout>
+  </PropertyGroup>
+    
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration> 
+  </PropertyGroup>
+  
+  <ItemGroup> 
+    <DefaultExclude Include="**\bin\**" />
+    <DefaultExclude Include="**\obj\**" />
+    <DefaultExclude Include="**\Release\**" />
+    <DefaultExclude Include="**\Debug\**" />
+    <DefaultExclude Include="**\Test\**" />
+    <DefaultExclude Include="**\TestResults\**" />  
+    <DefaultExclude Include="**\*.user" />
+    <DefaultExclude Include="**\*.suo" />
+    <DefaultExclude Include="**\*.zip" />
+    <DefaultExclude Include="**\*.txt" />
+  </ItemGroup>
+ 
+  
+  <ItemGroup>
+    <Scripts Include="$(ScriptBase)\**\*.sql"/>
+  </ItemGroup>
+  <ItemGroup>
+    <UpdateScripts Include="$(UpdateScriptBase)\**\*.sql"/>
+  </ItemGroup>
+  
+
+  <!-- Use the SDC Tasks-->
+  <UsingTask AssemblyFile="ReferenceBin\Microsoft.Sdc.Tasks.dll" TaskName="Microsoft.Sdc.Tasks.Sql.Execute"/>
+
+  
+
+  <!--<Target Name="DeployDb" DependsOnTargets="CheckPreConditionsMet;TraceProps;CreateDatabase;"/>-->
+  <Target Name="DeployDb" DependsOnTargets="CheckPreConditionsMet;TraceProps;CreateDatabase;"/>
+  
+  <!-- Creates the database -->
+  <Target Name="CreateDatabase">
+    <!-- Create the database (new only) -->
+    <Execute ServerName="$(ServerName)" DatabaseName="master" 
+             Sql="Drop DATABASE $(DatabaseName)" CommandTimeout="$(Timeout)" 
+             Condition="'$(DeploymentType)'=='Create'"/>
+    <!-- Run the Create/Update scripts 
+    <Execute ServerName="$(ServerName)" DatabaseName="$(DatabaseName)" 
+             Path="%(Scripts.Identity)" CommandTimeout="$(Timeout)" 
+             Condition="'$(DeploymentType)'=='Create'"/>
+    <Execute ServerName="$(ServerName)" DatabaseName="$(DatabaseName)" 
+             Path="%(UpdateScripts.Identity)" CommandTimeout="$(Timeout)" 
+             Condition="'$(DeploymentType)'=='Update'"/>-->
+  </Target>
+
+  <!-- Check properties -->
+  <Target Name="CheckPreConditionsMet">
+    <!-- Ensure required properties have been set... -->
+    <Error Condition="'$(ScriptBase)'==''" Text="ScriptBase property has not been set"/>
+    <Error Condition="'$(ServerName)'==''" Text="ServerName property has not been set"/>
+    <Error Condition="'$(DatabaseName)'==''" Text="DatabaseName property has not been set"/>
+    <Error Condition="'$(DeploymentType)'==''" Text="DeploymentType property has not been set"/>
+    <Error Condition="'$(UpdateScriptBase)'==''" Text="UpdateScriptBase property has not been set"/>
+  </Target>
+
+  <!-- Trace properties -->
+  <Target Name="TraceProps">
+    <Message Text="Database Server: $(ServerName)"/>
+    <Message Text="Database: $(DatabaseName)"/>
+    <Message Text="Script Base: $(ScriptBase)"/>
+    <Message Text="UpdateScript Base: $(UpdateScriptBase)"/>
+    <Message Text="UserName: $(UserName)"/>
+    <Message Text="DeploymentType: $(DeploymentType)"/>
+  </Target>
+
+
+
+
+
+  <Import Condition="Exists('local.properties.xml')" Project="local.properties.xml"  />
+
+  <ItemGroup>
+    <Items Include="**\*.*" Exclude="@(DefaultExclude)" >
+    </Items>
+  </ItemGroup>
+  
+
+  <Target Name="Zip"  >
+    <Message Text="Message from zip Target"/>
+  </Target>
+
+ 
+  
+  
+  <Target Name="Build" DependsOnTargets="Zip"> 
+    <Message Text="Message from Build Target Major:'$(Major)' Minor:'$(Minor)' Build:'$(Build)'"/> 
+	  <Message Text="local.properties.xml" Condition="Exists('local.properties.xml')" />  
+    <Message Text="FileName='$(FileName)' "/>
+  </Target>
+
+  <Target Name="RunTests" DependsOnTargets="Build">
+    <Message Text="Message from RunTests'"/>
+    <!--<MSBuild Projects="Content.Web.Tests\\Content.Web.Tests.csproj" Targets="Build"></MSBuild>
+    <CreateItem Include="Content.Web.Tests\\bin\\$(Configuration)\\Content.Web.Tests.dll">
+       <Output TaskParameter="Include" ItemName="TestAssembly" /> 
+    </CreateItem>
+    <NUnit  Assemblies="@(TestAssembly)" ContinueOnError="false" />
+    <Message Text="Tests ran successfully!"></Message>-->
+  </Target>
+  
+  
+
+</Project>
