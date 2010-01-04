@@ -99,3 +99,25 @@ ALTER DATABASE [Test] SET DB_CHAINING OFF
 GO
 
 
+USE [Test]
+GO
+
+/****** Object:  Table [dbo].[UserProfile]    Script Date: 01/04/2010 10:08:17 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[UserProfile](
+	[Id] [int] NOT NULL,
+	[Name] [nchar](50) NULL,
+	[Email] [nchar](50) NULL,
+	[LastLoginDate] [datetime] NULL
+) ON [PRIMARY]
+
+GO
+
+
+
+

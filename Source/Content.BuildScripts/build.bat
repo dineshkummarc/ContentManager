@@ -9,7 +9,8 @@ REM *****************************************
 cls
 
 echo -----------------------------
-set msBuildCommand=C:\WINDOWS\Microsoft.NET\Framework\v3.5\msbuild Content.build
+REM set msBuildCommand=C:\WINDOWS\Microsoft.NET\Framework\v3.5\msbuild Content.build
+set msBuildCommand=C:\WINDOWS\Microsoft.NET\Framework\v3.5\msbuild db.targets
 
 if "%1"=="" GOTO runDefault
 	echo about to run with target ='%1'
