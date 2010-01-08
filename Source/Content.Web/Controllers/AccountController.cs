@@ -217,7 +217,8 @@ namespace ContentNamespace.Web.Controllers
         }
 
 
-        [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
+        //[PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult AdminOnly()
         {
             return View();
