@@ -1,0 +1,6 @@
+SELECT * FROM UserProfile
+GO
+
+
+
+
