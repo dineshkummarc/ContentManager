@@ -10,11 +10,15 @@ using ContentNamespace.Web.Code.Service.SystemServices;
 
 namespace ContentNamespace.Web.Controllers
 {
-    public class ConfigurationController : ContentManagerBaseController<IConfigurationService>
+    public class ConfigurationController : ContentManagerBaseController
     {
+        private readonly IConfigurationService _service;
         //
         // GET: /Page/ 
-        public ConfigurationController(IConfigurationService service) : base(service) { }
+        public ConfigurationController(IConfigurationService service)
+        {
+            this._service = service;
+        }
 
         public ActionResult Index()
         {

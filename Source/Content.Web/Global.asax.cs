@@ -43,7 +43,8 @@ namespace ContentNamespace.Web
             return new StandardKernel(modules);
         }
     }
-      
+     
+
 
     internal class ServiceModule : StandardModule
     {
@@ -61,6 +62,8 @@ namespace ContentNamespace.Web
             Bind<IConfigurationService>().To<ConfigurationService>();
 
             Bind<ICacheService>().To<CacheService>();
+
+ 
 
             //Bind<IMembershipService>().To<AccountMembershipService>();
             //Bind<IFormsAuthentication>().To<MockFormsAuthentication>();

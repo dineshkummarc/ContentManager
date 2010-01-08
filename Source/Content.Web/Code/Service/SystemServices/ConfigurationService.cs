@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 //
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
-using ContentNamespace.Web.Code.DataAccess.Object;
+using ContentNamespace.Web.Code.DataAccess.Db4o;
 using ContentNamespace.Web.Code.Entities;
 using ContentNamespace.Web.Code.Service.Interfaces;
 
@@ -11,13 +11,13 @@ namespace ContentNamespace.Web.Code.Service.ConfigurationServices
     {
         #region Fields...
 
-        private readonly ObjectRepository<Settings> _repository;
+        private readonly IConfigurationRepository _repository;
         
         #endregion
 
         #region Constructors...
 
-        public ConfigurationService(ObjectRepository<Settings> repository)
+        public ConfigurationService(IConfigurationRepository repository)
         {
             _repository = repository;
         }

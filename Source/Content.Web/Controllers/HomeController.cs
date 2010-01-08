@@ -7,14 +7,17 @@ using ContentNamespace.Web.Code.Util;
 namespace ContentNamespace.Web.Controllers
 {
     [HandleError]
-    public class HomeController : ContentManagerBaseController<IConfigurationService>
+    public class HomeController : ContentManagerBaseController 
     {
-        public HomeController(IConfigurationService service) : base(service) { }
+        private readonly IConfigurationService _service;
+
+        public HomeController(IConfigurationService service)
+        {
+            this._service = service;
+        }
 
         public ActionResult Index()
         {
-            GetContentManagerSettings();
-
             ViewData["Message"] = "Welcome to ASP.NET MVC!";
             return View();
         }

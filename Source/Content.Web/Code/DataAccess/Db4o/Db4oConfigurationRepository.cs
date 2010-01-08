@@ -5,19 +5,19 @@ using System.Linq;
 //
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Util;
+using ContentNamespace.Web.Code.Entities;
 
-namespace ContentNamespace.Web.Code.DataAccess.Object
+namespace ContentNamespace.Web.Code.DataAccess.Db4o
 {
-    public class ObjectRepository<T> : IRepository<T> 
-        where T : class, new()
+    public class Db4oConfigurationRepository  : IConfigurationRepository 
     {
 
         /// <summary>
         /// Returns all records of type T.
         /// </summary>
-        public IQueryable<T> Get()
+        public IQueryable<Settings> Get()
         {
-            return (from T items in Db4O.Container
+            return (from Settings items in Db4O.Container
                     select items).AsQueryable();
         }
 
@@ -27,18 +27,18 @@ namespace ContentNamespace.Web.Code.DataAccess.Object
         /// <param name="pageIndex">Zero-based index for lookup.</param>
         /// <param name="pageSize">Number of items to return in a page.</param>
         /// <returns></returns>
-        public PagedList<T> GetPaged(int pageIndex, int pageSize)
+        public PagedList<Settings> GetPaged(int pageIndex, int pageSize)
         {
-            var query = (from T items in Db4O.Container
+            var query = (from Settings items in Db4O.Container
                          select items).AsQueryable();
 
-            return new PagedList<T>(query, pageIndex, pageSize);
+            return new PagedList<Settings>(query, pageIndex, pageSize);
         }
 
         /// <summary>
         /// Finds an item using a passed-in expression lambda.
         /// </summary>
-        public IQueryable<T> Find(System.Linq.Expressions.Expression<Func<T, bool>> expression)
+        public IQueryable<Settings> Find(System.Linq.Expressions.Expression<Func<Settings, bool>> expression)
         {
             return Get().Where(expression);
         }
@@ -47,7 +47,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Object
         /// Saves an item to the database.
         /// </summary>
         /// <param name="item">Item to save.</param>
-        public T Save(T item)
+        public Settings Save(Settings item)
         {
             Db4O.Container.Store(item);
 
@@ -58,7 +58,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Object
         /// Deletes an item from the database.
         /// </summary>
         /// <param name="item">Item to delete.</param>
-        public bool Delete(T item)
+        public bool Delete(Settings item)
         {
             bool deleteSuccess = false;
 

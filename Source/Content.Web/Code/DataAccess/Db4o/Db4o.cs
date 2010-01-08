@@ -3,7 +3,7 @@
 using System.Web;
 using System.IO;
 
-namespace ContentNamespace.Web.Code.DataAccess.Object
+namespace ContentNamespace.Web.Code.DataAccess.Db4o
 {
     public class Db4O
     {

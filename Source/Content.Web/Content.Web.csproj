@@ -99,8 +99,8 @@
     <Compile Include="Code\DataAccess\Interfaces\IConfigurationRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IUserProfileRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IUserRoleRepository.cs" />
-    <Compile Include="Code\DataAccess\Object\Db4O.cs" />
-    <Compile Include="Code\DataAccess\Object\ObjectRepository.cs" />
+    <Compile Include="Code\DataAccess\Db4o\Db4o.cs" />
+    <Compile Include="Code\DataAccess\Db4o\Db4oConfigurationRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlBaseRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlContentRepository.cs" />
     <Compile Include="Code\Entities\Base\ContentManagerBaseItem.cs" />

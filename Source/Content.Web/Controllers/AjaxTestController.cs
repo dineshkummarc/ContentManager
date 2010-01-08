@@ -10,9 +10,14 @@ namespace ContentNamespace.Web.Controllers
 {
     //ref: http://davidhayden.com/blog/dave/archive/2009/05/19/ASPNETMVCAjaxBeginForm.aspx
     //ref: http://channel9.msdn.com/shows/The+Knowledge+Chamber/Phil-Haack-ASPNET-MVC-and-Ninjas-On-Fire/
-    public class AjaxTestController : ContentManagerBaseController<IContentService>
+    public class AjaxTestController : ContentManagerBaseController
     {
-        public AjaxTestController(IContentService service) : base(service) { }
+        private readonly IContentService _service;
+
+        public AjaxTestController(IContentService service)
+        {
+            this._service = service;
+        }
 
         public ActionResult Details(string id)
         { 
@@ -24,8 +29,6 @@ namespace ContentNamespace.Web.Controllers
         // GET: /AjaxTest/
         public ActionResult Index()
         {
-            GetContentManagerSettings();
-
             ViewData["id"] = new SelectList(this._service.Get(), "Id", "Name"); 
             return View();
         }
