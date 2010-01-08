@@ -14,6 +14,10 @@ using ContentNamespace.Web.Code.Service.UserProfileServices;
 using Ninject.Core;
 using Ninject.Core.Behavior;
 using Ninject.Framework.Mvc;
+using System.Web.Security;
+using ContentNamespace.Web.Code.Service.MembershipServices;
+using ContentNamespace.Web.Code.Service;
+using ContentNamespace.Web.Code.Service.RoleServices;
 
 namespace ContentNamespace.Web
 {
@@ -63,7 +67,10 @@ namespace ContentNamespace.Web
 
             Bind<ICacheService>().To<CacheService>();
 
- 
+
+            Bind<MembershipProvider>().To<SimpleMembershipProvider>();
+            Bind<RoleProvider>().To<SimpleRoleProvider>();
+
 
             //Bind<IMembershipService>().To<AccountMembershipService>();
             //Bind<IFormsAuthentication>().To<MockFormsAuthentication>();

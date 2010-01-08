@@ -21,4 +21,7 @@
     <p>
         <a href="UserProfile/Index">UserProfile/Index</a>
     </p>
+    <p>
+        <a href="Account/AdminOnly">Account/AdminOnly</a>
+    </p>
 </asp:Content>

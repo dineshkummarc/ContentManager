@@ -14,25 +14,27 @@ using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
 using ContentNamespace.Web.Code.Service.FormsAuthenticationServices;
 using ContentNamespace.Web.Code.Service.MembershipServices;
 using ContentNamespace.Web.Code.Service.UserProfileServices;
-using ContentNamespace.Web.Code.Entities; 
+using ContentNamespace.Web.Code.Entities;
+using System.Security.Permissions; 
 
 namespace ContentNamespace.Web.Controllers
 {
 
     [HandleError]
     public class AccountController : Controller
-    { 
+    {
         private readonly IUserProfileService _userService;
+        private readonly MembershipProvider _membershipProvider;
           
 
         // This constructor is used by the MVC framework to instantiate the controller using
         // the default forms authentication and membership providers.
 
-        public AccountController(IUserProfileService userService) 
+        public AccountController(IUserProfileService userService, MembershipProvider membershipProvider) 
         {
             this._userService = userService;
+            this._membershipProvider = membershipProvider;
             FormsAuth =   new FormsAuthenticationService();
-            MembershipService = new AccountMembershipService();
         }
 
         // This constructor is not used by the MVC framework but is instead provided for ease
@@ -50,11 +52,12 @@ namespace ContentNamespace.Web.Controllers
             private set;
         }
 
-        public IMembershipService MembershipService
+
+        public ActionResult Index()
         {
-            get;
-            private set;
+            return View();
         }
+
 
         public ActionResult OpenIdLogin()
         {
@@ -213,72 +216,15 @@ namespace ContentNamespace.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Register()
-        { 
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength; 
+
+        [PrincipalPermission(SecurityAction.Demand, Role = "Admin")]
+        public ActionResult AdminOnly()
+        {
             return View();
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Register(string userName, string email, string password, string confirmPassword)
-        { 
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
 
-            if (ValidateRegistration(userName, email, password, confirmPassword))
-            {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(userName, password, email);
-
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsAuth.SignIn(userName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("_FORM", ErrorCodeToString(createStatus));
-                }
-            } 
-            // If we got this far, something failed, redisplay form
-            return View();
-        }
-
-        [Authorize]
-        public ActionResult ChangePassword()
-        { 
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength; 
-            return View();
-        }
-
-        [Authorize]
-        [AcceptVerbs(HttpVerbs.Post)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
-            Justification = "Exceptions result in password not being changed.")]
-        public ActionResult ChangePassword(string currentPassword, string newPassword, string confirmPassword)
-        { 
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength; 
-            if (!ValidateChangePassword(currentPassword, newPassword, confirmPassword))
-            {
-                return View();
-            } 
-            try
-            {
-                if (MembershipService.ChangePassword(User.Identity.Name, currentPassword, newPassword))
-                {
-                    return RedirectToAction("ChangePasswordSuccess");
-                }
-                else
-                {
-                    ModelState.AddModelError("_FORM", "The current password is incorrect or the new password is invalid.");
-                    return View();
-                }
-            }
-            catch
-            {
-                ModelState.AddModelError("_FORM", "The current password is incorrect or the new password is invalid.");
-                return View();
-            }
-        }
+         
 
         public ActionResult ChangePasswordSuccess()
         { 
@@ -294,29 +240,7 @@ namespace ContentNamespace.Web.Controllers
         }
 
         #region Validation Methods
-
-        private bool ValidateChangePassword(string currentPassword, string newPassword, string confirmPassword)
-        {
-            if (String.IsNullOrEmpty(currentPassword))
-            {
-                ModelState.AddModelError("currentPassword", "You must specify a current password.");
-            }
-            if (newPassword == null || newPassword.Length < MembershipService.MinPasswordLength)
-            {
-                ModelState.AddModelError("newPassword",
-                    String.Format(CultureInfo.CurrentCulture,
-                         "You must specify a new password of {0} or more characters.",
-                         MembershipService.MinPasswordLength));
-            }
-
-            if (!String.Equals(newPassword, confirmPassword, StringComparison.Ordinal))
-            {
-                ModelState.AddModelError("_FORM", "The new password and confirmation password do not match.");
-            }
-
-            return ModelState.IsValid;
-        }
-
+         
         private bool ValidateLogOn(string userName, string password)
         {
             if (String.IsNullOrEmpty(userName))
@@ -327,7 +251,7 @@ namespace ContentNamespace.Web.Controllers
             {
                 ModelState.AddModelError("password", "You must specify a password.");
             }
-            if (!MembershipService.ValidateUser(userName, password))
+            if (!this._membershipProvider.ValidateUser(userName, password))
             {
                 ModelState.AddModelError("_FORM", "The username or password provided is incorrect.");
             }
@@ -345,12 +269,12 @@ namespace ContentNamespace.Web.Controllers
             {
                 ModelState.AddModelError("email", "You must specify an email address.");
             }
-            if (password == null || password.Length < MembershipService.MinPasswordLength)
+            if (password == null || password.Length < this._membershipProvider.MinRequiredPasswordLength)
             {
                 ModelState.AddModelError("password",
                     String.Format(CultureInfo.CurrentCulture,
                          "You must specify a password of {0} or more characters.",
-                         MembershipService.MinPasswordLength));
+                         this._membershipProvider.MinRequiredPasswordLength));
             }
             if (!String.Equals(password, confirmPassword, StringComparison.Ordinal))
             {

@@ -116,7 +116,8 @@
     <Compile Include="Code\Service\AuthorizationServices\AspNetAuthorizationService.cs" />
     <Compile Include="Code\Service\AuthorizationServices\TestAuthenticationService.cs" />
     <Compile Include="Code\Service\Base\ContentManagerBaseService.cs" />
-    <Compile Include="Code\Service\RoleProviderService\SimpleRoleProviderService.cs" />
+    <Compile Include="Code\Service\MembershipServices\SimpleMembershipProvider.cs" />
+    <Compile Include="Code\Service\RoleProviderService\SimpleRoleProvider.cs" />
     <Compile Include="Code\Service\SystemServices\CacheService.cs" />
     <Compile Include="Code\Service\SystemServices\ConfigurationService.cs" />
     <Compile Include="Code\Service\SystemServices\ICacheService.cs" />
@@ -126,7 +127,6 @@
     <Compile Include="Code\Service\ContentServices\IContentService.cs" />
     <Compile Include="Code\Service\Base\IContentManagerBaseService.cs" />
     <Compile Include="Code\Service\FormsAuthenticationServices\IFormsAuthenticationService.cs" />
-    <Compile Include="Code\Service\MembershipServices\IMembershipService.cs" />
     <Compile Include="Code\Service\UserProfileServices\IUserProfileService.cs" />
     <Compile Include="Code\Service\UserProfileServices\UserProfileService.cs" />
     <Compile Include="Code\Util\Email.cs" />
@@ -181,6 +181,8 @@
     <Content Include="Scripts\images\wordpress.ico" />
     <Content Include="Scripts\images\yahoo.gif" />
     <Content Include="Scripts\openid-jquery.js" />
+    <Content Include="Views\Account\AdminOnly.aspx" />
+    <Content Include="Views\Account\Index.aspx" />
     <Content Include="Views\AjaxTest\HtmlContentDetails.ascx" />
     <Content Include="Views\AjaxTest\Index.aspx" />
     <Content Include="Views\Authentication\Login.aspx" />

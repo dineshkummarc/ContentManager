@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 
-namespace ContentNamespace.Web.Code.Service.RoleService
+namespace ContentNamespace.Web.Code.Service.RoleServices
 {
-    public class SimpleRoleProviderService : RoleProvider
+    public class SimpleRoleProvider : RoleProvider
     {
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
         {
@@ -44,16 +44,17 @@ namespace ContentNamespace.Web.Code.Service.RoleService
         {
             throw new NotImplementedException();
         }
- 
+
+
         public override string[] GetRolesForUser(string username)
-        {  
-            //http://davidhayden.com/blog/dave/archive/2007/10/17/CreateCustomRoleProviderASPNETRolePermissionsSecurity.aspx
+        {
             List<string> roles = new List<string>();
             roles.Add("Guest");
             if (username.Equals("Dave"))
                 roles.Add("Admin");
             return roles.ToArray();
-        } 
+        }
+
 
         public override string[] GetUsersInRole(string roleName)
         {
