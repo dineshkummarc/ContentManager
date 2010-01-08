@@ -9,9 +9,9 @@ namespace ContentNamespace.Web.Controllers
     [HandleError]
     public class HomeController : ContentManagerBaseController 
     {
-        private readonly IConfigurationService _service;
+        private readonly ISettingService _service;
 
-        public HomeController(IConfigurationService service)
+        public HomeController(ISettingService service)
         {
             this._service = service;
         }

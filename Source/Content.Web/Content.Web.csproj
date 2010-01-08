@@ -118,10 +118,10 @@
     <Compile Include="Code\Service\Base\ContentManagerBaseService.cs" />
     <Compile Include="Code\Service\MembershipServices\SimpleMembershipProvider.cs" />
     <Compile Include="Code\Service\RoleProviderService\SimpleRoleProvider.cs" />
-    <Compile Include="Code\Service\SystemServices\CacheService.cs" />
-    <Compile Include="Code\Service\SystemServices\ConfigurationService.cs" />
-    <Compile Include="Code\Service\SystemServices\ICacheService.cs" />
-    <Compile Include="Code\Service\SystemServices\IConfigurationService.cs" />
+    <Compile Include="Code\Service\CacheServices\CacheService.cs" />
+    <Compile Include="Code\Service\SettingServices\SettingService.cs" />
+    <Compile Include="Code\Service\CacheServices\ICacheService.cs" />
+    <Compile Include="Code\Service\SettingServices\ISettingService.cs" />
     <Compile Include="Code\Service\ContentServices\ContentService.cs" />
     <Compile Include="Code\Service\AuthorizationServices\IAuthorizationService.cs" />
     <Compile Include="Code\Service\ContentServices\IContentService.cs" />
@@ -138,7 +138,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxTestController.cs" />
     <Compile Include="Controllers\Base\ContentManagerBaseController.cs" />
-    <Compile Include="Controllers\ConfigurationController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\HtmlContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PageController.cs" />
@@ -186,8 +186,8 @@
     <Content Include="Views\AjaxTest\HtmlContentDetails.ascx" />
     <Content Include="Views\AjaxTest\Index.aspx" />
     <Content Include="Views\Authentication\Login.aspx" />
-    <Content Include="Views\Configuration\Edit.aspx" />
-    <Content Include="Views\Configuration\Index.aspx" />
+    <Content Include="Views\Setting\Edit.aspx" />
+    <Content Include="Views\Setting\Index.aspx" />
     <Content Include="Views\Page\Index.aspx" />
     <Content Include="Views\Page\Page.aspx" />
     <Content Include="Views\HtmlContent\Create.aspx" />

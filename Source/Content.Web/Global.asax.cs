@@ -18,6 +18,7 @@ using System.Web.Security;
 using ContentNamespace.Web.Code.Service.MembershipServices;
 using ContentNamespace.Web.Code.Service;
 using ContentNamespace.Web.Code.Service.RoleServices;
+using ContentNamespace.Web.Code.DataAccess.Db4o;
 
 namespace ContentNamespace.Web
 {
@@ -62,8 +63,9 @@ namespace ContentNamespace.Web
 
             Bind<IAuthenticationService>().To<TestAuthenticationService>();
 
-            Bind<IConfigurationRepository>().To<FakeConfigurationRepository>().Using<SingletonBehavior>();
-            Bind<IConfigurationService>().To<ConfigurationService>();
+            Bind<ISettingRepository>().To<FakeSettingRepository>().Using<SingletonBehavior>();
+            //Bind<ISettingRepository>().To<Db4oSettingRepository>().Using<SingletonBehavior>();
+            Bind<ISettingService>().To<ConfigurationService>();
 
             Bind<ICacheService>().To<CacheService>();
 
@@ -71,15 +73,22 @@ namespace ContentNamespace.Web
             Bind<MembershipProvider>().To<SimpleMembershipProvider>();
             Bind<RoleProvider>().To<SimpleRoleProvider>();
 
-
-            //Bind<IMembershipService>().To<AccountMembershipService>();
-            //Bind<IFormsAuthentication>().To<MockFormsAuthentication>();
-            //Bind<IIdentity>().To<MockIdentity>();
-            //Bind<IPrincipal>().To<MockPrincipal>();
-            //Bind<MembershipUser>().To<MockMembershipUser>();
-            //Bind<HttpContextBase>().To<MockHttpContext>();
-            //Bind<MembershipProvider>().To<MockMembershipProvider>();
         }
     }
      
 }
+
+
+
+
+
+
+
+
+//Bind<IMembershipService>().To<AccountMembershipService>();
+//Bind<IFormsAuthentication>().To<MockFormsAuthentication>();
+//Bind<IIdentity>().To<MockIdentity>();
+//Bind<IPrincipal>().To<MockPrincipal>();
+//Bind<MembershipUser>().To<MockMembershipUser>();
+//Bind<HttpContextBase>().To<MockHttpContext>();
+//Bind<MembershipProvider>().To<MockMembershipProvider>();

@@ -7,7 +7,7 @@ using ContentNamespace.Web.Code.Util;
 
 namespace ContentNamespace.Web.Code.DataAccess.Fake
 {
-    public class FakeConfigurationRepository : IConfigurationRepository
+    public class FakeSettingRepository : ISettingRepository
     {
         readonly IList<Settings> _list = new List<Settings>();
 

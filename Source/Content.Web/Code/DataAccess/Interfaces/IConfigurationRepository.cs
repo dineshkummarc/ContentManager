@@ -2,7 +2,7 @@
 
 namespace ContentNamespace.Web.Code.DataAccess.Interfaces
 {
-    public interface IConfigurationRepository : IRepository<Settings>
+    public interface ISettingRepository : IRepository<Settings>
     {
     }
 }

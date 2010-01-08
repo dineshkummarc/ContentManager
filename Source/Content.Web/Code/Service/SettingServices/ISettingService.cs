@@ -2,7 +2,7 @@
 
 namespace ContentNamespace.Web.Code.Service.Interfaces
 {
-    public interface IConfigurationService : IContentManagerBaseService
+    public interface ISettingService : IContentManagerBaseService
     {
         Settings Save(Settings settings);
     }

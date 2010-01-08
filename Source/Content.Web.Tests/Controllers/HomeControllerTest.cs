@@ -21,7 +21,7 @@ namespace ContentNamespace.Web.Tests.Controllers
         {
             // Arrange
             HomeController controller = new HomeController(
-                new ConfigurationService(new Db4oConfigurationRepository()));
+                new ConfigurationService(new Db4oSettingRepository()));
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
@@ -37,7 +37,7 @@ namespace ContentNamespace.Web.Tests.Controllers
             // Arrange
             HomeController controller = new HomeController(
                 new ConfigurationService(
-                    new ContentNamespace.Web.Code.DataAccess.Db4o.Db4oConfigurationRepository()));
+                    new ContentNamespace.Web.Code.DataAccess.Db4o.Db4oSettingRepository()));
 
             // Act
             ViewResult result = controller.About() as ViewResult;

@@ -7,17 +7,17 @@ using ContentNamespace.Web.Code.Service.Interfaces;
 
 namespace ContentNamespace.Web.Code.Service.ConfigurationServices
 {
-    public class ConfigurationService : IConfigurationService
+    public class ConfigurationService : ISettingService
     {
         #region Fields...
 
-        private readonly IConfigurationRepository _repository;
+        private readonly ISettingRepository _repository;
         
         #endregion
 
         #region Constructors...
 
-        public ConfigurationService(IConfigurationRepository repository)
+        public ConfigurationService(ISettingRepository repository)
         {
             _repository = repository;
         }

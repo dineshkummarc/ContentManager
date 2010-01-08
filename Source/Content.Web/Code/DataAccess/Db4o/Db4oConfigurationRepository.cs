@@ -9,7 +9,7 @@ using ContentNamespace.Web.Code.Entities;
 
 namespace ContentNamespace.Web.Code.DataAccess.Db4o
 {
-    public class Db4oConfigurationRepository  : IConfigurationRepository 
+    public class Db4oSettingRepository  : ISettingRepository 
     {
 
         /// <summary>

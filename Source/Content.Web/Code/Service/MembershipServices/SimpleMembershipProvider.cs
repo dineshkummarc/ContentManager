@@ -147,8 +147,18 @@ namespace ContentNamespace.Web.Code.Service.MembershipServices
 
         public override bool ValidateUser(string username, string password)
         {
-            return (username.Equals("Dave")
-                     && password.Equals("pass"));
+            bool r = false;
+            if (username.Equals("Dave") && password.Equals("aa") ||
+                username.Equals("aaaa") && password.Equals("aa") ||
+                username.Equals("asdf") && password.Equals("aa") ||
+                username.Equals("asdf1") && password.Equals("aa") ||
+                username.Equals("asdf2") && password.Equals("aa") ||
+                username.Equals("asdf3") && password.Equals("aa") ||
+                username.Equals("asdf4") && password.Equals("aa"))
+            {
+                r = true;
+            }
+            return r;
         }
     }
 }
