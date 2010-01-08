@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using ContentNamespace.Web.Code.DataAccess.Fake;
-using ContentNamespace.Web.Code.DataAccess.Object;
+using ContentNamespace.Web.Code.DataAccess.Db4o;
 using ContentNamespace.Web.Code.Entities;
 using ContentNamespace.Web.Code.Service.ConfigurationServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,7 +20,8 @@ namespace ContentNamespace.Web.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController(new ConfigurationService(new ObjectRepository<Settings>()));
+            HomeController controller = new HomeController(
+                new ConfigurationService(new Db4oConfigurationRepository()));
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
@@ -34,7 +35,9 @@ namespace ContentNamespace.Web.Tests.Controllers
         public void About()
         {
             // Arrange
-            HomeController controller = new HomeController(new ConfigurationService(new ObjectRepository<Settings>()));
+            HomeController controller = new HomeController(
+                new ConfigurationService(
+                    new ContentNamespace.Web.Code.DataAccess.Db4o.Db4oConfigurationRepository()));
 
             // Act
             ViewResult result = controller.About() as ViewResult;
