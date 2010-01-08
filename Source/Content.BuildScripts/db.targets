@@ -1,0 +1,48 @@
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="constants.proj"/>
+ 
+  <Target Name="CreateDb">
+ 
+    <PropertyGroup>
+      <_Command>-Q  "SELECT email FROM UserProfile"</_Command>
+    </PropertyGroup>
+ 
+ 
+    <Message Text="sqlcmd: $(sqlcmd)"/>
+    <Message Text="_Command: $(_Command)"/>
+    <Exec Command="$(sqlcmd) $(_Command)" /><!---->
+ 
+  </Target>
+ 
+</Project>
+ 
+ 
+ 
+<!--
+osql -Sservername -ddatabasename -Uusername -Ppassword -n -i filename 
+OSQL -E -Q "SELECT * FROM sysloings"
+ 
+OSQL -E -d [NorthwindTest] -Q "SELECT * FROM UserProfile"
+OSQL -E -S (local)/SQLEXPRESS -d [NorthwindTest] -Q "SELECT * FROM UserProfile"
+ 
+OSQL -S (local)/SQLEXPRESS -U testuser -P testpassword  -d NorthwindTest -Q "SELECT * FROM UserProfile"
+ 
+ 
+sqlcmd -E -S (local)\SQLEXPRESS -i test.sql -d [NorthwindTest] 
+sqlcmd  -U testuser -P testpassword   -S (local)\SQLEXPRESS -i test.sql -d [NorthwindTest] 
+ 
+ 
+******************NOT WORKING******************
+sqlcmd  -U testuser -P testpassword  -S (local)\SQLEXPRESS -i test.sql -d NorthwindTest
+OSQL -U testuser -P testpassword -d NorthwindTest -S (local)\SQLEXPRESS -Q "SELECT * FROM UserProfile"
+ 
+ 
+******************WORKED****************** 
+sqlcmd -E -d NorthwindTest -S (local)\SQLEXPRESS -i test.sql
+sqlcmd -E -d NorthwindTest -S (local)\SQLEXPRESS -Q "SELECT * FROM UserProfile"
+OSQL -E -d NorthwindTest -S (local)\SQLEXPRESS -Q "SELECT * FROM UserProfile"
+ 
+OSQL -c data source=(local)\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=NorthwindTest  -Q "SELECT * FROM UserProfile"
+ 
+-->
