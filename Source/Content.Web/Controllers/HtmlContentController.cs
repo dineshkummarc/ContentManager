@@ -48,28 +48,21 @@ namespace ContentNamespace.Web.Controllers
         [ValidateInput(false)]
         public ActionResult Create(FormCollection collection)
         {
-            try
+            HtmlContent c = new HtmlContent();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < collection.Keys.Count; i++)
             {
-                HtmlContent c = new HtmlContent();
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < collection.Keys.Count; i++)
-                {
-                    sb.Append(", " + collection.Keys[i] + "=" + collection[collection.Keys[i]]);
-                }
-                c.ContentData = collection["ContentData"];
-                c.ModifiedBy = collection["ModifiedBy"];
-                c.Name = collection["Name"];
-                c.ActiveDate = DateTime.Now ; //collection["ActiveDate"];
-                c.ExpireDate = DateTime.MaxValue;
-                c.ModifiedDate = DateTime.Now;
-                this._service.Save(c);
+                sb.Append(", " + collection.Keys[i] + "=" + collection[collection.Keys[i]]);
+            }
+            c.ContentData = collection["ContentData"];
+            c.ModifiedBy = collection["ModifiedBy"];
+            c.Name = collection["Name"];
+            c.ActiveDate = DateTime.Now ; //collection["ActiveDate"];
+            c.ExpireDate = DateTime.MaxValue;
+            c.ModifiedDate = DateTime.Now;
+            this._service.Save(c);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         //

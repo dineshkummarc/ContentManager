@@ -9,15 +9,15 @@ using ContentNamespace.Web.Code.Entities;
 
 namespace ContentNamespace.Web.Code.DataAccess.Db4o
 {
-    public class Db4oSettingRepository  : ISettingRepository 
+    public class Db4oContentRepository  : IContentRepository 
     {
 
         /// <summary>
         /// Returns all records of type T.
         /// </summary>
-        public IQueryable<Settings> Get()
+        public IQueryable<HtmlContent> Get()
         {
-            return (from Settings items in Db4O.Container
+            return (from HtmlContent items in Db4O.Container
                     select items).AsQueryable();
         }
 
@@ -27,18 +27,18 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
         /// <param name="pageIndex">Zero-based index for lookup.</param>
         /// <param name="pageSize">Number of items to return in a page.</param>
         /// <returns></returns>
-        public PagedList<Settings> GetPaged(int pageIndex, int pageSize)
+        public PagedList<HtmlContent> GetPaged(int pageIndex, int pageSize)
         {
-            var query = (from Settings items in Db4O.Container
+            var query = (from HtmlContent items in Db4O.Container
                          select items).AsQueryable();
 
-            return new PagedList<Settings>(query, pageIndex, pageSize);
+            return new PagedList<HtmlContent>(query, pageIndex, pageSize);
         }
 
         /// <summary>
         /// Finds an item using a passed-in expression lambda.
         /// </summary>
-        public IQueryable<Settings> Find(System.Linq.Expressions.Expression<Func<Settings, bool>> expression)
+        public IQueryable<HtmlContent> Find(System.Linq.Expressions.Expression<Func<HtmlContent, bool>> expression)
         {
             return Get().Where(expression);
         }
@@ -47,9 +47,21 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
         /// Saves an item to the database.
         /// </summary>
         /// <param name="item">Item to save.</param>
-        public Settings Save(Settings item)
+        public HtmlContent Save(HtmlContent item)
         {
-            Db4O.Container.Store(item);
+            HtmlContent w = Get().Where(x => x.Id == item.Id).SingleOrDefault();
+
+            if (w != null)
+            {
+                w = item;
+                Db4O.Container.Store(w);
+            }
+            else
+            {
+                int maxId = (Get().Count() > 0) ? Get().Max(x => x.Id) : 0;
+                item.Id = maxId + 1;
+                Db4O.Container.Store(item);
+            }
 
             return item;
         }
@@ -58,7 +70,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
         /// Deletes an item from the database.
         /// </summary>
         /// <param name="item">Item to delete.</param>
-        public bool Delete(Settings item)
+        public bool Delete(HtmlContent item)
         {
             bool deleteSuccess = false;
 
@@ -75,5 +87,6 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
 
             return deleteSuccess;
         }
+
     }
 }

@@ -90,6 +90,7 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\DataAccess\Db4o\Db4oContentRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeContentRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeConfigurationRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeUserProfileRepository.cs" />

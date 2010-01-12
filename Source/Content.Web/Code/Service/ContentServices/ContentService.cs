@@ -30,7 +30,21 @@ namespace ContentNamespace.Web.Code.Service.Base
          
         public HtmlContent Get(int id)
         {
-            return this._repository.Get().Where(x => x.Id == id).Single<HtmlContent>();
+            return this._repository.Get().Where(x => x.Id == id).Select(x => new HtmlContent
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ContentData =  x.ContentData,
+                //ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
+                //               x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." :
+                //               x.ContentData,
+                //ContentData = x.ContentData,
+                ActiveDate = x.ActiveDate,
+                ExpireDate = x.ExpireDate,
+                ModifiedBy = x.ModifiedBy,
+                ModifiedDate = x.ModifiedDate,
+                ItemState = x.ItemState
+            }).SingleOrDefault(); 
         }
 
         public HtmlContent Save(HtmlContent item)
@@ -64,7 +78,7 @@ namespace ContentNamespace.Web.Code.Service.Base
                 ExpireDate = x.ExpireDate,
                 ModifiedBy = x.ModifiedBy,
                 ModifiedDate = x.ModifiedDate,
-                ItemState = x.HtmlContentState
+                ItemState = x.ItemState
             });
 
             return contents;
