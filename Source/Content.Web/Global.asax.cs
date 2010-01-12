@@ -44,11 +44,35 @@ namespace ContentNamespace.Web
             {
                 new AutoControllerModule(Assembly.GetExecutingAssembly()),
                 new ServiceModule()
+                //new Db4oModule()
             };
             return new StandardKernel(modules);
         }
     }
-     
+
+
+    internal class Db4oModule : StandardModule
+    {
+        public override void Load()
+        {
+            Bind<IContentRepository>().To<FakeContentRepository>().Using<SingletonBehavior>(); // TODO: remove
+            //Bind<IContentRepository>().To<Db4oContentRepository>().Using<SingletonBehavior>();// TODO: Implement
+            Bind<IContentService>().To<ContentService>();
+
+            Bind<IUserProfileRepository>().To<FakeUserProfileRepository>().Using<SingletonBehavior>();// TODO: remove
+            //Bind<IUserProfileRepository>().To<Db4oUserProfileRepository>().Using<SingletonBehavior>();// TODO: Implement
+            Bind<IUserProfileService>().To<UserProfileService>();
+
+            Bind<IAuthenticationService>().To<TestAuthenticationService>();
+
+            Bind<ISettingRepository>().To<Db4oSettingRepository>().Using<SingletonBehavior>(); 
+            Bind<ISettingService>().To<ConfigurationService>();
+
+            Bind<ICacheService>().To<CacheService>();
+            Bind<MembershipProvider>().To<SimpleMembershipProvider>();
+            Bind<RoleProvider>().To<SimpleRoleProvider>();
+        }
+    }
 
 
     internal class ServiceModule : StandardModule
@@ -64,15 +88,11 @@ namespace ContentNamespace.Web
             Bind<IAuthenticationService>().To<TestAuthenticationService>();
 
             Bind<ISettingRepository>().To<FakeSettingRepository>().Using<SingletonBehavior>();
-            //Bind<ISettingRepository>().To<Db4oSettingRepository>().Using<SingletonBehavior>();
             Bind<ISettingService>().To<ConfigurationService>();
 
             Bind<ICacheService>().To<CacheService>();
-
-
             Bind<MembershipProvider>().To<SimpleMembershipProvider>();
             Bind<RoleProvider>().To<SimpleRoleProvider>();
-
         }
     }
      
