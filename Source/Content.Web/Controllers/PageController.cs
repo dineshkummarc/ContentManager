@@ -10,12 +10,12 @@ namespace ContentNamespace.Web.Controllers
 {
     public class PageController : ContentManagerBaseController
     {
-        private readonly IContentService _service;
+        private readonly IContentService _contentService;
         //
         // GET: /Page/ 
-        public PageController(IContentService service)
-        { 
-
+        public PageController(IContentService contentService)
+        {
+            this._contentService = contentService;
         }
 
         public ActionResult Index()
@@ -27,7 +27,7 @@ namespace ContentNamespace.Web.Controllers
         // GET: /Page/Page/5 
         public ActionResult Page(int id)
         {
-            return View(this._service.Get(id));
+            return View(this._contentService.Get(id));
         }
 
     }
