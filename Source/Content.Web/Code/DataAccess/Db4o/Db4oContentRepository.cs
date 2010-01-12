@@ -53,15 +53,15 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
 
             if (w != null)
             {
-                w = item;
-                Db4O.Container.Store(w);
+                Delete(w);
             }
             else
             {
                 int maxId = (Get().Count() > 0) ? Get().Max(x => x.Id) : 0;
                 item.Id = maxId + 1;
-                Db4O.Container.Store(item);
             }
+
+            Db4O.Container.Store(item);
 
             return item;
         }
