@@ -129,6 +129,8 @@
     <Compile Include="Code\Service\FormsAuthenticationServices\IFormsAuthenticationService.cs" />
     <Compile Include="Code\Service\UserProfileServices\IUserProfileService.cs" />
     <Compile Include="Code\Service\UserProfileServices\UserProfileService.cs" />
+    <Compile Include="Code\Service\UserRoleServices\IUserRoleService.cs" />
+    <Compile Include="Code\Service\UserRoleServices\UserRoleService.cs" />
     <Compile Include="Code\Util\Email.cs" />
     <Compile Include="Code\Util\EnumHelper.cs" />
     <Compile Include="Code\Util\LazyList.cs" />
