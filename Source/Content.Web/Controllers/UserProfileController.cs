@@ -7,23 +7,26 @@ using System.Web.Mvc.Ajax;
 using ContentNamespace.Web.Code.Service.UserProfileServices;
 using ContentNamespace.Web.Code.Entities;
 using System.Text;
+using ContentNamespace.Web.Code.Service.UserRoleServices;
 
 namespace ContentNamespace.Web.Controllers
 {
     public class UserProfileController : ContentManagerBaseController
     {
-        private readonly IUserProfileService _service;
+        private readonly IUserProfileService _userProfileService;
+        private readonly IUserRoleService _userRoleService;
 
 
         // GET: /UserProfile/
-        public UserProfileController(IUserProfileService service)
+        public UserProfileController(IUserProfileService userProfileService, IUserRoleService userRoleService)
         {
-            this._service = service;
+            this._userProfileService = userProfileService;
+            this._userRoleService = userRoleService;
         }
 
         public ActionResult Index()
         {
-            return View(this._service.Get().OrderByDescending(x => x.LastSignInDate));
+            return View(this._userProfileService.Get().OrderByDescending(x => x.LastSignInDate));
         }
 
 
@@ -31,7 +34,7 @@ namespace ContentNamespace.Web.Controllers
         // GET: /UserProfile/Details/5 
         public ActionResult Details(int id)
         {
-            return View(this._service.Get(id));
+            return View(this._userProfileService.Get(id));
         }
 
         //
@@ -63,7 +66,7 @@ namespace ContentNamespace.Web.Controllers
                 //c.ActiveDate = DateTime.Now; //collection["ActiveDate"];
                 //c.ExpireDate = DateTime.MaxValue;
                 c.ModifiedDate = DateTime.Now;
-                this._service.Save(c);
+                this._userProfileService.Save(c);
 
                 return RedirectToAction("Index");
             }
@@ -78,7 +81,7 @@ namespace ContentNamespace.Web.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View(this._service.Get(id));
+            return View(this._userProfileService.Get(id));
         }
 
         //ref: http://tinyurl.com/d6xolp      
@@ -89,10 +92,10 @@ namespace ContentNamespace.Web.Controllers
         {
             try
             {
-                UserProfile c = this._service.Get(id);
+                UserProfile c = this._userProfileService.Get(id);
                 //c.ContentData = collection["ContentData"];
                 //c.ModifiedBy = collection["ModifiedBy"];
-                this._service.Save(c);
+                this._userProfileService.Save(c);
 
                 //return RedirectToAction("Index");
                 return RedirectToAction("Details", new { id = id });

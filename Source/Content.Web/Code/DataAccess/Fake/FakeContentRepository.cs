@@ -41,24 +41,17 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
 
         public HtmlContent Save(HtmlContent item)
         {
-            if (item.Id > 0)
+            HtmlContent repItem = this.list.Where(x => x.Id == item.Id).SingleOrDefault();
+            if (repItem != null)
             {
-                HtmlContent w = this.list.Where(x => x.Id == item.Id).SingleOrDefault();
-                if (w != null)
-                {
-                    w = item;
-                }
-                else
-                {
-                    list.Add(item);
-                }
+                list.Remove(repItem);
             }
             else
             {
                 int maxId = this.list.Max(x => x.Id);
                 item.Id = maxId + 1;
-                this.list.Add(item);
             }
+            this.list.Add(item);
             return item;
         }
 
