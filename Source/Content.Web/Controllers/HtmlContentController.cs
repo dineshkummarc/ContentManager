@@ -45,9 +45,12 @@ namespace ContentNamespace.Web.Controllers
         // POST: /HtmlContent/Create
 
         [AcceptVerbs(HttpVerbs.Post)]
-        [ValidateInput(false)]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection) // ([Bind(Exclude = "Id")] HtmlContent item)
         {
+            //this.ValidateItem(item);
+            //if (!ModelState.IsValid)
+            //    return View();
+
             HtmlContent c = new HtmlContent();
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < collection.Keys.Count; i++)
@@ -59,8 +62,7 @@ namespace ContentNamespace.Web.Controllers
             c.ExpireDate = DateTime.MaxValue;
             c.ActiveDate = new DateTime(1900, 1, 1);
             c.Name = collection["Name"];
-            c.ContentData = collection["ContentData"];
-            //c.ContentData = collection["editor1"];
+            c.ContentData = "Hello <b>World</b>"; 
             this._service.Save(c);
 
             return RedirectToAction("Index");
@@ -87,13 +89,11 @@ namespace ContentNamespace.Web.Controllers
             try
             {
                 HtmlContent c = this._service.Get(id);
-                //c.ContentData = collection["ContentData"];
-                c.ContentData = collection["editor1"];
+                c.ContentData = collection["ContentData"]; 
                 c.ModifiedBy = "XXXX";//TODO: should be loged in user
                 c.ModifiedDate = DateTime.Now;
                 c.ExpireDate = DateTime.MaxValue;
-                c.ActiveDate = new DateTime(1900, 1, 1); 
-                c.Name = collection["Name"];
+                c.ActiveDate = new DateTime(1900, 1, 1);  
                 this._service.Save(c);
 
                 //return RedirectToAction("Index");
@@ -105,5 +105,13 @@ namespace ContentNamespace.Web.Controllers
                 return View();
             }
         }
+
+
+        protected void ValidateItem(HtmlContent item)
+        {
+            if (item.Name.Trim().Length == 0)
+                ModelState.AddModelError("Name", "Name name is required."); 
+        }
+
     }
 }

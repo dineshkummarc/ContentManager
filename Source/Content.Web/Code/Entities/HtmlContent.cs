@@ -4,6 +4,8 @@ using ContentNamespace.Web.Code.Entities.Base;
 using ContentNamespace.Web.Code.Util;
 //
 using Stateless;
+using System.ComponentModel;
+//using System.ComponentModel.DataAnnotations;
 
 namespace ContentNamespace.Web.Code.Entities
 {
@@ -12,6 +14,8 @@ namespace ContentNamespace.Web.Code.Entities
         #region Properties...
 
         // Intrinsic
+        //[Required]
+        //[StringLength(3)]
         public string Name { get; set; }
         public string ContentData { get; set; }
         public DateTime ExpireDate { get; set; }

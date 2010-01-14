@@ -14,20 +14,18 @@
 
         <fieldset>
             <legend>Fields</legend>
-            <p>
+            <p class="hidden">
                 <label for="Id">Id:</label>
                 <%= Html.Encode(Model.Id) %> 
             </p>
             <p>
-                <label for="Name">Name:</label>
-                <%= Html.TextBox("Name", Model.Name)%>
-                <%= Html.ValidationMessage("Name", "*")%>
+                <label for="Name"  class="inline">Name:</label> <b><%= Html.Encode(Model.Name)%> </b>
             </p>
             <p>
-                <label for="ContentData">ContentData:</label>
-                <%= Html.TextArea("ContentData", Model.ContentData) %> 
-                        
-		        <textarea class="jquery_ckeditor" cols="80" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+                <label for="ContentData">ContentData:</label> 
+		        <textarea class="jquery_ckeditor" cols="80" id="editor1" name="ContentData" rows="10">
+		            <%= Html.Encode(Model.ContentData)  %> 
+		        </textarea>
 		        
             </p>  
             <p>

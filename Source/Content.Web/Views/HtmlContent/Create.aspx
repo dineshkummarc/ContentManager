@@ -1,4 +1,5 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<ContentNamespace.Web.Code.Entities.HtmlContent>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" 
+    Inherits="System.Web.Mvc.ViewPage<ContentNamespace.Web.Code.Entities.HtmlContent>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Create
@@ -23,11 +24,6 @@
                 <label for="Name">Name:</label>
                 <%= Html.TextBox("Name")%>
                 <%= Html.ValidationMessage("Name", "*")%>
-            </p>
-            <p>
-                <label for="ContentData">ContentData:</label>
-                <%= Html.TextBox("ContentData") %>
-                <%= Html.ValidationMessage("ContentData", "*") %>
             </p> 
             <p>
                 <input type="submit" value="Create" />

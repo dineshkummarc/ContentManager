@@ -55,8 +55,7 @@ namespace ContentNamespace.Web
     {
         public override void Load()
         {
-            Bind<IContentRepository>().To<FakeContentRepository>().Using<SingletonBehavior>(); // TODO: remove
-            //Bind<IContentRepository>().To<Db4oContentRepository>().Using<SingletonBehavior>();// TODO: Implement
+            Bind<IContentRepository>().To<Db4oContentRepository>().Using<SingletonBehavior>();
             Bind<IContentService>().To<ContentService>();
 
             Bind<IUserProfileRepository>().To<FakeUserProfileRepository>().Using<SingletonBehavior>();// TODO: remove
@@ -79,8 +78,7 @@ namespace ContentNamespace.Web
     {
         public override void Load()
         {
-            //Bind<IContentRepository>().To<FakeContentRepository>().Using<SingletonBehavior>();
-            Bind<IContentRepository>().To<Db4oContentRepository>().Using<SingletonBehavior>();
+            Bind<IContentRepository>().To<FakeContentRepository>().Using<SingletonBehavior>();
             Bind<IContentService>().To<ContentService>();
 
             Bind<IUserProfileRepository>().To<FakeUserProfileRepository>().Using<SingletonBehavior>();
