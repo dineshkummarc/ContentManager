@@ -54,12 +54,13 @@ namespace ContentNamespace.Web.Controllers
             {
                 sb.Append(", " + collection.Keys[i] + "=" + collection[collection.Keys[i]]);
             }
-            c.ContentData = collection["ContentData"];
-            c.ModifiedBy = collection["ModifiedBy"];
-            c.Name = collection["Name"];
-            c.ActiveDate = DateTime.Now ; //collection["ActiveDate"];
-            c.ExpireDate = DateTime.MaxValue;
+            c.ModifiedBy = "XXXX";//TODO: should be loged in user
             c.ModifiedDate = DateTime.Now;
+            c.ExpireDate = DateTime.MaxValue;
+            c.ActiveDate = new DateTime(1900, 1, 1);
+            c.Name = collection["Name"];
+            c.ContentData = collection["ContentData"];
+            //c.ContentData = collection["editor1"];
             this._service.Save(c);
 
             return RedirectToAction("Index");
@@ -86,8 +87,13 @@ namespace ContentNamespace.Web.Controllers
             try
             {
                 HtmlContent c = this._service.Get(id);
-                c.ContentData = collection["ContentData"];
-                c.ModifiedBy = collection["ModifiedBy"];
+                //c.ContentData = collection["ContentData"];
+                c.ContentData = collection["editor1"];
+                c.ModifiedBy = "XXXX";//TODO: should be loged in user
+                c.ModifiedDate = DateTime.Now;
+                c.ExpireDate = DateTime.MaxValue;
+                c.ActiveDate = new DateTime(1900, 1, 1); 
+                c.Name = collection["Name"];
                 this._service.Save(c);
 
                 //return RedirectToAction("Index");
