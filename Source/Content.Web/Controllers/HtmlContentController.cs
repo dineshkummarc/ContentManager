@@ -65,7 +65,7 @@ namespace ContentNamespace.Web.Controllers
             c.ContentData = "Hello <b>World</b>"; 
             this._service.Save(c);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit/" + c.Id);
         }
 
         //

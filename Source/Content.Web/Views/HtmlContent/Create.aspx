@@ -12,9 +12,7 @@
     <%= Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again.") %>
 
     <% using (Html.BeginForm()) {%>
-
-        <fieldset>
-            <legend>Fields</legend>
+ 
             <p class="hidden"  >
                 <label for="Id">Id:</label>
                 <%= Html.TextBox("Id", "-2") %>
@@ -27,8 +25,7 @@
             </p> 
             <p>
                 <input type="submit" value="Create" />
-            </p>
-        </fieldset>
+            </p> 
 
     <% } %>
 

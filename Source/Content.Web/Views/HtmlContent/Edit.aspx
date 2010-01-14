@@ -11,9 +11,7 @@
     <%= Html.ValidationSummary("Edit was unsuccessful. Please correct the errors and try again.") %>
 
     <% using (Html.BeginForm()) {%>
-
-        <fieldset>
-            <legend>Fields</legend>
+ 
             <p class="hidden">
                 <label for="Id">Id:</label>
                 <%= Html.Encode(Model.Id) %> 
@@ -30,8 +28,7 @@
             </p>  
             <p>
                 <input type="submit" value="Save" />
-            </p>
-        </fieldset>
+            </p> 
 
     <% } %>
 
