@@ -75,6 +75,5 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
 
             return deleteSuccess;
         }
-
     }
 }

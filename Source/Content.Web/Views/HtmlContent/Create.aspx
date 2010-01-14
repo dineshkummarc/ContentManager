@@ -28,27 +28,7 @@
                 <label for="ContentData">ContentData:</label>
                 <%= Html.TextBox("ContentData") %>
                 <%= Html.ValidationMessage("ContentData", "*") %>
-            </p>
-            <p>
-                <label for="ModifiedDate">ModifiedDate:</label>
-                <%= Html.TextBox("ModifiedDate") %>
-                <%= Html.ValidationMessage("ModifiedDate", "*") %>
-            </p>
-            <p>
-                <label for="ExpireDate">ExpireDate:</label>
-                <%= Html.TextBox("ExpireDate") %>
-                <%= Html.ValidationMessage("ExpireDate", "*") %>
-            </p>
-            <p>
-                <label for="ActiveDate">ActiveDate:</label>
-                <%= Html.TextBox("ActiveDate") %>
-                <%= Html.ValidationMessage("ActiveDate", "*") %>
-            </p>
-            <p>
-                <label for="ModifiedBy">ModifiedBy:</label>
-                <%= Html.TextBox("ModifiedBy") %>
-                <%= Html.ValidationMessage("ModifiedBy", "*") %>
-            </p>
+            </p> 
             <p>
                 <input type="submit" value="Create" />
             </p>

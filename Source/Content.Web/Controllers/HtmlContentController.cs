@@ -48,28 +48,22 @@ namespace ContentNamespace.Web.Controllers
         [ValidateInput(false)]
         public ActionResult Create(FormCollection collection)
         {
-            try
+            HtmlContent c = new HtmlContent();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < collection.Keys.Count; i++)
             {
-                HtmlContent c = new HtmlContent();
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < collection.Keys.Count; i++)
-                {
-                    sb.Append(", " + collection.Keys[i] + "=" + collection[collection.Keys[i]]);
-                }
-                c.ContentData = collection["ContentData"];
-                c.ModifiedBy = collection["ModifiedBy"];
-                c.Name = collection["Name"];
-                c.ActiveDate = DateTime.Now ; //collection["ActiveDate"];
-                c.ExpireDate = DateTime.MaxValue;
-                c.ModifiedDate = DateTime.Now;
-                this._service.Save(c);
+                sb.Append(", " + collection.Keys[i] + "=" + collection[collection.Keys[i]]);
+            }
+            c.ModifiedBy = "XXXX";//TODO: should be loged in user
+            c.ModifiedDate = DateTime.Now;
+            c.ExpireDate = DateTime.MaxValue;
+            c.ActiveDate = new DateTime(1900, 1, 1);
+            c.Name = collection["Name"];
+            c.ContentData = collection["ContentData"];
+            //c.ContentData = collection["editor1"];
+            this._service.Save(c);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         //
@@ -93,8 +87,13 @@ namespace ContentNamespace.Web.Controllers
             try
             {
                 HtmlContent c = this._service.Get(id);
-                c.ContentData = collection["ContentData"];
-                c.ModifiedBy = collection["ModifiedBy"];
+                //c.ContentData = collection["ContentData"];
+                c.ContentData = collection["editor1"];
+                c.ModifiedBy = "XXXX";//TODO: should be loged in user
+                c.ModifiedDate = DateTime.Now;
+                c.ExpireDate = DateTime.MaxValue;
+                c.ActiveDate = new DateTime(1900, 1, 1); 
+                c.Name = collection["Name"];
                 this._service.Save(c);
 
                 //return RedirectToAction("Index");
