@@ -33,7 +33,12 @@
     <% } %>
 
     <div>
+    <p> 
+        <%=Html.ActionLink("View", "Page", "Page", new { id = Model.Id }, null )%> |
+        <%=Html.ActionLink("Details", "Details", new { id = Model.Id })%> |
         <%=Html.ActionLink("Back to List", "Index") %>
+        
+    </p>
     </div>
 
 </asp:Content>
