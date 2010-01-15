@@ -6,6 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%= (Model.ContentData) %>
+    <div class="clear"></div>
     <p>
         Admin functions (visibility should be controlled):
         <%=Html.ActionLink("Require Edit", "RequireEdit", new { id = Model.Id })%> |

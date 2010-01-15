@@ -32,6 +32,24 @@ namespace ContentNamespace.Web.Code.Service.Base
         {
             return ((IContentManagerBaseService)this).GetData() as IQueryable<HtmlContent>;
         }
+
+        public HtmlContent Get(string name, DateTime dt)
+        {
+            return this._repository.Get()
+                .Where(x => x.Name == name && x.ExpireDate >= dt && x.ActiveDate <= dt)
+                .Select(x => new HtmlContent
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    ContentData = x.ContentData,
+                    ActiveDate = x.ActiveDate,
+                    ExpireDate = x.ExpireDate,
+                    ModifiedBy = x.ModifiedBy,
+                    ModifiedDate = x.ModifiedDate,
+                    ItemState = x.ItemState
+                }).SingleOrDefault(); 
+        }
+
          
         public HtmlContent Get(int id)
         {
@@ -40,10 +58,6 @@ namespace ContentNamespace.Web.Code.Service.Base
                 Id = x.Id,
                 Name = x.Name,
                 ContentData =  x.ContentData,
-                //ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
-                //               x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." :
-                //               x.ContentData,
-                //ContentData = x.ContentData,
                 ActiveDate = x.ActiveDate,
                 ExpireDate = x.ExpireDate,
                 ModifiedBy = x.ModifiedBy,
@@ -61,7 +75,7 @@ namespace ContentNamespace.Web.Code.Service.Base
 
         public bool Delete(HtmlContent item)
         {
-            return false;
+            return this._repository.Delete(item);
         }
 
         #region IContentManagerBaseService Members...
@@ -90,6 +104,8 @@ namespace ContentNamespace.Web.Code.Service.Base
         }
 
         #endregion
+
+
 
     }
 }

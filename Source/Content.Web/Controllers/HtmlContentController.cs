@@ -97,6 +97,29 @@ namespace ContentNamespace.Web.Controllers
         }
 
 
+        public ActionResult Content(string id)
+        {
+            var c = this._service.Get(Convert.ToInt32(id));
+            return PartialView("Content", c);
+        }
+
+
+        public ActionResult ContentPage(int id)
+        {
+            var x = this._service.Get(id); 
+            return View(x);
+        }
+        
+
+        // GET: /AjaxTest/
+        public ActionResult Contents()
+        {
+            ViewData["id"] = new SelectList(this._service.Get(), "Id", "Name"); 
+            return View();
+        }
+         
+
+
         protected bool Validate(HtmlContent item)
         {
             if (item.Name.Trim().Length == 0)

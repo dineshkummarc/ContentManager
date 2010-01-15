@@ -74,8 +74,9 @@
 
     </table>
 
-    <p>
-        <%= Html.ActionLink("Create New", "Create") %>
+    <p> 
+        <%= Html.ActionLink("Create New", "Create") %>|
+        <%= Html.ActionLink("Preview", "Contents") %>  
     </p>
 
 </asp:Content>
