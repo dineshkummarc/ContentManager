@@ -10,9 +10,14 @@ using ContentNamespace.Web.Code.Util;
 
 namespace ContentNamespace.Web.Code.Service.Base
 {
-    public class ContentService : ContentManagerBaseService<IContentRepository, HtmlContent>, IContentService
+    public class ContentService : IContentService
     {
-        public ContentService(IContentRepository repository) : base(repository) { }
+        private IContentRepository _repository; 
+
+        public ContentService(IContentRepository repository)
+        {
+            this._repository = repository;
+        }
 
         public IQueryable<HtmlContent> Get(DateTime dt)
         {
@@ -85,5 +90,6 @@ namespace ContentNamespace.Web.Code.Service.Base
         }
 
         #endregion
+
     }
 }

@@ -45,32 +45,23 @@ namespace ContentNamespace.Web.Controllers
         // POST: /HtmlContent/Create
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(FormCollection collection) // ([Bind(Exclude = "Id")] HtmlContent item)
-        {
-            //this.ValidateItem(item);
-            //if (!ModelState.IsValid)
-            //    return View();
-
-            HtmlContent c = new HtmlContent();
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < collection.Keys.Count; i++)
-            {
-                sb.Append(", " + collection.Keys[i] + "=" + collection[collection.Keys[i]]);
-            }
+        public ActionResult Create([Bind(Exclude = "Id")] HtmlContent c)
+        {  
             c.ModifiedBy = "XXXX";//TODO: should be loged in user
             c.ModifiedDate = DateTime.Now;
             c.ExpireDate = DateTime.MaxValue;
-            c.ActiveDate = new DateTime(1900, 1, 1);
-            c.Name = collection["Name"];
-            c.ContentData = "Hello <b>World</b>"; 
+            c.ActiveDate = new DateTime(1900, 1, 1); 
+            c.ContentData = "Hello <b>World</b>";
+            if (!this.Validate(c))
+            {
+                return View();
+            }
             this._service.Save(c);
-
             return RedirectToAction("Edit/" + c.Id);
         }
 
         //
-        // GET: /HtmlContent/Edit/5
-
+        // GET: /HtmlContent/Edit/5 
         public ActionResult Edit(int id)
         {
             var editContent = this._service.Get(id);
@@ -95,8 +86,7 @@ namespace ContentNamespace.Web.Controllers
                 c.ExpireDate = DateTime.MaxValue;
                 c.ActiveDate = new DateTime(1900, 1, 1);  
                 this._service.Save(c);
-
-                //return RedirectToAction("Index");
+ 
                 return RedirectToAction("Details", new { id = id });
                 // return RedirectToAction("Details", new RouteValueDictionary(new { id = id }));
             }
@@ -107,10 +97,17 @@ namespace ContentNamespace.Web.Controllers
         }
 
 
-        protected void ValidateItem(HtmlContent item)
+        protected bool Validate(HtmlContent item)
         {
             if (item.Name.Trim().Length == 0)
-                ModelState.AddModelError("Name", "Name name is required."); 
+                ModelState.AddModelError("Name", "Name name is required.");
+            //if (contactToCreate.LastName.Trim().Length == 0)
+            //    ModelState.AddModelError("LastName", "Last name is required.");
+            //if (contactToCreate.Phone.Length > 0 && !Regex.IsMatch(contactToCreate.Phone, @"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"))
+            //    ModelState.AddModelError("Phone", "Invalid phone number.");
+            //if (contactToCreate.Email.Length > 0 && !Regex.IsMatch(contactToCreate.Email, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
+            //    ModelState.AddModelError("Email", "Invalid email address."); 
+            return ModelState.IsValid;
         }
 
     }
