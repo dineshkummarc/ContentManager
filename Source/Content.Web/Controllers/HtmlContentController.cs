@@ -112,9 +112,8 @@ namespace ContentNamespace.Web.Controllers
         
 
         // GET: /AjaxTest/
-        public ActionResult Contents()
-        {
-            ViewData["id"] = new SelectList(this._service.Get(), "Id", "Name"); 
+        public ActionResult TestContents()
+        { 
             return View();
         }
          

@@ -10,16 +10,7 @@
         To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
     </p>
     <p>
-        <a href="HtmlContent/Index">HtmlContent/Index</a>
-    </p>  
-    <p>
-        <a href="HtmlJunk/Index">HtmlJunk/Index</a>
-    </p>
-    <p>
         <a href="AjaxTest/Index">AjaxTest/Index</a>
-    </p>
-    <p>
-        <a href="UserProfile/Index">UserProfile/Index</a>
     </p>
     <p>
         <a href="Account/AdminOnly">Account/AdminOnly</a>
