@@ -11,7 +11,7 @@ namespace ContentNamespace.Web.Code.Service.Interfaces
         IQueryable<HtmlContent> Get();
         HtmlContent Get(int id);
         HtmlContent Save(HtmlContent item);
-        bool Delete(HtmlContent item);
+        bool Delete(HtmlContent item);  
     }
 }
 

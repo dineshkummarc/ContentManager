@@ -38,41 +38,40 @@
 
 </asp:Content>
 
-<asp:Content runat="server" ContentPlaceHolderID="JavaScript" ID="contentJavaScript">
-<%--
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>--%>
+<asp:Content runat="server" ContentPlaceHolderID="JavaScript" ID="contentJavaScript"> 
+	<%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>--%>
 	<script type="text/javascript" src="<%= Url.Content("~/Content/CkEditor/ckeditor.js") %>"></script>
 	<script type="text/javascript" src="<%= Url.Content("~/Content/CkEditor/jquery.js") %>"></script>
 	<script type="text/javascript" src="<%= Url.Content("~/Content/CkEditor/sample.js") %>"></script>
 	<script type="text/javascript">
 	//<![CDATA[
 
-$(function()
-{
-	var config = {
-		toolbar:
-		[ 
-		    ['Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates'],
-            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
-            ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
-            ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
-            '/',
-            ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
-            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink', 'Anchor'],
-            ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
-            '/',
-            ['Styles', 'Format', 'Font', 'FontSize'],
-            ['TextColor', 'BGColor'],
-            ['Maximize', 'ShowBlocks', '-', 'About']
-		]
-	};
+    $(function()
+    {
+	    var config = {
+		    toolbar:
+		    [ 
+		        ['Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates'],
+                ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
+                ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+                ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
+                '/',
+                ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
+                ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
+                ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                ['Link', 'Unlink', 'Anchor'],
+                ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
+                '/',
+                ['Styles', 'Format', 'Font', 'FontSize'],
+                ['TextColor', 'BGColor'],
+                ['Maximize', 'ShowBlocks', '-', 'About']
+		    ]
+	    };
 
-	// Initialize the editor.
-	// Callback function can be passed and executed after full instance creation.
-	$('.jquery_ckeditor').ckeditor(config);
-});
+	    // Initialize the editor.
+	    // Callback function can be passed and executed after full instance creation.
+	    $('.jquery_ckeditor').ckeditor(config);
+    });
 
 	//]]>
 	</script>
