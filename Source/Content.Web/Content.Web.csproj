@@ -378,7 +378,6 @@
     <Content Include="Views\Account\Index.aspx" />
     <Content Include="Views\AjaxTest\HtmlContentDetails.ascx" />
     <Content Include="Views\AjaxTest\Index.aspx" />
-    <Content Include="Views\Authentication\Login.aspx" />
     <Content Include="Views\HtmlContent\ContentPage.aspx" />
     <Content Include="Views\HtmlContent\EditExtra.aspx" />
     <Content Include="Views\HtmlContent\TestContents.aspx" />
