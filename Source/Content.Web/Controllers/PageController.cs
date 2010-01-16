@@ -13,9 +13,12 @@ namespace ContentNamespace.Web.Controllers
         private readonly IContentService _contentService;
         //
         // GET: /Page/ 
-        public PageController(IContentService contentService)
+        public PageController(IContentService contentService, ISettingService settingService)
         {
             this._contentService = contentService;
+            this._settingService = settingService;
+
+            GetContentManagerSettings();
         }
 
         public ActionResult Index()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using ContentNamespace.Web.Code.Service.Interfaces;
 using ContentNamespace.Web.Code.Service.UserProfileServices;
 using ContentNamespace.Web.Code.Entities;
 using System.Text;
@@ -18,10 +19,13 @@ namespace ContentNamespace.Web.Controllers
 
 
         // GET: /UserProfile/
-        public UserProfileController(IUserProfileService userProfileService, IUserRoleService userRoleService)
+        public UserProfileController(IUserProfileService userProfileService, IUserRoleService userRoleService, ISettingService settingService)
         {
             this._userProfileService = userProfileService;
             this._userRoleService = userRoleService;
+            this._settingService = settingService;
+
+            GetContentManagerSettings();
         }
 
         public ActionResult Index()

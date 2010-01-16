@@ -1,4 +1,5 @@
-﻿using ContentNamespace.Web.Code.DataAccess.Interfaces;
+﻿using System;
+using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Entities;
 using ContentNamespace.Web.Code.Entities.Base;
 using ContentNamespace.Web.Code.Service.SystemServices;

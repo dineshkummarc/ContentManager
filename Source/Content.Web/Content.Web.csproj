@@ -100,7 +100,7 @@
     <Compile Include="Code\DataAccess\Fake\FakeUserRoleRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IContentRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IRepository.cs" />
-    <Compile Include="Code\DataAccess\Interfaces\IConfigurationRepository.cs" />
+    <Compile Include="Code\DataAccess\Interfaces\ISettingRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IUserProfileRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IUserRoleRepository.cs" />
     <Compile Include="Code\DataAccess\Db4o\Db4o.cs" />
