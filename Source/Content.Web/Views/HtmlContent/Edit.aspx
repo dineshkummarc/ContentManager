@@ -11,52 +11,74 @@
     <%= Html.ValidationSummary("Edit was unsuccessful. Please correct the errors and try again.") %>
 
     <% using (Html.BeginForm()) {%>
-
-        <fieldset>
-            <legend>Fields</legend>
-            <p>
+ 
+            <p class="hidden">
                 <label for="Id">Id:</label>
                 <%= Html.Encode(Model.Id) %> 
             </p>
             <p>
-                <label for="Name">Name:</label>
-                <%= Html.TextBox("Name", Model.Name)%>
-                <%= Html.ValidationMessage("Name", "*")%>
+                <label for="Name"  class="inline">Name:</label> <b><%= Html.Encode(Model.Name)%> </b>
             </p>
             <p>
-                <label for="ContentData">ContentData:</label>
-                <%= Html.TextArea("ContentData", Model.ContentData) %> 
-            </p>
-            <p>
-                <label for="ModifiedDate">ModifiedDate:</label>
-                <%= Html.TextBox("ModifiedDate", String.Format("{0:g}", Model.ModifiedDate)) %>
-                <%= Html.ValidationMessage("ModifiedDate", "*") %>
-            </p>
-            <p>
-                <label for="ExpireDate">ExpireDate:</label>
-                <%= Html.TextBox("ExpireDate", String.Format("{0:g}", Model.ExpireDate)) %>
-                <%= Html.ValidationMessage("ExpireDate", "*") %>
-            </p>
-            <p>
-                <label for="ActiveDate">ActiveDate:</label>
-                <%= Html.TextBox("ActiveDate", String.Format("{0:g}", Model.ActiveDate)) %>
-                <%= Html.ValidationMessage("ActiveDate", "*") %>
-            </p>
-            <p>
-                <label for="ModifiedBy">ModifiedBy:</label>
-                <%= Html.TextBox("ModifiedBy", Model.ModifiedBy) %>
-                <%= Html.ValidationMessage("ModifiedBy", "*") %>
-            </p>
+                <label for="ContentData">ContentData:</label> 
+		        <textarea class="jquery_ckeditor" cols="80" id="editor1" name="ContentData" rows="10">
+		            <%= Html.Encode(Model.ContentData)  %> 
+		        </textarea>
+		        
+            </p>  
             <p>
                 <input type="submit" value="Save" />
-            </p>
-        </fieldset>
+            </p> 
 
     <% } %>
 
     <div>
+    <p> 
+        <%=Html.ActionLink("View", "Page", "Page", new { id = Model.Id }, null )%> |
+        <%=Html.ActionLink("Details", "Details", new { id = Model.Id })%> |
+        <%=Html.ActionLink("EditExtra", "EditExtra", new { id = Model.Id })%> |
         <%=Html.ActionLink("Back to List", "Index") %>
+        
+    </p>
     </div>
 
 </asp:Content>
 
+<asp:Content runat="server" ContentPlaceHolderID="JavaScript" ID="contentJavaScript"> 
+	<%--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>--%>
+	<script type="text/javascript" src="<%= Url.Content("~/Content/CkEditor/ckeditor.js") %>"></script>
+	<script type="text/javascript" src="<%= Url.Content("~/Content/CkEditor/jquery.js") %>"></script>
+	<script type="text/javascript" src="<%= Url.Content("~/Content/CkEditor/sample.js") %>"></script>
+	<script type="text/javascript">
+	//<![CDATA[
+
+    $(function()
+    {
+	    var config = {
+		    toolbar:
+		    [ 
+		        ['Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates'],
+                ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
+                ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+                ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
+                '/',
+                ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
+                ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
+                ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                ['Link', 'Unlink', 'Anchor'],
+                ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
+                '/',
+                ['Styles', 'Format', 'Font', 'FontSize'],
+                ['TextColor', 'BGColor'],
+                ['Maximize', 'ShowBlocks', '-', 'About']
+		    ]
+	    };
+
+	    // Initialize the editor.
+	    // Callback function can be passed and executed after full instance creation.
+	    $('.jquery_ckeditor').ckeditor(config);
+    });
+
+	//]]>
+	</script>
+</asp:Content>

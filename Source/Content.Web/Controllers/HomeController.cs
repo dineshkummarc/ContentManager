@@ -9,11 +9,11 @@ namespace ContentNamespace.Web.Controllers
     [HandleError]
     public class HomeController : ContentManagerBaseController 
     {
-        private readonly ISettingService _service;
-
         public HomeController(ISettingService service)
         {
-            this._service = service;
+            this._settingService = service;
+
+            GetContentManagerSettings();
         }
 
         public ActionResult Index()

@@ -16,9 +16,12 @@ namespace ContentNamespace.Web.Controllers
         private readonly IContentService _service;
 
         // GET: /HtmlContent/
-        public HtmlContentController(IContentService service)
+        public HtmlContentController(IContentService service, ISettingService settingService)
         {
             this._service = service;
+            this._settingService = settingService;
+
+            GetContentManagerSettings();
         }
 
         public ActionResult Index()
@@ -45,36 +48,23 @@ namespace ContentNamespace.Web.Controllers
         // POST: /HtmlContent/Create
 
         [AcceptVerbs(HttpVerbs.Post)]
-        [ValidateInput(false)]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                HtmlContent c = new HtmlContent();
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < collection.Keys.Count; i++)
-                {
-                    sb.Append(", " + collection.Keys[i] + "=" + collection[collection.Keys[i]]);
-                }
-                c.ContentData = collection["ContentData"];
-                c.ModifiedBy = collection["ModifiedBy"];
-                c.Name = collection["Name"];
-                c.ActiveDate = DateTime.Now ; //collection["ActiveDate"];
-                c.ExpireDate = DateTime.MaxValue;
-                c.ModifiedDate = DateTime.Now;
-                this._service.Save(c);
-
-                return RedirectToAction("Index");
-            }
-            catch
+        public ActionResult Create([Bind(Exclude = "Id")] HtmlContent c)
+        {  
+            c.ModifiedBy = "XXXX";//TODO: should be loged in user
+            c.ModifiedDate = DateTime.Now;
+            c.ExpireDate = DateTime.MaxValue;
+            c.ActiveDate = new DateTime(1900, 1, 1); 
+            c.ContentData = "Hello <b>World</b>";
+            if (!this.Validate(c))
             {
                 return View();
             }
+            this._service.Save(c);
+            return RedirectToAction("Edit/" + c.Id);
         }
 
         //
-        // GET: /HtmlContent/Edit/5
-
+        // GET: /HtmlContent/Edit/5 
         public ActionResult Edit(int id)
         {
             var editContent = this._service.Get(id);
@@ -88,16 +78,13 @@ namespace ContentNamespace.Web.Controllers
         // POST: /HtmlContent/Edit/5 
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateInput(false)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, [Bind(Exclude = "Id")] HtmlContent c)
         {
             try
             {
-                HtmlContent c = this._service.Get(id);
-                c.ContentData = collection["ContentData"];
-                c.ModifiedBy = collection["ModifiedBy"];
+                c.Id = id;
                 this._service.Save(c);
 
-                //return RedirectToAction("Index");
                 return RedirectToAction("Details", new { id = id });
                 // return RedirectToAction("Details", new RouteValueDictionary(new { id = id }));
             }
@@ -106,5 +93,73 @@ namespace ContentNamespace.Web.Controllers
                 return View();
             }
         }
+
+        //
+        // GET: /HtmlContent/EditExtra/5 
+        public ActionResult EditExtra(int id)
+        {
+            var editContent = this._service.Get(id);
+
+            editContent.Edit();
+
+            return View(editContent);
+        }
+
+        //ref: http://tinyurl.com/d6xolp      
+        // POST: /HtmlContent/EditExtra/5 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditExtra(int id, [Bind(Exclude = "Id,ContentData")] HtmlContent c)
+        {
+            try
+            {
+                c.Id = id;
+                c.ContentData = this._service.Get(id).ContentData;
+                this._service.Save(c);
+
+                return RedirectToAction("Details", new { id = id });
+                // return RedirectToAction("Details", new RouteValueDictionary(new { id = id }));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+        public ActionResult Content(string id)
+        {
+            var c = this._service.Get(Convert.ToInt32(id));
+            return PartialView("Content", c);
+        }
+
+
+        public ActionResult ContentPage(int id)
+        {
+            var x = this._service.Get(id); 
+            return View(x);
+        }
+        
+
+        // GET: /AjaxTest/
+        public ActionResult TestContents()
+        { 
+            return View();
+        }
+         
+
+
+        protected bool Validate(HtmlContent item)
+        {
+            if (item.Name.Trim().Length == 0)
+                ModelState.AddModelError("Name", "Name name is required.");
+            //if (contactToCreate.LastName.Trim().Length == 0)
+            //    ModelState.AddModelError("LastName", "Last name is required.");
+            //if (contactToCreate.Phone.Length > 0 && !Regex.IsMatch(contactToCreate.Phone, @"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"))
+            //    ModelState.AddModelError("Phone", "Invalid phone number.");
+            //if (contactToCreate.Email.Length > 0 && !Regex.IsMatch(contactToCreate.Email, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"))
+            //    ModelState.AddModelError("Email", "Invalid email address."); 
+            return ModelState.IsValid;
+        }
+
     }
 }

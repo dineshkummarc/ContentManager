@@ -10,8 +10,9 @@ namespace ContentNamespace.Web.Code.Service.Interfaces
         IQueryable<HtmlContent> Get(DateTime dt);
         IQueryable<HtmlContent> Get();
         HtmlContent Get(int id);
+        HtmlContent Get(string name, DateTime dt);
         HtmlContent Save(HtmlContent item);
-        bool Delete(HtmlContent item);
+        bool Delete(HtmlContent item);  
     }
 }
 
