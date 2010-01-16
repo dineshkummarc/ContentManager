@@ -357,6 +357,7 @@
     <Content Include="Content\openid.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Public\TestContent.htm" />
     <Content Include="Scripts\images\aol.gif" />
     <Content Include="Scripts\images\blogger.ico" />
     <Content Include="Scripts\images\claimid.ico" />
