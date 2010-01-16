@@ -75,18 +75,44 @@ namespace ContentNamespace.Web.Controllers
         // POST: /HtmlContent/Edit/5 
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateInput(false)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, [Bind(Exclude = "Id")] HtmlContent c)
         {
             try
             {
-                HtmlContent c = this._service.Get(id);
-                c.ContentData = collection["ContentData"]; 
-                c.ModifiedBy = "XXXX";//TODO: should be loged in user
-                c.ModifiedDate = DateTime.Now;
-                c.ExpireDate = DateTime.MaxValue;
-                c.ActiveDate = new DateTime(1900, 1, 1);  
+                c.Id = id;
                 this._service.Save(c);
- 
+
+                return RedirectToAction("Details", new { id = id });
+                // return RedirectToAction("Details", new RouteValueDictionary(new { id = id }));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        //
+        // GET: /HtmlContent/EditExtra/5 
+        public ActionResult EditExtra(int id)
+        {
+            var editContent = this._service.Get(id);
+
+            editContent.Edit();
+
+            return View(editContent);
+        }
+
+        //ref: http://tinyurl.com/d6xolp      
+        // POST: /HtmlContent/EditExtra/5 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditExtra(int id, [Bind(Exclude = "Id,ContentData")] HtmlContent c)
+        {
+            try
+            {
+                c.Id = id;
+                c.ContentData = this._service.Get(id).ContentData;
+                this._service.Save(c);
+
                 return RedirectToAction("Details", new { id = id });
                 // return RedirectToAction("Details", new RouteValueDictionary(new { id = id }));
             }
