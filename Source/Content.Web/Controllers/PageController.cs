@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using ContentNamespace.Web.Code.Entities;
 using ContentNamespace.Web.Code.Service.Interfaces;
 
 namespace ContentNamespace.Web.Controllers
@@ -33,5 +34,37 @@ namespace ContentNamespace.Web.Controllers
             return View(this._contentService.Get(id));
         }
 
+        public ActionResult RequireEdit(int id)
+        {
+            var c = _contentService.Get(id);
+
+            c.RequireEdit(); // Change workflow state
+
+            _contentService.Save(c);
+
+            return RedirectToAction("../HtmlContent/Details", new { id });
+        }
+
+        public ActionResult Accept(int id)
+        {
+            var c = _contentService.Get(id);
+
+            c.Accept(); // Change workflow state
+
+            _contentService.Save(c);
+
+            return RedirectToAction("../HtmlContent/Details", new { id });
+        }
+
+        public ActionResult Reject(int id)
+        {
+            var c = _contentService.Get(id);
+
+            c.Reject(); // Change workflow state
+
+            _contentService.Save(c);
+
+            return RedirectToAction("../HtmlContent/Details", new { id });
+        }
     }
 }

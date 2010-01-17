@@ -53,6 +53,7 @@
     <p> 
         <%=Html.ActionLink("View", "Page", "Page", new { id = Model.Id }, null )%> |
         <%=Html.ActionLink("Edit", "Edit", new {  id=Model.Id }) %> |
+        <%=Html.ActionLink("Submit", "Submit", new {  id=Model.Id }) %> |
         <%=Html.ActionLink("Back to List", "Index") %>
         
     </p>

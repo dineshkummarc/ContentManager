@@ -92,17 +92,20 @@ namespace ContentNamespace.Web.Code.Entities
 
             // State: Submitted
             htmlContentWorkflow.Configure(Enums.ContentState.Submitted)
+                .PermitReentryIf(Enums.ContentTransition.Save, () => HasEditRights) // Re-entrant to Submitted state
                 .PermitIf(Enums.ContentTransition.RequireEdit, Enums.ContentState.InProgress, () => IsAdminUser) // Returns to InProgress state
                 .PermitIf(Enums.ContentTransition.Accept, Enums.ContentState.Published, () => IsAdminUser)
                 .PermitIf(Enums.ContentTransition.Reject, Enums.ContentState.Rejected, () => IsAdminUser);
 
             // State: Published
             htmlContentWorkflow.Configure(Enums.ContentState.Published)
+                .PermitReentryIf(Enums.ContentTransition.Save, () => HasEditRights) // Re-entrant to Published state
                 .OnEntry(() => Email.Send(Enums.EmailType.ContentPublished))
                 .PermitIf(Enums.ContentTransition.Expire, Enums.ContentState.Expired, () => IsAdminUser);
 
             // State: Rejected
             htmlContentWorkflow.Configure(Enums.ContentState.Rejected)
+                .PermitReentryIf(Enums.ContentTransition.Save, () => HasEditRights) // Re-entrant to Rejected state
                 .OnEntry(() => Email.Send(Enums.EmailType.ContentRejected));
         }
 
