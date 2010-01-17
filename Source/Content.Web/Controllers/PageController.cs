@@ -31,7 +31,9 @@ namespace ContentNamespace.Web.Controllers
         // GET: /Page/Page/5 
         public ActionResult Page(int id)
         {
-            return View(this._contentService.Get(id));
+            var c = this._contentService.Get(id);
+
+            return View(c);
         }
 
         public ActionResult RequireEdit(int id)

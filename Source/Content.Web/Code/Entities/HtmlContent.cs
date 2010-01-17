@@ -1,5 +1,6 @@
 ﻿using System;
 //
+using System.Collections.Generic;
 using ContentNamespace.Web.Code.Entities.Base;
 using ContentNamespace.Web.Code.Util;
 //
@@ -31,7 +32,11 @@ namespace ContentNamespace.Web.Code.Entities
         {
             get { return _itemStateMachine.State; } 
         }
-        
+        public IEnumerable<Enums.ContentTransition> AvailableTransitions
+        {
+            get { return _itemStateMachine.PermittedTriggers; }
+        }
+
         // Security related
         public int OwnerUserId { get; set; }
         public static bool HasEditRights
