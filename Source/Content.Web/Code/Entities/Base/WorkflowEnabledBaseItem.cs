@@ -20,7 +20,7 @@ namespace ContentNamespace.Web.Code.Entities.Base
             get { return _itemState; }
             set { _itemState = value; }
         }
-        public TState HtmlContentState
+        public TState ItemStateMachineState
         {
             get { return _itemStateMachine.State; }
         }

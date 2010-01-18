@@ -48,7 +48,7 @@
         </p>
         <p>
             ContentState:
-            <%= Html.Encode(Model.HtmlContentState) %>
+            <%= Html.Encode(Model.ItemStateMachineState) %>
         </p>
     </fieldset>
     <p> 
