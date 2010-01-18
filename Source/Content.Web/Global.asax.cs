@@ -43,8 +43,8 @@ namespace ContentNamespace.Web
             var modules = new IModule[]
             {
                 new AutoControllerModule(Assembly.GetExecutingAssembly()),
-                //new ServiceModule()
-                new Db4oModule()
+                new ServiceModule()
+                //new Db4oModule()
             };
             return new StandardKernel(modules);
         }

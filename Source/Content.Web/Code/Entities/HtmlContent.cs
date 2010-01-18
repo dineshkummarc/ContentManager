@@ -1,16 +1,16 @@
 ﻿using System;
-//
 using System.Collections.Generic;
+//
 using ContentNamespace.Web.Code.Entities.Base;
 using ContentNamespace.Web.Code.Util;
 //
 using Stateless;
-using System.ComponentModel;
+
 //using System.ComponentModel.DataAnnotations;
 
 namespace ContentNamespace.Web.Code.Entities
 {
-    public class HtmlContent : WorkflowEnabledBaseItem
+    public class HtmlContent : WorkflowEnabledBaseItem<Enums.ContentState, Enums.ContentTransition>
     {
         #region Properties...
 
@@ -21,21 +21,6 @@ namespace ContentNamespace.Web.Code.Entities
         public string ContentData { get; set; }
         public DateTime ExpireDate { get; set; }
         public DateTime ActiveDate { get; set; }
-        
-        // State machine related
-        public Enums.ContentState ItemState
-        {
-            get { return _itemState; }
-            set { _itemState = value; }
-        }
-        public Enums.ContentState HtmlContentState
-        {
-            get { return _itemStateMachine.State; } 
-        }
-        public IEnumerable<Enums.ContentTransition> AvailableTransitions
-        {
-            get { return _itemStateMachine.PermittedTriggers; }
-        }
 
         // Security related
         public int OwnerUserId { get; set; }
