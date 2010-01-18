@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 //
 using ContentNamespace.Web.Code.Entities.Base;
 using ContentNamespace.Web.Code.Util;
 //
 using Stateless;
-using System.ComponentModel;
+
 //using System.ComponentModel.DataAnnotations;
 
 namespace ContentNamespace.Web.Code.Entities
 {
-    public class HtmlContent : WorkflowEnabledBaseItem
+    public class HtmlContent : WorkflowEnabledBaseItem<Enums.ContentState, Enums.ContentTransition>
     {
         #region Properties...
 
@@ -20,18 +21,7 @@ namespace ContentNamespace.Web.Code.Entities
         public string ContentData { get; set; }
         public DateTime ExpireDate { get; set; }
         public DateTime ActiveDate { get; set; }
-        
-        // State machine related
-        public Enums.ContentState ItemState
-        {
-            get { return _itemState; }
-            set { _itemState = value; }
-        }
-        public Enums.ContentState HtmlContentState
-        {
-            get { return _itemStateMachine.State; } 
-        }
-        
+
         // Security related
         public int OwnerUserId { get; set; }
         public static bool HasEditRights
@@ -92,17 +82,20 @@ namespace ContentNamespace.Web.Code.Entities
 
             // State: Submitted
             htmlContentWorkflow.Configure(Enums.ContentState.Submitted)
+                .PermitReentryIf(Enums.ContentTransition.Save, () => HasEditRights) // Re-entrant to Submitted state
                 .PermitIf(Enums.ContentTransition.RequireEdit, Enums.ContentState.InProgress, () => IsAdminUser) // Returns to InProgress state
                 .PermitIf(Enums.ContentTransition.Accept, Enums.ContentState.Published, () => IsAdminUser)
                 .PermitIf(Enums.ContentTransition.Reject, Enums.ContentState.Rejected, () => IsAdminUser);
 
             // State: Published
             htmlContentWorkflow.Configure(Enums.ContentState.Published)
+                .PermitReentryIf(Enums.ContentTransition.Save, () => HasEditRights) // Re-entrant to Published state
                 .OnEntry(() => Email.Send(Enums.EmailType.ContentPublished))
                 .PermitIf(Enums.ContentTransition.Expire, Enums.ContentState.Expired, () => IsAdminUser);
 
             // State: Rejected
             htmlContentWorkflow.Configure(Enums.ContentState.Rejected)
+                .PermitReentryIf(Enums.ContentTransition.Save, () => HasEditRights) // Re-entrant to Rejected state
                 .OnEntry(() => Email.Send(Enums.EmailType.ContentRejected));
         }
 

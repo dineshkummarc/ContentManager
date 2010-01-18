@@ -14,9 +14,12 @@ namespace ContentNamespace.Web.Controllers
     {
         private readonly IContentService _service;
 
-        public AjaxTestController(IContentService service)
+        public AjaxTestController(IContentService service, ISettingService settingService)
         {
             this._service = service;
+            this._settingService = settingService;
+
+            GetContentManagerSettings();
         }
 
         public ActionResult Details(string id)

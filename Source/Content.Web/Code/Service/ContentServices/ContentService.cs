@@ -10,13 +10,13 @@ using ContentNamespace.Web.Code.Util;
 
 namespace ContentNamespace.Web.Code.Service.Base
 {
-    public class ContentService : IContentService
+    public class ContentService : ContentManagerBaseService<IContentRepository, HtmlContent>, IContentService
     {
-        private IContentRepository _repository; 
+        //private IContentRepository _repository; 
 
-        public ContentService(IContentRepository repository)
+
+        public ContentService(IContentRepository repository) : base(repository)
         {
-            this._repository = repository;
         }
 
         public IQueryable<HtmlContent> Get(DateTime dt)
@@ -86,12 +86,12 @@ namespace ContentNamespace.Web.Code.Service.Base
             {
                 Id = x.Id,
                 Name = x.Name,
-                ContentData = (x.ContentData.Length > 5) ?
-                               x.ContentData.Substring(0, 5) + "..." :
-                               x.ContentData,
-                //ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
-                //               x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." :
+                //ContentData = (x.ContentData.Length > 5) ?
+                //               x.ContentData.Substring(0, 5) + "..." :
                 //               x.ContentData,
+                ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
+                               x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." :
+                               x.ContentData,
                 //ContentData = x.ContentData,
                 ActiveDate = x.ActiveDate,
                 ExpireDate = x.ExpireDate,

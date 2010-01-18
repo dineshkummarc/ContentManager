@@ -16,12 +16,14 @@ namespace ContentNamespace.Web.Controllers
         private readonly IContentService _service;
 
         // GET: /HtmlContent/
-        public HtmlContentController(IContentService service)
+        public HtmlContentController(IContentService service, ISettingService settingService)
         {
             this._service = service;
+            this._settingService = settingService;
+
+            GetContentManagerSettings();
         }
 
-        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(this._service.Get());
@@ -29,7 +31,6 @@ namespace ContentNamespace.Web.Controllers
 
         //
         // GET: /HtmlContent/Details/5 
-        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id)
         {
             return View(this._service.Get(id));
@@ -37,16 +38,16 @@ namespace ContentNamespace.Web.Controllers
 
         //
         // GET: /HtmlContent/Create
-        [Authorize(Roles = "Admin")]
+
         public ActionResult Create()
         {
             return View();
         }
 
         //
-        // POST: /HtmlContent/Create 
+        // POST: /HtmlContent/Create
+
         [AcceptVerbs(HttpVerbs.Post)]
-        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Exclude = "Id")] HtmlContent c)
         {  
             c.ModifiedBy = "XXXX";//TODO: should be loged in user
@@ -64,7 +65,6 @@ namespace ContentNamespace.Web.Controllers
 
         //
         // GET: /HtmlContent/Edit/5 
-        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var editContent = this._service.Get(id);
@@ -78,7 +78,6 @@ namespace ContentNamespace.Web.Controllers
         // POST: /HtmlContent/Edit/5 
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateInput(false)]
-        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, [Bind(Exclude = "Id")] HtmlContent c)
         {
             try
@@ -97,7 +96,6 @@ namespace ContentNamespace.Web.Controllers
 
         //
         // GET: /HtmlContent/EditExtra/5 
-        [Authorize(Roles = "Admin")]
         public ActionResult EditExtra(int id)
         {
             var editContent = this._service.Get(id);
@@ -110,7 +108,6 @@ namespace ContentNamespace.Web.Controllers
         //ref: http://tinyurl.com/d6xolp      
         // POST: /HtmlContent/EditExtra/5 
         [AcceptVerbs(HttpVerbs.Post)]
-        [Authorize(Roles = "Admin")]
         public ActionResult EditExtra(int id, [Bind(Exclude = "Id,ContentData")] HtmlContent c)
         {
             try
@@ -127,7 +124,18 @@ namespace ContentNamespace.Web.Controllers
                 return View();
             }
         }
- 
+
+        public ActionResult Submit(int id)
+        {
+            var editContent = this._service.Get(id);
+
+            editContent.Submit(); // Change workflow state
+
+            _service.Save(editContent);
+
+            return RedirectToAction("../HtmlContent/Details", new { id });
+        }
+
         public ActionResult Content(string id)
         {
             var c = this._service.Get(Convert.ToInt32(id));
