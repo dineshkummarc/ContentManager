@@ -2,6 +2,7 @@
 
 namespace ContentNamespace.Web.Code.Entities.Base
 {
+    [Serializable]
     public abstract class ContentManagerBaseItem
     {
         public int Id { get; set; }

@@ -61,6 +61,7 @@ namespace ContentNamespace.Web
         public override void Load()
         {
             Bind<IContentRepository>().To<Db4oContentRepository>().Using<SingletonBehavior>();
+            //Bind<IContentRepository>().To<MongoContentRepository>().Using<SingletonBehavior>();
             Bind<IContentService>().To<ContentService>();
 
             Bind<IUserProfileRepository>().To<FakeUserProfileRepository>().Using<SingletonBehavior>();// TODO: remove

@@ -47,6 +47,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceBin\DotNetOpenId.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.0.3671.20349, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceBin\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject.Conditions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceBin\Ninject.Conditions.dll</HintPath>
@@ -105,6 +109,7 @@
     <Compile Include="Code\DataAccess\Interfaces\IUserRoleRepository.cs" />
     <Compile Include="Code\DataAccess\Db4o\Db4o.cs" />
     <Compile Include="Code\DataAccess\Db4o\Db4oConfigurationRepository.cs" />
+    <Compile Include="Code\DataAccess\MongoDb\MongoContentRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlBaseRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlContentRepository.cs" />
     <Compile Include="Code\Entities\Base\ContentManagerBaseItem.cs" />

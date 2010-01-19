@@ -10,6 +10,7 @@ using Stateless;
 
 namespace ContentNamespace.Web.Code.Entities
 {
+    [Serializable]
     public class HtmlContent : WorkflowEnabledBaseItem<Enums.ContentState, Enums.ContentTransition>
     {
         #region Properties...
