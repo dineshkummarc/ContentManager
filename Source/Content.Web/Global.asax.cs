@@ -33,9 +33,14 @@ namespace ContentNamespace.Web
 
             routes.MapRoute(
                 "Default",                                              // Route name
-                "{controller}/{action}/{id}",                           // URL with parameters
+                "{controller}.mvc/{action}/{id}",                           // URL with parameters
                 new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
-            );
+            ); 
+            routes.MapRoute(
+                "Root",
+                "",
+                new { controller = "Home", action = "Index", id = "" }
+            ); 
         }
 
         protected override IKernel CreateKernel()

@@ -140,6 +140,7 @@
     <Compile Include="Code\Util\LazyList.cs" />
     <Compile Include="Code\Util\PagedList.cs" />
     <Compile Include="Code\Util\Serialization.cs" />
+    <Compile Include="Code\Util\ServerVar.cs" />
     <Compile Include="Code\Util\SessionHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxTestController.cs" />
@@ -447,8 +448,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2537</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/Content.Web</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
