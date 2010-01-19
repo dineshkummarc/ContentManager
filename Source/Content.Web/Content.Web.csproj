@@ -98,6 +98,7 @@
     <Compile Include="Code\DataAccess\Fake\FakeConfigurationRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeUserProfileRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeUserRoleRepository.cs" />
+    <Compile Include="Code\DataAccess\Interfaces\IApplicationRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IContentRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\ISettingRepository.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Code\DataAccess\Db4o\Db4oConfigurationRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlBaseRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlContentRepository.cs" />
+    <Compile Include="Code\Entities\Application.cs" />
     <Compile Include="Code\Entities\Base\ContentManagerBaseItem.cs" />
     <Compile Include="Code\Entities\Base\WorkflowEnabledBaseItem.cs" />
     <Compile Include="Code\Entities\Enum.cs" />
