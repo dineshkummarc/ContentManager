@@ -34,8 +34,7 @@
             </div>
         </div>
 
-        <div id="main">
-            baseUrl: <b><%= string.Format("{0}://{1}", HttpContext.Current.Request.Url.Scheme, HttpContext.Current.Request.Url.Authority )  %></b>
+        <div id="main"> 
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 
             <div id="footer">
