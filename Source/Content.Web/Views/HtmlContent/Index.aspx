@@ -66,7 +66,7 @@
                 <%= Html.Encode(item.ModifiedBy) %>
             </td>
             <td>
-                <%= Html.Encode(item.HtmlContentState) %>
+                <%= Html.Encode(item.ItemStateMachineState) %>
             </td>
         </tr>
     

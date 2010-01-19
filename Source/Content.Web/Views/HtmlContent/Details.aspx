@@ -1,4 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<ContentNamespace.Web.Code.Entities.HtmlContent>" %>
+<%@ Import Namespace="ContentNamespace.Web.Code.Entities"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Details
@@ -47,12 +48,15 @@
         </p>
         <p>
             ContentState:
-            <%= Html.Encode(Model.HtmlContentState) %>
+            <%= Html.Encode(Model.ItemStateMachineState) %>
         </p>
     </fieldset>
     <p> 
         <%=Html.ActionLink("View", "Page", "Page", new { id = Model.Id }, null )%> |
-        <%=Html.ActionLink("Edit", "Edit", new {  id=Model.Id }) %> |
+        <% if (Model.AvailableTransitions.Contains(Enums.ContentTransition.Edit))
+           { %> <%=Html.ActionLink("Edit", "Edit", new {  id=Model.Id }) %> | <% } %> 
+        <% if (Model.AvailableTransitions.Contains(Enums.ContentTransition.Submit))
+           { %> <%=Html.ActionLink("Submit", "Submit", new {  id=Model.Id }) %> | <% } %> 
         <%=Html.ActionLink("Back to List", "Index") %>
         
     </p>

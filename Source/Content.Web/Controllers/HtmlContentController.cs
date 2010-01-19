@@ -125,6 +125,16 @@ namespace ContentNamespace.Web.Controllers
             }
         }
 
+        public ActionResult Submit(int id)
+        {
+            var editContent = this._service.Get(id);
+
+            editContent.Submit(); // Change workflow state
+
+            _service.Save(editContent);
+
+            return RedirectToAction("../HtmlContent/Details", new { id });
+        }
 
         public ActionResult Content(string id)
         {
