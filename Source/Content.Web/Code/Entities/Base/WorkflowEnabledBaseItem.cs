@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using Stateless;
+using System;
 
 namespace ContentNamespace.Web.Code.Entities.Base
 {
+    [Serializable]
     public abstract class WorkflowEnabledBaseItem<TState, TTransition> : ContentManagerBaseItem
     {
         #region Fields...
