@@ -20,6 +20,7 @@ using ContentNamespace.Web.Code.Service;
 using ContentNamespace.Web.Code.Service.RoleServices;
 using ContentNamespace.Web.Code.DataAccess.Db4o;
 using ContentNamespace.Web.Code.DataAccess.VistaDb;
+using ContentNamespace.Web.Code.DataAccess.Sql;
 
 namespace ContentNamespace.Web
 {
@@ -61,7 +62,8 @@ namespace ContentNamespace.Web
     {
         public override void Load()
         {
-            Bind<IContentRepository>().To<VistaDbContentRepository>().Using<SingletonBehavior>();
+            Bind<IContentRepository>().To<SqlContentRepository>().Using<SingletonBehavior>();
+            //Bind<IContentRepository>().To<VistaDbContentRepository>().Using<SingletonBehavior>();
             //Bind<IContentRepository>().To<Db4oContentRepository>().Using<SingletonBehavior>();
             //Bind<IContentRepository>().To<MongoContentRepository>().Using<SingletonBehavior>();
             Bind<IContentService>().To<ContentService>();
