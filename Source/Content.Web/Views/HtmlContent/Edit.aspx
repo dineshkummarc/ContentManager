@@ -14,7 +14,14 @@
  
             <p class="hidden">
                 <label for="Id">Id:</label>
-                <%= Html.Encode(Model.Id) %> 
+                <%= Html.Encode(Model.Id) %>
+                <%= Html.TextBox("CreatedDate", Model.CreatedDate)%> 
+                <%= Html.TextBox("CreatedBy", Model.CreatedBy)%> 
+                <%= Html.TextBox("ModifiedBy", Model.ModifiedBy)%> 
+                <%= Html.TextBox("Name", Model.Name)%> 
+                <%= Html.TextBox("ExpireDate", Model.ExpireDate)%> 
+                <%= Html.TextBox("ActiveDate", Model.ActiveDate)%> 
+                <%= Html.TextBox("OwnerUserId", Model.OwnerUserId)%>
             </p>
             <p>
                 <label for="Name"  class="inline">Name:</label> <b><%= Html.Encode(Model.Name)%> </b>

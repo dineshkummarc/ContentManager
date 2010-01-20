@@ -83,6 +83,7 @@ namespace ContentNamespace.Web.Controllers
             try
             {
                 c.Id = id;
+
                 this._service.Save(c);
 
                 return RedirectToAction("Details", new { id = id });

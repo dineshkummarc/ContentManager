@@ -4,35 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ContentManagerModel.Store" Alias="Self" Provider="System.Data.VistaDB" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+      <Schema Namespace="ContentManagerModel.Store" Alias="Self" Provider="System.Data.VistaDB" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="ContentManagerModelStoreContainer">
-          <EntitySet Name="HtmlContent" EntityType="ContentManagerModel.Store.HtmlContent" store:Type="Tables" store:Schema="dbo" store:Name="HtmlContent">
-            <DefiningQuery>SELECT 
-      [HtmlContent].[Id] AS [Id], 
-      [HtmlContent].[CreatedDate] AS [CreatedDate], 
-      [HtmlContent].[CreatedBy] AS [CreatedBy], 
-      [HtmlContent].[ModifiedDate] AS [ModifiedDate], 
-      [HtmlContent].[ModifiedBy] AS [ModifiedBy], 
-      [HtmlContent].[ItemState] AS [ItemState], 
-      [HtmlContent].[Name] AS [Name], 
-      [HtmlContent].[ContentData] AS [ContentData], 
-      [HtmlContent].[ExpireDate] AS [ExpireDate], 
-      [HtmlContent].[ActiveDate] AS [ActiveDate], 
-      [HtmlContent].[OwnerUserId] AS [OwnerUserId]
-      FROM [HtmlContent] AS [HtmlContent]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="HtmlContent" EntityType="ContentManagerModel.Store.HtmlContent" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'ContentManager.dbo.HtmlContent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="HtmlContent">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="CreatedBy" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="ExpireDate" />
-            <PropertyRef Name="ActiveDate" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -46,7 +24,8 @@
           <Property Name="ActiveDate" Type="datetime" Nullable="false" />
           <Property Name="OwnerUserId" Type="int" />
         </EntityType>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ContentManagerModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -56,11 +35,7 @@
         <EntityType Name="HtmlContent">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="CreatedBy" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="ActiveDate" />
-            <PropertyRef Name="ExpireDate" /></Key>
+          </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
@@ -69,9 +44,10 @@
           <Property Name="ItemState" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
           <Property Name="ContentData" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ExpireDate" Type="DateTime" Nullable="false" />
           <Property Name="ActiveDate" Type="DateTime" Nullable="false" />
           <Property Name="OwnerUserId" Type="Int32" />
-          <Property Name="ExpireDate" Type="DateTime" Nullable="false" /></EntityType>
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -81,7 +57,6 @@
           <EntitySetMapping Name="HtmlContent">
             <EntityTypeMapping TypeName="IsTypeOf(ContentManagerModel.HtmlContent)">
               <MappingFragment StoreEntitySet="HtmlContent">
-                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -90,6 +65,7 @@
                 <ScalarProperty Name="ItemState" ColumnName="ItemState" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ContentData" ColumnName="ContentData" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
                 <ScalarProperty Name="ActiveDate" ColumnName="ActiveDate" />
                 <ScalarProperty Name="OwnerUserId" ColumnName="OwnerUserId" />
               </MappingFragment>
@@ -114,6 +90,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="ContentManager">
-        <EntityTypeShape EntityType="ContentManagerModel.HtmlContent" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7427376302083331" IsExpanded="true" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="ContentManagerModel.HtmlContent" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7427376302083335" IsExpanded="true" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
