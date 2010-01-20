@@ -22,9 +22,7 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
 
         #region Constructors...
 
-        public VistaDb()
-        {
-        }
+        public VistaDb() { }
 
         protected VistaDb(ContentManagerEntities dataContext)
         {

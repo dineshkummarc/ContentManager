@@ -16,64 +16,15 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
 {
     public class VistaDbContentRepository : VistaDb, IContentRepository
     {
-        //public int AddClient(Model.Client client)
-        //{
-        //    var newClient = new Client
-        //    {
-        //        ClientID = client.Id,
-        //        ClientName = client.ClientName,
-        //        DatabaseConnection = client.DatabaseConnection,
-        //        Active = client.IsActive,
-        //        TimeStamp = DateTime.Now
-        //    };
-
-        //    _context.AddToClient(newClient);
-        //    _context.SaveChanges();
-
-        //    return newClient.ClientID;
-        //}
-
-        //public bool UpdateClient(Model.Client client)
-        //{
-        //    var modifiedClient = _context.Client.First(e => e.ClientID == client.Id);
-
-        //    modifiedClient.ClientName = client.ClientName;
-        //    modifiedClient.DatabaseConnection = client.DatabaseConnection;
-        //    modifiedClient.Active = client.IsActive;
-        //    modifiedClient.TimeStamp = DateTime.Now;
-
-        //    _context.ObjectStateManager.GetObjectStateEntry(modifiedClient.EntityKey).SetModified();
-
-        //    try
-        //    {
-        //        _context.SaveChanges();
-
-        //        return true;
-        //    }
-        //    catch (OptimisticConcurrencyException) { return false; }
-        //}
-
-        //public bool DeleteClient(int clientId)
-        //{
-        //    var clientToDelete = _context.Client.First(e => e.ClientID == clientId);
-
-        //    try
-        //    {
-        //        _context.Attach(clientToDelete);
-        //        _context.DeleteObject(clientToDelete);
-        //        _context.SaveChanges();
-
-        //        return true;
-        //    }
-        //    catch { return false; }
-        //}
+        public VistaDbContentRepository()
+        {
+            _context = new ContentManagerEntities();
+        }
 
         #region IContentRepositoryMembers...
 
         public IQueryable<ContentNamespace.Web.Code.Entities.HtmlContent> Get()
         {
-            _context = new ContentManagerEntities();
-
             var query = from r in _context.HtmlContent
                         select new ContentNamespace.Web.Code.Entities.HtmlContent
                         {
@@ -85,7 +36,7 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
                             //ItemState = (Enums.ContentState)Enum.Parse(typeof(Enums.ContentState), r.ItemState),
                             Name = r.Name,
                             ContentData = r.ContentData,
-                            ExpireDate = r.ExpireData,
+                            ExpireDate = r.ExpireDate,
                             ActiveDate = r.ActiveDate,
                             OwnerUserId = (int)r.OwnerUserId
                         };
@@ -95,12 +46,43 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
 
         public ContentNamespace.Web.Code.Entities.HtmlContent Save(ContentNamespace.Web.Code.Entities.HtmlContent entity)
         {
-            throw new NotImplementedException();
+            var modifiedContent = _context.HtmlContent.First(e => e.Id == entity.Id);
+
+            //modifiedClient.CreatedDate = entity.CreatedDate; // Invariant
+            //modifiedClient.CreatedBy = entity.CreatedBy; // Invariant
+            modifiedContent.ModifiedDate = DateTime.Now;
+            modifiedContent.ModifiedBy = entity.ModifiedBy;
+            //modifiedClient.ItemState = entity.ItemState.ToString();
+            modifiedContent.Name = entity.Name;
+            modifiedContent.ContentData = entity.ContentData;
+            modifiedContent.ExpireDate = entity.ExpireDate;
+            modifiedContent.ActiveDate = entity.ActiveDate;
+            modifiedContent.OwnerUserId = entity.OwnerUserId;
+
+            _context.ObjectStateManager.GetObjectStateEntry(modifiedContent.EntityKey).SetModified();
+
+            try
+            {
+                _context.SaveChanges();
+
+                return entity;
+            }
+            catch (OptimisticConcurrencyException) { return null; }
         }
 
         public bool Delete(ContentNamespace.Web.Code.Entities.HtmlContent entity)
         {
-            throw new NotImplementedException();
+            var contentToDelete = _context.HtmlContent.First(e => e.Id == entity.Id);
+
+            try
+            {
+                _context.Attach(contentToDelete);
+                _context.DeleteObject(contentToDelete);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch { return false; }
         }
 
         #endregion

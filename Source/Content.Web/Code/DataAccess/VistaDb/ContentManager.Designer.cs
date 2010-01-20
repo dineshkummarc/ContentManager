@@ -11,7 +11,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 
 // Original file name:
-// Generation date: 1/20/2010 11:09:06 AM
+// Generation date: 1/20/2010 12:23:58 PM
 namespace ContentNamespace.Web.Code.DataAccess.VistaDb
 {
     
@@ -76,8 +76,8 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
     /// CreatedDate
     /// CreatedBy
     /// Name
-    /// ExpireData
     /// ActiveDate
+    /// ExpireDate
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ContentManagerModel", Name="HtmlContent")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -91,17 +91,17 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
         /// <param name="createdDate">Initial value of CreatedDate.</param>
         /// <param name="createdBy">Initial value of CreatedBy.</param>
         /// <param name="name">Initial value of Name.</param>
-        /// <param name="expireData">Initial value of ExpireData.</param>
         /// <param name="activeDate">Initial value of ActiveDate.</param>
-        public static HtmlContent CreateHtmlContent(int id, global::System.DateTime createdDate, string createdBy, string name, global::System.DateTime expireData, global::System.DateTime activeDate)
+        /// <param name="expireDate">Initial value of ExpireDate.</param>
+        public static HtmlContent CreateHtmlContent(int id, global::System.DateTime createdDate, string createdBy, string name, global::System.DateTime activeDate, global::System.DateTime expireDate)
         {
             HtmlContent htmlContent = new HtmlContent();
             htmlContent.Id = id;
             htmlContent.CreatedDate = createdDate;
             htmlContent.CreatedBy = createdBy;
             htmlContent.Name = name;
-            htmlContent.ExpireData = expireData;
             htmlContent.ActiveDate = activeDate;
+            htmlContent.ExpireDate = expireDate;
             return htmlContent;
         }
         /// <summary>
@@ -289,29 +289,6 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
         partial void OnContentDataChanging(string value);
         partial void OnContentDataChanged();
         /// <summary>
-        /// There are no comments for Property ExpireData in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.DateTime ExpireData
-        {
-            get
-            {
-                return this._ExpireData;
-            }
-            set
-            {
-                this.OnExpireDataChanging(value);
-                this.ReportPropertyChanging("ExpireData");
-                this._ExpireData = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ExpireData");
-                this.OnExpireDataChanged();
-            }
-        }
-        private global::System.DateTime _ExpireData;
-        partial void OnExpireDataChanging(global::System.DateTime value);
-        partial void OnExpireDataChanged();
-        /// <summary>
         /// There are no comments for Property ActiveDate in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
@@ -357,5 +334,28 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
         private global::System.Nullable<int> _OwnerUserId;
         partial void OnOwnerUserIdChanging(global::System.Nullable<int> value);
         partial void OnOwnerUserIdChanged();
+        /// <summary>
+        /// There are no comments for Property ExpireDate in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime ExpireDate
+        {
+            get
+            {
+                return this._ExpireDate;
+            }
+            set
+            {
+                this.OnExpireDateChanging(value);
+                this.ReportPropertyChanging("ExpireDate");
+                this._ExpireDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ExpireDate");
+                this.OnExpireDateChanged();
+            }
+        }
+        private global::System.DateTime _ExpireDate;
+        partial void OnExpireDateChanging(global::System.DateTime value);
+        partial void OnExpireDateChanged();
     }
 }
