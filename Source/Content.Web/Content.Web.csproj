@@ -131,11 +131,6 @@
     <Compile Include="Code\DataAccess\MongoDb\MongoContentRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlBaseRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlContentRepository.cs" />
-    <Compile Include="Code\DataAccess\VistaDb\ContentManager.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ContentManager.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Code\DataAccess\VistaDb\VistaDbContentRepository.cs" />
     <Compile Include="Code\DataAccess\VistaDb\VistaDb.cs" />
     <Compile Include="Code\Entities\Application.cs" />
@@ -167,6 +162,7 @@
     <Compile Include="Code\Service\UserProfileServices\UserProfileService.cs" />
     <Compile Include="Code\Service\UserRoleServices\IUserRoleService.cs" />
     <Compile Include="Code\Service\UserRoleServices\UserRoleService.cs" />
+    <Compile Include="Code\Util\Account.cs" />
     <Compile Include="Code\Util\Email.cs" />
     <Compile Include="Code\Util\EnumHelper.cs" />
     <Compile Include="Code\Util\LazyList.cs" />
@@ -457,14 +453,9 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Code\DataAccess\VistaDb\ContentManager.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ContentManager.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="Code\Entities\Diagram\ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="licenses.licx" />
     <EmbeddedResource Include="Resources\EN\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
