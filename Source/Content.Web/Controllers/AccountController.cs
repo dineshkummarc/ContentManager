@@ -58,6 +58,129 @@ namespace ContentNamespace.Web.Controllers
             return View();
         }
 
+        public ActionResult OpenIdLogin()
+        {
+            string returnUrl = VirtualPathUtility.ToAbsolute("~/");
+            var openid = new OpenIdRelyingParty();
+            var response = openid.GetResponse();
+            if (response == null)
+            {
+                // Stage 2: user submitting Identifier
+                Identifier id;
+                if (Identifier.TryParse(Request["openid_identifier"], out id))
+                {
+                    try
+                    {
+                        IAuthenticationRequest req = openid.CreateRequest(Request["openid_identifier"]);
+
+                        var fetch = new FetchRequest();
+                        //ask for more info - the email address 
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Contact.Email, true));
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.FullName, true));
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.First, true));
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Name.Last, true));
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.BirthDate.WholeBirthDate, true));
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Contact.HomeAddress.City, true));
+                        fetch.Attributes.Add(new AttributeRequest(WellKnownAttributes.Contact.HomeAddress.State, true));
+                        req.AddExtension(fetch);
+
+                        return req.RedirectingResponse.AsActionResult();
+                    }
+                    catch (ProtocolException ex)
+                    {
+                        ViewData["Message"] = ex.Message;
+                        return View("Logon");
+                    }
+                }
+                else
+                {
+                    ViewData["Message"] = "Invalid identifier";
+                    return View("Logon");
+                }
+            }
+            else
+            {
+                // Stage 3: OpenID Provider sending assertion response
+                switch (response.Status)
+                {
+                    case AuthenticationStatus.Authenticated:
+                        var fetch = response.GetExtension<FetchResponse>();
+                        string openIdId = response.ClaimedIdentifier;
+
+                        //string email = (fetch != null 
+                        //        && fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Contact.Email))
+                        //    ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";
+
+                        string name = UserLoggedIn(this._userService, openIdId, fetch);
+
+                        FormsAuthentication.SetAuthCookie(name, false);
+
+                        if (!string.IsNullOrEmpty(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                    case AuthenticationStatus.Canceled:
+                        ViewData["Message"] = "Canceled at provider";
+                        return View("Logon");
+                    case AuthenticationStatus.Failed:
+                        ViewData["Message"] = response.Exception.Message;
+                        return View("Logon");
+                }
+            }
+            return new EmptyResult();
+
+        }
+
+        //TODO: this should be moved to some other type of business logic
+        public string UserLoggedIn(IUserProfileService _userService1, string openIdId, FetchResponse fetch)
+        {
+            UserProfile user = _userService1.Get().Where(x => x.OpenIdId == openIdId).SingleOrDefault();
+            if (user == null)
+            {
+                user = new UserProfile();
+                user.OpenIdId = openIdId;
+            }
+            if (fetch != null)
+            {
+                user.Name = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.FullName))
+                    ? fetch.Attributes[WellKnownAttributes.Name.FullName].Values[0] :
+                    ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.First))
+                    ? fetch.Attributes[WellKnownAttributes.Name.First].Values[0] : ""
+                    + " " + ((fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Name.Last))
+                    ? fetch.Attributes[WellKnownAttributes.Name.Last].Values[0] : ""));
+                user.Email = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Contact.Email))
+                    ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";
+                //username should not include the email - it's creepy. Just use the name of the email
+                user.UserName = user.Email.Substring(0, user.Email.IndexOf('@'));
+            }
+            else
+            {
+                /*
+                http://username.myopenid.com/             
+                http://openid.aol.com/username 
+                */
+                string http = "http://";
+                if (openIdId.Contains("myopenid"))
+                {
+                    user.Name = openIdId.Substring(openIdId.IndexOf(http) + http.Length,
+                        openIdId.IndexOf('.') - http.Length);
+                }
+                else if (openIdId.Contains("http://openid.aol.com/"))
+                {
+                    user.Name = openIdId.Substring(openIdId.LastIndexOf("/"));
+                }
+                user.UserName = user.Name;
+            }
+
+            user.LastSignInDate = DateTime.Now;  // Important
+            _userService1.Save(user);
+
+            return user.UserName;
+        }
  
 
         public ActionResult LogOn()

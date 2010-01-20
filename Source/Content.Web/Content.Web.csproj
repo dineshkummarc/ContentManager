@@ -176,6 +176,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Database.mdf">
+    </Content>
+    <Content Include="App_Data\Database_log.ldf">
+      <DependentUpon>Database.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\CkEditor\ckeditor.js" />
     <Content Include="Content\CkEditor\config.js" />
     <Content Include="Content\CkEditor\contents.css" />
@@ -386,6 +391,7 @@
     <Content Include="Views\Account\Index.aspx" />
     <Content Include="Views\AjaxTest\HtmlContentDetails.ascx" />
     <Content Include="Views\AjaxTest\Index.aspx" />
+    <Content Include="Views\Authentication\Login.aspx.aspx" />
     <Content Include="Views\HtmlContent\ContentPage.aspx" />
     <Content Include="Views\HtmlContent\EditExtra.aspx" />
     <Content Include="Views\HtmlContent\TestContents.aspx" />
@@ -435,7 +441,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
