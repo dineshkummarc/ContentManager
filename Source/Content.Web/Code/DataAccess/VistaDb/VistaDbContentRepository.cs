@@ -16,11 +16,11 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
 {
     public class VistaDbContentRepository : VistaDb, IContentRepository
     {
-        public VistaDbContentRepository()
-        {
-            _context = new ContentManagerEntities();
-        }
-
+        //public VistaDbContentRepository()
+        //{
+        //    _context = new ContentManagerEntities();
+        //}
+        /*
         #region IContentRepositoryMembers...
 
         public IQueryable<ContentNamespace.Web.Code.Entities.HtmlContent> Get()
@@ -83,6 +83,25 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
                 return true;
             }
             catch { return false; }
+        }
+
+        #endregion
+        */
+        #region IRepository<HtmlContent> Members
+
+        public IQueryable<HtmlContent> Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        public HtmlContent Save(HtmlContent entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Delete(HtmlContent entity)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

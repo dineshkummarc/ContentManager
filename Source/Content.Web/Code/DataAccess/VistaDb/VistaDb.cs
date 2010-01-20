@@ -16,7 +16,7 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
     {
         #region Members...
 
-        protected ContentManagerEntities _context;
+        //protected ContentManagerEntities _context;
 
         #endregion
 
@@ -24,27 +24,36 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
 
         public VistaDb() { }
 
-        protected VistaDb(ContentManagerEntities dataContext)
-        {
-            _context = dataContext;
-        } 
+        //protected VistaDb(ContentManagerEntities dataContext)
+        //{
+        //    _context = dataContext;
+        //} 
 
         #endregion
 
         #region Initialization...
-
+        /*
         protected static VistaDb CreateRepository()
         {
             return new VistaDb(new ContentManagerEntities());
         }
-
+        */
         #endregion
 
         #region IDisposable Members...
-
+        /*
         public void Dispose()
         {
             if (_context != null) { _context.Dispose(); }
+        }
+        */
+        #endregion
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
