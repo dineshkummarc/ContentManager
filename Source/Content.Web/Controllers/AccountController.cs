@@ -155,7 +155,7 @@ namespace ContentNamespace.Web.Controllers
                 user.Email = (fetch.Attributes.Any(x => x.TypeUri == WellKnownAttributes.Contact.Email))
                     ? fetch.Attributes[WellKnownAttributes.Contact.Email].Values[0] : "";
                 //username should not include the email - it's creepy. Just use the name of the email
-                user.UserName = user.Email.Substring(0, user.Email.IndexOf('@'));
+                user.UserName = user.Email; //.Substring(0, user.Email.IndexOf('@'));
             }
             else
             {
@@ -173,7 +173,7 @@ namespace ContentNamespace.Web.Controllers
                 {
                     user.Name = openIdId.Substring(openIdId.LastIndexOf("/"));
                 }
-                user.UserName = user.Name;
+                user.UserName = user.Email;
             }
 
             user.LastSignInDate = DateTime.Now;  // Important
