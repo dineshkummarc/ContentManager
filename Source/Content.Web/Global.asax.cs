@@ -19,6 +19,7 @@ using ContentNamespace.Web.Code.Service.MembershipServices;
 using ContentNamespace.Web.Code.Service;
 using ContentNamespace.Web.Code.Service.RoleServices;
 using ContentNamespace.Web.Code.DataAccess.Db4o;
+using ContentNamespace.Web.Code.DataAccess.VistaDb;
 
 namespace ContentNamespace.Web
 {
@@ -48,8 +49,8 @@ namespace ContentNamespace.Web
             var modules = new IModule[]
             {
                 new AutoControllerModule(Assembly.GetExecutingAssembly()),
-                new ServiceModule()
-                //new Db4oModule()
+                //new ServiceModule()
+                new Db4oModule()
             };
             return new StandardKernel(modules);
         }
@@ -60,7 +61,8 @@ namespace ContentNamespace.Web
     {
         public override void Load()
         {
-            Bind<IContentRepository>().To<Db4oContentRepository>().Using<SingletonBehavior>();
+            Bind<IContentRepository>().To<VistaDbContentRepository>().Using<SingletonBehavior>();
+            //Bind<IContentRepository>().To<Db4oContentRepository>().Using<SingletonBehavior>();
             //Bind<IContentRepository>().To<MongoContentRepository>().Using<SingletonBehavior>();
             Bind<IContentService>().To<ContentService>();
 
