@@ -46,24 +46,24 @@ namespace ContentNamespace.Web.Code.Service.Base
                     ExpireDate = x.ExpireDate,
                     ModifiedBy = x.ModifiedBy,
                     ModifiedDate = x.ModifiedDate,
-                    ItemState = x.ItemState
+                    ItemState = Enums.ContentState.InProgress //x.ItemState
                 }).SingleOrDefault(); 
         }
 
          
         public HtmlContent Get(int id)
         {
-            return this._repository.Get().Where(x => x.Id == id).Select(x => new HtmlContent
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ContentData =  x.ContentData,
-                ActiveDate = x.ActiveDate,
-                ExpireDate = x.ExpireDate,
-                ModifiedBy = x.ModifiedBy,
-                ModifiedDate = x.ModifiedDate,
-                ItemState = x.ItemState
-            }).SingleOrDefault(); 
+            return this._repository.Get().Where(x => x.Id == id).FirstOrDefault();//.Select(x => new HtmlContent
+            //{
+            //    Id = x.Id,
+            //    Name = x.Name,
+            //    ContentData = x.ContentData,
+            //    ActiveDate = x.ActiveDate,
+            //    ExpireDate = x.ExpireDate,
+            //    ModifiedBy = x.ModifiedBy,
+            //    ModifiedDate = x.ModifiedDate,
+            //    ItemState = Enums.ContentState.InProgress
+            //}).SingleOrDefault(); 
         }
 
         public HtmlContent Save(HtmlContent item)
@@ -82,23 +82,24 @@ namespace ContentNamespace.Web.Code.Service.Base
 
         object IContentManagerBaseService.GetData()
         {
-            var contents = _repository.Get().Select(x => new HtmlContent
-            {
-                Id = x.Id,
-                Name = x.Name,
-                //ContentData = (x.ContentData.Length > 5) ?
-                //               x.ContentData.Substring(0, 5) + "..." :
-                //               x.ContentData,
-                ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
-                               x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." :
-                               x.ContentData,
-                //ContentData = x.ContentData,
-                ActiveDate = x.ActiveDate,
-                ExpireDate = x.ExpireDate,
-                ModifiedBy = x.ModifiedBy,
-                ModifiedDate = x.ModifiedDate,
-                ItemState = x.ItemState
-            });
+            var contents = _repository.Get();
+                //.Select(x => new HtmlContent
+            //{
+            //    Id = x.Id,
+            //    Name = x.Name,
+            //    //ContentData = (x.ContentData.Length > 5) ?
+            //    //               x.ContentData.Substring(0, 5) + "..." :
+            //    //               x.ContentData,
+            //    ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
+            //                   x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." :
+            //                   x.ContentData,
+            //    //ContentData = x.ContentData,
+            //    ActiveDate = x.ActiveDate,
+            //    ExpireDate = x.ExpireDate,
+            //    ModifiedBy = x.ModifiedBy,
+            //    ModifiedDate = x.ModifiedDate//,
+            //    //ItemState = x.ItemState
+            //});
 
             return contents;
         }
