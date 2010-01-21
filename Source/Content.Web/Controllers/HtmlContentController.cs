@@ -55,6 +55,8 @@ namespace ContentNamespace.Web.Controllers
             c.ExpireDate = DateTime.MaxValue;
             c.ActiveDate = new DateTime(1900, 1, 1); 
             c.ContentData = "Hello <b>World</b>";
+            c.CreatedBy = "XXXX";//TODO: should be loged in user
+            c.CreatedDate = DateTime.Now;
             if (!this.Validate(c))
             {
                 return View();

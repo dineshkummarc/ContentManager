@@ -34,8 +34,8 @@ namespace ContentNamespace.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Default",                                              // Route name
-                "{controller}.mvc/{action}/{id}",                           // URL with parameters
+                "Default",                                              // Route name    
+                "{controller}.mvc/{action}/{id}",                       // URL with parameters
                 new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
             ); 
             routes.MapRoute(
