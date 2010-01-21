@@ -19,7 +19,9 @@ namespace ContentNamespace.Web.Controllers
 
 
         // GET: /UserProfile/
-        public UserProfileController(IUserProfileService userProfileService, IUserRoleService userRoleService, ISettingService settingService)
+        public UserProfileController(IUserProfileService userProfileService, 
+            IUserRoleService userRoleService, 
+            ISettingService settingService )
         {
             this._userProfileService = userProfileService;
             this._userRoleService = userRoleService;

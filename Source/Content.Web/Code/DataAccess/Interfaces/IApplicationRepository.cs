@@ -6,7 +6,7 @@ using ContentNamespace.Web.Code.Entities;
 
 namespace ContentNamespace.Web.Code.DataAccess.Interfaces
 {
-    interface IApplicationRepository : IRepository<Application>
+    public interface IApplicationRepository : IRepository<Application>
     {
     }
 }
