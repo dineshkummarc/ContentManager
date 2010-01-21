@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Configuration;
 
 namespace ContentNamespace.Web.Code.DataAccess.Sql
 {
@@ -17,9 +18,9 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
             {
                 if (_ConnStr == null)
                 {
-                    throw new Exception("No Connection String Set");
+                    _ConnStr = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
                 }
-                return _ConnStr;
+                return  _ConnStr;
             }
         }
     }
