@@ -12,6 +12,25 @@
       <Column Name="CreatedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ModifiedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ApplicationId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Application_HtmlContent" Member="Application" ThisKey="ApplicationId" OtherKey="Id" Type="Application" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Application" Member="Applications">
+    <Type Name="Application">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Application_HtmlContent" Member="HtmlContents" ThisKey="Id" OtherKey="ApplicationId" Type="HtmlContent" />
+      <Association Name="Application_Application_UserProfile" Member="Application_UserProfiles" ThisKey="Id" OtherKey="ApplicationId" Type="Application_UserProfile" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Application_UserProfile" Member="Application_UserProfiles">
+    <Type Name="Application_UserProfile">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ApplicationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserProfileId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Application_Application_UserProfile" Member="Application" ThisKey="ApplicationId" OtherKey="Id" Type="Application" IsForeignKey="true" />
+      <Association Name="UserProfile_Application_UserProfile" Member="UserProfile" ThisKey="UserProfileId" OtherKey="Id" Type="UserProfile" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.UserProfile" Member="UserProfiles">
@@ -27,6 +46,7 @@
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="CreatedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="ModifiedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="UserProfile_Application_UserProfile" Member="Application_UserProfiles" ThisKey="Id" OtherKey="UserProfileId" Type="Application_UserProfile" />
     </Type>
   </Table>
 </Database>

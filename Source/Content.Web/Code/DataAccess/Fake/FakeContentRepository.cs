@@ -35,10 +35,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
                 list.Add(x);
             }
         }
-
-
-
-
+         
         public IQueryable<HtmlContent> Get()
         {
             return list.AsQueryable<HtmlContent>();

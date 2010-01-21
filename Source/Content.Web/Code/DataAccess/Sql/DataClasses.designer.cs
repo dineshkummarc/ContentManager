@@ -33,6 +33,12 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
     partial void InsertHtmlContent(HtmlContent instance);
     partial void UpdateHtmlContent(HtmlContent instance);
     partial void DeleteHtmlContent(HtmlContent instance);
+    partial void InsertApplication(Application instance);
+    partial void UpdateApplication(Application instance);
+    partial void DeleteApplication(Application instance);
+    partial void InsertApplication_UserProfile(Application_UserProfile instance);
+    partial void UpdateApplication_UserProfile(Application_UserProfile instance);
+    partial void DeleteApplication_UserProfile(Application_UserProfile instance);
     partial void InsertUserProfile(UserProfile instance);
     partial void UpdateUserProfile(UserProfile instance);
     partial void DeleteUserProfile(UserProfile instance);
@@ -76,6 +82,22 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 			}
 		}
 		
+		public System.Data.Linq.Table<Application> Applications
+		{
+			get
+			{
+				return this.GetTable<Application>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Application_UserProfile> Application_UserProfiles
+		{
+			get
+			{
+				return this.GetTable<Application_UserProfile>();
+			}
+		}
+		
 		public System.Data.Linq.Table<UserProfile> UserProfiles
 		{
 			get
@@ -109,6 +131,10 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 		
 		private string _ModifiedBy;
 		
+		private System.Nullable<int> _ApplicationId;
+		
+		private EntityRef<Application> _Application;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -131,10 +157,13 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
     partial void OnModifiedDateChanged();
     partial void OnModifiedByChanging(string value);
     partial void OnModifiedByChanged();
+    partial void OnApplicationIdChanging(System.Nullable<int> value);
+    partial void OnApplicationIdChanged();
     #endregion
 		
 		public HtmlContent()
 		{
+			this._Application = default(EntityRef<Application>);
 			OnCreated();
 		}
 		
@@ -318,6 +347,398 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 			}
 		}
 		
+		[Column(Storage="_ApplicationId", DbType="Int")]
+		public System.Nullable<int> ApplicationId
+		{
+			get
+			{
+				return this._ApplicationId;
+			}
+			set
+			{
+				if ((this._ApplicationId != value))
+				{
+					if (this._Application.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnApplicationIdChanging(value);
+					this.SendPropertyChanging();
+					this._ApplicationId = value;
+					this.SendPropertyChanged("ApplicationId");
+					this.OnApplicationIdChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Application_HtmlContent", Storage="_Application", ThisKey="ApplicationId", OtherKey="Id", IsForeignKey=true)]
+		public Application Application
+		{
+			get
+			{
+				return this._Application.Entity;
+			}
+			set
+			{
+				Application previousValue = this._Application.Entity;
+				if (((previousValue != value) 
+							|| (this._Application.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Application.Entity = null;
+						previousValue.HtmlContents.Remove(this);
+					}
+					this._Application.Entity = value;
+					if ((value != null))
+					{
+						value.HtmlContents.Add(this);
+						this._ApplicationId = value.Id;
+					}
+					else
+					{
+						this._ApplicationId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Application");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Application")]
+	public partial class Application : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private EntitySet<HtmlContent> _HtmlContents;
+		
+		private EntitySet<Application_UserProfile> _Application_UserProfiles;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
+		public Application()
+		{
+			this._HtmlContents = new EntitySet<HtmlContent>(new Action<HtmlContent>(this.attach_HtmlContents), new Action<HtmlContent>(this.detach_HtmlContents));
+			this._Application_UserProfiles = new EntitySet<Application_UserProfile>(new Action<Application_UserProfile>(this.attach_Application_UserProfiles), new Action<Application_UserProfile>(this.detach_Application_UserProfiles));
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="NVarChar(50)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Application_HtmlContent", Storage="_HtmlContents", ThisKey="Id", OtherKey="ApplicationId")]
+		public EntitySet<HtmlContent> HtmlContents
+		{
+			get
+			{
+				return this._HtmlContents;
+			}
+			set
+			{
+				this._HtmlContents.Assign(value);
+			}
+		}
+		
+		[Association(Name="Application_Application_UserProfile", Storage="_Application_UserProfiles", ThisKey="Id", OtherKey="ApplicationId")]
+		public EntitySet<Application_UserProfile> Application_UserProfiles
+		{
+			get
+			{
+				return this._Application_UserProfiles;
+			}
+			set
+			{
+				this._Application_UserProfiles.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_HtmlContents(HtmlContent entity)
+		{
+			this.SendPropertyChanging();
+			entity.Application = this;
+		}
+		
+		private void detach_HtmlContents(HtmlContent entity)
+		{
+			this.SendPropertyChanging();
+			entity.Application = null;
+		}
+		
+		private void attach_Application_UserProfiles(Application_UserProfile entity)
+		{
+			this.SendPropertyChanging();
+			entity.Application = this;
+		}
+		
+		private void detach_Application_UserProfiles(Application_UserProfile entity)
+		{
+			this.SendPropertyChanging();
+			entity.Application = null;
+		}
+	}
+	
+	[Table(Name="dbo.Application_UserProfile")]
+	public partial class Application_UserProfile : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _ApplicationId;
+		
+		private int _UserProfileId;
+		
+		private EntityRef<Application> _Application;
+		
+		private EntityRef<UserProfile> _UserProfile;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnApplicationIdChanging(int value);
+    partial void OnApplicationIdChanged();
+    partial void OnUserProfileIdChanging(int value);
+    partial void OnUserProfileIdChanged();
+    #endregion
+		
+		public Application_UserProfile()
+		{
+			this._Application = default(EntityRef<Application>);
+			this._UserProfile = default(EntityRef<UserProfile>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ApplicationId", DbType="Int NOT NULL")]
+		public int ApplicationId
+		{
+			get
+			{
+				return this._ApplicationId;
+			}
+			set
+			{
+				if ((this._ApplicationId != value))
+				{
+					if (this._Application.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnApplicationIdChanging(value);
+					this.SendPropertyChanging();
+					this._ApplicationId = value;
+					this.SendPropertyChanged("ApplicationId");
+					this.OnApplicationIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserProfileId", DbType="Int NOT NULL")]
+		public int UserProfileId
+		{
+			get
+			{
+				return this._UserProfileId;
+			}
+			set
+			{
+				if ((this._UserProfileId != value))
+				{
+					if (this._UserProfile.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserProfileIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserProfileId = value;
+					this.SendPropertyChanged("UserProfileId");
+					this.OnUserProfileIdChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Application_Application_UserProfile", Storage="_Application", ThisKey="ApplicationId", OtherKey="Id", IsForeignKey=true)]
+		public Application Application
+		{
+			get
+			{
+				return this._Application.Entity;
+			}
+			set
+			{
+				Application previousValue = this._Application.Entity;
+				if (((previousValue != value) 
+							|| (this._Application.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Application.Entity = null;
+						previousValue.Application_UserProfiles.Remove(this);
+					}
+					this._Application.Entity = value;
+					if ((value != null))
+					{
+						value.Application_UserProfiles.Add(this);
+						this._ApplicationId = value.Id;
+					}
+					else
+					{
+						this._ApplicationId = default(int);
+					}
+					this.SendPropertyChanged("Application");
+				}
+			}
+		}
+		
+		[Association(Name="UserProfile_Application_UserProfile", Storage="_UserProfile", ThisKey="UserProfileId", OtherKey="Id", IsForeignKey=true)]
+		public UserProfile UserProfile
+		{
+			get
+			{
+				return this._UserProfile.Entity;
+			}
+			set
+			{
+				UserProfile previousValue = this._UserProfile.Entity;
+				if (((previousValue != value) 
+							|| (this._UserProfile.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._UserProfile.Entity = null;
+						previousValue.Application_UserProfiles.Remove(this);
+					}
+					this._UserProfile.Entity = value;
+					if ((value != null))
+					{
+						value.Application_UserProfiles.Add(this);
+						this._UserProfileId = value.Id;
+					}
+					else
+					{
+						this._UserProfileId = default(int);
+					}
+					this.SendPropertyChanged("UserProfile");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -367,6 +788,8 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 		
 		private string _ModifiedBy;
 		
+		private EntitySet<Application_UserProfile> _Application_UserProfiles;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -397,6 +820,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 		
 		public UserProfile()
 		{
+			this._Application_UserProfiles = new EntitySet<Application_UserProfile>(new Action<Application_UserProfile>(this.attach_Application_UserProfiles), new Action<Application_UserProfile>(this.detach_Application_UserProfiles));
 			OnCreated();
 		}
 		
@@ -620,6 +1044,19 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 			}
 		}
 		
+		[Association(Name="UserProfile_Application_UserProfile", Storage="_Application_UserProfiles", ThisKey="Id", OtherKey="UserProfileId")]
+		public EntitySet<Application_UserProfile> Application_UserProfiles
+		{
+			get
+			{
+				return this._Application_UserProfiles;
+			}
+			set
+			{
+				this._Application_UserProfiles.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -638,6 +1075,18 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Application_UserProfiles(Application_UserProfile entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserProfile = this;
+		}
+		
+		private void detach_Application_UserProfiles(Application_UserProfile entity)
+		{
+			this.SendPropertyChanging();
+			entity.UserProfile = null;
 		}
 	}
 }

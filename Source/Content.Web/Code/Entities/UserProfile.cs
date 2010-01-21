@@ -12,10 +12,10 @@ namespace ContentNamespace.Web.Code.Entities
         public string UserName { get; set; }
         public string Email { get; set; }
         public string OpenIdId { get; set; }
-        public LazyList<Enums.UserRoles> UserRoles { get; set; }
         public DateTime LastSignInDate { get; set; }
         public DateTime RegisterDate { get; set; }
 
+        public LazyList<Enums.UserRoles> UserRoles { get; set; }
         public String UserRolesString 
         { 
             get
@@ -27,7 +27,31 @@ namespace ContentNamespace.Web.Code.Entities
                 } 
                 return sb.ToString();
             }
+        } 
+        public LazyList<Application> Applications { get; set; }
+        public String ApplicationsString
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (Application a in this.Applications)
+                {
+                    sb.Append(a.Name + ", ");
+                }
+                return sb.ToString();
+            }
         }  
+
+
+        public UserProfile()
+        {
+            Id = -2;
+            UserRoles = new LazyList<Enums.UserRoles>();
+            Applications = new LazyList<Application>();
+        }
+    }
+}
+
         /* 
 public Address GetOpenIDAddress(Uri claimUri)
 {
@@ -70,12 +94,3 @@ public Address GetOpenIDAddress(Uri claimUri)
     return result;
 } 
          */
-
-
-        public UserProfile()
-        {
-            Id = -2;
-            UserRoles = new LazyList<Enums.UserRoles>();
-        }
-    }
-}

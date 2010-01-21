@@ -31,7 +31,9 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                 ActiveDate = x.ActiveDate ?? new DateTime(1753, 1,1),
                 ExpireDate = x.ExpireDate ?? new DateTime(1753, 1, 1),
                 ModifiedBy = x.ModifiedBy,
-                ModifiedDate = x.ModifiedDate ?? new DateTime(1753, 1, 1)  
+                ModifiedDate = x.ModifiedDate ?? new DateTime(1753, 1, 1),
+                CreatedBy = x.CreatedBy,
+                CreatedDate = x.CreatedDate ?? new DateTime(1753, 1, 1)  
             }).AsQueryable();
             return r;
         }

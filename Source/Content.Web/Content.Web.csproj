@@ -136,6 +136,7 @@
     </Compile>
     <Compile Include="Code\DataAccess\Sql\SqlBaseRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlContentRepository.cs" />
+    <Compile Include="Code\DataAccess\Sql\SqlUserProfileRepository.cs" />
     <Compile Include="Code\DataAccess\VistaDb\VistaDbContentRepository.cs" />
     <Compile Include="Code\DataAccess\VistaDb\VistaDb.cs" />
     <Compile Include="Code\Entities\Application.cs" />
