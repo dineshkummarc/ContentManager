@@ -181,6 +181,7 @@
     <Compile Include="Code\Util\SessionHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxTestController.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\Base\ContentManagerBaseController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\HtmlContentController.cs" />
@@ -421,6 +422,7 @@
     <Content Include="Views\Account\Index.aspx" />
     <Content Include="Views\AjaxTest\HtmlContentDetails.ascx" />
     <Content Include="Views\AjaxTest\Index.aspx" />
+    <Content Include="Views\Application\Index.aspx" />
     <Content Include="Views\Authentication\Login.aspx.aspx" />
     <Content Include="Views\HtmlContent\ContentPage.aspx" />
     <Content Include="Views\HtmlContent\EditExtra.aspx" />

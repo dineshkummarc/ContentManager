@@ -21,6 +21,7 @@ using ContentNamespace.Web.Code.Service.RoleServices;
 using ContentNamespace.Web.Code.DataAccess.Db4o;
 using ContentNamespace.Web.Code.DataAccess.VistaDb;
 using ContentNamespace.Web.Code.DataAccess.Sql;
+using ContentNamespace.Web.Code.Service.ApplicationServices;
 
 namespace ContentNamespace.Web
 {
@@ -62,7 +63,8 @@ namespace ContentNamespace.Web
     {
         public override void Load()
         {
-            //Bind<IApplicationRepository>().To<FakeApplicationRepository>().Using<SingletonBehavior>();
+            Bind<IApplicationRepository>().To<FakeApplicationRepository>().Using<SingletonBehavior>();
+            Bind<IApplicationService>().To<ApplicationService>();
 
 
             Bind<IContentRepository>().To<SqlContentRepository>().Using<SingletonBehavior>();
@@ -92,6 +94,7 @@ namespace ContentNamespace.Web
         public override void Load()
         {
             Bind<IApplicationRepository>().To<FakeApplicationRepository>().Using<SingletonBehavior>();
+            Bind<IApplicationService>().To<ApplicationService>();
 
             Bind<IContentRepository>().To<FakeContentRepository>().Using<SingletonBehavior>();
             Bind<IContentService>().To<ContentService>();

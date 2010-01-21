@@ -18,9 +18,14 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
             while ( i < 2)
             {
                 Application x = new Application();
-                x.Name = "AppName" + i  ; 
-                list.Add(x);
                 i++;
+                x.Name = "AppName" + i;
+                x.Id = i;
+                x.CreatedDate = new DateTime(2000, 1, 1);
+                x.ModifiedDate = new DateTime(2000, 1, 1);
+                x.CreatedBy = "xx";
+                x.ModifiedBy = "xx";
+                list.Add(x);
             }  
         }
 

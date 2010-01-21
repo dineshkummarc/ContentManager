@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<ContentNamespace.Web.Code.Entities.UserProfile>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<ContentNamespace.Web.Code.Entities.Application>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -12,61 +12,56 @@
         <tr>
             <th></th>
             <th>
-                Id
-            </th>
-            <th>
                 Name
             </th>
             <th>
-                UserName
+                UserProfilesString
             </th>
             <th>
-                OpenIdId
+                Id
             </th>
             <th>
-                Application
-            </th> 
-            <th>
-                Email
+                CreatedDate
             </th>
             <th>
-                Roles
+                CreatedBy
             </th>
             <th>
-                LastSignInDate
-            </th> 
+                ModifiedDate
+            </th>
+            <th>
+                ModifiedBy
+            </th>
         </tr>
 
     <% foreach (var item in Model) { %>
     
         <tr>
             <td>
-                <%= Html.ActionLink("Details", "Details", new {  id=item.Id })%>
-            </td>
-            <td>
-                <%= Html.Encode(item.Id) %>
+                <%= Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
+                <%= Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%>
             </td>
             <td>
                 <%= Html.Encode(item.Name) %>
             </td>
             <td>
-                <%= Html.Encode(item.UserName) %>
+                <%= Html.Encode(item.UserProfilesString)%>
             </td>
             <td>
-                <%= Html.Encode(item.OpenIdId) %>
+                <%= Html.Encode(item.Id) %>
             </td>
             <td>
-                <%= Html.Encode(item.ApplicationsString) %>
+                <%= Html.Encode(String.Format("{0:g}", item.CreatedDate)) %>
             </td>
             <td>
-                <%= Html.Encode(item.Email) %>
+                <%= Html.Encode(item.CreatedBy) %>
             </td>
             <td>
-                <%= Html.Encode( item.UserRolesString ) %>
+                <%= Html.Encode(String.Format("{0:g}", item.ModifiedDate)) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.LastSignInDate)) %>
-            </td>   
+                <%= Html.Encode(item.ModifiedBy) %>
+            </td>
         </tr>
     
     <% } %>
