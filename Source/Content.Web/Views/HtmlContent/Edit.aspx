@@ -59,32 +59,32 @@
 	<script type="text/javascript">
 	//<![CDATA[
 
-    $(function()
-    {
-	    var config = {
-		    toolbar:
-		    [ 
-		        ['Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates'],
-                ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
+	    $(document).ready(function() {
+	        var config = {
+	            toolbar:
+		    [
+		        ['Source', '-', 'Preview', 'Maximize', '-', 'TextColor', 'BGColor'],
                 ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
-                ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
+                ['Link', 'Unlink', 'Anchor'],
+                ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Print', 'SpellChecker', 'Scayt'],
+                ['About'],
                 '/',
-                ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
+                ['Font', 'FontSize', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
                 ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
                 ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-                ['Link', 'Unlink', 'Anchor'],
-                ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
-                '/',
-                ['Styles', 'Format', 'Font', 'FontSize'],
-                ['TextColor', 'BGColor'],
-                ['Maximize', 'ShowBlocks', '-', 'About']
+                ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'] 
 		    ]
-	    };
+	        };
 
-	    // Initialize the editor.
-	    // Callback function can be passed and executed after full instance creation.
-	    $('.jquery_ckeditor').ckeditor(config);
-    });
+	        // Initialize the editor.
+	        // Callback function can be passed and executed after full instance creation.
+	        $('.jquery_ckeditor').ckeditor(function() { fixIe(); }, config);  
+	    });
+
+	    function fixIe() {
+	        $('input[_cke_expando]').css('border-width', '0px');
+	    }
+	    
 
 	//]]>
 	</script>
