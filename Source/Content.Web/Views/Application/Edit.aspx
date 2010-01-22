@@ -14,36 +14,21 @@
 
         <fieldset>
             <legend>Fields</legend>
+            
+            <p class="hidden">
+                <label for="Id">Id:</label>
+                <%= Html.Encode(Model.Id) %> 
+                <%= Html.TextBox("CreatedDate", Model.CreatedDate)%> 
+                <%= Html.TextBox("CreatedBy", Model.CreatedBy)%> 
+                <%= Html.TextBox("ModifiedBy", Model.ModifiedBy)%> 
+                <%= Html.TextBox("ModifiedDate", Model.ModifiedDate)%> 
+            </p>
+            
             <p>
                 <label for="Name">Name:</label>
                 <%= Html.TextBox("Name", Model.Name) %>
                 <%= Html.ValidationMessage("Name", "*") %>
-            </p>
-            <p>
-                <label for="Id">Id:</label>
-                <%= Html.TextBox("Id", Model.Id) %>
-                <%= Html.ValidationMessage("Id", "*") %>
-            </p>
-            <p>
-                <label for="CreatedDate">CreatedDate:</label>
-                <%= Html.TextBox("CreatedDate", String.Format("{0:g}", Model.CreatedDate)) %>
-                <%= Html.ValidationMessage("CreatedDate", "*") %>
-            </p>
-            <p>
-                <label for="CreatedBy">CreatedBy:</label>
-                <%= Html.TextBox("CreatedBy", Model.CreatedBy) %>
-                <%= Html.ValidationMessage("CreatedBy", "*") %>
-            </p>
-            <p>
-                <label for="ModifiedDate">ModifiedDate:</label>
-                <%= Html.TextBox("ModifiedDate", String.Format("{0:g}", Model.ModifiedDate)) %>
-                <%= Html.ValidationMessage("ModifiedDate", "*") %>
-            </p>
-            <p>
-                <label for="ModifiedBy">ModifiedBy:</label>
-                <%= Html.TextBox("ModifiedBy", Model.ModifiedBy) %>
-                <%= Html.ValidationMessage("ModifiedBy", "*") %>
-            </p>
+            </p>  
             <p>
                 <input type="submit" value="Save" />
             </p>

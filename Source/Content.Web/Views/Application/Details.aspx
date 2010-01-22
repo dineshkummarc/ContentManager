@@ -12,35 +12,35 @@
         <legend>Fields</legend>
         <p>
             Name:
-            <%= Html.Encode(Model.Name) %>
+            <span><%= Html.Encode(Model.Name) %></span>
         </p>
         <p>
             UserProfilesString:
-            <%= Html.Encode(Model.UserProfilesString) %>
+            <span><%= Html.Encode(Model.UserProfilesString) %></span>
         </p>
         <p>
             Id:
-            <%= Html.Encode(Model.Id) %>
+            <span><%= Html.Encode(Model.Id) %></span>
         </p>
         <p>
             CreatedDate:
-            <%= Html.Encode(String.Format("{0:g}", Model.CreatedDate)) %>
+            <span><%= Html.Encode(String.Format("{0:g}", Model.CreatedDate)) %></span>
         </p>
         <p>
             CreatedBy:
-            <%= Html.Encode(Model.CreatedBy) %>
+            <span><%= Html.Encode(Model.CreatedBy) %></span>
         </p>
         <p>
             ModifiedDate:
-            <%= Html.Encode(String.Format("{0:g}", Model.ModifiedDate)) %>
+            <span><%= Html.Encode(String.Format("{0:g}", Model.ModifiedDate)) %></span>
         </p>
         <p>
             ModifiedBy:
-            <%= Html.Encode(Model.ModifiedBy) %>
+            <span><%= Html.Encode(Model.ModifiedBy) %></span>
         </p>
     </fieldset>
     <p>
-        <%=Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) %> |
+        <%=Html.ActionLink("Edit", "Edit", new {   id=Model.Id   }) %> |
         <%=Html.ActionLink("Back to List", "Index") %>
     </p>
 
@@ -49,6 +49,13 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Header" runat="server">
 </asp:Content>
 
-<asp:Content ID="Content4" ContentPlaceHolderID="JavaScript" runat="server">
+<asp:Content ID="Content4" ContentPlaceHolderID="JavaScript" runat="server"> 
+    <script   type="text/javascript">
+        $(document).ready(function() {
+            $('p span').css('font-weight', 'bold');
+        });
+    </script>
+
+
 </asp:Content>
 
