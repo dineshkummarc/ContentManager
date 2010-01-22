@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using ContentNamespace.Web.Code.Service.ApplicationServices;
+using ContentNamespace.Web.Code.Entities;
 
 namespace ContentNamespace.Web.Controllers
 {
@@ -34,7 +35,8 @@ namespace ContentNamespace.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            var item = this._applicationService.Get(id);
+            return View(item);
         }
 
         //
@@ -49,11 +51,11 @@ namespace ContentNamespace.Web.Controllers
         // POST: /Application/Create
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create([Bind(Exclude = "Id")] Application item)
         {
             try
-            {
-                // TODO: Add insert logic here
+            { 
+                this._applicationService.Save(item);
 
                 return RedirectToAction("Index");
             }
@@ -68,20 +70,21 @@ namespace ContentNamespace.Web.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            var item = this._applicationService.Get(id);
+            return View(item);
         }
 
         //
         // POST: /Application/Edit/5
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, [Bind(Exclude = "Id")] Application item)
         {
             try
             {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+                item.Id = id;
+                this._applicationService.Save(item);
+                return RedirectToAction("Details", new { id = id });
             }
             catch
             {

@@ -38,8 +38,8 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) %> |
-                <%= Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })%>
+                <%= Html.ActionLink("Edit", "Edit", new {  id=item.Id   }) %> |
+                <%= Html.ActionLink("Details", "Details", new {   id=item.Id   })%>
             </td>
             <td>
                 <%= Html.Encode(item.Name) %>

@@ -8,8 +8,7 @@ using ContentNamespace.Web.Code.Entities;
 namespace ContentNamespace.Web.Code.DataAccess.Fake
 {
     public class FakeApplicationRepository : IApplicationRepository
-    {
-
+    { 
         IList<Application> list = new List<Application>();
 
         public FakeApplicationRepository()
@@ -37,26 +36,19 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
         }
 
         public Application Save(Application item)
-        {
-            if (item.Id > 0)
+        { 
+            Application repItem = this.list.Where(x => x.Id == item.Id).SingleOrDefault();
+            if (repItem != null)
             {
-                Application w = this.list.Where(x => x.Id == item.Id).SingleOrDefault();
-                if (w != null)
-                {
-                    w = item;
-                }
-                else
-                {
-                    list.Add(item);
-                }
+                list.Remove(repItem);
             }
             else
             {
                 int maxId = this.list.Max(x => x.Id);
                 item.Id = maxId + 1;
-                this.list.Add(item);
             }
-            return item;
+            this.list.Add(item);
+            return item; 
         }
 
         public bool Delete(ContentNamespace.Web.Code.Entities.Application entity)

@@ -422,6 +422,9 @@
     <Content Include="Views\Account\Index.aspx" />
     <Content Include="Views\AjaxTest\HtmlContentDetails.ascx" />
     <Content Include="Views\AjaxTest\Index.aspx" />
+    <Content Include="Views\Application\Create.aspx" />
+    <Content Include="Views\Application\Details.aspx" />
+    <Content Include="Views\Application\Edit.aspx" />
     <Content Include="Views\Application\Index.aspx" />
     <Content Include="Views\Authentication\Login.aspx.aspx" />
     <Content Include="Views\HtmlContent\ContentPage.aspx" />
