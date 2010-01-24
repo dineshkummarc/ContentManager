@@ -43,7 +43,7 @@ namespace ContentNamespace.Web.Controllers
         // GET: /Application/Create
 
         public ActionResult Create()
-        {
+        { 
             return View();
         } 
 

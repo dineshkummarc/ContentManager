@@ -1,5 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" 
-    Inherits="System.Web.Mvc.ViewPage<ContentNamespace.Web.Code.Entities.HtmlContent>" %>
+    Inherits="System.Web.Mvc.ViewPage<ContentNamespace.Web.Controllers.HtmlContentViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Create
@@ -20,9 +20,19 @@
             </p>
             <p>
                 <label for="Name">Name:</label>
-                <%= Html.TextBox("Name")%>
+                <%= Html.TextBox("Name", Model.HtmlContent.Name)%>
                 <%= Html.ValidationMessage("Name", "*")%>
             </p> 
+            
+            <p>
+                <label for="Name">Application:</label>
+                <%= Html.DropDownList("Application", Model.Applications)%>  
+            </p> 
+            
+            
+            
+            
+            
             <p>
                 <input type="submit" value="Create" />
             </p> 

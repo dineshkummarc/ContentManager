@@ -7,33 +7,58 @@ using System.Web.Mvc.Ajax;
 using ContentNamespace.Web.Code.Service.Interfaces;
 using ContentNamespace.Web.Code.Entities;
 using System.Text;
-using System.Web.Routing; 
+using System.Web.Routing;
+using ContentNamespace.Web.Code.Service.ApplicationServices; 
 
 namespace ContentNamespace.Web.Controllers
 {
+
+    public class HtmlContentViewModel
+    {
+        // Properties
+        public HtmlContent HtmlContent { get; private set; }
+        public SelectList Applications { get; private set; }
+
+        // Constructor
+        public HtmlContentViewModel(HtmlContent htmlContent, IApplicationService appService)
+        {
+            this.HtmlContent = htmlContent;
+            this.Applications = new SelectList(
+                appService.Get().Select(x=>x.Name).AsEnumerable(), 
+                1 /*this.HtmlContent.ApplicationId*/
+            );
+        }
+    }
+
+
     public class HtmlContentController : ContentManagerBaseController
     {
-        private readonly IContentService _service;
+        private readonly IContentService _contentService;
+        private readonly IApplicationService _applicationService;
 
         // GET: /HtmlContent/
-        public HtmlContentController(IContentService service, ISettingService settingService)
+        public HtmlContentController(IContentService service,
+            IApplicationService applicationService, 
+            ISettingService settingService)
         {
-            this._service = service;
+            this._contentService = service;
             this._settingService = settingService;
+            this._applicationService = applicationService;
 
             GetContentManagerSettings();
         }
 
+
         public ActionResult Index()
         {
-            return View(this._service.Get());
+            return View(this._contentService.Get());
         }
 
         //
         // GET: /HtmlContent/Details/5 
         public ActionResult Details(int id)
         {
-            return View(this._service.Get(id));
+            return View(this._contentService.Get(id));
         }
 
         //
@@ -41,7 +66,8 @@ namespace ContentNamespace.Web.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            HtmlContent item = new HtmlContent();
+            return View( new HtmlContentViewModel(item, this._applicationService));
         }
 
         //
@@ -61,7 +87,7 @@ namespace ContentNamespace.Web.Controllers
             {
                 return View();
             }
-            this._service.Save(c);
+            this._contentService.Save(c);
             return RedirectToAction("Edit/" + c.Id);
         }
 
@@ -69,7 +95,7 @@ namespace ContentNamespace.Web.Controllers
         // GET: /HtmlContent/Edit/5 
         public ActionResult Edit(int id)
         {
-            var editContent = this._service.Get(id);
+            var editContent = this._contentService.Get(id);
 
             editContent.Edit();
 
@@ -86,7 +112,7 @@ namespace ContentNamespace.Web.Controllers
             {
                 c.Id = id;
 
-                this._service.Save(c);
+                this._contentService.Save(c);
 
                 return RedirectToAction("Details", new { id = id });
                 // return RedirectToAction("Details", new RouteValueDictionary(new { id = id }));
@@ -101,7 +127,7 @@ namespace ContentNamespace.Web.Controllers
         // GET: /HtmlContent/EditExtra/5 
         public ActionResult EditExtra(int id)
         {
-            var editContent = this._service.Get(id);
+            var editContent = this._contentService.Get(id);
 
             editContent.Edit();
 
@@ -116,8 +142,8 @@ namespace ContentNamespace.Web.Controllers
             try
             {
                 c.Id = id;
-                c.ContentData = this._service.Get(id).ContentData;
-                this._service.Save(c);
+                c.ContentData = this._contentService.Get(id).ContentData;
+                this._contentService.Save(c);
 
                 return RedirectToAction("Details", new { id = id });
                 // return RedirectToAction("Details", new RouteValueDictionary(new { id = id }));
@@ -130,25 +156,25 @@ namespace ContentNamespace.Web.Controllers
 
         public ActionResult Submit(int id)
         {
-            var editContent = this._service.Get(id);
+            var editContent = this._contentService.Get(id);
 
             editContent.Submit(); // Change workflow state
 
-            _service.Save(editContent);
+            _contentService.Save(editContent);
 
             return RedirectToAction("../HtmlContent/Details", new { id });
         }
 
         public ActionResult Content(string id)
         {
-            var c = this._service.Get(Convert.ToInt32(id));
+            var c = this._contentService.Get(Convert.ToInt32(id));
             return PartialView("Content", c);
         }
 
 
         public ActionResult ContentPage(int id)
         {
-            var x = this._service.Get(id); 
+            var x = this._contentService.Get(id); 
             return View(x);
         }
         
