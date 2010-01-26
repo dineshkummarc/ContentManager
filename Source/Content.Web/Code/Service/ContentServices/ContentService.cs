@@ -15,7 +15,7 @@ namespace ContentNamespace.Web.Code.Service.Base
         //private IContentRepository _repository; 
 
 
-        public ContentService(IContentRepository repository) : base(repository)
+        public ContentService(IContentRepository repository ) : base(repository)
         {
         }
 
@@ -30,6 +30,7 @@ namespace ContentNamespace.Web.Code.Service.Base
         /// <returns></returns>
         public IQueryable<HtmlContent> Get()
         {
+            //return ((IContentManagerBaseService)this).GetData() as IQueryable<HtmlContent>;
 
             var contents = _repository.Get().Select(x => new HtmlContent
             {
@@ -45,8 +46,8 @@ namespace ContentNamespace.Web.Code.Service.Base
                 ActiveDate = x.ActiveDate,
                 ExpireDate = x.ExpireDate,
                 ModifiedBy = x.ModifiedBy,
-                ModifiedDate = x.ModifiedDate 
-            }); 
+                ModifiedDate = x.ModifiedDate
+            });
             return contents; 
         }
 
