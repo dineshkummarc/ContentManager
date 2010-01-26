@@ -16,29 +16,29 @@ namespace ContentNamespace.Web.Tests.Services
         [TestMethod]
         public void ContentService_Get_IsNotNull()
         {
-            ContentService cs = new ContentService(new FakeContentRepository());
+            ContentService cs = new ContentService(new FakeContentRepository(new FakeApplicationRepository()));
             IQueryable<HtmlContent> contents = cs.Get();
             Assert.IsNotNull(contents);
         }
         [TestMethod]
         public void ContentService_Get_ReturnsMoreThanZero()
         {
-            ContentService cs = new ContentService(new FakeContentRepository());
+            ContentService cs = new ContentService(new FakeContentRepository(new FakeApplicationRepository()));
             IQueryable<HtmlContent> contents = cs.Get();
             Assert.IsTrue(contents.Count() > 0);
         }
         [TestMethod]
         public void ContentService_GetById_HasCorrectData()
         {
-            ContentService cs = new ContentService(new FakeContentRepository());
+            ContentService cs = new ContentService(new FakeContentRepository(new FakeApplicationRepository()));
             HtmlContent content = cs.Get(1);
-            Assert.IsTrue( content.ContentData.StartsWith( "<h1>Hello 1 </h1>"));
+            Assert.IsTrue(content.ContentData.StartsWith("<p><img "));
         }
 
         [TestMethod]
         public void ContentService_SaveNewContent_ReturnsContent()
         {
-            ContentService cs = new ContentService(new FakeContentRepository());
+            ContentService cs = new ContentService(new FakeContentRepository(new FakeApplicationRepository()));
             HtmlContent content = new HtmlContent();
             content.ContentData = "a";
             HtmlContent content2 = cs.Save(content);

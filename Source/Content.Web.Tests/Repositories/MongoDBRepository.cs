@@ -19,7 +19,7 @@ namespace ContentNamespace.Web.Tests.Repositories
     /// </summary>
     [TestClass]
     public class MongoDBRepository
-    {
+    {/*
         private static Mongo db = new Mongo();
 
         [ClassInitialize()]
@@ -84,6 +84,6 @@ namespace ContentNamespace.Web.Tests.Repositories
         protected static void CleanTestDb()
         {
 
-        }
+        }*/
     }
 }
