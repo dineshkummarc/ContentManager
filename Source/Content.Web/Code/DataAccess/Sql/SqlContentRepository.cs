@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
+using ContentNamespace.Web.Code.Entities;
 using Ent = ContentNamespace.Web.Code.Entities;
-using Sql = ContentNamespace.Web.Code.DataAccess.Sql;
+using Dbml = ContentNamespace.Web.Code.DataAccess.Sql.Dbml;
 
 namespace ContentNamespace.Web.Code.DataAccess.Sql
 {
     public class SqlContentRepository : SqlBaseRepository, IContentRepository
     {
 
-        Sql.DataClassesDataContext _db;
+        Dbml.DataClassesDataContext _db;
 
-        public SqlContentRepository(Sql.DataClassesDataContext dataContext)
+        public SqlContentRepository(Dbml.DataClassesDataContext dataContext)
         {
             _db = dataContext;
         }
@@ -40,13 +41,13 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 
         public Ent.HtmlContent Save(Ent.HtmlContent item)
         {
-            using (DataClassesDataContext db = new DataClassesDataContext(this.ConnStr))
+            using (Dbml.DataClassesDataContext db = new Dbml.DataClassesDataContext(this.ConnStr))
             {
-                HtmlContent dbItem = db.HtmlContents.Where(x => x.Id == item.Id).SingleOrDefault();
+                Dbml.HtmlContent dbItem = db.HtmlContents.Where(x => x.Id == item.Id).SingleOrDefault();
                 bool isNew = false;
                 if (dbItem == null)
                 {
-                    dbItem = new HtmlContent();
+                    dbItem = new Dbml.HtmlContent();
                     isNew = true;
                 }
                 //else

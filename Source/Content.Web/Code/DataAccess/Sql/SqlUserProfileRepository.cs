@@ -4,17 +4,17 @@ using System.Linq;
 using System.Web;
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using Ent = ContentNamespace.Web.Code.Entities;
-using Sql = ContentNamespace.Web.Code.DataAccess.Sql;
+using Dbml = ContentNamespace.Web.Code.DataAccess.Sql.Dbml;
 using ContentNamespace.Web.Code.Util;
 
 namespace ContentNamespace.Web.Code.DataAccess.Sql
 {
     public class SqlUserProfileRepository : SqlBaseRepository, IUserProfileRepository 
     {
-        
-        Sql.DataClassesDataContext _db;
 
-        public SqlUserProfileRepository(Sql.DataClassesDataContext dataContext)
+        Dbml.DataClassesDataContext _db;
+
+        public SqlUserProfileRepository(Dbml.DataClassesDataContext dataContext)
         {
             _db = dataContext;
         }
@@ -45,13 +45,13 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 
         public Ent.UserProfile Save(Ent.UserProfile item)
         {
-            using (DataClassesDataContext db = new DataClassesDataContext(this.ConnStr))
+            using (Dbml.DataClassesDataContext db = new Dbml.DataClassesDataContext(this.ConnStr))
             {
-                UserProfile dbItem = db.UserProfiles.Where(x => x.Id == item.Id).SingleOrDefault();
+                Dbml.UserProfile dbItem = db.UserProfiles.Where(x => x.Id == item.Id).SingleOrDefault();
                 bool isNew = false;
                 if (dbItem == null)
                 {
-                    dbItem = new UserProfile();
+                    dbItem = new Dbml.UserProfile();
                     isNew = true;
                 }
                 else
@@ -65,7 +65,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                 } 
                 foreach( Ent.Application a in item.Applications)
                 {
-                    Sql.Application_UserProfile dbAppUser = new Application_UserProfile();
+                    Dbml.Application_UserProfile dbAppUser = new Dbml.Application_UserProfile();
                     dbAppUser.UserProfileId = item.Id;
                     dbAppUser.ApplicationId = a.Id;
                     dbItem.Application_UserProfiles.Add(dbAppUser);

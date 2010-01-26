@@ -130,11 +130,12 @@
     <Compile Include="Code\DataAccess\Db4o\Db4o.cs" />
     <Compile Include="Code\DataAccess\Db4o\Db4oConfigurationRepository.cs" />
     <Compile Include="Code\DataAccess\MongoDb\MongoContentRepository.cs" />
-    <Compile Include="Code\DataAccess\Sql\DataClasses.designer.cs">
+    <Compile Include="Code\DataAccess\Sql\Dbml\DataClasses.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Code\DataAccess\Sql\SqlApplicationRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlBaseRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlContentRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\SqlUserProfileRepository.cs" />
@@ -467,7 +468,7 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Code\DataAccess\Sql\DataClasses.dbml">
+    <None Include="Code\DataAccess\Sql\Dbml\DataClasses.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataClasses.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -475,7 +476,7 @@
     <None Include="Code\Entities\Diagram\ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Code\DataAccess\Sql\DataClasses.dbml.layout">
+    <None Include="Code\DataAccess\Sql\Dbml\DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </None>
     <EmbeddedResource Include="Resources\EN\Strings.resx">
