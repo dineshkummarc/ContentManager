@@ -49,6 +49,45 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
         /// <param name="item">Item to save.</param>
         public HtmlContent Save(HtmlContent item)
         {
+            #region Bulk Test...
+
+            //File.AppendAllText("WhenItStarted.txt", DateTime.Now.ToString());
+
+            //for (int i = 2; i <= 1000; i++)
+            //{
+            //    HtmlContent newItem = new HtmlContent();
+
+            //    newItem.Name = item.Name + " " + i;
+            //    newItem.ModifiedBy = item.ModifiedBy;//TODO: should be loged in user
+            //    newItem.ModifiedDate = DateTime.Now;
+            //    newItem.ExpireDate = item.ExpireDate;
+            //    newItem.ActiveDate = new DateTime(1900, 1, 1);
+            //    newItem.ContentData = item.ContentData;
+            //    newItem.CreatedBy = item.CreatedBy;//TODO: should be loged in user
+            //    newItem.CreatedDate = item.CreatedDate;
+
+            //    newItem.Id = i;
+
+            //    HtmlContent w = Get().Where(x => x.Id == newItem.Id).SingleOrDefault();
+
+
+            //    if (w != null)
+            //    {
+            //        Delete(w);
+            //    }
+            //    else
+            //    {
+            //        int maxId = (Get().Count() > 0) ? Get().Max(x => x.Id) : 0;
+            //        newItem.Id = maxId + 1;
+            //    }
+
+            //    Db4O.Container.Store(newItem);
+            //}
+
+            //File.AppendAllText("WhenItStarted.txt", DateTime.Now.ToString());
+
+            #endregion
+
             HtmlContent w = Get().Where(x => x.Id == item.Id).SingleOrDefault();
 
             if (w != null)

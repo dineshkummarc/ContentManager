@@ -51,8 +51,8 @@ namespace ContentNamespace.Web
             var modules = new IModule[]
             {
                 new AutoControllerModule(Assembly.GetExecutingAssembly()),
-                new ServiceModule()
-                //new Db4oModule()
+                //new ServiceModule()
+                new Db4oModule()
             };
             return new StandardKernel(modules);
         }
@@ -67,9 +67,9 @@ namespace ContentNamespace.Web
             Bind<IApplicationService>().To<ApplicationService>();
 
 
-            Bind<IContentRepository>().To<SqlContentRepository>().Using<SingletonBehavior>();
+            //Bind<IContentRepository>().To<SqlContentRepository>().Using<SingletonBehavior>();
             //Bind<IContentRepository>().To<VistaDbContentRepository>().Using<SingletonBehavior>();
-            //Bind<IContentRepository>().To<Db4oContentRepository>().Using<SingletonBehavior>();
+            Bind<IContentRepository>().To<Db4oContentRepository>().Using<SingletonBehavior>();
             //Bind<IContentRepository>().To<MongoContentRepository>().Using<SingletonBehavior>();
             Bind<IContentService>().To<ContentService>();
 

@@ -46,24 +46,26 @@ namespace ContentNamespace.Web.Code.Service.Base
                     ExpireDate = x.ExpireDate,
                     ModifiedBy = x.ModifiedBy,
                     ModifiedDate = x.ModifiedDate,
-                    ItemState = Enums.ContentState.InProgress //x.ItemState
+                    ItemState = x.ItemState
                 }).SingleOrDefault(); 
         }
 
          
         public HtmlContent Get(int id)
         {
-            return this._repository.Get().Where(x => x.Id == id).FirstOrDefault();//.Select(x => new HtmlContent
-            //{
-            //    Id = x.Id,
-            //    Name = x.Name,
-            //    ContentData = x.ContentData,
-            //    ActiveDate = x.ActiveDate,
-            //    ExpireDate = x.ExpireDate,
-            //    ModifiedBy = x.ModifiedBy,
-            //    ModifiedDate = x.ModifiedDate,
-            //    ItemState = Enums.ContentState.InProgress
-            //}).SingleOrDefault(); 
+            return this._repository.Get()
+                .Where(x => x.Id == id)
+                .Select(x => new HtmlContent
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ContentData = x.ContentData,
+                ActiveDate = x.ActiveDate,
+                ExpireDate = x.ExpireDate,
+                ModifiedBy = x.ModifiedBy,
+                ModifiedDate = x.ModifiedDate,
+                ItemState = x.ItemState
+            }).SingleOrDefault(); 
         }
 
         public HtmlContent Save(HtmlContent item)
@@ -96,8 +98,8 @@ namespace ContentNamespace.Web.Code.Service.Base
                 ActiveDate = x.ActiveDate,
                 ExpireDate = x.ExpireDate,
                 ModifiedBy = x.ModifiedBy,
-                ModifiedDate = x.ModifiedDate//,
-                //ItemState = x.ItemState
+                ModifiedDate = x.ModifiedDate,
+                ItemState = x.ItemState
             });
 
             return contents;
