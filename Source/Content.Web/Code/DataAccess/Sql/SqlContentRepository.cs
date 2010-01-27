@@ -34,15 +34,75 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                 ModifiedBy = x.ModifiedBy,
                 ModifiedDate = x.ModifiedDate ?? new DateTime(1753, 1, 1),
                 CreatedBy = x.CreatedBy,
-                CreatedDate = x.CreatedDate ?? new DateTime(1753, 1, 1)  
+                CreatedDate = x.CreatedDate ?? new DateTime(1753, 1, 1),
+                ItemState = GetContentStateEnum((int)x.ItemState)
             }).AsQueryable();
             return r;
+        }
+
+        private Enums.ContentState GetContentStateEnum(int? intValue)
+        {
+            switch (intValue)
+            {
+                case 0: { return Enums.ContentState.Created; }
+                case 1: { return Enums.ContentState.InProgress; }
+                case 2: { return Enums.ContentState.Submitted; }
+                case 3: { return Enums.ContentState.Published; }
+                case 4: { return Enums.ContentState.Expired; }
+                case 99: { return Enums.ContentState.Rejected; }
+                default: { return Enums.ContentState.Created; }
+            }
         }
 
         public Ent.HtmlContent Save(Ent.HtmlContent item)
         {
             using (Dbml.DataClassesDataContext db = new Dbml.DataClassesDataContext(this.ConnStr))
             {
+                #region Bulk Test...
+
+                ////File.AppendAllText("WhenItStarted.txt", DateTime.Now.ToString());
+
+                //for (int i = 2; i <= 1000; i++)
+                //{
+
+                //    item.Id = -2;
+
+                //    Dbml.HtmlContent dbItem = db.HtmlContents.Where(x => x.Id == item.Id).SingleOrDefault();
+                //    bool isNew = false;
+                //    if (dbItem == null)
+                //    {
+                //        dbItem = new Dbml.HtmlContent();
+                //        isNew = true;
+                //    }
+
+                //    dbItem.Name = item.Name;
+                //    dbItem.ContentData = item.ContentData;
+                //    dbItem.ActiveDate = item.ActiveDate;
+                //    dbItem.ExpireDate = item.ExpireDate;
+                //    dbItem.ModifiedBy = item.ModifiedBy;
+                //    dbItem.ModifiedDate = item.ModifiedDate;
+
+
+                //    if (isNew)
+                //    {
+                //        db.HtmlContents.InsertOnSubmit(dbItem);
+                //    }
+                //    try
+                //    {
+                //        db.SubmitChanges();
+                //    }
+                //    catch (Exception e)
+                //    {
+                //        string s = e.Message;
+                //        throw;
+                //    }
+                //    item.Id = dbItem.Id;
+                //}
+
+                ////File.AppendAllText("WhenItStarted.txt", DateTime.Now.ToString());
+
+                #endregion
+
                 Dbml.HtmlContent dbItem = db.HtmlContents.Where(x => x.Id == item.Id).SingleOrDefault();
                 bool isNew = false;
                 if (dbItem == null)
@@ -74,7 +134,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                 dbItem.ExpireDate = item.ExpireDate ;
                 dbItem.ModifiedBy  = item.ModifiedBy;
                 dbItem.ModifiedDate = item.ModifiedDate;
-
+                dbItem.ItemState = (int)item.ItemState;
 
                 if (isNew)
                 {

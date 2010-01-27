@@ -30,9 +30,6 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertHtmlContent(HtmlContent instance);
-    partial void UpdateHtmlContent(HtmlContent instance);
-    partial void DeleteHtmlContent(HtmlContent instance);
     partial void InsertApplication(Application instance);
     partial void UpdateApplication(Application instance);
     partial void DeleteApplication(Application instance);
@@ -42,6 +39,9 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
     partial void InsertUserProfile(UserProfile instance);
     partial void UpdateUserProfile(UserProfile instance);
     partial void DeleteUserProfile(UserProfile instance);
+    partial void InsertHtmlContent(HtmlContent instance);
+    partial void UpdateHtmlContent(HtmlContent instance);
+    partial void DeleteHtmlContent(HtmlContent instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -74,14 +74,6 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<HtmlContent> HtmlContents
-		{
-			get
-			{
-				return this.GetTable<HtmlContent>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Application> Applications
 		{
 			get
@@ -105,323 +97,12 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 				return this.GetTable<UserProfile>();
 			}
 		}
-	}
-	
-	[Table(Name="dbo.HtmlContent")]
-	public partial class HtmlContent : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Name;
-		
-		private string _ContentData;
-		
-		private System.Nullable<System.DateTime> _ExpireDate;
-		
-		private System.Nullable<System.DateTime> _ActiveDate;
-		
-		private System.Nullable<System.DateTime> _CreatedDate;
-		
-		private string _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _ModifiedDate;
-		
-		private string _ModifiedBy;
-		
-		private System.Nullable<int> _ApplicationId;
-		
-		private EntityRef<Application> _Application;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnContentDataChanging(string value);
-    partial void OnContentDataChanged();
-    partial void OnExpireDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnExpireDateChanged();
-    partial void OnActiveDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnActiveDateChanged();
-    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreatedDateChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
-    partial void OnModifiedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnModifiedDateChanged();
-    partial void OnModifiedByChanging(string value);
-    partial void OnModifiedByChanged();
-    partial void OnApplicationIdChanging(System.Nullable<int> value);
-    partial void OnApplicationIdChanged();
-    #endregion
-		
-		public HtmlContent()
-		{
-			this._Application = default(EntityRef<Application>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		public System.Data.Linq.Table<HtmlContent> HtmlContents
 		{
 			get
 			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="NChar(250)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ContentData", DbType="NVarChar(MAX)")]
-		public string ContentData
-		{
-			get
-			{
-				return this._ContentData;
-			}
-			set
-			{
-				if ((this._ContentData != value))
-				{
-					this.OnContentDataChanging(value);
-					this.SendPropertyChanging();
-					this._ContentData = value;
-					this.SendPropertyChanged("ContentData");
-					this.OnContentDataChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ExpireDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ExpireDate
-		{
-			get
-			{
-				return this._ExpireDate;
-			}
-			set
-			{
-				if ((this._ExpireDate != value))
-				{
-					this.OnExpireDateChanging(value);
-					this.SendPropertyChanging();
-					this._ExpireDate = value;
-					this.SendPropertyChanged("ExpireDate");
-					this.OnExpireDateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ActiveDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ActiveDate
-		{
-			get
-			{
-				return this._ActiveDate;
-			}
-			set
-			{
-				if ((this._ActiveDate != value))
-				{
-					this.OnActiveDateChanging(value);
-					this.SendPropertyChanging();
-					this._ActiveDate = value;
-					this.SendPropertyChanged("ActiveDate");
-					this.OnActiveDateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this.OnCreatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDate = value;
-					this.SendPropertyChanged("CreatedDate");
-					this.OnCreatedDateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CreatedBy", DbType="NVarChar(50)")]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ModifiedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ModifiedDate
-		{
-			get
-			{
-				return this._ModifiedDate;
-			}
-			set
-			{
-				if ((this._ModifiedDate != value))
-				{
-					this.OnModifiedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedDate = value;
-					this.SendPropertyChanged("ModifiedDate");
-					this.OnModifiedDateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ModifiedBy", DbType="NVarChar(50)")]
-		public string ModifiedBy
-		{
-			get
-			{
-				return this._ModifiedBy;
-			}
-			set
-			{
-				if ((this._ModifiedBy != value))
-				{
-					this.OnModifiedByChanging(value);
-					this.SendPropertyChanging();
-					this._ModifiedBy = value;
-					this.SendPropertyChanged("ModifiedBy");
-					this.OnModifiedByChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ApplicationId", DbType="Int")]
-		public System.Nullable<int> ApplicationId
-		{
-			get
-			{
-				return this._ApplicationId;
-			}
-			set
-			{
-				if ((this._ApplicationId != value))
-				{
-					if (this._Application.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnApplicationIdChanging(value);
-					this.SendPropertyChanging();
-					this._ApplicationId = value;
-					this.SendPropertyChanged("ApplicationId");
-					this.OnApplicationIdChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Application_HtmlContent", Storage="_Application", ThisKey="ApplicationId", OtherKey="Id", IsForeignKey=true)]
-		public Application Application
-		{
-			get
-			{
-				return this._Application.Entity;
-			}
-			set
-			{
-				Application previousValue = this._Application.Entity;
-				if (((previousValue != value) 
-							|| (this._Application.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Application.Entity = null;
-						previousValue.HtmlContents.Remove(this);
-					}
-					this._Application.Entity = value;
-					if ((value != null))
-					{
-						value.HtmlContents.Add(this);
-						this._ApplicationId = value.Id;
-					}
-					else
-					{
-						this._ApplicationId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Application");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<HtmlContent>();
 			}
 		}
 	}
@@ -436,9 +117,9 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 		
 		private string _Name;
 		
-		private EntitySet<HtmlContent> _HtmlContents;
-		
 		private EntitySet<Application_UserProfile> _Application_UserProfiles;
+		
+		private EntitySet<HtmlContent> _HtmlContents;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -452,8 +133,8 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 		
 		public Application()
 		{
-			this._HtmlContents = new EntitySet<HtmlContent>(new Action<HtmlContent>(this.attach_HtmlContents), new Action<HtmlContent>(this.detach_HtmlContents));
 			this._Application_UserProfiles = new EntitySet<Application_UserProfile>(new Action<Application_UserProfile>(this.attach_Application_UserProfiles), new Action<Application_UserProfile>(this.detach_Application_UserProfiles));
+			this._HtmlContents = new EntitySet<HtmlContent>(new Action<HtmlContent>(this.attach_HtmlContents), new Action<HtmlContent>(this.detach_HtmlContents));
 			OnCreated();
 		}
 		
@@ -497,19 +178,6 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 			}
 		}
 		
-		[Association(Name="Application_HtmlContent", Storage="_HtmlContents", ThisKey="Id", OtherKey="ApplicationId")]
-		public EntitySet<HtmlContent> HtmlContents
-		{
-			get
-			{
-				return this._HtmlContents;
-			}
-			set
-			{
-				this._HtmlContents.Assign(value);
-			}
-		}
-		
 		[Association(Name="Application_Application_UserProfile", Storage="_Application_UserProfiles", ThisKey="Id", OtherKey="ApplicationId")]
 		public EntitySet<Application_UserProfile> Application_UserProfiles
 		{
@@ -520,6 +188,19 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 			set
 			{
 				this._Application_UserProfiles.Assign(value);
+			}
+		}
+		
+		[Association(Name="Application_HtmlContent", Storage="_HtmlContents", ThisKey="Id", OtherKey="ApplicationId")]
+		public EntitySet<HtmlContent> HtmlContents
+		{
+			get
+			{
+				return this._HtmlContents;
+			}
+			set
+			{
+				this._HtmlContents.Assign(value);
 			}
 		}
 		
@@ -543,18 +224,6 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 			}
 		}
 		
-		private void attach_HtmlContents(HtmlContent entity)
-		{
-			this.SendPropertyChanging();
-			entity.Application = this;
-		}
-		
-		private void detach_HtmlContents(HtmlContent entity)
-		{
-			this.SendPropertyChanging();
-			entity.Application = null;
-		}
-		
 		private void attach_Application_UserProfiles(Application_UserProfile entity)
 		{
 			this.SendPropertyChanging();
@@ -562,6 +231,18 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 		}
 		
 		private void detach_Application_UserProfiles(Application_UserProfile entity)
+		{
+			this.SendPropertyChanging();
+			entity.Application = null;
+		}
+		
+		private void attach_HtmlContents(HtmlContent entity)
+		{
+			this.SendPropertyChanging();
+			entity.Application = this;
+		}
+		
+		private void detach_HtmlContents(HtmlContent entity)
 		{
 			this.SendPropertyChanging();
 			entity.Application = null;
@@ -1087,6 +768,349 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 		{
 			this.SendPropertyChanging();
 			entity.UserProfile = null;
+		}
+	}
+	
+	[Table(Name="dbo.HtmlContent")]
+	public partial class HtmlContent : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private string _ContentData;
+		
+		private System.Nullable<System.DateTime> _ExpireDate;
+		
+		private System.Nullable<System.DateTime> _ActiveDate;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private string _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _ModifiedDate;
+		
+		private string _ModifiedBy;
+		
+		private System.Nullable<int> _ApplicationId;
+		
+		private System.Nullable<int> _ItemState;
+		
+		private EntityRef<Application> _Application;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnContentDataChanging(string value);
+    partial void OnContentDataChanged();
+    partial void OnExpireDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnExpireDateChanged();
+    partial void OnActiveDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnActiveDateChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedByChanging(string value);
+    partial void OnCreatedByChanged();
+    partial void OnModifiedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifiedDateChanged();
+    partial void OnModifiedByChanging(string value);
+    partial void OnModifiedByChanged();
+    partial void OnApplicationIdChanging(System.Nullable<int> value);
+    partial void OnApplicationIdChanged();
+    partial void OnItemStateChanging(System.Nullable<int> value);
+    partial void OnItemStateChanged();
+    #endregion
+		
+		public HtmlContent()
+		{
+			this._Application = default(EntityRef<Application>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="NChar(250)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ContentData", DbType="NVarChar(MAX)")]
+		public string ContentData
+		{
+			get
+			{
+				return this._ContentData;
+			}
+			set
+			{
+				if ((this._ContentData != value))
+				{
+					this.OnContentDataChanging(value);
+					this.SendPropertyChanging();
+					this._ContentData = value;
+					this.SendPropertyChanged("ContentData");
+					this.OnContentDataChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ExpireDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ExpireDate
+		{
+			get
+			{
+				return this._ExpireDate;
+			}
+			set
+			{
+				if ((this._ExpireDate != value))
+				{
+					this.OnExpireDateChanging(value);
+					this.SendPropertyChanging();
+					this._ExpireDate = value;
+					this.SendPropertyChanged("ExpireDate");
+					this.OnExpireDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ActiveDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ActiveDate
+		{
+			get
+			{
+				return this._ActiveDate;
+			}
+			set
+			{
+				if ((this._ActiveDate != value))
+				{
+					this.OnActiveDateChanging(value);
+					this.SendPropertyChanging();
+					this._ActiveDate = value;
+					this.SendPropertyChanged("ActiveDate");
+					this.OnActiveDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CreatedBy", DbType="NVarChar(50)")]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedBy", DbType="NVarChar(50)")]
+		public string ModifiedBy
+		{
+			get
+			{
+				return this._ModifiedBy;
+			}
+			set
+			{
+				if ((this._ModifiedBy != value))
+				{
+					this.OnModifiedByChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedBy = value;
+					this.SendPropertyChanged("ModifiedBy");
+					this.OnModifiedByChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ApplicationId", DbType="Int")]
+		public System.Nullable<int> ApplicationId
+		{
+			get
+			{
+				return this._ApplicationId;
+			}
+			set
+			{
+				if ((this._ApplicationId != value))
+				{
+					if (this._Application.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnApplicationIdChanging(value);
+					this.SendPropertyChanging();
+					this._ApplicationId = value;
+					this.SendPropertyChanged("ApplicationId");
+					this.OnApplicationIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ItemState", DbType="Int")]
+		public System.Nullable<int> ItemState
+		{
+			get
+			{
+				return this._ItemState;
+			}
+			set
+			{
+				if ((this._ItemState != value))
+				{
+					this.OnItemStateChanging(value);
+					this.SendPropertyChanging();
+					this._ItemState = value;
+					this.SendPropertyChanged("ItemState");
+					this.OnItemStateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Application_HtmlContent", Storage="_Application", ThisKey="ApplicationId", OtherKey="Id", IsForeignKey=true)]
+		public Application Application
+		{
+			get
+			{
+				return this._Application.Entity;
+			}
+			set
+			{
+				Application previousValue = this._Application.Entity;
+				if (((previousValue != value) 
+							|| (this._Application.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Application.Entity = null;
+						previousValue.HtmlContents.Remove(this);
+					}
+					this._Application.Entity = value;
+					if ((value != null))
+					{
+						value.HtmlContents.Add(this);
+						this._ApplicationId = value.Id;
+					}
+					else
+					{
+						this._ApplicationId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Application");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
