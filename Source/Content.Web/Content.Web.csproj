@@ -402,7 +402,30 @@
     <Content Include="Content\openid.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Public\contact.html" />
+    <Content Include="Public\css\html.css" />
+    <Content Include="Public\css\layout.css" />
+    <Content Include="Public\images\bg\blank.gif" />
+    <Content Include="Public\images\bg\header.gif" />
+    <Content Include="Public\images\bg\header_image.jpg" />
+    <Content Include="Public\images\bg\light_body.gif" />
+    <Content Include="Public\images\bg\menu.gif" />
+    <Content Include="Public\images\bg\submenu1.gif" />
+    <Content Include="Public\images\bg\submenu2.gif" />
+    <Content Include="Public\images\firefox.jpg" />
+    <Content Include="Public\images\icon_samples.gif" />
+    <Content Include="Public\images\logo.gif" />
+    <Content Include="Public\images\thumbs\01.jpg" />
+    <Content Include="Public\images\thumbs\02.jpg" />
+    <Content Include="Public\images\thumbs\03.jpg" />
+    <Content Include="Public\images\thumbs\04.jpg" />
+    <Content Include="Public\images\thumbs\05.jpg" />
+    <Content Include="Public\images\thumbs\fullahead.jpg" />
+    <Content Include="Public\index.html" />
+    <Content Include="Public\onecol.html" />
     <Content Include="Public\TestContent.htm" />
+    <Content Include="Public\twocol_a.html" />
+    <Content Include="Public\twocol_b.html" />
     <Content Include="Scripts\images\aol.gif" />
     <Content Include="Scripts\images\blogger.ico" />
     <Content Include="Scripts\images\claimid.ico" />
@@ -479,6 +502,9 @@
     <None Include="Code\DataAccess\Sql\Dbml\DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </None>
+    <None Include="Public\images\bg\Thumbs.db" />
+    <None Include="Public\images\Thumbs.db" />
+    <None Include="Public\images\thumbs\Thumbs.db" />
     <EmbeddedResource Include="Resources\EN\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
