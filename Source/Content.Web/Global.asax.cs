@@ -51,8 +51,9 @@ namespace ContentNamespace.Web
             var modules = new IModule[]
             {
                 new AutoControllerModule(Assembly.GetExecutingAssembly()),
-                //new ServiceModule()
                 new Db4oModule()
+                //new FakeModule()
+                //new SqlModule()
             };
             return new StandardKernel(modules);
         }
@@ -89,7 +90,7 @@ namespace ContentNamespace.Web
     }
 
 
-    internal class ServiceModule : StandardModule
+    internal class FakeModule : StandardModule
     {
         public override void Load()
         {
@@ -100,6 +101,31 @@ namespace ContentNamespace.Web
             Bind<IContentService>().To<ContentService>();
 
             Bind<IUserProfileRepository>().To<FakeUserProfileRepository>().Using<SingletonBehavior>();
+            Bind<IUserProfileService>().To<UserProfileService>();
+
+            Bind<IAuthenticationService>().To<TestAuthenticationService>();
+
+            Bind<ISettingRepository>().To<FakeSettingRepository>().Using<SingletonBehavior>();
+            Bind<ISettingService>().To<ConfigurationService>();
+
+            Bind<ICacheService>().To<CacheService>();
+            Bind<MembershipProvider>().To<SimpleMembershipProvider>();
+            Bind<RoleProvider>().To<SimpleRoleProvider>();
+        }
+    }
+
+
+    internal class SqlModule : StandardModule
+    {
+        public override void Load()
+        {
+            Bind<IApplicationRepository>().To<FakeApplicationRepository>().Using<SingletonBehavior>();
+            Bind<IApplicationService>().To<ApplicationService>();
+
+            Bind<IContentRepository>().To<SqlContentRepository>().Using<SingletonBehavior>();
+            Bind<IContentService>().To<ContentService>();
+
+            Bind<IUserProfileRepository>().To<SqlUserProfileRepository>().Using<SingletonBehavior>();
             Bind<IUserProfileService>().To<UserProfileService>();
 
             Bind<IAuthenticationService>().To<TestAuthenticationService>();

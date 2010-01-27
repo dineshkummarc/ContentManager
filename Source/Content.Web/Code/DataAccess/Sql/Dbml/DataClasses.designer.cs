@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ContentNamespace.Web.Code.DataAccess.Sql
+namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;

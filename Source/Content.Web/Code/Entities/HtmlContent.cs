@@ -22,6 +22,16 @@ namespace ContentNamespace.Web.Code.Entities
         public string ContentData { get; set; }
         public DateTime ExpireDate { get; set; }
         public DateTime ActiveDate { get; set; }
+        public int ApplicationId { get; set; }
+
+
+
+        #region Calculated Properties
+        public bool IsExpired { get; set; }
+        public string Application { get; set; }
+        #endregion
+
+
 
         // Security related
         public int OwnerUserId { get; set; }
