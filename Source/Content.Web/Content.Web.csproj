@@ -1,4 +1,4 @@
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -115,6 +115,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Admin\AreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\TestController.cs" />
+    <Compile Include="Areas\Client\AreaRegistration.cs" />
+    <Compile Include="Areas\Client\Controllers\TestClientController.cs" />
     <Compile Include="Code\DataAccess\Db4o\Db4oContentRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeApplicationRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeContentRepository.cs" />
@@ -503,6 +507,10 @@
     <None Include="Code\Entities\Diagram\ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Test\Index.aspx" />
+    <Content Include="Areas\Client\Views\TestClient\Index.aspx" />
+    <Content Include="Areas\Client\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\Web.config" />
     <None Include="Code\DataAccess\Sql\Dbml\DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </None>
@@ -518,6 +526,10 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Client\Models\" />
+    <Folder Include="Areas\Client\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

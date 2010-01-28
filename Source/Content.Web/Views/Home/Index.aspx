@@ -18,4 +18,17 @@
     <p>
         <a href="Application.mvc/Index">Application.mvc/Index</a>
     </p>
+    
+    
+    <ul>
+        <li>
+            <%= Html.ActionLink("Admin", "Index", "Test", new { Area = "Admin" }, new { })%>
+            &lt;%= Html.ActionLink("Admin", "Index", "Test", new { Area = "Admin" }, new { }) %&gt;
+        </li> 
+        <li>
+            <%= Html.ActionLink("Client", "Index", "Test", new { Area = "Client" }, new { })%>
+            &lt;%= Html.ActionLink("Client", "Index", "Test", new { Area = "Client" }, new { }) %&gt;
+        </li>  
+    </ul>
+    
 </asp:Content>

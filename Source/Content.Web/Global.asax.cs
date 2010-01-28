@@ -34,6 +34,8 @@ namespace ContentNamespace.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            AreaRegistration.RegisterAllAreas();
+
             routes.MapRoute(
                 "Default",                                              // Route name    
                 "{controller}.mvc/{action}/{id}",                       // URL with parameters
@@ -44,6 +46,12 @@ namespace ContentNamespace.Web
                 "",
                 new { controller = "Home", action = "Index", id = "" }
             ); 
+        }
+
+        protected override void OnApplicationStarted()
+        {
+            //RegisterRoutes(RouteTable.Routes); 
+            base.OnApplicationStarted(); 
         }
 
         protected override IKernel CreateKernel()
