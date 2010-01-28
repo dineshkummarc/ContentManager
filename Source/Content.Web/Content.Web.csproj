@@ -185,14 +185,14 @@
     <Compile Include="Code\Util\ServerVar.cs" />
     <Compile Include="Code\Util\SessionHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AjaxTestController.cs" />
-    <Compile Include="Controllers\ApplicationController.cs" />
-    <Compile Include="Controllers\Base\ContentManagerBaseController.cs" />
-    <Compile Include="Controllers\SettingController.cs" />
-    <Compile Include="Controllers\HtmlContentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AjaxTestController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ApplicationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Base\ContentManagerBaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HtmlContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PageController.cs" />
-    <Compile Include="Controllers\UserProfileController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserProfileController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -447,31 +447,31 @@
     <Content Include="Scripts\openid-jquery.js" />
     <Content Include="Views\Account\AdminOnly.aspx" />
     <Content Include="Views\Account\Index.aspx" />
-    <Content Include="Views\AjaxTest\HtmlContentDetails.ascx" />
-    <Content Include="Views\AjaxTest\Index.aspx" />
-    <Content Include="Views\Application\Create.aspx" />
-    <Content Include="Views\Application\Details.aspx" />
-    <Content Include="Views\Application\Edit.aspx" />
-    <Content Include="Views\Application\Index.aspx" />
+    <Content Include="Areas\Admin\Views\AjaxTest\HtmlContentDetails.ascx" />
+    <Content Include="Areas\Admin\Views\AjaxTest\Index.aspx" />
+    <Content Include="Areas\Admin\Views\Application\Create.aspx" />
+    <Content Include="Areas\Admin\Views\Application\Details.aspx" />
+    <Content Include="Areas\Admin\Views\Application\Edit.aspx" />
+    <Content Include="Areas\Admin\Views\Application\Index.aspx" />
     <Content Include="Views\Authentication\Login.aspx.aspx" />
-    <Content Include="Views\HtmlContent\ContentPage.aspx" />
-    <Content Include="Views\HtmlContent\EditExtra.aspx" />
-    <Content Include="Views\HtmlContent\TestContents.aspx" />
-    <Content Include="Views\Page\Test.aspx" />
-    <Content Include="Views\Setting\Edit.aspx" />
-    <Content Include="Views\Setting\Index.aspx" />
-    <Content Include="Views\Page\Index.aspx" />
-    <Content Include="Views\Page\Page.aspx" />
-    <Content Include="Views\HtmlContent\Create.aspx" />
-    <Content Include="Views\HtmlContent\Details.aspx" />
-    <Content Include="Views\HtmlContent\Edit.aspx" />
-    <Content Include="Views\HtmlContent\Index.aspx" />
+    <Content Include="Areas\Admin\Views\HtmlContent\ContentPage.aspx" />
+    <Content Include="Areas\Admin\Views\HtmlContent\EditExtra.aspx" />
+    <Content Include="Areas\Admin\Views\HtmlContent\TestContents.aspx" />
+    <Content Include="Areas\Admin\Views\Page\Test.aspx" />
+    <Content Include="Areas\Admin\Views\Setting\Edit.aspx" />
+    <Content Include="Areas\Admin\Views\Setting\Index.aspx" />
+    <Content Include="Areas\Admin\Views\Page\Index.aspx" />
+    <Content Include="Areas\Admin\Views\Page\Page.aspx" />
+    <Content Include="Areas\Admin\Views\HtmlContent\Create.aspx" />
+    <Content Include="Areas\Admin\Views\HtmlContent\Details.aspx" />
+    <Content Include="Areas\Admin\Views\HtmlContent\Edit.aspx" />
+    <Content Include="Areas\Admin\Views\HtmlContent\Index.aspx" />
     <Content Include="Views\Shared\OpenIdLogin.ascx" />
     <Content Include="Views\Shared\UserNamePasswordLogin.ascx" />
-    <Content Include="Views\UserProfile\Create.aspx" />
-    <Content Include="Views\UserProfile\Details.aspx" />
-    <Content Include="Views\UserProfile\Edit.aspx" />
-    <Content Include="Views\UserProfile\Index.aspx" />
+    <Content Include="Areas\Admin\Views\UserProfile\Create.aspx" />
+    <Content Include="Areas\Admin\Views\UserProfile\Details.aspx" />
+    <Content Include="Areas\Admin\Views\UserProfile\Edit.aspx" />
+    <Content Include="Areas\Admin\Views\UserProfile\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
@@ -511,6 +511,7 @@
     <Content Include="Areas\Client\Views\Web.config" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Default.aspx" />
+    <Content Include="Areas\Admin\Views\Shared\Site.Master" />
     <None Include="Code\DataAccess\Sql\Dbml\DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </None>
@@ -527,7 +528,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Client\Models\" />
     <Folder Include="Areas\Client\Views\Shared\" />
     <Folder Include="Models\" />
