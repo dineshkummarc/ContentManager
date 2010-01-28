@@ -52,6 +52,28 @@ namespace ContentNamespace.Web.Code.Service.Base
             return contents; 
         }
 
+        public IQueryable<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount)
+        {
+            var contents = _repository.Get(pageIndex, _settings.GridPageSize, out totalCount).AsQueryable().Select(x => new HtmlContent
+            {
+                Id = x.Id,
+                Name = x.Name,
+                //ContentData = (x.ContentData.Length > 5) ?
+                //               x.ContentData.Substring(0, 5) + "..." :
+                //               x.ContentData,
+                ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
+                               x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." :
+                               x.ContentData,
+                //ContentData = x.ContentData,
+                ActiveDate = x.ActiveDate,
+                ExpireDate = x.ExpireDate,
+                ModifiedBy = x.ModifiedBy,
+                ModifiedDate = x.ModifiedDate,
+                ItemState = x.ItemState
+            });
+            return contents; 
+        }
+
         public HtmlContent Get(string name, DateTime dt)
         {
             return this._repository.Get()

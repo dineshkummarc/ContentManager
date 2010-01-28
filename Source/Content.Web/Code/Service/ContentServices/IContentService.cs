@@ -9,6 +9,7 @@ namespace ContentNamespace.Web.Code.Service.Interfaces
     {
         IQueryable<HtmlContent> Get(DateTime dt);
         IQueryable<HtmlContent> Get();
+        IQueryable<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount);
         HtmlContent Get(int id);
         HtmlContent Get(string name, DateTime dt);
         HtmlContent Save(HtmlContent item);

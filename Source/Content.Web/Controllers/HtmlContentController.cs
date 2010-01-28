@@ -8,7 +8,9 @@ using ContentNamespace.Web.Code.Service.Interfaces;
 using ContentNamespace.Web.Code.Entities;
 using System.Text;
 using System.Web.Routing;
-using ContentNamespace.Web.Code.Service.ApplicationServices; 
+using ContentNamespace.Web.Code.Service.ApplicationServices;
+using ContentNamespace.Web.Code.Service.ConfigurationServices;
+using ContentNamespace.Web.Code.DataAccess.Interfaces; 
 
 namespace ContentNamespace.Web.Controllers
 {
@@ -30,6 +32,21 @@ namespace ContentNamespace.Web.Controllers
         }
     }
 
+    public class HtmlContentIndexViewModel
+    {
+        // Properties
+        public List<HtmlContent> HtmlContentList { get; set; }
+        public int CurrentPage { get; set; }
+        public int MaximumPage { get; set; }
+
+        // Constructor
+        public HtmlContentIndexViewModel(List<HtmlContent> htmlContent, int currentPage, int maximumPage)
+        {
+            this.HtmlContentList = htmlContent;
+            this.CurrentPage = currentPage;
+            this.MaximumPage = maximumPage;
+        }
+    }
 
     public class HtmlContentController : ContentManagerBaseController
     {
@@ -48,10 +65,21 @@ namespace ContentNamespace.Web.Controllers
             GetContentManagerSettings();
         }
 
-
-        public ActionResult Index()
+        public ActionResult Index(int? targetPage)
         {
-            return View(this._contentService.Get());
+            // TODO: This is a little strange, since the default "grid page size" is already available
+            // in the ContentService, but if we leave off the parameter, then we can't easily distinguish
+            // the Get() methods
+            if (targetPage == null) { targetPage = 0; }
+
+            int totalCount = 0;
+
+            var settings = (_settingService.GetData() as Settings);
+            var resultList = this._contentService.Get((int)targetPage, 0, out totalCount).ToList();
+            var maximumPage = totalCount / settings.GridPageSize;
+            var currentPageViewModel = new HtmlContentIndexViewModel(resultList, (int)targetPage, maximumPage);
+
+            return View(currentPageViewModel);
         }
 
         //
@@ -67,7 +95,7 @@ namespace ContentNamespace.Web.Controllers
         public ActionResult Create()
         {
             HtmlContent item = new HtmlContent();
-            return View( new HtmlContentViewModel(item, this._applicationService));
+            return View(new HtmlContentViewModel(item, this._applicationService));
         }
 
         //

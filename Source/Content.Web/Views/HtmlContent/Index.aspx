@@ -1,4 +1,5 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<ContentNamespace.Web.Code.Entities.HtmlContent>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" 
+         Inherits="System.Web.Mvc.ViewPage<ContentNamespace.Web.Controllers.HtmlContentIndexViewModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -36,8 +37,10 @@
                 Status
             </th>
         </tr>
+    <% using (Html.BeginForm()) {%>
 
-    <% foreach (var item in Model) { %>
+    <% foreach (var item in Model.HtmlContentList)
+       { %>
     
         <tr>
             <td>
@@ -45,39 +48,47 @@
                 <%= Html.ActionLink("Details", "Details", new { id = item.Id })%>
             </td>
             <td>
-                <%= Html.Encode(item.Id) %>
+                <%= Html.Encode(item.Id)%>
             </td>
             <td>
-                <%= Html.Encode(item.Name) %>
+                <%= Html.Encode(item.Name)%>
             </td>
             <td>
-                <%= Html.Encode(item.ContentData) %>
+                <%= Html.Encode(item.ContentData)%>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.ModifiedDate)) %>
+                <%= Html.Encode(String.Format("{0:g}", item.ModifiedDate))%>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.ExpireDate)) %>
+                <%= Html.Encode(String.Format("{0:g}", item.ExpireDate))%>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.ActiveDate)) %>
+                <%= Html.Encode(String.Format("{0:g}", item.ActiveDate))%>
             </td>
             <td>
-                <%= Html.Encode(item.ModifiedBy) %>
+                <%= Html.Encode(item.ModifiedBy)%>
             </td>
             <td>
-                <%= Html.Encode(item.ItemStateMachineState) %>
+                <%= Html.Encode(item.ItemStateMachineState)%>
             </td>
         </tr>
     
     <% } %>
 
     </table>
+    <p>
+        <%= Html.ActionLink("First", "Index", new { targetPage = 0 })%> || 
+        <%= Html.ActionLink("Back", "Index", new { targetPage = (Model.CurrentPage == 0) ? 0 : (Model.CurrentPage - 1) })%> | 
+        <%= Html.ActionLink("Next", "Index", new { targetPage = (Model.CurrentPage + 1) })%> || 
+        <%= Html.ActionLink("Last", "Index", new { targetPage = Model.MaximumPage })%>
+    </p>
 
     <p> 
         <%= Html.ActionLink("Create New", "Create") %> |
         <%= Html.ActionLink("TestPage", "TestContents") %>  
     </p>
+    
+    <% } %>
 
 </asp:Content>
 
