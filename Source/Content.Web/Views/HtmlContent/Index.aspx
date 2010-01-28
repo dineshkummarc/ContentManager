@@ -76,10 +76,10 @@
     <% } %>
 
     </table>
-    <p>
+    <p style="text-align: center;">
         <%= Html.ActionLink("First", "Index", new { targetPage = 0 })%> || 
         <%= Html.ActionLink("Back", "Index", new { targetPage = (Model.CurrentPage == 0) ? 0 : (Model.CurrentPage - 1) })%> | 
-        <%= Html.ActionLink("Next", "Index", new { targetPage = (Model.CurrentPage + 1) })%> || 
+        <%= Html.ActionLink("Next", "Index", new { targetPage = (Model.CurrentPage == Model.MaximumPage) ? Model.MaximumPage : (Model.CurrentPage + 1) })%> || 
         <%= Html.ActionLink("Last", "Index", new { targetPage = Model.MaximumPage })%>
     </p>
 
