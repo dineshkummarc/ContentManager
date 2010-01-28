@@ -404,7 +404,6 @@
     <Content Include="Content\CkEditor\skins\v2\skin.js" />
     <Content Include="Content\CkEditor\skins\v2\templates.css" />
     <Content Include="Content\openid.css" />
-    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Public\contact.html" />
     <Content Include="Public\css\html.css" />
@@ -511,6 +510,7 @@
     <Content Include="Areas\Client\Views\TestClient\Index.aspx" />
     <Content Include="Areas\Client\Views\Web.config" />
     <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Default.aspx" />
     <None Include="Code\DataAccess\Sql\Dbml\DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </None>
