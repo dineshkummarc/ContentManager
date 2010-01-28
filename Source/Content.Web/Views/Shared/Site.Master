@@ -24,11 +24,10 @@
             <div id="menucontainer">
             
                 <ul id="menu">              
-                    <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%= Html.ActionLink("About", "About", "Home")%></li>
-                    <li><%= Html.ActionLink("Content", "Index", "HtmlContent")%></li>
-                    <li><%= Html.ActionLink("Users", "Index", "UserProfile")%></li>
-                    <li><%= Html.ActionLink("Setting", "Index", "Setting")%></li>
+                    <li><%= Html.ActionLink("Home", "Index", "Home")%></li> 
+                    <li><%= Html.ActionLink("Content", "Index", "HtmlContent", new { Area = "Admin" }, new { })%></li>
+                    <li><%= Html.ActionLink("Users", "Index", "UserProfile", new { Area = "Admin" }, new { })%></li>
+                    <li><%= Html.ActionLink("Setting", "Index", "Setting", new { Area = "Admin" }, new { })%></li>
                 </ul>
             
             </div>
