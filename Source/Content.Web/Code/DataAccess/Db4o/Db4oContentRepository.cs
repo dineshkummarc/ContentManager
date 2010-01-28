@@ -27,12 +27,12 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
         /// <param name="pageIndex">Zero-based index for lookup.</param>
         /// <param name="pageSize">Number of items to return in a page.</param>
         /// <returns></returns>
-        public PagedList<HtmlContent> GetPaged(int pageIndex, int pageSize)
+        public PagedList<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount)
         {
-            var query = (from HtmlContent items in Db4O.Container
-                         select items).AsQueryable();
+            var resultSet = new PagedList<HtmlContent>(Get(), pageIndex, pageSize);
+            totalCount = resultSet.TotalCount;
 
-            return new PagedList<HtmlContent>(query, pageIndex, pageSize);
+            return resultSet;
         }
 
         /// <summary>

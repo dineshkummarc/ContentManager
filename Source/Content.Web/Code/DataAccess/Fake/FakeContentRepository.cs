@@ -4,6 +4,7 @@ using System.Linq;
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
 //using Ent = Content.Web.Code.Entities;
 using ContentNamespace.Web.Code.Entities;
+using ContentNamespace.Web.Code.Util;
 
 
 namespace ContentNamespace.Web.Code.DataAccess.Fake
@@ -15,6 +16,8 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
 
         IApplicationRepository _applicationRepository;
         IList<Application> applicationList = new List<Application>();
+
+        public PagedList<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount) { throw new NotImplementedException(); }
 
         public FakeContentRepository(IApplicationRepository applicationRepository)
         {

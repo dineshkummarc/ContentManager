@@ -6,6 +6,7 @@ using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Entities;
 using Ent = ContentNamespace.Web.Code.Entities;
 using Dbml = ContentNamespace.Web.Code.DataAccess.Sql.Dbml;
+using ContentNamespace.Web.Code.Util;
 
 namespace ContentNamespace.Web.Code.DataAccess.Sql
 {
@@ -18,7 +19,14 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
         {
             _db = dataContext;
         }
-         
+
+        public PagedList<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount) 
+        {
+            var query = new PagedList<HtmlContent>(Get(), pageIndex, pageSize);
+            totalCount = query.TotalCount;
+
+            return query;
+        }
 
         #region IRepository<HtmlContent> Members
 

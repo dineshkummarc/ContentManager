@@ -42,6 +42,8 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
             return resultList.AsQueryable();
         }
 
+        public PagedList<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount) { throw new NotImplementedException(); }
+
         /// <summary>
         /// Returns a PagedList of items.
         /// </summary>

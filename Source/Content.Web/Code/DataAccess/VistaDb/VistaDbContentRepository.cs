@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Entities;
+using ContentNamespace.Web.Code.Util;
 
 namespace ContentNamespace.Web.Code.DataAccess.VistaDb
 {
@@ -115,6 +116,9 @@ namespace ContentNamespace.Web.Code.DataAccess.VistaDb
 
         #endregion
         */
+
+        public PagedList<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount) { throw new NotImplementedException(); }
+
         #region IRepository<HtmlContent> Members
 
         public IQueryable<HtmlContent> Get()
