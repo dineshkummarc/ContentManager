@@ -50,33 +50,37 @@ namespace ContentNamespace.Web.Code.Service.ConfigurationServices
             // If not found in cache, try get from DB
             if (Equals(setting, null))
             {
-                setting = _repository.Get().First();
+                setting = FillSettingFromRepository();
 
-                // If there isn't a settings object in the DB, create the initial default settings instance and store it
-                if (Equals(setting, null))
-                {
-                    var newSettings = new Setting
-                    {
-                        AllowExpiredContentReActivation = true,
-                        AllowRejectedContentReActivation = false,
-                        ContentExtractLength = 15,
-                        GridPageSize = 10,
-                        SettingsCacheTimeInMinutes = 5,
-                        ShowContentEllipsis = true
-                    };
-
-                    setting = this.Save(newSettings);
-                }
-
-                // Otherwise, a settings instance was retrieved from the DB; place it into the cache
                 if (setting != null)
                 {
+                    // place setting into the cache
                     _cacheService.InsertIntoCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey,
                                                  setting,
                                                  setting.SettingsCacheTimeInMinutes);
                 }
-            }
+            } 
+            return setting;
+        }
 
+        private Setting FillSettingFromRepository()
+        {
+            var setting = _repository.Get().First();
+
+            // If there isn't a setting object in the repository, hardcode a setting instance 
+            if (Equals(setting, null))
+            {
+                var newSettings = new Setting
+                {
+                    AllowExpiredContentReActivation = true,
+                    AllowRejectedContentReActivation = false,
+                    ContentExtractLength = 15,
+                    GridPageSize = 10,
+                    SettingsCacheTimeInMinutes = 5,
+                    ShowContentEllipsis = true
+                }; 
+                setting = this.Save(newSettings);
+            }
             return setting;
         }
     }
