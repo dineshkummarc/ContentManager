@@ -17,13 +17,11 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
         IApplicationRepository _applicationRepository;
         IList<Application> applicationList = new List<Application>();
 
-        public PagedList<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount) { throw new NotImplementedException(); }
-
         public FakeHtmlContentRepository(IApplicationRepository applicationRepository)
         {
             this._applicationRepository = applicationRepository;
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 42; i++)
             {
                 HtmlContent x = new HtmlContent();
                 x.Name = "Name " + i;
@@ -43,6 +41,15 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
                 list.Add(x);
             }
         }
+
+
+        public PagedList<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount)
+        {
+            var resultSet = new PagedList<HtmlContent>(this.Get(), pageIndex, pageSize);
+            totalCount = resultSet.TotalCount;
+            return resultSet;
+        }
+
 
         //private void AddEventsToTestTalent(int i, Talent t)
         //{

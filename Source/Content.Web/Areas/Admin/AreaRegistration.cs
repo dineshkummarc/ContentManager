@@ -16,7 +16,7 @@ namespace ContentNamespace.Web.Areas.Admin
         {
             context.MapRoute(
                 "Admin_default",
-                "Admin/{controller}.mvc/{action}/{id}",
+                "Admin.mvc/{controller}/{action}/{id}",
                 new { action = "Index", id = "" }
             );
         }
