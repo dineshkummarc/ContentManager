@@ -7,7 +7,7 @@ namespace ContentNamespace.Web.Code.Entities
     /// for storage and deserialized & cached once per application load.
     /// </summary>
     [Serializable]
-    public class Settings
+    public class Setting
     {
         // System
         public int SettingsCacheTimeInMinutes { get; set; }         // How long settings data remains in cache before being refreshed

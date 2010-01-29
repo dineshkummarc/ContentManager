@@ -4,7 +4,7 @@ using ContentNamespace.Web.Code.Entities;
 
 namespace ContentNamespace.Web.Code.Service.UserProfileServices
 {
-    public interface IUserProfileService : IContentManagerBaseService
+    public interface IUserProfileService
     {
         IQueryable<UserProfile> Get();
         UserProfile Get(int id); 

@@ -89,7 +89,7 @@ namespace ContentNamespace.Web
             Bind<IAuthenticationService>().To<TestAuthenticationService>();
 
             Bind<ISettingRepository>().To<Db4oSettingRepository>().Using<SingletonBehavior>(); 
-            Bind<ISettingService>().To<ConfigurationService>();
+            Bind<ISettingService>().To<SettingService>();
 
             Bind<ICacheService>().To<CacheService>();
             Bind<MembershipProvider>().To<SimpleMembershipProvider>();
@@ -114,7 +114,7 @@ namespace ContentNamespace.Web
             Bind<IAuthenticationService>().To<TestAuthenticationService>();
 
             Bind<ISettingRepository>().To<FakeSettingRepository>().Using<SingletonBehavior>();
-            Bind<ISettingService>().To<ConfigurationService>();
+            Bind<ISettingService>().To<SettingService>();
 
             Bind<ICacheService>().To<CacheService>();
             Bind<MembershipProvider>().To<SimpleMembershipProvider>();
@@ -139,7 +139,7 @@ namespace ContentNamespace.Web
             Bind<IAuthenticationService>().To<TestAuthenticationService>();
 
             Bind<ISettingRepository>().To<FakeSettingRepository>().Using<SingletonBehavior>();
-            Bind<ISettingService>().To<ConfigurationService>();
+            Bind<ISettingService>().To<SettingService>();
 
             Bind<ICacheService>().To<CacheService>();
             Bind<MembershipProvider>().To<SimpleMembershipProvider>();

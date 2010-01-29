@@ -39,7 +39,7 @@ namespace ContentNamespace.Web.Controllers
 
             int totalCount = 0;
 
-            var settings = (_settingService.GetData() as Settings);
+            var settings = _settingService.Get();
             var resultList = this._contentService.Get((int)targetPage, 0, out totalCount).ToList();
             var maximumPage = totalCount / settings.GridPageSize;
             var currentPageViewModel = new HtmlContentIndexViewModel(resultList, (int)targetPage, maximumPage);

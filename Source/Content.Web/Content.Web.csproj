@@ -122,7 +122,7 @@
     <Compile Include="Code\DataAccess\Db4o\Db4oContentRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeApplicationRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeContentRepository.cs" />
-    <Compile Include="Code\DataAccess\Fake\FakeConfigurationRepository.cs" />
+    <Compile Include="Code\DataAccess\Fake\FakeSettingRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeUserProfileRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeUserRoleRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IApplicationRepository.cs" />
@@ -132,7 +132,7 @@
     <Compile Include="Code\DataAccess\Interfaces\IUserProfileRepository.cs" />
     <Compile Include="Code\DataAccess\Interfaces\IUserRoleRepository.cs" />
     <Compile Include="Code\DataAccess\Db4o\Db4o.cs" />
-    <Compile Include="Code\DataAccess\Db4o\Db4oConfigurationRepository.cs" />
+    <Compile Include="Code\DataAccess\Db4o\Db4oSettingRepository.cs" />
     <Compile Include="Code\DataAccess\MongoDb\MongoContentRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\Dbml\DataClasses.designer.cs">
       <AutoGen>True</AutoGen>
@@ -150,7 +150,7 @@
     <Compile Include="Code\Entities\Base\WorkflowEnabledBaseItem.cs" />
     <Compile Include="Code\Entities\Enum.cs" />
     <Compile Include="Code\Entities\HtmlContent.cs" />
-    <Compile Include="Code\Entities\Settings.cs" />
+    <Compile Include="Code\Entities\Setting.cs" />
     <Compile Include="Code\Entities\UserProfile.cs" />
     <Compile Include="Code\Service\ApplicationServices\ApplicationService.cs" />
     <Compile Include="Code\Service\ApplicationServices\IApplicationService.cs" />
@@ -160,7 +160,6 @@
     <Compile Include="Code\Service\AuthenticationServices\TestAuthenticationService.cs" />
     <Compile Include="Code\Service\AuthorizationServices\AspNetAuthorizationService.cs" />
     <Compile Include="Code\Service\AuthorizationServices\TestAuthenticationService.cs" />
-    <Compile Include="Code\Service\Base\ContentManagerBaseService.cs" />
     <Compile Include="Code\Service\MembershipServices\SimpleMembershipProvider.cs" />
     <Compile Include="Code\Service\RoleProviderService\SimpleRoleProvider.cs" />
     <Compile Include="Code\Service\CacheServices\CacheService.cs" />
@@ -170,7 +169,6 @@
     <Compile Include="Code\Service\ContentServices\ContentService.cs" />
     <Compile Include="Code\Service\AuthorizationServices\IAuthorizationService.cs" />
     <Compile Include="Code\Service\ContentServices\IContentService.cs" />
-    <Compile Include="Code\Service\Base\IContentManagerBaseService.cs" />
     <Compile Include="Code\Service\FormsAuthenticationServices\IFormsAuthenticationService.cs" />
     <Compile Include="Code\Service\UserProfileServices\IUserProfileService.cs" />
     <Compile Include="Code\Service\UserProfileServices\UserProfileService.cs" />

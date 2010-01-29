@@ -34,7 +34,7 @@ namespace ContentNamespace.Web.Code.Service.Base
         public IQueryable<HtmlContent> Get()
         {
             //return ((IContentManagerBaseService)this).GetData() as IQueryable<HtmlContent>;
-            var _settings = _settingService.GetData() as Settings;
+            var _setting = _settingService.Get();
             var contents = _contentRepository.Get().Select(x => new HtmlContent
             {
                 Id = x.Id,
@@ -42,8 +42,8 @@ namespace ContentNamespace.Web.Code.Service.Base
                 //ContentData = (x.ContentData.Length > 5) ?
                 //               x.ContentData.Substring(0, 5) + "..." :
                 //               x.ContentData,
-                ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
-                               x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." :
+                ContentData = (x.ContentData.Length > _setting.ContentExtractLength) ?
+                               x.ContentData.Substring(0, _setting.ContentExtractLength) + "..." :
                                x.ContentData,
                 //ContentData = x.ContentData,
                 ActiveDate = x.ActiveDate,
@@ -57,16 +57,16 @@ namespace ContentNamespace.Web.Code.Service.Base
 
         public IQueryable<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount)
         {
-            var _settings = _settingService.GetData() as Settings;
-            var contents = _contentRepository.Get(pageIndex, _settings.GridPageSize, out totalCount).AsQueryable().Select(x => new HtmlContent
+            var _setting = _settingService.Get();
+            var contents = _contentRepository.Get(pageIndex, _setting.GridPageSize, out totalCount).AsQueryable().Select(x => new HtmlContent
             {
                 Id = x.Id,
                 Name = x.Name,
                 //ContentData = (x.ContentData.Length > 5) ?
                 //               x.ContentData.Substring(0, 5) + "..." :
                 //               x.ContentData,
-                ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
-                               x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." :
+                ContentData = (x.ContentData.Length > _setting.ContentExtractLength) ?
+                               x.ContentData.Substring(0, _setting.ContentExtractLength) + "..." :
                                x.ContentData,
                 //ContentData = x.ContentData,
                 ActiveDate = x.ActiveDate,
@@ -130,7 +130,7 @@ namespace ContentNamespace.Web.Code.Service.Base
 
         public object GetData()
         {
-            var _settings = _settingService.GetData() as Settings;
+            var _setting = _settingService.Get();
             var contents = _contentRepository.Get().Select(x => new HtmlContent
             {
                 Id = x.Id,
@@ -138,8 +138,8 @@ namespace ContentNamespace.Web.Code.Service.Base
                 //ContentData = (x.ContentData.Length > 5) ?
                 //               x.ContentData.Substring(0, 5) + "..." :
                 //               x.ContentData,
-                ContentData = (x.ContentData.Length > _settings.ContentExtractLength) ?
-                               x.ContentData.Substring(0, _settings.ContentExtractLength) + "..." :
+                ContentData = (x.ContentData.Length > _setting.ContentExtractLength) ?
+                               x.ContentData.Substring(0, _setting.ContentExtractLength) + "..." :
                                x.ContentData,
                 //ContentData = x.ContentData,
                 ActiveDate = x.ActiveDate,

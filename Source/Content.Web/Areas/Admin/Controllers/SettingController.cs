@@ -22,12 +22,12 @@ namespace ContentNamespace.Web.Controllers
 
         public ActionResult Index()
         {
-            return View(_service.GetData());
+            return View(_service.Get());
         }
 
         public ActionResult Edit()
         {
-            var editConfiguration = _service.GetData();
+            var editConfiguration = _service.Get();
 
             return View(editConfiguration);
         }
@@ -38,7 +38,7 @@ namespace ContentNamespace.Web.Controllers
         {
             try
             {
-                var s = _service.GetData() as Settings;
+                var s = _service.Get();
 
                 if (s != null)
                 {

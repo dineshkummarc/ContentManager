@@ -9,11 +9,11 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
 {
     public class FakeSettingRepository : ISettingRepository
     {
-        readonly IList<Settings> _list = new List<Settings>();
+        readonly IList<Setting> _list = new List<Setting>();
 
         #region IRepository<Settings> Members...
 
-        public IQueryable<Settings> Get()
+        public IQueryable<Setting> Get()
         {
             const string settingsData = @"<?xml version='1.0'?>
                 <Settings xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
@@ -27,17 +27,17 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
 
             var serializer = new Serialization();
 
-            _list.Add(serializer.Deserialize(settingsData, typeof(Settings).ToString()) as Settings);
+            _list.Add(serializer.Deserialize(settingsData, typeof(Setting).ToString()) as Setting);
 
             return _list.AsQueryable();
         }
 
-        public Settings Save(Settings entity)
+        public Setting Save(Setting entity)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool Delete(Settings entity)
+        public bool Delete(Setting entity)
         {
             throw new System.NotImplementedException();
         }

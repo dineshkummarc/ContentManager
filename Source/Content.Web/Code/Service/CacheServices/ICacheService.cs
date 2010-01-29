@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ContentNamespace.Web.Code.Service.SystemServices
 {
-    public interface ICacheService : IContentManagerBaseService
+    public interface ICacheService
     {
     }
 }

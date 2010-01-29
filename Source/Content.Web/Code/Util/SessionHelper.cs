@@ -14,9 +14,9 @@ namespace ContentNamespace.Web.Code.Util
 
         #region Properties...
 
-        public static Settings ContentManagerSettings
+        public static Setting ContentManagerSettings
         {
-            get { return HttpContext.Current.Session[SettingsSessionVariable] as Settings; }
+            get { return HttpContext.Current.Session[SettingsSessionVariable] as Setting; }
             set { HttpContext.Current.Session[SettingsSessionVariable] = value; }
         }
 

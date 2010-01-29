@@ -15,9 +15,9 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
         /// <summary>
         /// Returns all records of type T.
         /// </summary>
-        public IQueryable<Settings> Get()
+        public IQueryable<Setting> Get()
         {
-            return (from Settings items in Db4O.Container
+            return (from Setting items in Db4O.Container
                     select items).AsQueryable();
         }
 
@@ -27,18 +27,18 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
         /// <param name="pageIndex">Zero-based index for lookup.</param>
         /// <param name="pageSize">Number of items to return in a page.</param>
         /// <returns></returns>
-        public PagedList<Settings> GetPaged(int pageIndex, int pageSize)
+        public PagedList<Setting> GetPaged(int pageIndex, int pageSize)
         {
-            var query = (from Settings items in Db4O.Container
+            var query = (from Setting items in Db4O.Container
                          select items).AsQueryable();
 
-            return new PagedList<Settings>(query, pageIndex, pageSize);
+            return new PagedList<Setting>(query, pageIndex, pageSize);
         }
 
         /// <summary>
         /// Finds an item using a passed-in expression lambda.
         /// </summary>
-        public IQueryable<Settings> Find(System.Linq.Expressions.Expression<Func<Settings, bool>> expression)
+        public IQueryable<Setting> Find(System.Linq.Expressions.Expression<Func<Setting, bool>> expression)
         {
             return Get().Where(expression);
         }
@@ -47,7 +47,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
         /// Saves an item to the database.
         /// </summary>
         /// <param name="item">Item to save.</param>
-        public Settings Save(Settings item)
+        public Setting Save(Setting item)
         {
             Db4O.Container.Store(item);
 
@@ -58,7 +58,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
         /// Deletes an item from the database.
         /// </summary>
         /// <param name="item">Item to delete.</param>
-        public bool Delete(Settings item)
+        public bool Delete(Setting item)
         {
             bool deleteSuccess = false;
 

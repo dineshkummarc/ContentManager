@@ -7,9 +7,14 @@ using ContentNamespace.Web.Code.Entities;
 
 namespace ContentNamespace.Web.Code.Service.UserProfileServices
 {
-    public class UserProfileService : ContentManagerBaseService<IUserProfileRepository, UserProfile>, IUserProfileService
+    public class UserProfileService : IUserProfileService
     {
-        public UserProfileService(IUserProfileRepository repository) : base(repository) { }
+        private IUserProfileRepository _repository;
+
+        public UserProfileService(IUserProfileRepository repository) 
+        {
+            _repository = repository;
+        }
 
         public IQueryable<UserProfile> Get(DateTime dt)
         {
@@ -30,7 +35,7 @@ namespace ContentNamespace.Web.Code.Service.UserProfileServices
             //    ModifiedDate = x.ModifiedDate
             //});
             //return contents;
-            return ((IContentManagerBaseService)this).GetData() as IQueryable<UserProfile>;
+            return this._repository.Get();
         }
 
         public UserProfile Get(int id)
@@ -47,15 +52,6 @@ namespace ContentNamespace.Web.Code.Service.UserProfileServices
         {
             return false;
         }
-
-        #region IContentManagerBaseService Members...
-
-        object IContentManagerBaseService.GetData()
-        {
-            return this._repository.Get();
-        }
-
-        #endregion
     }
 
 }

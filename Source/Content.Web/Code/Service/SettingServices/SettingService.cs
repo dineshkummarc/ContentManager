@@ -8,7 +8,7 @@ using ContentNamespace.Web.Code.Service.SystemServices;
 
 namespace ContentNamespace.Web.Code.Service.ConfigurationServices
 {
-    public class ConfigurationService : ISettingService
+    public class SettingService : ISettingService
     {
         #region Fields...
 
@@ -19,7 +19,7 @@ namespace ContentNamespace.Web.Code.Service.ConfigurationServices
 
         #region Constructors...
 
-        public ConfigurationService(ISettingRepository repository, CacheService cacheService)
+        public SettingService(ISettingRepository repository, CacheService cacheService)
         {
             _repository = repository;
             _cacheService = cacheService;
@@ -29,12 +29,12 @@ namespace ContentNamespace.Web.Code.Service.ConfigurationServices
 
         #region IConfigurationService Members...
 
-        public Settings Get()
+        public Setting Get()
         {
-            return ((IContentManagerBaseService)this).GetData() as Settings;
+            return GetContentManagerSettings();
         }
 
-        public Settings Save(Settings settings)
+        public Setting Save(Setting settings)
         {
             _cacheService.RemoveFromCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey);
 
@@ -43,28 +43,19 @@ namespace ContentNamespace.Web.Code.Service.ConfigurationServices
 
         #endregion
 
-        #region IContentManagerBaseService Members...
-
-        object IContentManagerBaseService.GetData()
+        private Setting GetContentManagerSettings()
         {
-            return GetContentManagerSettings();
-        }
-
-        #endregion
-
-        protected Settings GetContentManagerSettings()
-        {
-            var settings = _cacheService.GetFromCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey) as Settings;
+            var setting = _cacheService.GetFromCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey) as Setting;
 
             // If not found in cache, try get from DB
-            if (Equals(settings, null))
+            if (Equals(setting, null))
             {
-                settings = _repository.Get().First() as Settings;
+                setting = _repository.Get().First();
 
                 // If there isn't a settings object in the DB, create the initial default settings instance and store it
-                if (Equals(settings, null))
+                if (Equals(setting, null))
                 {
-                    var newSettings = new Settings
+                    var newSettings = new Setting
                     {
                         AllowExpiredContentReActivation = true,
                         AllowRejectedContentReActivation = false,
@@ -74,19 +65,19 @@ namespace ContentNamespace.Web.Code.Service.ConfigurationServices
                         ShowContentEllipsis = true
                     };
 
-                    settings = this.Save(newSettings);
+                    setting = this.Save(newSettings);
                 }
 
                 // Otherwise, a settings instance was retrieved from the DB; place it into the cache
-                if (settings != null)
+                if (setting != null)
                 {
                     _cacheService.InsertIntoCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey,
-                                                 settings,
-                                                 settings.SettingsCacheTimeInMinutes);
+                                                 setting,
+                                                 setting.SettingsCacheTimeInMinutes);
                 }
             }
 
-            return settings;
+            return setting;
         }
     }
 }
