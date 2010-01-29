@@ -12,9 +12,9 @@ namespace ContentNamespace.Web.Controllers
     //ref: http://channel9.msdn.com/shows/The+Knowledge+Chamber/Phil-Haack-ASPNET-MVC-and-Ninjas-On-Fire/
     public class AjaxTestController : Controller
     {
-        private readonly IContentService _service;
+        private readonly IHtmlContentService _service;
 
-        public AjaxTestController(IContentService service)
+        public AjaxTestController(IHtmlContentService service)
         {
             this._service = service;
         }

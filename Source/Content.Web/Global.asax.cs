@@ -60,8 +60,8 @@ namespace ContentNamespace.Web
             var modules = new IModule[]
             {
                 new AutoControllerModule(Assembly.GetExecutingAssembly()),
-                //new Db4oModule()
-                new FakeModule()
+                new Db4oModule()
+                //new FakeModule()
                 //new SqlModule()
             };
             return new StandardKernel(modules);
@@ -79,9 +79,9 @@ namespace ContentNamespace.Web
 
             //Bind<IContentRepository>().To<SqlContentRepository>().Using<SingletonBehavior>();
             //Bind<IContentRepository>().To<VistaDbContentRepository>().Using<SingletonBehavior>();
-            Bind<IContentRepository>().To<Db4oContentRepository>().Using<SingletonBehavior>();
+            Bind<IHtmlContentRepository>().To<Db4oHtmlContentRepository>().Using<SingletonBehavior>();
             //Bind<IContentRepository>().To<MongoContentRepository>().Using<SingletonBehavior>();
-            Bind<IContentService>().To<ContentService>();
+            Bind<IHtmlContentService>().To<HtmlContentService>();
 
             Bind<IUserProfileRepository>().To<FakeUserProfileRepository>().Using<SingletonBehavior>();// TODO: remove
             //Bind<IUserProfileRepository>().To<Db4oUserProfileRepository>().Using<SingletonBehavior>();// TODO: Implement
@@ -106,8 +106,8 @@ namespace ContentNamespace.Web
             Bind<IApplicationRepository>().To<FakeApplicationRepository>().Using<SingletonBehavior>();
             Bind<IApplicationService>().To<ApplicationService>();
 
-            Bind<IContentRepository>().To<FakeContentRepository>().Using<SingletonBehavior>();
-            Bind<IContentService>().To<ContentService>();
+            Bind<IHtmlContentRepository>().To<FakeHtmlContentRepository>().Using<SingletonBehavior>();
+            Bind<IHtmlContentService>().To<HtmlContentService>();
 
             Bind<IUserProfileRepository>().To<FakeUserProfileRepository>().Using<SingletonBehavior>();
             Bind<IUserProfileService>().To<UserProfileService>();
@@ -131,8 +131,8 @@ namespace ContentNamespace.Web
             Bind<IApplicationRepository>().To<FakeApplicationRepository>().Using<SingletonBehavior>();
             Bind<IApplicationService>().To<ApplicationService>();
 
-            Bind<IContentRepository>().To<SqlContentRepository>().Using<SingletonBehavior>();
-            Bind<IContentService>().To<ContentService>();
+            Bind<IHtmlContentRepository>().To<SqlHtmlContentRepository>().Using<SingletonBehavior>();
+            Bind<IHtmlContentService>().To<HtmlContentService>();
 
             Bind<IUserProfileRepository>().To<SqlUserProfileRepository>().Using<SingletonBehavior>();
             Bind<IUserProfileService>().To<UserProfileService>();

@@ -11,12 +11,12 @@ using ContentNamespace.Web.Code.Service.ConfigurationServices;
 
 namespace ContentNamespace.Web.Code.Service.Base
 {
-    public class ContentService : IContentService
+    public class HtmlContentService : IHtmlContentService
     {
-        private IContentRepository _contentRepository;
+        private IHtmlContentRepository _contentRepository;
         private ISettingService _settingService;
 
-        public ContentService(IContentRepository repository, ISettingService settingService)
+        public HtmlContentService(IHtmlContentRepository repository, ISettingService settingService)
         {
             _contentRepository = repository;
             _settingService = settingService;

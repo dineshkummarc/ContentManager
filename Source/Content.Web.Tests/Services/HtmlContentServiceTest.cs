@@ -10,7 +10,7 @@ using ContentNamespace.Web.Code.DataAccess.Fake;
 namespace ContentNamespace.Web.Tests.Services
 {
     [TestClass]
-    public class ContentServiceTest : BaseServiceTest
+    public class HtmlContentServiceTest : BaseServiceTest
     {
 
         [TestMethod]

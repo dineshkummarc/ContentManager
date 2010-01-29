@@ -16,12 +16,12 @@ namespace ContentNamespace.Web.Controllers
 {
     public class HtmlContentController : Controller
     {
-        private readonly IContentService _contentService;
+        private readonly IHtmlContentService _contentService;
         private readonly IApplicationService _applicationService;
         private ISettingService _settingService;
 
         // GET: /HtmlContent/
-        public HtmlContentController(IContentService service,
+        public HtmlContentController(IHtmlContentService service,
             IApplicationService applicationService, 
             ISettingService settingService)
         {

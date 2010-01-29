@@ -15,7 +15,7 @@ using ContentNamespace.Web.Code.Util;
 
 namespace ContentNamespace.Web.Code.DataAccess.VistaDb
 {
-    public class VistaDbContentRepository : VistaDb, IContentRepository
+    public class VistaDbHtmlContentRepository : VistaDb, IHtmlContentRepository
     {
         //public VistaDbContentRepository()
         //{

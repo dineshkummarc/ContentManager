@@ -11,10 +11,10 @@ namespace ContentNamespace.Web.Controllers
 {
     public class PageController : Controller
     {
-        private readonly IContentService _contentService;
+        private readonly IHtmlContentService _contentService;
         //
         // GET: /Page/ 
-        public PageController(IContentService contentService)
+        public PageController(IHtmlContentService contentService)
         {
             this._contentService = contentService;
         }

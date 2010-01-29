@@ -10,12 +10,12 @@ using ContentNamespace.Web.Code.Util;
 
 namespace ContentNamespace.Web.Code.DataAccess.Sql
 {
-    public class SqlContentRepository : SqlBaseRepository, IContentRepository
+    public class SqlHtmlContentRepository : SqlBaseRepository, IHtmlContentRepository
     {
 
         Dbml.DataClassesDataContext _db;
 
-        public SqlContentRepository(Dbml.DataClassesDataContext dataContext)
+        public SqlHtmlContentRepository(Dbml.DataClassesDataContext dataContext)
         {
             _db = dataContext;
         }

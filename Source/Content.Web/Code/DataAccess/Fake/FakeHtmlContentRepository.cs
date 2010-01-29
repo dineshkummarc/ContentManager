@@ -10,7 +10,7 @@ using ContentNamespace.Web.Code.Util;
 namespace ContentNamespace.Web.Code.DataAccess.Fake
 {
 
-    public class FakeContentRepository : IContentRepository
+    public class FakeHtmlContentRepository : IHtmlContentRepository
     {
         IList<HtmlContent> list = new List<HtmlContent>();
 
@@ -19,7 +19,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
 
         public PagedList<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount) { throw new NotImplementedException(); }
 
-        public FakeContentRepository(IApplicationRepository applicationRepository)
+        public FakeHtmlContentRepository(IApplicationRepository applicationRepository)
         {
             this._applicationRepository = applicationRepository;
 

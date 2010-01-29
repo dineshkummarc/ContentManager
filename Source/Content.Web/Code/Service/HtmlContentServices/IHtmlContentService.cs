@@ -5,7 +5,7 @@ using ContentNamespace.Web.Code.Entities;
 
 namespace ContentNamespace.Web.Code.Service.Interfaces
 {
-    public interface IContentService
+    public interface IHtmlContentService
     {
         IQueryable<HtmlContent> Get(DateTime dt);
         IQueryable<HtmlContent> Get();

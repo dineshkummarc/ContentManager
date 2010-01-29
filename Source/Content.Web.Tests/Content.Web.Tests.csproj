@@ -59,7 +59,7 @@
     <Compile Include="Repositories\MongoDBRepository.cs" />
     <Compile Include="Services\AuthenticationServiceTest.cs" />
     <Compile Include="Services\BaseServiceTest.cs" />
-    <Compile Include="Services\ContentServiceTest.cs" />
+    <Compile Include="Services\HtmlContentServiceTest.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
   <ItemGroup>

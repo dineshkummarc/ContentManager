@@ -6,20 +6,43 @@ using System.Linq;
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Util;
 using ContentNamespace.Web.Code.Entities;
+using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace ContentNamespace.Web.Code.DataAccess.Db4o
 {
-    public class Db4oContentRepository  : IContentRepository 
+    public class MongoHtmlContentRepository : IHtmlContentRepository
     {
+        private static Mongo db = new Mongo();
 
         /// <summary>
         /// Returns all records of type T.
         /// </summary>
         public IQueryable<HtmlContent> Get()
         {
-            return (from HtmlContent items in Db4O.Container
-                    select items).AsQueryable();
+            db.Connect();
+
+            ICursor result = db["ContentManager"]["Content"].FindAll();
+
+            List<HtmlContent> resultList = new List<HtmlContent>();
+
+            var serializer = new Serialization();
+
+            foreach (var document in result.Documents)
+            {
+                var reader = document["Data"].ToString();
+
+                HtmlContent contentItem = serializer.Deserialize(reader, typeof(HtmlContent).ToString()) as HtmlContent;
+
+                resultList.Add(contentItem);
+            }
+
+            return resultList.AsQueryable();
         }
+
+        public PagedList<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount) { throw new NotImplementedException(); }
 
         /// <summary>
         /// Returns a PagedList of items.
@@ -27,12 +50,12 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
         /// <param name="pageIndex">Zero-based index for lookup.</param>
         /// <param name="pageSize">Number of items to return in a page.</param>
         /// <returns></returns>
-        public PagedList<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount)
+        public PagedList<HtmlContent> GetPaged(int pageIndex, int pageSize)
         {
-            var resultSet = new PagedList<HtmlContent>(Get(), pageIndex, pageSize);
-            totalCount = resultSet.TotalCount;
+            var query = (from HtmlContent items in Db4O.Container
+                         select items).AsQueryable();
 
-            return resultSet;
+            return new PagedList<HtmlContent>(query, pageIndex, pageSize);
         }
 
         /// <summary>
@@ -49,45 +72,6 @@ namespace ContentNamespace.Web.Code.DataAccess.Db4o
         /// <param name="item">Item to save.</param>
         public HtmlContent Save(HtmlContent item)
         {
-            #region Bulk Test...
-
-            //File.AppendAllText("WhenItStarted.txt", DateTime.Now.ToString());
-
-            //for (int i = 2; i <= 1000; i++)
-            //{
-            //    HtmlContent newItem = new HtmlContent();
-
-            //    newItem.Name = item.Name + " " + i;
-            //    newItem.ModifiedBy = item.ModifiedBy;//TODO: should be loged in user
-            //    newItem.ModifiedDate = DateTime.Now;
-            //    newItem.ExpireDate = item.ExpireDate;
-            //    newItem.ActiveDate = new DateTime(1900, 1, 1);
-            //    newItem.ContentData = item.ContentData;
-            //    newItem.CreatedBy = item.CreatedBy;//TODO: should be loged in user
-            //    newItem.CreatedDate = item.CreatedDate;
-
-            //    newItem.Id = i;
-
-            //    HtmlContent w = Get().Where(x => x.Id == newItem.Id).SingleOrDefault();
-
-
-            //    if (w != null)
-            //    {
-            //        Delete(w);
-            //    }
-            //    else
-            //    {
-            //        int maxId = (Get().Count() > 0) ? Get().Max(x => x.Id) : 0;
-            //        newItem.Id = maxId + 1;
-            //    }
-
-            //    Db4O.Container.Store(newItem);
-            //}
-
-            //File.AppendAllText("WhenItStarted.txt", DateTime.Now.ToString());
-
-            #endregion
-
             HtmlContent w = Get().Where(x => x.Id == item.Id).SingleOrDefault();
 
             if (w != null)
