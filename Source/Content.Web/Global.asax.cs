@@ -51,7 +51,8 @@ namespace ContentNamespace.Web
         protected override void OnApplicationStarted()
         {
             //RegisterRoutes(RouteTable.Routes); 
-            base.OnApplicationStarted(); 
+            base.OnApplicationStarted();
+            //RouteDebug.RouteDebugger.RewriteRoutesForTesting(RouteTable.Routes); 
         }
 
         protected override IKernel CreateKernel()
@@ -59,8 +60,8 @@ namespace ContentNamespace.Web
             var modules = new IModule[]
             {
                 new AutoControllerModule(Assembly.GetExecutingAssembly()),
-                new Db4oModule()
-                //new FakeModule()
+                //new Db4oModule()
+                new FakeModule()
                 //new SqlModule()
             };
             return new StandardKernel(modules);
