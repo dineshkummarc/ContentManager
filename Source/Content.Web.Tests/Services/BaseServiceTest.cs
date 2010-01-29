@@ -17,10 +17,11 @@ namespace ContentNamespace.Web.Tests.Services
     [TestClass]
     public class BaseServiceTest
     {
-        protected IContentRepository _ContentRepository ;
-        protected IContentService _ContentService  ; 
-        protected IApplicationRepository _ApplicationRepository ;
-        protected IApplicationService _ApplicationService ;
+        protected IContentRepository _ContentRepository;
+        protected IContentService _ContentService;
+        protected ISettingService _SettingService;
+        protected IApplicationRepository _ApplicationRepository;
+        protected IApplicationService _ApplicationService;
 
 
         [TestInitialize]
@@ -28,8 +29,8 @@ namespace ContentNamespace.Web.Tests.Services
         { 
             _ApplicationRepository = new FakeApplicationRepository(); 
             _ApplicationService = new ApplicationService(this._ApplicationRepository); 
-            _ContentRepository = new FakeContentRepository(this._ApplicationRepository); 
-            _ContentService = new ContentService(this._ContentRepository);
+            _ContentRepository = new FakeContentRepository(this._ApplicationRepository);
+            //_ContentService = new ContentService(this._ContentRepository, this._SettingService);
         }
         
     }

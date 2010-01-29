@@ -7,16 +7,19 @@ using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Service.Interfaces;
 using ContentNamespace.Web.Code.Service.SystemServices;
 using ContentNamespace.Web.Code.Util;
+using ContentNamespace.Web.Code.Service.ConfigurationServices;
 
 namespace ContentNamespace.Web.Code.Service.Base
 {
-    public class ContentService : ContentManagerBaseService<IContentRepository, HtmlContent>, IContentService
+    public class ContentService : IContentService
     {
-        //private IContentRepository _repository; 
+        private IContentRepository _contentRepository;
+        private ISettingService _settingService;
 
-
-        public ContentService(IContentRepository repository ) : base(repository)
+        public ContentService(IContentRepository repository, ISettingService settingService)
         {
+            _contentRepository = repository;
+            _settingService = settingService;
         }
 
         public IQueryable<HtmlContent> Get(DateTime dt)
@@ -31,8 +34,8 @@ namespace ContentNamespace.Web.Code.Service.Base
         public IQueryable<HtmlContent> Get()
         {
             //return ((IContentManagerBaseService)this).GetData() as IQueryable<HtmlContent>;
-
-            var contents = _repository.Get().Select(x => new HtmlContent
+            var _settings = _settingService.GetData() as Settings;
+            var contents = _contentRepository.Get().Select(x => new HtmlContent
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -54,7 +57,8 @@ namespace ContentNamespace.Web.Code.Service.Base
 
         public IQueryable<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount)
         {
-            var contents = _repository.Get(pageIndex, _settings.GridPageSize, out totalCount).AsQueryable().Select(x => new HtmlContent
+            var _settings = _settingService.GetData() as Settings;
+            var contents = _contentRepository.Get(pageIndex, _settings.GridPageSize, out totalCount).AsQueryable().Select(x => new HtmlContent
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -76,7 +80,7 @@ namespace ContentNamespace.Web.Code.Service.Base
 
         public HtmlContent Get(string name, DateTime dt)
         {
-            return this._repository.Get()
+            return this._contentRepository.Get()
                 .Where(x => x.Name == name && x.ExpireDate >= dt && x.ActiveDate <= dt)
                 .Select(x => new HtmlContent
                 {
@@ -95,7 +99,7 @@ namespace ContentNamespace.Web.Code.Service.Base
          
         public HtmlContent Get(int id)
         {
-            return this._repository.Get()
+            return this._contentRepository.Get()
                 .Where(x => x.Id == id)
                 .Select(x => new HtmlContent
             {
@@ -114,19 +118,20 @@ namespace ContentNamespace.Web.Code.Service.Base
         {
             item.ModifiedDate = DateTime.Now;
             item.Save();
-            return this._repository.Save(item);
+            return this._contentRepository.Save(item);
         }
 
         public bool Delete(HtmlContent item)
         {
-            return this._repository.Delete(item);
+            return this._contentRepository.Delete(item);
         }
 
         #region IContentManagerBaseService Members...
 
-        object IContentManagerBaseService.GetData()
+        public object GetData()
         {
-            var contents = _repository.Get().Select(x => new HtmlContent
+            var _settings = _settingService.GetData() as Settings;
+            var contents = _contentRepository.Get().Select(x => new HtmlContent
             {
                 Id = x.Id,
                 Name = x.Name,

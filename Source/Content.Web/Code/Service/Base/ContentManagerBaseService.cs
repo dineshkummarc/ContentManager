@@ -3,6 +3,8 @@ using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Entities;
 using ContentNamespace.Web.Code.Entities.Base;
 using ContentNamespace.Web.Code.Service.SystemServices;
+using ContentNamespace.Web.Code.Service.ConfigurationServices;
+using ContentNamespace.Web.Code.DataAccess.Db4o;
 
 namespace ContentNamespace.Web.Code.Service.Base
 {

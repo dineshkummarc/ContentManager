@@ -12,7 +12,7 @@ using ContentNamespace.Web.Code.Service.UserRoleServices;
 
 namespace ContentNamespace.Web.Controllers
 {
-    public class UserProfileController : ContentManagerBaseController
+    public class UserProfileController : Controller
     {
         private readonly IUserProfileService _userProfileService;
         private readonly IUserRoleService _userRoleService;
@@ -20,14 +20,10 @@ namespace ContentNamespace.Web.Controllers
 
         // GET: /UserProfile/
         public UserProfileController(IUserProfileService userProfileService, 
-            IUserRoleService userRoleService, 
-            ISettingService settingService )
+            IUserRoleService userRoleService)
         {
             this._userProfileService = userProfileService;
             this._userRoleService = userRoleService;
-            this._settingService = settingService;
-
-            GetContentManagerSettings();
         }
 
         public ActionResult Index()

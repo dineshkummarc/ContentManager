@@ -7,15 +7,8 @@ using ContentNamespace.Web.Code.Util;
 namespace ContentNamespace.Web.Controllers
 {
     [HandleError]
-    public class HomeController : ContentManagerBaseController 
+    public class HomeController : Controller
     {
-        public HomeController(ISettingService service)
-        {
-            this._settingService = service;
-
-            GetContentManagerSettings();
-        }
-
         public ActionResult Index()
         {
             ViewData["Message"] = "Welcome to ASP.NET MVC!";

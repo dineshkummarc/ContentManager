@@ -10,6 +10,7 @@ using ContentNamespace.Web.Code.Service.ConfigurationServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ContentNamespace.Web;
 using ContentNamespace.Web.Controllers;
+using ContentNamespace.Web.Code.Service.SystemServices;
 
 namespace ContentNamespace.Web.Tests.Controllers
 {
@@ -20,8 +21,7 @@ namespace ContentNamespace.Web.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController(
-                new ConfigurationService(new FakeSettingRepository()));
+            HomeController controller = new HomeController();
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
@@ -35,9 +35,7 @@ namespace ContentNamespace.Web.Tests.Controllers
         public void About()
         {
             // Arrange
-            HomeController controller = new HomeController(
-                new ConfigurationService(
-                    new FakeSettingRepository()));
+            HomeController controller = new HomeController();
 
             // Act
             ViewResult result = controller.About() as ViewResult;

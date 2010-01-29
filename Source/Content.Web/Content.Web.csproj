@@ -187,7 +187,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AjaxTestController.cs" />
     <Compile Include="Areas\Admin\Controllers\ApplicationController.cs" />
-    <Compile Include="Areas\Admin\Controllers\Base\ContentManagerBaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
     <Compile Include="Areas\Admin\Controllers\HtmlContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

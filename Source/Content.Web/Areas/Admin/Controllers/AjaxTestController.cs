@@ -10,16 +10,13 @@ namespace ContentNamespace.Web.Controllers
 {
     //ref: http://davidhayden.com/blog/dave/archive/2009/05/19/ASPNETMVCAjaxBeginForm.aspx
     //ref: http://channel9.msdn.com/shows/The+Knowledge+Chamber/Phil-Haack-ASPNET-MVC-and-Ninjas-On-Fire/
-    public class AjaxTestController : ContentManagerBaseController
+    public class AjaxTestController : Controller
     {
         private readonly IContentService _service;
 
-        public AjaxTestController(IContentService service, ISettingService settingService)
+        public AjaxTestController(IContentService service)
         {
             this._service = service;
-            this._settingService = settingService;
-
-            GetContentManagerSettings();
         }
 
         public ActionResult Details(string id)

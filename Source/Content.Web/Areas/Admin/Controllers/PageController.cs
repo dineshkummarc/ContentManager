@@ -9,17 +9,14 @@ using ContentNamespace.Web.Code.Service.Interfaces;
 
 namespace ContentNamespace.Web.Controllers
 {
-    public class PageController : ContentManagerBaseController
+    public class PageController : Controller
     {
         private readonly IContentService _contentService;
         //
         // GET: /Page/ 
-        public PageController(IContentService contentService, ISettingService settingService)
+        public PageController(IContentService contentService)
         {
             this._contentService = contentService;
-            this._settingService = settingService;
-
-            GetContentManagerSettings();
         }
 
         public ActionResult Index()

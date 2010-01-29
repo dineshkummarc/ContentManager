@@ -10,7 +10,7 @@ using ContentNamespace.Web.Code.Service.SystemServices;
 
 namespace ContentNamespace.Web.Controllers
 {
-    public class SettingController : ContentManagerBaseController
+    public class SettingController : Controller
     {
         private readonly ISettingService _service;
         //
@@ -54,8 +54,6 @@ namespace ContentNamespace.Web.Controllers
 
                 // Remove the existing cached settings item; it will be re-added back automatically by the BaseController
                 var cacheService = new CacheService();
-
-                cacheService.RemoveFromCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey);
 
                 return RedirectToAction("Index");
             }

@@ -14,44 +14,11 @@ using ContentNamespace.Web.Code.DataAccess.Interfaces;
 
 namespace ContentNamespace.Web.Controllers
 {
-
-    public class HtmlContentViewModel
-    {
-        // Properties
-        public HtmlContent HtmlContent { get; private set; }
-        public SelectList Applications { get; private set; }
-
-        // Constructor
-        public HtmlContentViewModel(HtmlContent htmlContent, IApplicationService appService)
-        {
-            this.HtmlContent = htmlContent;
-            this.Applications = new SelectList(
-                appService.Get().Select(x=>x.Name).AsEnumerable(), 
-                1 /*this.HtmlContent.ApplicationId*/
-            );
-        }
-    }
-
-    public class HtmlContentIndexViewModel
-    {
-        // Properties
-        public List<HtmlContent> HtmlContentList { get; set; }
-        public int CurrentPage { get; set; }
-        public int MaximumPage { get; set; }
-
-        // Constructor
-        public HtmlContentIndexViewModel(List<HtmlContent> htmlContent, int currentPage, int maximumPage)
-        {
-            this.HtmlContentList = htmlContent;
-            this.CurrentPage = currentPage;
-            this.MaximumPage = maximumPage;
-        }
-    }
-
-    public class HtmlContentController : ContentManagerBaseController
+    public class HtmlContentController : Controller
     {
         private readonly IContentService _contentService;
         private readonly IApplicationService _applicationService;
+        private ISettingService _settingService;
 
         // GET: /HtmlContent/
         public HtmlContentController(IContentService service,
@@ -59,10 +26,8 @@ namespace ContentNamespace.Web.Controllers
             ISettingService settingService)
         {
             this._contentService = service;
-            this._settingService = settingService;
             this._applicationService = applicationService;
-
-            GetContentManagerSettings();
+            this._settingService = settingService;
         }
 
         public ActionResult Index(int? targetPage)
@@ -228,5 +193,38 @@ namespace ContentNamespace.Web.Controllers
             return ModelState.IsValid;
         }
 
+    }
+
+    public class HtmlContentViewModel
+    {
+        // Properties
+        public HtmlContent HtmlContent { get; private set; }
+        public SelectList Applications { get; private set; }
+
+        // Constructor
+        public HtmlContentViewModel(HtmlContent htmlContent, IApplicationService appService)
+        {
+            this.HtmlContent = htmlContent;
+            this.Applications = new SelectList(
+                appService.Get().Select(x => x.Name).AsEnumerable(),
+                1 /*this.HtmlContent.ApplicationId*/
+            );
+        }
+    }
+
+    public class HtmlContentIndexViewModel
+    {
+        // Properties
+        public List<HtmlContent> HtmlContentList { get; set; }
+        public int CurrentPage { get; set; }
+        public int MaximumPage { get; set; }
+
+        // Constructor
+        public HtmlContentIndexViewModel(List<HtmlContent> htmlContent, int currentPage, int maximumPage)
+        {
+            this.HtmlContentList = htmlContent;
+            this.CurrentPage = currentPage;
+            this.MaximumPage = maximumPage;
+        }
     }
 }
