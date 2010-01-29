@@ -1,4 +1,5 @@
 ﻿using System;
+using ContentNamespace.Web.Code.Entities.Base;
 
 namespace ContentNamespace.Web.Code.Entities
 {
@@ -7,18 +8,24 @@ namespace ContentNamespace.Web.Code.Entities
     /// for storage and deserialized & cached once per application load.
     /// </summary>
     [Serializable]
-    public class Setting
+    public class Setting : ContentManagerBaseItem
     {
         // System
-        public int SettingsCacheTimeInMinutes { get; set; }         // How long settings data remains in cache before being refreshed
+        // How long settings data remains in cache before being refreshed
+        public int SettingsCacheTimeInMinutes { get; set; }         
         
-        // Rendering
-        public int GridPageSize { get; set; }                       // Show this many records in grids before paging; default: 10
-        public bool ShowContentEllipsis { get; set; }               // If content data is longer than <ContentExtractLength> characters, show an ellipsis (...); default: true
-        public int ContentExtractLength { get; set; }               // How long content can be before the ellipsis logic kicks in; default: 10-15 characters
+        // Rendering 
+        // Show this many records in grids before paging; default: 10
+        public int GridPageSize { get; set; }                       
+        // If content data is longer than <ContentExtractLength> characters, show an ellipsis (...); default: true
+        public bool ShowContentEllipsis { get; set; }               
+        // How long content can be before the ellipsis logic kicks in; default: 10-15 characters
+        public int ContentExtractLength { get; set; }               
         
         // Workflow
-        public bool AllowRejectedContentReActivation { get; set; }  // Can rejected content be re-activated (by admin)?; default: false
-        public bool AllowExpiredContentReActivation { get; set; }   // Can expired content be re-activated (by admin)?; default: true   
+        // Can rejected content be re-activated (by admin)?; default: false
+        public bool AllowRejectedContentReActivation { get; set; }  
+        // Can expired content be re-activated (by admin)?; default: true   
+        public bool AllowExpiredContentReActivation { get; set; }   
     }
 }
