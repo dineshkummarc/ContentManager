@@ -63,6 +63,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceBin\Ninject.Framework.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="RouteDebug, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceBin\RouteDebug.dll</HintPath>
+    </Reference>
     <Reference Include="Stateless, Version=2.2.1.1, Culture=neutral, PublicKeyToken=93038f0927583c9a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceBin\Stateless.dll</HintPath>
