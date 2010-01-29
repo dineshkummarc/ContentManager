@@ -60,9 +60,9 @@ namespace ContentNamespace.Web
             var modules = new IModule[]
             {
                 new AutoControllerModule(Assembly.GetExecutingAssembly()),
-                new Db4oModule()
+                //new Db4oModule()
                 //new FakeModule()
-                //new SqlModule()
+                new SqlModule()
             };
             return new StandardKernel(modules);
         }
@@ -139,7 +139,7 @@ namespace ContentNamespace.Web
 
             Bind<IAuthenticationService>().To<TestAuthenticationService>();
 
-            Bind<ISettingRepository>().To<FakeSettingRepository>().Using<SingletonBehavior>();
+            Bind<ISettingRepository>().To<SqlSettingRepository>().Using<SingletonBehavior>();
             Bind<ISettingService>().To<SettingService>();
 
             Bind<ICacheService>().To<CacheService>();

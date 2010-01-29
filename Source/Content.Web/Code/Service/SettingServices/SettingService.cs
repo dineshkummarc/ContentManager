@@ -50,7 +50,7 @@ namespace ContentNamespace.Web.Code.Service.ConfigurationServices
             // If not found in cache, try get from DB
             if (Equals(setting, null))
             {
-                setting = _repository.Get().First();
+                setting = _repository.Get().FirstOrDefault();
 
                 // If there isn't a settings object in the DB, create the initial default settings instance and store it
                 if (Equals(setting, null))

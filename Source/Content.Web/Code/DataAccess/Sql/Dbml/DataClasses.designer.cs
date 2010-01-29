@@ -42,6 +42,9 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
     partial void InsertHtmlContent(HtmlContent instance);
     partial void UpdateHtmlContent(HtmlContent instance);
     partial void DeleteHtmlContent(HtmlContent instance);
+    partial void InsertSetting(Setting instance);
+    partial void UpdateSetting(Setting instance);
+    partial void DeleteSetting(Setting instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -103,6 +106,14 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 			get
 			{
 				return this.GetTable<HtmlContent>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Setting> Settings
+		{
+			get
+			{
+				return this.GetTable<Setting>();
 			}
 		}
 	}
@@ -1089,6 +1100,164 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql.Dbml
 						this._ApplicationId = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Application");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Setting")]
+	public partial class Setting : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Application;
+		
+		private string _Type;
+		
+		private string _Data;
+		
+		private System.DateTime _ModifiedDate;
+		
+		private string _ModifiedBy;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnApplicationChanging(string value);
+    partial void OnApplicationChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    partial void OnDataChanging(string value);
+    partial void OnDataChanged();
+    partial void OnModifiedDateChanging(System.DateTime value);
+    partial void OnModifiedDateChanged();
+    partial void OnModifiedByChanging(string value);
+    partial void OnModifiedByChanged();
+    #endregion
+		
+		public Setting()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_Application", DbType="NVarChar(64) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Application
+		{
+			get
+			{
+				return this._Application;
+			}
+			set
+			{
+				if ((this._Application != value))
+				{
+					this.OnApplicationChanging(value);
+					this.SendPropertyChanging();
+					this._Application = value;
+					this.SendPropertyChanged("Application");
+					this.OnApplicationChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Type", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Data", DbType="NText NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Data
+		{
+			get
+			{
+				return this._Data;
+			}
+			set
+			{
+				if ((this._Data != value))
+				{
+					this.OnDataChanging(value);
+					this.SendPropertyChanging();
+					this._Data = value;
+					this.SendPropertyChanged("Data");
+					this.OnDataChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ModifiedDate
+		{
+			get
+			{
+				return this._ModifiedDate;
+			}
+			set
+			{
+				if ((this._ModifiedDate != value))
+				{
+					this.OnModifiedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedDate = value;
+					this.SendPropertyChanged("ModifiedDate");
+					this.OnModifiedDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ModifiedBy", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string ModifiedBy
+		{
+			get
+			{
+				return this._ModifiedBy;
+			}
+			set
+			{
+				if ((this._ModifiedBy != value))
+				{
+					this.OnModifiedByChanging(value);
+					this.SendPropertyChanging();
+					this._ModifiedBy = value;
+					this.SendPropertyChanged("ModifiedBy");
+					this.OnModifiedByChanged();
 				}
 			}
 		}

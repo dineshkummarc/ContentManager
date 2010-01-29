@@ -138,6 +138,7 @@
     <Compile Include="Code\DataAccess\Db4o\Db4o.cs" />
     <Compile Include="Code\DataAccess\Db4o\Db4oSettingRepository.cs" />
     <Compile Include="Code\DataAccess\MongoDb\MongoHtmlContentRepository.cs" />
+    <Compile Include="Code\DataAccess\Sql\SqlSettingRepository.cs" />
     <Compile Include="Code\DataAccess\Sql\Dbml\DataClasses.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

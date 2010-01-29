@@ -50,4 +50,13 @@
       <Association Name="Application_HtmlContent" Member="Application" ThisKey="ApplicationId" OtherKey="Id" Type="Application" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Setting" Member="Settings">
+    <Type Name="Setting">
+      <Column Name="Application" Type="System.String" DbType="NVarChar(64) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="Data" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>
