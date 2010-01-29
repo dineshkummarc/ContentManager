@@ -77,7 +77,8 @@ namespace ContentNamespace.Web.Code.Service.ConfigurationServices
                     ContentExtractLength = 15,
                     GridPageSize = 10,
                     SettingsCacheTimeInMinutes = 5,
-                    ShowContentEllipsis = true
+                    ShowContentEllipsis = true,
+                    ModifiedBy = "XXXX"
                 }; 
                 setting = this.Save(newSettings);
             }

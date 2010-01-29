@@ -1,21 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="Database" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DatabaseConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Application" Member="Applications">
-    <Type Name="Application">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="Application_Application_UserProfile" Member="Application_UserProfiles" ThisKey="Id" OtherKey="ApplicationId" Type="Application_UserProfile" />
-      <Association Name="Application_HtmlContent" Member="HtmlContents" ThisKey="Id" OtherKey="ApplicationId" Type="HtmlContent" />
-    </Type>
-  </Table>
   <Table Name="dbo.Application_UserProfile" Member="Application_UserProfiles">
     <Type Name="Application_UserProfile">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ApplicationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UserProfileId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Application_Application_UserProfile" Member="Application" ThisKey="ApplicationId" OtherKey="Id" Type="Application" IsForeignKey="true" />
       <Association Name="UserProfile_Application_UserProfile" Member="UserProfile" ThisKey="UserProfileId" OtherKey="Id" Type="UserProfile" IsForeignKey="true" />
+      <Association Name="Application_Application_UserProfile" Member="Application" ThisKey="ApplicationId" OtherKey="Id" Type="Application" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.UserProfile" Member="UserProfiles">
@@ -52,11 +44,22 @@
   </Table>
   <Table Name="dbo.Setting" Member="Settings">
     <Type Name="Setting">
-      <Column Name="Application" Type="System.String" DbType="NVarChar(64) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApplicationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Type" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
       <Column Name="Data" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="ModifiedBy" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+      <Association Name="Application_Setting" Member="Application" ThisKey="ApplicationId" OtherKey="Id" Type="Application" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Application" Member="Applications">
+    <Type Name="Application">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Application_Application_UserProfile" Member="Application_UserProfiles" ThisKey="Id" OtherKey="ApplicationId" Type="Application_UserProfile" />
+      <Association Name="Application_HtmlContent" Member="HtmlContents" ThisKey="Id" OtherKey="ApplicationId" Type="HtmlContent" />
+      <Association Name="Application_Setting" Member="Settings" ThisKey="Id" OtherKey="ApplicationId" Type="Setting" />
     </Type>
   </Table>
 </Database>

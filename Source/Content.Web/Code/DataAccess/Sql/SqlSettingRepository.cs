@@ -12,6 +12,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 {
     public class SqlSettingRepository : SqlBaseRepository, ISettingRepository
     {
+        string applicationName = "Blackhawk";
         Dbml.DataClassesDataContext _db;
 
         public SqlSettingRepository(Dbml.DataClassesDataContext dataContext)
@@ -22,7 +23,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
         #region IRepository<HtmlContent> Members
 
         public IQueryable<Ent.Setting> Get()
-        {
+        {  
             var setting = new List<Ent.Setting>();
 
             var r = this._db.Settings.Select(x => new
@@ -36,7 +37,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 
             if (r.Count > 0)
             {
-                var settingData = r.First(x => x.Application == "ContentManager");
+                var settingData = r.First(x => x.Application.Name == applicationName);
                 var serializer = new Serialization();
 
                 setting.Add(serializer.Deserialize(settingData.Data, typeof(Setting).ToString()) as Setting);
@@ -50,35 +51,19 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
             using (Dbml.DataClassesDataContext db = new Dbml.DataClassesDataContext(this.ConnStr))
             {
                 var serializer = new Serialization();
-                Dbml.Setting dbItem = db.Settings.Where(x => x.Application == "ContentManager").SingleOrDefault();
+                Dbml.Setting dbItem = db.Settings.Where(x => x.Application.Name == applicationName).SingleOrDefault();
                 bool isNew = false;
+
                 if (dbItem == null)
                 {
                     dbItem = new Dbml.Setting();
                     isNew = true;
                 }
-                //else
-                //{
-                //    //remove them for refresh
-                //    //wish there was a better way to do this but... 
-                //    //db.TalentEvents.DeleteAllOnSubmit(db.TalentEvents.Where(x => x.TalentID == t.Id));
-                //    //db.TalentLanguages.DeleteAllOnSubmit(db.TalentLanguages.Where(x => x.TalentID == t.Id));
-                //    //db.TalentTypeTalents.DeleteAllOnSubmit(db.TalentTypeTalents.Where(x => x.TalentID == t.Id));
-
-                //    //db.TalentFiles.DeleteAllOnSubmit(db.TalentFiles.Where(x => x.TalentID == t.Id));
-                //    //db.TalentStates.DeleteAllOnSubmit(db.TalentStates.Where(x => x.TalentID == t.Id)); 
-                //}
-                //foreach (Model.Model.TalentEvent tdb in t.TalentEvents)
-                //{
-                //    SqlServer.TalentEvent dbTe = new SqlServer.TalentEvent();
-                //    dbTe.TalentID = t.Id;
-                //    dbTe.EventID = tdb.EventID;
-                //    dbT.TalentEvents.Add(dbTe);
-                //} 
-                dbItem.Application = "ContentManager";
+ 
+                dbItem.ApplicationId = _db.Applications.Where(x => x.Name == applicationName).Single().Id;
                 dbItem.Type = item.GetType().ToString();
                 dbItem.Data = serializer.Serialize(item, item.GetType());
-                dbItem.ModifiedBy = "Allen Racho";
+                dbItem.ModifiedBy = item.ModifiedBy;
                 dbItem.ModifiedDate = DateTime.Now;
 
                 if (isNew)

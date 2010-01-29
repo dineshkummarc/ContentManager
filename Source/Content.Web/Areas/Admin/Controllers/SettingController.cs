@@ -48,6 +48,7 @@ namespace ContentNamespace.Web.Controllers
                     s.ContentExtractLength = int.Parse(collection["ContentExtractLength"]);
                     s.AllowRejectedContentReActivation = bool.Parse(collection["AllowRejectedContentReactivation"]);
                     s.AllowExpiredContentReActivation = bool.Parse(collection["AllowExpiredContentReactivation"]);
+                    s.ModifiedBy = "XXXX";
 
                     _service.Save(s);
                 }
