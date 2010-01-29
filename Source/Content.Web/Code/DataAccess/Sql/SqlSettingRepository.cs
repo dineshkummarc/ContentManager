@@ -40,7 +40,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                 var settingData = r.First(x => x.Application.Name == applicationName);
                 var serializer = new Serialization();
 
-                setting.Add(serializer.Deserialize(settingData.Data, typeof(Setting).ToString()) as Setting);
+                setting.Add(serializer.JsonDeserialize<Setting>(settingData.Data));
             }
 
             return setting.AsQueryable();
@@ -62,7 +62,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
  
                 dbItem.ApplicationId = _db.Applications.Where(x => x.Name == applicationName).Single().Id;
                 dbItem.Type = item.GetType().ToString();
-                dbItem.Data = serializer.Serialize(item, item.GetType());
+                dbItem.Data = serializer.JsonSerialize(item);
                 dbItem.ModifiedBy = item.ModifiedBy;
                 dbItem.ModifiedDate = DateTime.Now;
 

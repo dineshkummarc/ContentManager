@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
-//
 using System.Xml.Serialization;
+using System.Web.Script.Serialization;
 
 namespace ContentNamespace.Web.Code.Util
 {
@@ -34,6 +34,16 @@ namespace ContentNamespace.Web.Code.Util
             return xml;
         }
 
+        public string JsonSerialize(object obj)
+        {
+            var jsSerializer = new JavaScriptSerializer();
+            string xml;
+
+            xml = jsSerializer.Serialize(obj);
+
+            return xml;
+        }
+
         /// <summary>
         /// Deserializes an object.
         /// </summary>
@@ -50,6 +60,16 @@ namespace ContentNamespace.Web.Code.Util
             stringReader.Close();
 
             return obj;
+        }
+
+        public TObject JsonDeserialize<TObject>(string xml)
+        {
+            var jsSerializer = new JavaScriptSerializer();
+            TObject result;
+
+            result = jsSerializer.Deserialize<TObject>(xml);
+
+            return result;
         }
 
         #endregion
