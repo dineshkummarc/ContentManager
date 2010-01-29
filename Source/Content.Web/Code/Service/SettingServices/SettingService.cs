@@ -65,7 +65,7 @@ namespace ContentNamespace.Web.Code.Service.ConfigurationServices
 
         private Setting FillSettingFromRepository()
         {
-            var setting = _repository.Get().First();
+            var setting = _repository.Get().FirstOrDefault();
 
             // If there isn't a setting object in the repository, hardcode a setting instance 
             if (Equals(setting, null))
