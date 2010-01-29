@@ -8,17 +8,7 @@
     <h2><%= Html.Encode(ViewData["Message"]) %></h2>
     <p>
         To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-    </p>
-    <p>
-        <a href="AjaxTest.mvc/Index">AjaxTest/Index</a>
-    </p>
-    <p>
-        <a href="Account.mvc/AdminOnly">Account/AdminOnly</a>
-    </p>
-    <p>
-        <a href="Application.mvc/Index">Application.mvc/Index</a>
-    </p>
-    
+    </p> 
     
     <ul>
         <li>
@@ -29,6 +19,18 @@
             <%= Html.ActionLink("Client", "Index", "Test", new { Area = "Client" }, new { })%>
             &lt;%= Html.ActionLink("Client", "Index", "Test", new { Area = "Client" }, new { }) %&gt;
         </li>  
+        <li>
+            <%= Html.ActionLink("Application", "Application", "Index", new { Area = "Admin" }, new { })%>
+            &lt;%= Html.ActionLink("Application", "Application", "Index", new { Area = "Admin" }, new { }) %&gt;
+        </li>  
+        <li>
+            <%= Html.ActionLink("Account-AdminOnly", "AdminOnly","Account",  new { Area = "Admin" }, new { })%>
+            &lt;%= Html.ActionLink("Account-AdminOnly", "AdminOnly","Account", new { Area = "Admin" }, new { }) %&gt;
+        </li> 
+        <li>
+            <%= Html.ActionLink("AjaxTest",  "Index","AjaxTest", new { Area = "Admin" }, new { })%>
+            &lt;%= Html.ActionLink("AjaxTest", "Index","AjaxTest", new { Area = "Admin" }, new { }) %&gt;
+        </li> 
     </ul>
     
 </asp:Content>

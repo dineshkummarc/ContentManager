@@ -16,7 +16,7 @@ namespace ContentNamespace.Web.Areas.Client
         {
             context.MapRoute(
                 "Client_default",
-                "Client/{controller}/{action}/{id}",
+                "Client.mvc/{controller}/{action}/{id}",
                 new { action = "Index", id = "" }
             );
         }
