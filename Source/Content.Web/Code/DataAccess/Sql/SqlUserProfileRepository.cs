@@ -86,15 +86,8 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                 {
                     db.UserProfiles.InsertOnSubmit(dbItem);
                 }
-                try
-                {
-                    db.SubmitChanges();
-                }
-                catch (Exception e)
-                {
-                    string s = e.Message;
-                    throw;
-                }
+                db.SubmitChanges();
+
                 entity.Id = dbItem.Id;
                 return entity;
             }

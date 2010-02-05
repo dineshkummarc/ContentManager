@@ -48,7 +48,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
             return r;
         }
 
-        private Enums.ContentState GetContentStateEnum(int? intValue)
+        private static Enums.ContentState GetContentStateEnum(int? intValue)
         {
             switch (intValue)
             {

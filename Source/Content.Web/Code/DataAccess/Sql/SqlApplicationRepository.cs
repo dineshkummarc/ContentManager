@@ -24,8 +24,19 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
         #region IRepository<Application> Members
 
         public IQueryable<Application> Get()
-        {
-            throw new NotImplementedException();
+        { 
+            var r = this._db.Applications.Select(x => new Application
+            {
+                Id = x.Id,
+                Name = x.Name
+                //,
+                //ModifiedBy = x.ModifiedBy,
+                //ModifiedDate = x.ModifiedDate ?? new DateTime(1753, 1, 1),
+                //CreatedBy = x.CreatedBy,
+                //CreatedDate = x.CreatedDate ?? new DateTime(1753, 1, 1)
+            }).AsQueryable();
+            return r;
+
         }
 
         public ContentNamespace.Web.Code.Entities.Application Save(ContentNamespace.Web.Code.Entities.Application entity)
