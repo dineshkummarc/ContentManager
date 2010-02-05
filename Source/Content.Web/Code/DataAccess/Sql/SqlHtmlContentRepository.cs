@@ -62,9 +62,9 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
             }
         }
 
-        public Ent.HtmlContent Save(Ent.HtmlContent item)
+        public Ent.HtmlContent Save(Ent.HtmlContent entity)
         {
-            using (Dbml.DataClassesDataContext db = new Dbml.DataClassesDataContext(this.ConnStr))
+            using (Dbml.DataClassesDataContext db = new Dbml.DataClassesDataContext(this.ConnectionString))
             {
                 #region Bulk Test...
 
@@ -111,7 +111,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 
                 #endregion
 
-                Dbml.HtmlContent dbItem = db.HtmlContents.Where(x => x.Id == item.Id).SingleOrDefault();
+                Dbml.HtmlContent dbItem = db.HtmlContents.Where(x => x.Id == entity.Id).SingleOrDefault();
                 bool isNew = false;
                 if (dbItem == null)
                 {
@@ -136,13 +136,13 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                 //    dbTe.EventID = tdb.EventID;
                 //    dbT.TalentEvents.Add(dbTe);
                 //} 
-                dbItem.Name = item.Name;
-                dbItem.ContentData = item.ContentData;
-                dbItem.ActiveDate = item.ActiveDate;
-                dbItem.ExpireDate = item.ExpireDate ;
-                dbItem.ModifiedBy  = item.ModifiedBy;
-                dbItem.ModifiedDate = item.ModifiedDate;
-                dbItem.ItemState = (int)item.ItemState;
+                dbItem.Name = entity.Name;
+                dbItem.ContentData = entity.ContentData;
+                dbItem.ActiveDate = entity.ActiveDate;
+                dbItem.ExpireDate = entity.ExpireDate ;
+                dbItem.ModifiedBy  = entity.ModifiedBy;
+                dbItem.ModifiedDate = entity.ModifiedDate;
+                dbItem.ItemState = (int)entity.ItemState;
 
                 if (isNew)
                 {
@@ -157,8 +157,8 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                     string s = e.Message;
                     throw;
                 }
-                item.Id = dbItem.Id;
-                return item;
+                entity.Id = dbItem.Id;
+                return entity;
             }
 
         } 

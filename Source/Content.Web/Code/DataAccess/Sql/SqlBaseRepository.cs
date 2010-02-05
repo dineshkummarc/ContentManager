@@ -7,20 +7,18 @@ using System.Configuration;
 namespace ContentNamespace.Web.Code.DataAccess.Sql
 {
     public class SqlBaseRepository
-    {
-
-        static string _ConnStr;
-
-
-        protected virtual string ConnStr
+    { 
+        static string _ConnectionString;
+         
+        protected virtual string ConnectionString
         {
             get
             {
-                if (_ConnStr == null)
+                if (_ConnectionString == null)
                 {
-                    _ConnStr = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
+                    _ConnectionString = ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString;
                 }
-                return  _ConnStr;
+                return  _ConnectionString;
             }
         }
     }

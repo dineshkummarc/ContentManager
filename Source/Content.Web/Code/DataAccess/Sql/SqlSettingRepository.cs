@@ -46,9 +46,9 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
             return setting.AsQueryable();
         }
 
-        public Ent.Setting Save(Ent.Setting item)
+        public Ent.Setting Save(Ent.Setting entity)
         {
-            using (Dbml.DataClassesDataContext db = new Dbml.DataClassesDataContext(this.ConnStr))
+            using (Dbml.DataClassesDataContext db = new Dbml.DataClassesDataContext(this.ConnectionString))
             {
                 var serializer = new Serialization();
                 Dbml.Setting dbItem = db.Settings.Where(x => x.Application.Name == applicationName).SingleOrDefault();
@@ -61,9 +61,9 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                 }
  
                 dbItem.ApplicationId = _db.Applications.Where(x => x.Name == applicationName).Single().Id;
-                dbItem.Type = item.GetType().ToString();
-                dbItem.Data = serializer.JsonSerialize(item);
-                dbItem.ModifiedBy = item.ModifiedBy;
+                dbItem.Type = entity.GetType().ToString();
+                dbItem.Data = serializer.JsonSerialize(entity);
+                dbItem.ModifiedBy = entity.ModifiedBy;
                 dbItem.ModifiedDate = DateTime.Now;
 
                 if (isNew)
@@ -80,7 +80,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                     throw;
                 }
 
-                return item;
+                return entity;
             }
 
         } 

@@ -43,11 +43,11 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
             return r;
         }
 
-        public Ent.UserProfile Save(Ent.UserProfile item)
+        public Ent.UserProfile Save(Ent.UserProfile entity)
         {
-            using (Dbml.DataClassesDataContext db = new Dbml.DataClassesDataContext(this.ConnStr))
+            using (Dbml.DataClassesDataContext db = new Dbml.DataClassesDataContext(this.ConnectionString))
             {
-                Dbml.UserProfile dbItem = db.UserProfiles.Where(x => x.Id == item.Id).SingleOrDefault();
+                Dbml.UserProfile dbItem = db.UserProfiles.Where(x => x.Id == entity.Id).SingleOrDefault();
                 bool isNew = false;
                 if (dbItem == null)
                 {
@@ -60,26 +60,26 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                     //wish there was a better way to do this but... 
                     db.Application_UserProfiles.DeleteAllOnSubmit
                     (
-                        db.Application_UserProfiles.Where(x => x.UserProfileId ==  item.Id)
+                        db.Application_UserProfiles.Where(x => x.UserProfileId ==  entity.Id)
                     );
                 } 
-                foreach( Ent.Application a in item.Applications)
+                foreach( Ent.Application a in entity.Applications)
                 {
                     Dbml.Application_UserProfile dbAppUser = new Dbml.Application_UserProfile();
-                    dbAppUser.UserProfileId = item.Id;
+                    dbAppUser.UserProfileId = entity.Id;
                     dbAppUser.ApplicationId = a.Id;
                     dbItem.Application_UserProfiles.Add(dbAppUser);
                 }
-                dbItem.Name = item.Name;
-                dbItem.Email = item.Email;
-                dbItem.LastSignInDate = item.LastSignInDate;
-                dbItem.OpenIdId = item.OpenIdId;
-                dbItem.RegisterDate = item.RegisterDate;
-                dbItem.UserName = item.UserName;
-                dbItem.ModifiedBy = item.ModifiedBy;
-                dbItem.ModifiedDate = item.ModifiedDate;
-                dbItem.CreatedDate = item.CreatedDate;
-                dbItem.CreatedBy = item.CreatedBy;
+                dbItem.Name = entity.Name;
+                dbItem.Email = entity.Email;
+                dbItem.LastSignInDate = entity.LastSignInDate;
+                dbItem.OpenIdId = entity.OpenIdId;
+                dbItem.RegisterDate = entity.RegisterDate;
+                dbItem.UserName = entity.UserName;
+                dbItem.ModifiedBy = entity.ModifiedBy;
+                dbItem.ModifiedDate = entity.ModifiedDate;
+                dbItem.CreatedDate = entity.CreatedDate;
+                dbItem.CreatedBy = entity.CreatedBy;
 
 
                 if (isNew)
@@ -95,8 +95,8 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                     string s = e.Message;
                     throw;
                 }
-                item.Id = dbItem.Id;
-                return item;
+                entity.Id = dbItem.Id;
+                return entity;
             }
         }
 
