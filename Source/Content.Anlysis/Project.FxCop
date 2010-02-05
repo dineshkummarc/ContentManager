@@ -29,7 +29,7 @@
    <Modules AnalyzeAllChildren="False">
     <Module Name="content.web.dll" Analyze="False" AnalyzeAllChildren="False">
      <Namespaces AnalyzeAllChildren="False">
-      <Namespace Name="ContentNamespace.Web.Code.DataAccess.Sql" Analyze="True" AnalyzeAllChildren="True" />
+      <Namespace Name="ContentNamespace.Web.Code.DataAccess.Interfaces" Analyze="True" AnalyzeAllChildren="True" />
      </Namespaces>
      <Resources AnalyzeAllChildren="False" />
     </Module>
@@ -57,128 +57,82 @@
     <Modules>
      <Module Name="content.web.dll">
       <Namespaces>
-       <Namespace Name="ContentNamespace.Web.Code.DataAccess.Sql">
+       <Namespace Name="ContentNamespace.Web.Code.DataAccess.Interfaces">
         <Types>
-         <Type Name="SqlApplicationRepository">
-          <Members>
-           <Member Name="#_db">
-            <Messages>
-             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2010-02-03 17:24:29Z">
-              <Issue>
-               <Item>'SqlApplicationRepository._db'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
+         <Type Name="IApplicationRepository">
+          <Messages>
+           <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Created="2010-02-05 19:03:18Z">
+            <Issue>
+             <Item>'IApplicationRepository'</Item>
+            </Issue>
+           </Message>
+          </Messages>
          </Type>
-         <Type Name="SqlBaseRepository">
-          <Members>
-           <Member Name="#ConnStr">
-            <Messages>
-             <Message Id="Conn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-02-03 17:24:29Z">
-              <Issue Name="Member">
-               <Item>Conn</Item>
-               <Item>'SqlBaseRepository.ConnStr'</Item>
-              </Issue>
-             </Message>
-             <Message Id="Str" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-02-03 17:24:29Z">
-              <Issue Name="Member">
-               <Item>Str</Item>
-               <Item>'SqlBaseRepository.ConnStr'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="SqlHtmlContentRepository">
+         <Type Name="IHtmlContentRepository">
           <Members>
            <Member Name="#Get(System.Int32,System.Int32,System.Int32&amp;)">
             <Messages>
-             <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Created="2010-02-03 17:24:29Z">
+             <Message Id="2#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Created="2010-02-05 19:03:18Z">
+              <Issue>
+               <Item>'totalCount'</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Created="2010-02-05 19:03:18Z">
               <Issue>
                <Item>'PagedList&lt;HtmlContent&gt;'</Item>
-               <Item>'SqlHtmlContentRepository.Get(int, int, out int)'</Item>
+               <Item>'IHtmlContentRepository.Get(int, int, out int)'</Item>
               </Issue>
              </Message>
-            </Messages>
-           </Member>
-           <Member Name="#GetContentStateEnum(System.Nullable`1&lt;System.Int32&gt;)">
-            <Messages>
-             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2010-02-03 17:24:29Z" FixCategory="NonBreaking">
-              <Issue>
-               <Item>'SqlHtmlContentRepository.GetContentStateEnum(int?)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#Save(ContentNamespace.Web.Code.Entities.HtmlContent)">
-            <Messages>
-             <Message Id="0#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Created="2010-02-03 17:24:29Z">
-              <Issue>
-               <Item>'SqlHtmlContentRepository.Save(HtmlContent)'</Item>
-               <Item>'item'</Item>
-               <Item>'entity'</Item>
-               <Item>'IRepository&lt;HtmlContent&gt;.Save(HtmlContent)'</Item>
-              </Issue>
-             </Message>
-             <Message Id="s" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2010-02-03 17:24:29Z">
-              <Issue>
-               <Item>'SqlHtmlContentRepository.Save(HtmlContent)'</Item>
-               <Item>'s'</Item>
-               <Item>'string'</Item>
+             <Message Id="Get" TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716" Created="2010-02-05 19:03:18Z">
+              <Issue Name="Member">
+               <Item>'IHtmlContentRepository.Get(int, int, out int)'</Item>
+               <Item>Get</Item>
               </Issue>
              </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
-         <Type Name="SqlSettingRepository">
+         <Type Name="IRepository`1">
           <Members>
-           <Member Name="#Save(ContentNamespace.Web.Code.Entities.Setting)">
+           <Member Name="#Get()">
             <Messages>
-             <Message Id="0#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Created="2010-02-03 17:24:29Z">
-              <Issue>
-               <Item>'SqlSettingRepository.Save(Setting)'</Item>
-               <Item>'item'</Item>
-               <Item>'entity'</Item>
-               <Item>'IRepository&lt;Setting&gt;.Save(Setting)'</Item>
-              </Issue>
-             </Message>
-             <Message Id="s" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2010-02-03 17:24:29Z">
-              <Issue>
-               <Item>'SqlSettingRepository.Save(Setting)'</Item>
-               <Item>'s'</Item>
-               <Item>'string'</Item>
+             <Message Id="Get" TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716" Created="2010-02-05 19:03:18Z">
+              <Issue Name="Member">
+               <Item>'IRepository&lt;T&gt;.Get()'</Item>
+               <Item>Get</Item>
               </Issue>
              </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
-         <Type Name="SqlUserProfileRepository">
-          <Members>
-           <Member Name="#Save(ContentNamespace.Web.Code.Entities.UserProfile)">
-            <Messages>
-             <Message Id="0#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Created="2010-02-03 17:24:29Z">
-              <Issue>
-               <Item>'SqlUserProfileRepository.Save(UserProfile)'</Item>
-               <Item>'item'</Item>
-               <Item>'entity'</Item>
-               <Item>'IRepository&lt;UserProfile&gt;.Save(UserProfile)'</Item>
-              </Issue>
-             </Message>
-             <Message Id="s" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2010-02-03 17:24:29Z">
-              <Issue>
-               <Item>'SqlUserProfileRepository.Save(UserProfile)'</Item>
-               <Item>'s'</Item>
-               <Item>'string'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
+         <Type Name="ISettingRepository">
+          <Messages>
+           <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Created="2010-02-05 19:03:18Z">
+            <Issue>
+             <Item>'ISettingRepository'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="IUserProfileRepository">
+          <Messages>
+           <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Created="2010-02-05 19:03:18Z">
+            <Issue>
+             <Item>'IUserProfileRepository'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="IUserRoleRepository">
+          <Messages>
+           <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Created="2010-02-05 19:03:18Z">
+            <Issue>
+             <Item>'IUserRoleRepository'</Item>
+            </Issue>
+           </Message>
+          </Messages>
          </Type>
         </Types>
        </Namespace>
@@ -188,23 +142,17 @@
    </Target>
   </Targets>
   <Rules>
-   <Rule TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823">
-    <Resolution Name="Default">It appears that field {0} is never used or is only ever assigned to. Use this field or remove it.</Resolution>
+   <Rule TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040">
+    <Resolution Name="Default">Define a custom attribute to replace {0}.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021">
+    <Resolution Name="Default">Consider a design that does not require that {0} be an out parameter.</Resolution>
    </Rule>
    <Rule TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002">
     <Resolution Name="Default">Change {0} in {1} to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Resolution>
    </Rule>
-   <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
-    <Resolution Name="Member">Correct the spelling of '{0}' in member name {1} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
-   </Rule>
-   <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
-    <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
-   </Rule>
-   <Rule TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725">
-    <Resolution Name="Default">In member {0}, change parameter name {1} to {2} in order to match the identifier as it has been declared in {3}.</Resolution>
-   </Rule>
-   <Rule TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804">
-    <Resolution Name="Default">{0} declares a variable, {1}, of type {2}, which is never used or is only assigned to. Use this variable or remove it.</Resolution>
+   <Rule TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716">
+    <Resolution Name="Member">Rename virtual/interface member {0} so that it no longer conflicts with the reserved language keyword '{1}'. Using a reserved keyword as the name of a virtual/interface member makes it harder for consumers in other languages to override/implement the member.</Resolution>
    </Rule>
   </Rules>
  </FxCopReport>

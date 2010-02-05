@@ -70,19 +70,9 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                 {
                     db.Settings.InsertOnSubmit(dbItem);
                 }
-                try
-                {
-                    db.SubmitChanges();
-                }
-                catch (Exception e)
-                {
-                    string s = e.Message;
-                    throw;
-                }
-
+                db.SubmitChanges();
                 return entity;
             }
-
         } 
         public bool Delete(Ent.Setting entity)
         {

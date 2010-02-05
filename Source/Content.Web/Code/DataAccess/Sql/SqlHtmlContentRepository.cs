@@ -43,11 +43,12 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                 ModifiedDate = x.ModifiedDate ?? new DateTime(1753, 1, 1),
                 CreatedBy = x.CreatedBy,
                 CreatedDate = x.CreatedDate ?? new DateTime(1753, 1, 1),
-                ItemState = GetContentStateEnum((int)x.ItemState)
+                ItemState = SqlHtmlContentRepository.GetContentStateEnum((int)x.ItemState)
             }).AsQueryable();
             return r;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         private static Enums.ContentState GetContentStateEnum(int? intValue)
         {
             switch (intValue)
@@ -148,15 +149,8 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
                 {
                     db.HtmlContents.InsertOnSubmit(dbItem);
                 }
-                try
-                {
-                    db.SubmitChanges();
-                }
-                catch (Exception e)
-                {
-                    string s = e.Message;
-                    throw;
-                }
+                db.SubmitChanges();
+
                 entity.Id = dbItem.Id;
                 return entity;
             }

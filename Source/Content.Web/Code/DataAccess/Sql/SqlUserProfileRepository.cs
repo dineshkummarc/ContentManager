@@ -6,6 +6,7 @@ using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using Ent = ContentNamespace.Web.Code.Entities;
 using Dbml = ContentNamespace.Web.Code.DataAccess.Sql.Dbml;
 using ContentNamespace.Web.Code.Util;
+using ContentNamespace.Web.Code.Entities;
 
 namespace ContentNamespace.Web.Code.DataAccess.Sql
 {
@@ -43,7 +44,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
             return r;
         }
 
-        public Ent.UserProfile Save(Ent.UserProfile entity)
+        public UserProfile Save(UserProfile entity)
         {
             using (Dbml.DataClassesDataContext db = new Dbml.DataClassesDataContext(this.ConnectionString))
             {
