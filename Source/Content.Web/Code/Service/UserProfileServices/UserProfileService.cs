@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 //
-using ContentNamespace.Web.Code.Service.Base;
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Entities;
 

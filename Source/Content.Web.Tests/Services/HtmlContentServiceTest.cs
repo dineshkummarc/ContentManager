@@ -1,11 +1,6 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ContentNamespace.Web.Code.Service.Base;
 using ContentNamespace.Web.Code.Entities;
-using ContentNamespace.Web.Code.DataAccess.Fake;
 
 namespace ContentNamespace.Web.Tests.Services
 {

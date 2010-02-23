@@ -1,12 +1,14 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 //
 using ContentNamespace.Web.Code.DataAccess.Fake;
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
 using ContentNamespace.Web.Code.Service.AuthenticationServices;
-using ContentNamespace.Web.Code.Service.Base;
 using ContentNamespace.Web.Code.Service.ConfigurationServices;
+using ContentNamespace.Web.Code.Service.HtmlContentServices;
 using ContentNamespace.Web.Code.Service.Interfaces;
 using ContentNamespace.Web.Code.Service.SystemServices;
 using ContentNamespace.Web.Code.Service.UserProfileServices;
@@ -53,6 +55,8 @@ namespace ContentNamespace.Web
             //RegisterRoutes(RouteTable.Routes); 
             base.OnApplicationStarted();
             //RouteDebug.RouteDebugger.RewriteRoutesForTesting(RouteTable.Routes); 
+
+            Code.Util.EntityMapping.ConfigureAutomapper();
         }
 
         protected override IKernel CreateKernel()
@@ -64,7 +68,13 @@ namespace ContentNamespace.Web
                 //new FakeModule()
                 new SqlModule()
             };
-            return new StandardKernel(modules);
+
+            IKernel kernel = new StandardKernel(modules);
+
+            // Store 1 instance in Application for injection purposes as required
+            Application["ContentManagerStandardKernel"] = kernel;
+
+            return kernel;
         }
     }
 

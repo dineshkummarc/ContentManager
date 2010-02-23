@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
+//
 using ContentNamespace.Web.Code.Service.Interfaces;
 using ContentNamespace.Web.Code.Entities;
-using System.Text;
-using System.Web.Routing;
 using ContentNamespace.Web.Code.Service.ApplicationServices;
-using ContentNamespace.Web.Code.Service.ConfigurationServices;
-using ContentNamespace.Web.Code.DataAccess.Interfaces; 
 
 namespace ContentNamespace.Web.Controllers
 {
@@ -18,16 +13,16 @@ namespace ContentNamespace.Web.Controllers
     {
         private readonly IHtmlContentService _contentService;
         private readonly IApplicationService _applicationService;
-        private ISettingService _settingService;
+        private readonly ISettingService _settingService;
 
         // GET: /HtmlContent/
         public HtmlContentController(IHtmlContentService service,
             IApplicationService applicationService, 
             ISettingService settingService)
         {
-            this._contentService = service;
-            this._applicationService = applicationService;
-            this._settingService = settingService;
+            _contentService = service;
+            _applicationService = applicationService;
+            _settingService = settingService;
         }
 
         public ActionResult Index(int? targetPage)
@@ -37,10 +32,10 @@ namespace ContentNamespace.Web.Controllers
             // the Get() methods
             if (targetPage == null) { targetPage = 0; }
 
-            int totalCount = 0;
+            int totalCount;
 
             var settings = _settingService.Get();
-            var resultList = this._contentService.Get((int)targetPage, 0, out totalCount).ToList();
+            var resultList = _contentService.Get((int)targetPage, 0, out totalCount).ToList();
             var maximumPage = totalCount / settings.GridPageSize;
             var currentPageViewModel = new HtmlContentIndexViewModel(resultList, (int)targetPage, maximumPage);
 
@@ -51,7 +46,9 @@ namespace ContentNamespace.Web.Controllers
         // GET: /HtmlContent/Details/5 
         public ActionResult Details(int id)
         {
-            return View(this._contentService.Get(id));
+            var item = _contentService.Get(id);
+
+            return View(item);
         }
 
         //
@@ -59,8 +56,9 @@ namespace ContentNamespace.Web.Controllers
 
         public ActionResult Create()
         {
-            HtmlContent item = new HtmlContent();
-            return View(new HtmlContentViewModel(item, this._applicationService));
+            var item = new HtmlContent();
+            
+            return View(new HtmlContentViewModel(item, _applicationService));
         }
 
         //
@@ -69,18 +67,21 @@ namespace ContentNamespace.Web.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create([Bind(Exclude = "Id")] HtmlContent c)
         {  
-            c.ModifiedBy = "XXXX";//TODO: should be loged in user
+            c.ModifiedBy = "XXXX"; //TODO: should be logged in user
             c.ModifiedDate = DateTime.Now;
             c.ExpireDate = DateTime.MaxValue;
             c.ActiveDate = new DateTime(1900, 1, 1); 
             c.ContentData = "Hello <b>World</b>";
-            c.CreatedBy = "XXXX";//TODO: should be loged in user
+            c.CreatedBy = "XXXX"; //TODO: should be logged in user
             c.CreatedDate = DateTime.Now;
-            if (!this.Validate(c))
+            
+            if (!Validate(c))
             {
                 return View();
             }
-            this._contentService.Save(c);
+            
+            _contentService.Save(c);
+            
             return RedirectToAction("Edit/" + c.Id);
         }
 
@@ -88,7 +89,7 @@ namespace ContentNamespace.Web.Controllers
         // GET: /HtmlContent/Edit/5 
         public ActionResult Edit(int id)
         {
-            var editContent = this._contentService.Get(id);
+            var editContent = _contentService.Get(id);
 
             editContent.Edit();
 
@@ -105,9 +106,9 @@ namespace ContentNamespace.Web.Controllers
             {
                 c.Id = id;
 
-                this._contentService.Save(c);
+                _contentService.Save(c);
 
-                return RedirectToAction("Details", new { id = id });
+                return RedirectToAction("Details", new { id });
                 // return RedirectToAction("Details", new RouteValueDictionary(new { id = id }));
             }
             catch
@@ -120,7 +121,7 @@ namespace ContentNamespace.Web.Controllers
         // GET: /HtmlContent/EditExtra/5 
         public ActionResult EditExtra(int id)
         {
-            var editContent = this._contentService.Get(id);
+            var editContent = _contentService.Get(id);
 
             editContent.Edit();
 
@@ -135,10 +136,10 @@ namespace ContentNamespace.Web.Controllers
             try
             {
                 c.Id = id;
-                c.ContentData = this._contentService.Get(id).ContentData;
-                this._contentService.Save(c);
+                c.ContentData = _contentService.Get(id).ContentData;
+                _contentService.Save(c);
 
-                return RedirectToAction("Details", new { id = id });
+                return RedirectToAction("Details", new { id });
                 // return RedirectToAction("Details", new RouteValueDictionary(new { id = id }));
             }
             catch
@@ -149,7 +150,7 @@ namespace ContentNamespace.Web.Controllers
 
         public ActionResult Submit(int id)
         {
-            var editContent = this._contentService.Get(id);
+            var editContent = _contentService.Get(id);
 
             editContent.Submit(); // Change workflow state
 
@@ -158,16 +159,16 @@ namespace ContentNamespace.Web.Controllers
             return RedirectToAction("../HtmlContent/Details", new { id });
         }
 
-        public ActionResult Content(string id)
+        public new ActionResult Content(string id)
         {
-            var c = this._contentService.Get(Convert.ToInt32(id));
+            var c = _contentService.Get(Convert.ToInt32(id));
             return PartialView("Content", c);
         }
 
 
         public ActionResult ContentPage(int id)
         {
-            var x = this._contentService.Get(id); 
+            var x = _contentService.Get(id); 
             return View(x);
         }
         
@@ -204,8 +205,8 @@ namespace ContentNamespace.Web.Controllers
         // Constructor
         public HtmlContentViewModel(HtmlContent htmlContent, IApplicationService appService)
         {
-            this.HtmlContent = htmlContent;
-            this.Applications = new SelectList(
+            HtmlContent = htmlContent;
+            Applications = new SelectList(
                 appService.Get().Select(x => x.Name).AsEnumerable(),
                 1 /*this.HtmlContent.ApplicationId*/
             );
@@ -222,9 +223,9 @@ namespace ContentNamespace.Web.Controllers
         // Constructor
         public HtmlContentIndexViewModel(List<HtmlContent> htmlContent, int currentPage, int maximumPage)
         {
-            this.HtmlContentList = htmlContent;
-            this.CurrentPage = currentPage;
-            this.MaximumPage = maximumPage;
+            HtmlContentList = htmlContent;
+            CurrentPage = currentPage;
+            MaximumPage = maximumPage;
         }
     }
 }

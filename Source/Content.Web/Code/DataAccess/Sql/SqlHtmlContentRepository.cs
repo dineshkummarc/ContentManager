@@ -1,28 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+//
+using AutoMapper;
+//
 using ContentNamespace.Web.Code.DataAccess.Interfaces;
-using ContentNamespace.Web.Code.Entities;
-using Ent = ContentNamespace.Web.Code.Entities;
-using Dbml = ContentNamespace.Web.Code.DataAccess.Sql.Dbml;
 using ContentNamespace.Web.Code.Util;
+using HtmlContent=ContentNamespace.Web.Code.Entities.HtmlContent;
 
 namespace ContentNamespace.Web.Code.DataAccess.Sql
 {
     public class SqlHtmlContentRepository : SqlBaseRepository, IHtmlContentRepository
     {
-
-        Dbml.DataClassesDataContext _db;
-
-        public SqlHtmlContentRepository(Dbml.DataClassesDataContext dataContext)
-        {
-            _db = dataContext;
-        }
-
         public PagedList<HtmlContent> Get(int pageIndex, int pageSize, out int totalCount) 
         {
             var query = new PagedList<HtmlContent>(Get(), pageIndex, pageSize);
+
             totalCount = query.TotalCount;
 
             return query;
@@ -30,42 +22,22 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 
         #region IRepository<HtmlContent> Members
 
-        public IQueryable<Ent.HtmlContent> Get()
+        public IQueryable<HtmlContent> Get()
         {
-            var r = this._db.HtmlContents.Select(x => new Ent.HtmlContent
+            using (var db = new Dbml.DataClassesDataContext(ConnectionString))
             {
-                Id = x.Id,
-                Name = x.Name, 
-                ContentData = x.ContentData,
-                ActiveDate = x.ActiveDate ?? new DateTime(1753, 1,1),
-                ExpireDate = x.ExpireDate ?? new DateTime(1753, 1, 1),
-                ModifiedBy = x.ModifiedBy,
-                ModifiedDate = x.ModifiedDate ?? new DateTime(1753, 1, 1),
-                CreatedBy = x.CreatedBy,
-                CreatedDate = x.CreatedDate ?? new DateTime(1753, 1, 1),
-                ItemState = SqlHtmlContentRepository.GetContentStateEnum((int)x.ItemState)
-            }).AsQueryable();
-            return r;
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        private static Enums.ContentState GetContentStateEnum(int? intValue)
-        {
-            switch (intValue)
-            {
-                case 0: { return Enums.ContentState.Created; }
-                case 1: { return Enums.ContentState.InProgress; }
-                case 2: { return Enums.ContentState.Submitted; }
-                case 3: { return Enums.ContentState.Published; }
-                case 4: { return Enums.ContentState.Expired; }
-                case 99: { return Enums.ContentState.Rejected; }
-                default: { return Enums.ContentState.Created; }
+                // TODO: This is a somewhat strange usage, and should be looked into; if we don't convert to a list
+                // first, then we get an exception as the DataContext has been disposed by the time the IQueryable is
+                // materialized "later on"; however, if we do convert to a list, this is an extra processing hit
+                return db.HtmlContents.Select(x => Mapper.Map<Dbml.HtmlContent, HtmlContent>(x))
+                    .ToList()
+                    .AsQueryable();
             }
         }
 
-        public Ent.HtmlContent Save(Ent.HtmlContent entity)
+        public HtmlContent Save(HtmlContent entity)
         {
-            using (Dbml.DataClassesDataContext db = new Dbml.DataClassesDataContext(this.ConnectionString))
+            using (var db = new Dbml.DataClassesDataContext(ConnectionString))
             {
                 #region Bulk Test...
 
@@ -114,49 +86,31 @@ namespace ContentNamespace.Web.Code.DataAccess.Sql
 
                 Dbml.HtmlContent dbItem = db.HtmlContents.Where(x => x.Id == entity.Id).SingleOrDefault();
                 bool isNew = false;
+
                 if (dbItem == null)
                 {
                     dbItem = new Dbml.HtmlContent();
                     isNew = true;
                 }
-                //else
-                //{
-                //    //remove them for refresh
-                //    //wish there was a better way to do this but... 
-                //    //db.TalentEvents.DeleteAllOnSubmit(db.TalentEvents.Where(x => x.TalentID == t.Id));
-                //    //db.TalentLanguages.DeleteAllOnSubmit(db.TalentLanguages.Where(x => x.TalentID == t.Id));
-                //    //db.TalentTypeTalents.DeleteAllOnSubmit(db.TalentTypeTalents.Where(x => x.TalentID == t.Id));
 
-                //    //db.TalentFiles.DeleteAllOnSubmit(db.TalentFiles.Where(x => x.TalentID == t.Id));
-                //    //db.TalentStates.DeleteAllOnSubmit(db.TalentStates.Where(x => x.TalentID == t.Id)); 
-                //}
-                //foreach (Model.Model.TalentEvent tdb in t.TalentEvents)
-                //{
-                //    SqlServer.TalentEvent dbTe = new SqlServer.TalentEvent();
-                //    dbTe.TalentID = t.Id;
-                //    dbTe.EventID = tdb.EventID;
-                //    dbT.TalentEvents.Add(dbTe);
-                //} 
-                dbItem.Name = entity.Name;
-                dbItem.ContentData = entity.ContentData;
-                dbItem.ActiveDate = entity.ActiveDate;
-                dbItem.ExpireDate = entity.ExpireDate ;
-                dbItem.ModifiedBy  = entity.ModifiedBy;
-                dbItem.ModifiedDate = entity.ModifiedDate;
-                dbItem.ItemState = (int)entity.ItemState;
+                // Map from Domain => DataContext
+                Mapper.Map(entity, dbItem);
 
                 if (isNew)
                 {
                     db.HtmlContents.InsertOnSubmit(dbItem);
                 }
+
                 db.SubmitChanges();
 
                 entity.Id = dbItem.Id;
+                
                 return entity;
             }
 
-        } 
-        public bool Delete(Ent.HtmlContent entity)
+        }
+
+        public bool Delete(HtmlContent entity)
         {
             throw new NotImplementedException();
         }

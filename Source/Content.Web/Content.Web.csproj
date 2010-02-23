@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=1.0.0.155, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceBin\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Db4objects.Db4o, Version=7.4.121.14026, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceBin\Db4objects.Db4o.dll</HintPath>
@@ -181,9 +185,11 @@
     <Compile Include="Code\Service\UserRoleServices\UserRoleService.cs" />
     <Compile Include="Code\Util\Account.cs" />
     <Compile Include="Code\Util\Email.cs" />
+    <Compile Include="Code\Util\EntityMapping.cs" />
     <Compile Include="Code\Util\EnumHelper.cs" />
     <Compile Include="Code\Util\LazyList.cs" />
     <Compile Include="Code\Util\PagedList.cs" />
+    <Compile Include="Code\Util\Resolvers.cs" />
     <Compile Include="Code\Util\Serialization.cs" />
     <Compile Include="Code\Util\ServerVar.cs" />
     <Compile Include="Code\Util\SessionHelper.cs" />
