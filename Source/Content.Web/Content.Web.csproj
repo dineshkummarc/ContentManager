@@ -518,6 +518,12 @@
     <Content Include="Areas\Client\Views\TestClient\Index.aspx" />
     <Content Include="Areas\Client\Views\Web.config" />
     <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Content\img\bar.gif" />
+    <Content Include="Content\img\footer-bg.gif" />
+    <Content Include="Content\img\header-bg.gif" />
+    <Content Include="Content\style-ie.css" />
+    <Content Include="Content\style-print.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="Areas\Admin\Views\Shared\Site.Master" />
     <None Include="Code\DataAccess\Sql\Dbml\DataClasses.dbml.layout">
