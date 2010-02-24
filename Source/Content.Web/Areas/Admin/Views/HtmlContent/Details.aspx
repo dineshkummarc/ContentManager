@@ -70,7 +70,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('.detailToEdit').addClass('hand').click(function() {
-                var l = "/HtmlContent.mvc/Edit/<%= Model.Id %>";
+                var l = "/Admin.mvc/HtmlContent/Edit/<%= Model.Id %>";
                 window.location = l;
                 //alert('should link to:  ' + l);
             });

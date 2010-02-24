@@ -65,8 +65,8 @@ namespace ContentNamespace.Web
             {
                 new AutoControllerModule(Assembly.GetExecutingAssembly()),
                 //new Db4oModule()
-                //new FakeModule()
-                new SqlModule()
+                new FakeModule()
+                //new SqlModule()
             };
 
             IKernel kernel = new StandardKernel(modules);
