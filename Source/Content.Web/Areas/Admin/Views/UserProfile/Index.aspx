@@ -92,19 +92,21 @@
 
         $(function() {
             //$('tr>td:nth-child(1)').css('white-space', 'nowrap');
+            var i = 0;
             $('tr>td:nth-child(5)').each(function() {
-                truncateDetails($(this));
+                truncateDetails($(this), i++);
             });
             $('#main div.filter').css('height', '30px');
         });
 
-        function truncateDetails(e) {
+        function truncateDetails(e, i) { 
             var cutOff = 20;
             var all = e.text();
             var substr = '';
             if (all.length > cutOff) {
                 var a = (all.length > cutOff);
-                substr = all.substring(0, cutOff) + "<a href='#TB_inline?height=455&width=690&inlineId=hiddenModalContent' class='thickbox'>...</a><div id='hiddenModalContent'  style='display:none' ><div>" + all  + "</div></div>";
+                var inDev = all + " <br />--all.length.toString():" + all.length.toString() + " <br />--cutOff.toString():" + cutOff.toString(); 
+                substr = all.substring(0, cutOff) + "<a href='#TB_inline?height=455&width=690&inlineId=hiddenModalContent" + i + "' class='thickbox'>...</a><div id='hiddenModalContent" + i + "' style='display:none' ><div>" + inDev + "</div></div>";
                 e.html(substr);
             }
         }
