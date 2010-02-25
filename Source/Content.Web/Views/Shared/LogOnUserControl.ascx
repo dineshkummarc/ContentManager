@@ -12,7 +12,7 @@
     }
     else {
 %> 
-        <%= Html.ActionLink("Log On", "LogOn", "Account", new { Area = "Admin" }, new { style = "color: white; position: absolute; top: 37px; right: 275px;" })%>
+        <%= Html.ActionLink("Log On", "LogOn", "Account", new { Area = "Admin" }, new { style = "color: white; " })%>
 <%
     }
 %>

@@ -19,7 +19,7 @@
             </div>
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>
-            </div>
+            </div> 
             <div id="menucontainer">
                 <ul id="menu">
                     <li>
