@@ -525,13 +525,14 @@
     <Content Include="Content\style-print.css" />
     <Content Include="Content\style.css" />
     <Content Include="Default.aspx" />
-    <Content Include="Areas\Admin\Views\Shared\Site.Master" />
     <None Include="Code\DataAccess\Sql\Dbml\DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </None>
     <None Include="Public\images\bg\Thumbs.db" />
     <None Include="Public\images\Thumbs.db" />
     <None Include="Public\images\thumbs\Thumbs.db" />
+    <Content Include="Views\Shared\Site-02.Master" />
+    <Content Include="Views\Shared\Site-01.Master" />
     <EmbeddedResource Include="Resources\EN\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
@@ -542,6 +543,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Client\Models\" />
     <Folder Include="Areas\Client\Views\Shared\" />
   </ItemGroup>

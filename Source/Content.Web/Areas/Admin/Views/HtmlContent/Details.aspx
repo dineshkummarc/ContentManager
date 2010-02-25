@@ -63,16 +63,13 @@
 
 </asp:Content>
 
-
-
+ 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Javascript" runat="server">
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.detailToEdit').addClass('hand').click(function() {
-                var l = "/Admin.mvc/HtmlContent/Edit/<%= Model.Id %>";
-                window.location = l;
-                //alert('should link to:  ' + l);
+            $('.detailToEdit').addClass('hand').click(function() { 
+                window.location = "/Admin.mvc/HtmlContent/Edit/<%= Model.Id %>";
             });
         });
     </script>
