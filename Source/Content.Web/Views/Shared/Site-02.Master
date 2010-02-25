@@ -4,9 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-    <link rel="stylesheet" href="../../Content/style.css" type="text/css" media="screen, projection, tv" />
-    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../../Content/style-ie.css" media="screen, projection, tv" /><![endif]-->
-    <link rel="stylesheet" href="../../Content/style-print.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="../../Content/Styles/BlueSnow/style.css" type="text/css" media="screen, projection, tv" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../../Content/Styles/BlueSnow/style-ie.css" media="screen, projection, tv" /><![endif]-->
+    <link rel="stylesheet" href="../../Content/Styles/BlueSnow/style-print.css" type="text/css" media="print" />
     
     <asp:ContentPlaceHolder ID="Header" runat="server" />
 </head>
