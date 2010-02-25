@@ -45,33 +45,15 @@
     <% foreach (var item in Model) { %>
     
         <tr>
-            <td>
-                <%= Html.ActionLink("Details", "Details", new {  id=item.Id })%>
-            </td>
-            <td>
-                <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Name) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.UserName) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.OpenIdId) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.ApplicationsString) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Email) %>
-            </td>
-            <td>
-                <%= Html.Encode( item.UserRolesString ) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:g}", item.LastSignInDate)) %>
-            </td>   
+            <td><%= Html.ActionLink("Details", "Details", new {  id=item.Id })%></td>
+            <td><%= Html.Encode(item.Id) %></td>
+            <td><%= Html.Encode(item.Name) %></td>
+            <td><%= Html.Encode(item.UserName) %></td>
+            <td><%= Html.Encode(item.OpenIdId) %></td>
+            <td><%= Html.Encode(item.ApplicationsString) %></td>
+            <td><%= Html.Encode(item.Email) %></td>
+            <td><%= Html.Encode( item.UserRolesString ) %></td>
+            <td><%= Html.Encode(String.Format("{0:g}", item.LastSignInDate)) %></td>   
         </tr>
     
     <% } %>
@@ -100,13 +82,10 @@
         });
 
         function truncateDetails(e, i) { 
-            var cutOff = 20;
-            var all = e.text();
-            var substr = '';
-            if (all.length > cutOff) {
-                var a = (all.length > cutOff);
-                var inDev = all + " <br />--all.length.toString():" + all.length.toString() + " <br />--cutOff.toString():" + cutOff.toString(); 
-                substr = all.substring(0, cutOff) + "<a href='#TB_inline?height=455&width=690&inlineId=hiddenModalContent" + i + "' class='thickbox'>...</a><div id='hiddenModalContent" + i + "' style='display:none' ><div>" + inDev + "</div></div>";
+            var cutOff = 10; 
+            if (e.text().length > cutOff) {
+                var inDev = e.text() + "<br /><br />--e.text().length.toString():" + e.text().length.toString() + "<br />--cutOff.toString():" + cutOff.toString();
+                var substr = e.text().substring(0, cutOff) + "<a href='#TB_inline?height=455&width=690&inlineId=hiddenModalContent" + i + "' class='thickbox'>...</a><div id='hiddenModalContent" + i + "' style='display:none' ><div>" + inDev + "</div></div>";
                 e.html(substr);
             }
         }
