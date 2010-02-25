@@ -52,25 +52,26 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="JavaScript" runat="server">
 
-    <script type="text/javascript">
-
+    <script type="text/javascript"> 
         $(function() {
-            var i = 0;
-            $('tr>td:nth-child(5)').each(function() {
-                var index = $(this).parent().parent().children("tr").index($(this).parent())  ;
-                alert(index);
-                truncateDetails($(this), i++);
-            });
+            TruncateColumn(5);
+            TruncateColumn(8);
         });
 
-        function truncateDetails(e, i) { 
+        function TruncateColumn(col) {
+            var i = 0;
+            $('tr>td:nth-child('+col+')').each(function() { 
+                truncate($(this), col ,  i++);
+            });
+        }
+
+        function truncate(e, col,  i) { 
             var cutOff = 3; 
-            if (e.text().length > cutOff) { 
-                var substr = e.text().substring(0, cutOff) + "<a href='#TB_inline?height=455&width=690&inlineId=hiddenModalContent" + i + "' class='thickbox'>...</a><div id='hiddenModalContent" + i + "' style='display:none' ><div>" + e.text() + "</div></div>";
+            if (e.text().length > cutOff) {
+                var substr = e.text().substring(0, cutOff) + "<a href='#TB_inline?height=455&width=690&inlineId=Modal-c" + col + "r" + i + "' class='thickbox'>...</a><div id='Modal-c" + col + "r" + i + "' style='display:none' ><div>" + e.text() + "</div></div>";
                 e.html(substr);
             }
         }
-              
      </script> 
      <script src="../../Scripts/Thickbox.js" type="text/javascript"></script>  
     
