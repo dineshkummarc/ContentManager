@@ -4,6 +4,11 @@
 	Index
 </asp:Content>
 
+            
+<asp:Content ID="Content5" ContentPlaceHolderID="Header" runat="server">   
+	<link rel="stylesheet" type="text/css" href="../../Content/Styles/Thickbox.css" />
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Index</h2>
@@ -77,11 +82,35 @@
         <%= Html.ActionLink("Create New", "Create") %>
     </p>
 
+
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="Header" runat="server">
-</asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="JavaScript" runat="server">
+
+    <script type="text/javascript">
+
+        $(function() {
+            //$('tr>td:nth-child(1)').css('white-space', 'nowrap');
+            $('tr>td:nth-child(5)').each(function() {
+                truncateDetails($(this));
+            });
+            $('#main div.filter').css('height', '30px');
+        });
+
+        function truncateDetails(e) {
+            var cutOff = 20;
+            var all = e.text();
+            var substr = '';
+            if (all.length > cutOff) {
+                var a = (all.length > cutOff);
+                substr = all.substring(0, cutOff) + "<a href='#TB_inline?height=455&width=690&inlineId=hiddenModalContent' class='thickbox'>...</a><div id='hiddenModalContent'  style='display:none' ><div>" + all  + "</div></div>";
+                e.html(substr);
+            }
+        }
+              
+     </script> 
+     <script src="../../Scripts/Thickbox.js" type="text/javascript"></script>  
+    
 </asp:Content>
 
