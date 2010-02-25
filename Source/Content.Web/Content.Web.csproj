@@ -531,8 +531,8 @@
     <None Include="Public\images\bg\Thumbs.db" />
     <None Include="Public\images\Thumbs.db" />
     <None Include="Public\images\thumbs\Thumbs.db" />
-    <Content Include="Views\Shared\Site-02.Master" />
-    <Content Include="Views\Shared\Site-01.Master" />
+    <Content Include="Views\Shared\Site-BlueSnow.Master" />
+    <Content Include="Views\Shared\Site-Orig.Master" />
     <EmbeddedResource Include="Resources\EN\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>

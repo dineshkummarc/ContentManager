@@ -1,5 +1,5 @@
  
-<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Site-01.Master"  Inherits="System.Web.Mvc.ViewMasterPage"  %>
+<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Site-BlueSnow.Master"  Inherits="System.Web.Mvc.ViewMasterPage"  %>
 
 
 <asp:Content ID="Content4" ContentPlaceHolderID="TitleContent" runat="server">
