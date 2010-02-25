@@ -16,34 +16,17 @@
     <table>
         <tr>
             <th></th>
-            <th>
-                Id
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                UserName
-            </th>
-            <th>
-                OpenIdId
-            </th>
-            <th>
-                Application
-            </th> 
-            <th>
-                Email
-            </th>
-            <th>
-                Roles
-            </th>
-            <th>
-                LastSignInDate
-            </th> 
+            <th>Id</th>
+            <th>Name</th>
+            <th>UserName</th>
+            <th>OpenIdId</th>
+            <th>Application</th> 
+            <th>Email</th>
+            <th>Roles</th>
+            <th>LastSignInDate</th> 
         </tr>
 
-    <% foreach (var item in Model) { %>
-    
+    <% foreach (var item in Model) { %> 
         <tr>
             <td><%= Html.ActionLink("Details", "Details", new {  id=item.Id })%></td>
             <td><%= Html.Encode(item.Id) %></td>
@@ -52,10 +35,9 @@
             <td><%= Html.Encode(item.OpenIdId) %></td>
             <td><%= Html.Encode(item.ApplicationsString) %></td>
             <td><%= Html.Encode(item.Email) %></td>
-            <td><%= Html.Encode( item.UserRolesString ) %></td>
+            <td><%= Html.Encode(item.UserRolesString ) %></td>
             <td><%= Html.Encode(String.Format("{0:g}", item.LastSignInDate)) %></td>   
-        </tr>
-    
+        </tr> 
     <% } %>
 
     </table>
@@ -73,19 +55,18 @@
     <script type="text/javascript">
 
         $(function() {
-            //$('tr>td:nth-child(1)').css('white-space', 'nowrap');
             var i = 0;
             $('tr>td:nth-child(5)').each(function() {
+                var index = $(this).parent().parent().children("tr").index($(this).parent())  ;
+                alert(index);
                 truncateDetails($(this), i++);
             });
-            $('#main div.filter').css('height', '30px');
         });
 
         function truncateDetails(e, i) { 
-            var cutOff = 10; 
-            if (e.text().length > cutOff) {
-                var inDev = e.text() + "<br /><br />--e.text().length.toString():" + e.text().length.toString() + "<br />--cutOff.toString():" + cutOff.toString();
-                var substr = e.text().substring(0, cutOff) + "<a href='#TB_inline?height=455&width=690&inlineId=hiddenModalContent" + i + "' class='thickbox'>...</a><div id='hiddenModalContent" + i + "' style='display:none' ><div>" + inDev + "</div></div>";
+            var cutOff = 3; 
+            if (e.text().length > cutOff) { 
+                var substr = e.text().substring(0, cutOff) + "<a href='#TB_inline?height=455&width=690&inlineId=hiddenModalContent" + i + "' class='thickbox'>...</a><div id='hiddenModalContent" + i + "' style='display:none' ><div>" + e.text() + "</div></div>";
                 e.html(substr);
             }
         }
