@@ -518,6 +518,7 @@
     <Content Include="Areas\Client\Views\TestClient\Index.aspx" />
     <Content Include="Areas\Client\Views\Web.config" />
     <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Styles\BlueSnow\bar.gif" />
     <Content Include="Content\Styles\BlueSnow\footer-bg.gif" />
     <Content Include="Content\Styles\BlueSnow\header-bg.gif" />
@@ -525,6 +526,7 @@
     <Content Include="Content\Styles\BlueSnow\style-print.css" />
     <Content Include="Content\Styles\BlueSnow\style.css" />
     <Content Include="Content\Styles\Reset.css" />
+    <Content Include="Content\Styles\Thickbox.css" />
     <Content Include="Default.aspx" />
     <None Include="Code\DataAccess\Sql\Dbml\DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
@@ -532,6 +534,8 @@
     <None Include="Public\images\bg\Thumbs.db" />
     <None Include="Public\images\Thumbs.db" />
     <None Include="Public\images\thumbs\Thumbs.db" />
+    <Content Include="Scripts\thickbox-compressed.js" />
+    <Content Include="Scripts\thickbox.js" />
     <Content Include="Views\Shared\Site-BlueSnow.Master" />
     <Content Include="Views\Shared\Site-Orig.Master" />
     <EmbeddedResource Include="Resources\EN\Strings.resx">
