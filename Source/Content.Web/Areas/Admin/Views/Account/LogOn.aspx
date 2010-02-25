@@ -7,14 +7,13 @@
 
 <asp:Content ID="Content2"  ContentPlaceHolderID="Header" runat="server">
 
-	<link rel="stylesheet" href="/content/openid.css" />
+	<link rel="stylesheet" href="/content/Styles/openid.css" />
 	
 </asp:Content>
 
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
- 	<!-- Simple OpenID Selector -->
-	<link rel="stylesheet" href="/content/openid.css" />
+ 	<!-- Simple OpenID Selector --> 
 	<script type="text/javascript" src="/scripts/jquery-1.3.2.min.js"></script>
 	<script type="text/javascript" src="/scripts/openid-jquery.js"></script>
 	<script type="text/javascript">

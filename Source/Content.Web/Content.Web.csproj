@@ -411,7 +411,7 @@
     <Content Include="Content\CkEditor\skins\v2\images\toolbar_start.gif" />
     <Content Include="Content\CkEditor\skins\v2\skin.js" />
     <Content Include="Content\CkEditor\skins\v2\templates.css" />
-    <Content Include="Content\openid.css" />
+    <Content Include="Content\Styles\openid.css" />
     <Content Include="Global.asax" />
     <Content Include="Public\contact.html" />
     <Content Include="Public\css\html.css" />
@@ -524,6 +524,7 @@
     <Content Include="Content\Styles\BlueSnow\style-ie.css" />
     <Content Include="Content\Styles\BlueSnow\style-print.css" />
     <Content Include="Content\Styles\BlueSnow\style.css" />
+    <Content Include="Content\Styles\Reset.css" />
     <Content Include="Default.aspx" />
     <None Include="Code\DataAccess\Sql\Dbml\DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>

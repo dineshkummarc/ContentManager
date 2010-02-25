@@ -7,7 +7,8 @@
     <title>
         <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
-    <link href="../../Content/Styles/Orig/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../Content/Styles/Reset.css" />
+    <link rel="stylesheet" type="text/css" href="../../Content/Styles/Orig/Site.css" />
     <asp:ContentPlaceHolder ID="Header" runat="server" />
 </head>
 <body>
