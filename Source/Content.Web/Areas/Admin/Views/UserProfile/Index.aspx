@@ -2,17 +2,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
-</asp:Content>
-
+</asp:Content> 
             
 <asp:Content ID="Content5" ContentPlaceHolderID="Header" runat="server">   
 	<link rel="stylesheet" type="text/css" href="../../Content/Styles/Thickbox.css" />
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>Index</h2>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server"> 
+    <h2>Index</h2> 
     <table>
         <tr>
             <th></th>
@@ -24,9 +21,8 @@
             <th>Email</th>
             <th>Roles</th>
             <th>LastSignInDate</th> 
-        </tr>
-
-    <% foreach (var item in Model) { %> 
+        </tr> 
+        <% foreach (var item in Model) { %> 
         <tr>
             <td><%= Html.ActionLink("Details", "Details", new {  id=item.Id })%></td>
             <td><%= Html.Encode(item.Id) %></td>
@@ -38,20 +34,14 @@
             <td><%= Html.Encode(item.UserRolesString ) %></td>
             <td><%= Html.Encode(String.Format("{0:g}", item.LastSignInDate)) %></td>   
         </tr> 
-    <% } %>
-
-    </table>
-
+        <% } %> 
+    </table> 
     <p>
         <%= Html.ActionLink("Create New", "Create") %>
-    </p>
+    </p> 
+</asp:Content> 
 
-
-</asp:Content>
-
-
-<asp:Content ID="Content4" ContentPlaceHolderID="JavaScript" runat="server">
-
+<asp:Content ID="Content4" ContentPlaceHolderID="JavaScript" runat="server"> 
     <script type="text/javascript"> 
         $(function() {
             TruncateColumn(5);
@@ -66,10 +56,12 @@
         }
 
         function truncate(e, col,  i) { 
-            var cutOff = 3; 
-            if (e.text().length > cutOff) {
-                var substr = e.text().substring(0, cutOff) + "<a href='#TB_inline?height=455&width=690&inlineId=Modal-c" + col + "r" + i + "' class='thickbox'>...</a><div id='Modal-c" + col + "r" + i + "' style='display:none' ><div>" + e.text() + "</div></div>";
-                e.html(substr);
+            var cutOff = 3;
+            if (e.text().length > cutOff) { 
+                var a = $("<a href='#TB_inline?height=200&width=650&inlineId=c" + col + "r" + i + "' class='thickbox'>...</a>");
+                var model = $("<div id='c" + col + "r" + i + "' style='display:none' ><div>" + e.text() + "</div></div>");
+                var substr = e.text().substring(0, cutOff);
+                e.text(substr).append(a).append(model);
             }
         }
      </script> 
