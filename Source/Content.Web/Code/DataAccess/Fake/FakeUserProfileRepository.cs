@@ -34,8 +34,7 @@ namespace ContentNamespace.Web.Code.DataAccess.Fake
             }
             list.Add(CreateUser(i++, "nick", "eiu165", "eiu165",
                 "https://www.google.com/accounts/o8/id?id=AItOawmH6AK8ncGX-hJTjiAABt7MMw72e2stcD4",
-                new List<Enums.UserRoles> { Enums.UserRoles.Admin, Enums.UserRoles.Contributor}));
-
+                new List<Enums.UserRoles> { Enums.UserRoles.Admin, Enums.UserRoles.Contributor})); 
         }
 
         private UserProfile CreateUser(int id, string name, string username, 
