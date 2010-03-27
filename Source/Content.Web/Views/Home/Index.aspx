@@ -16,8 +16,8 @@
             &lt;%= Html.ActionLink("Admin", "Index", "Test", new { Area = "Admin" }, new { }) %&gt;
         </li> 
         <li>
-            <%= Html.ActionLink("Client", "Index", "Test", new { Area = "Client" }, new { })%>
-            &lt;%= Html.ActionLink("Client", "Index", "Test", new { Area = "Client" }, new { }) %&gt;
+            <%= Html.ActionLink("Client", "Index", "TestClient", new { Area = "Client" }, new { })%>
+            &lt;%= Html.ActionLink("Client", "Index", "TestClient", new { Area = "Client" }, new { }) %&gt;
         </li>  
         <li>
             <%= Html.ActionLink("Application", "Application", "Index", new { Area = "Admin" }, new { })%>
