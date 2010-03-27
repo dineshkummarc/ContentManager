@@ -127,6 +127,8 @@
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Client\AreaRegistration.cs" />
     <Compile Include="Areas\Client\Controllers\TestClientController.cs" />
+    <Compile Include="Areas\Screen\AreaRegistration.cs" />
+    <Compile Include="Areas\Screen\Controllers\AdminController.cs" />
     <Compile Include="Code\DataAccess\Db4o\Db4oHtmlContentRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeApplicationRepository.cs" />
     <Compile Include="Code\DataAccess\Fake\FakeHtmlContentRepository.cs" />
@@ -518,6 +520,8 @@
     <Content Include="Areas\Client\Views\TestClient\Index.aspx" />
     <Content Include="Areas\Client\Views\Web.config" />
     <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Screen\Views\Admin\Home.aspx" />
+    <Content Include="Areas\Screen\Views\Admin\Index.aspx" />
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Styles\BlueSnow\bar.gif" />
     <Content Include="Content\Styles\BlueSnow\footer-bg.gif" />
@@ -528,6 +532,7 @@
     <Content Include="Content\Styles\Reset.css" />
     <Content Include="Content\Styles\Thickbox.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Areas\Screen\Views\Web.config" />
     <None Include="Code\DataAccess\Sql\Dbml\DataClasses.dbml.layout">
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </None>
@@ -551,6 +556,8 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Client\Models\" />
     <Folder Include="Areas\Client\Views\Shared\" />
+    <Folder Include="Areas\Screen\Models\" />
+    <Folder Include="Areas\Screen\Views\Shared\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

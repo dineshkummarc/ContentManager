@@ -31,6 +31,14 @@
             <%= Html.ActionLink("AjaxTest",  "Index","AjaxTest", new { Area = "Admin" }, new { })%>
             &lt;%= Html.ActionLink("AjaxTest", "Index","AjaxTest", new { Area = "Admin" }, new { }) %&gt;
         </li> 
+        <li>
+            <%= Html.ActionLink("Screen-Admin-Index", "Index", "Admin", new { Area = "Screen" }, new { })%>
+            &lt;%= Html.ActionLink("Screen-Admin-Index", "Index", "Admin", new { Area = "Screen" }, new { }) %&gt;
+        </li> 
+        <li>
+            <%= Html.ActionLink("Screen-Admin-Home", "Home", "Admin", new { Area = "Screen" }, new { })%>
+            &lt;%= Html.ActionLink("Screen-Admin-Home", "Home", "Admin", new { Area = "Screen" }, new { }) %&gt;
+        </li> 
     </ul>
     
 </asp:Content>
