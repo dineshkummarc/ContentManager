@@ -55,7 +55,7 @@ namespace ContentNamespace.Web.Code.Service.ConfigurationServices
                 if (setting != null)
                 {
                     // place setting into the cache
-                    _cacheService.InsertIntoCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey,
+                    _cacheService.Cache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey,
                                                  setting,
                                                  setting.SettingsCacheTimeInMinutes);
                 }

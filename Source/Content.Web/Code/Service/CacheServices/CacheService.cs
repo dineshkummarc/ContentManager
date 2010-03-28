@@ -34,7 +34,7 @@ namespace ContentNamespace.Web.Code.Service.SystemServices
             }
         }
 
-        private void Cache(string cacheKey, 
+        public void Cache(string cacheKey, 
             object cacheObject,
             int cacheTimeInMinutes)
         {

@@ -7,6 +7,10 @@ namespace ContentNamespace.Web.Code.Service.SystemServices
 {
     public interface ICacheService
     {
-         object GetData();
+        void Cache(string cacheKey,
+            object cacheObject,
+            int cacheTimeInMinutes);
+        object Get(string cacheKey);
+        void Remove(string cacheKey);
     }
 }
