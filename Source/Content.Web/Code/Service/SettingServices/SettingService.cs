@@ -36,7 +36,7 @@ namespace ContentNamespace.Web.Code.Service.ConfigurationServices
 
         public Setting Save(Setting settings)
         {
-            _cacheService.RemoveFromCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey);
+            _cacheService.Remove(Resources.EN.Strings.System_ContentManagerSettingsCacheKey);
 
             return _repository.Save(settings);
         }
@@ -45,7 +45,7 @@ namespace ContentNamespace.Web.Code.Service.ConfigurationServices
 
         private Setting GetContentManagerSettings()
         {
-            var setting = _cacheService.GetFromCache(Resources.EN.Strings.System_ContentManagerSettingsCacheKey) as Setting;
+            var setting = _cacheService.Get(Resources.EN.Strings.System_ContentManagerSettingsCacheKey) as Setting;
 
             // If not found in cache, try get from DB
             if (Equals(setting, null))

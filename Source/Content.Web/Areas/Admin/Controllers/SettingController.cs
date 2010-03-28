@@ -12,22 +12,22 @@ namespace ContentNamespace.Web.Controllers
 {
     public class SettingController : Controller
     {
-        private readonly ISettingService _service;
+        private readonly ISettingService _settingService;
         //
         // GET: /Page/ 
         public SettingController(ISettingService service)
         {
-            this._service = service;
+            this._settingService = service;
         }
 
         public ActionResult Index()
         {
-            return View(_service.Get());
+            return View(_settingService.Get());
         }
 
         public ActionResult Edit()
         {
-            var editConfiguration = _service.Get();
+            var editConfiguration = _settingService.Get();
 
             return View(editConfiguration);
         }
@@ -38,7 +38,7 @@ namespace ContentNamespace.Web.Controllers
         {
             try
             {
-                var s = _service.Get();
+                var s = _settingService.Get();
 
                 if (s != null)
                 {
@@ -50,7 +50,7 @@ namespace ContentNamespace.Web.Controllers
                     s.AllowExpiredContentReActivation = bool.Parse(collection["AllowExpiredContentReactivation"]);
                     s.ModifiedBy = "XXXX";
 
-                    _service.Save(s);
+                    _settingService.Save(s);
                 }
 
                 // Remove the existing cached settings item; it will be re-added back automatically by the BaseController

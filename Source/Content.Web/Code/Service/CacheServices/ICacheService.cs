@@ -7,5 +7,6 @@ namespace ContentNamespace.Web.Code.Service.SystemServices
 {
     public interface ICacheService
     {
+         object GetData();
     }
 }
